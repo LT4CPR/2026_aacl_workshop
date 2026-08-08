@@ -181,12 +181,13 @@ shared task schedule.
 | --- | --- |
 | Training data | August 7, 2026 |
 | Evaluation metrics, baselines and validation scripts | August 7 to September 1, 2026 |
+| Development data | To be announced |
 | Test data | September 1, 2026 |
 | System output submission deadline | September 7, 2026 |
 
-Test documents are new crises, distinct from the ten released here. Test inputs
-will be released without reference reports; the reports will be published after
-the submission deadline.
+Development and test documents are new crises, distinct from the ten released
+here. Test inputs will be released without reference reports; the reports will
+be published after the submission deadline.
 
 ---
 
@@ -241,6 +242,9 @@ not necessarily reflect the views of the National Science Foundation.
 
 ## 12. Citation
 
-[TBD: shared task overview paper, once available. Until then cite the task
-page: LT4CPR Shared Task on Automatic Situation Report Generation, AACL-IJCNLP
-2026, https://lt4cpr.github.io/aacl2026-workshop-LT4CPR/shared-task.html]
+A shared task overview paper will be published in the LT4CPR proceedings.
+Until it is available, cite the task page:
+
+> LT4CPR Shared Task on Automatic Situation Report Generation. First Workshop
+> on Language Technologies for Crisis Preparedness and Response, AACL-IJCNLP
+> 2026. https://lt4cpr.github.io/aacl2026-workshop-LT4CPR/shared-task.html
