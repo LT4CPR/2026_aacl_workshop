@@ -1,8 +1,9 @@
-# Crisis Situation Report Generation — Shared Task
+# LT4CPR Shared Task on Automatic Situation Report Generation
 
-<!-- TODO before release: task name, venue, dates, contact address, citation.
-     Marked [TBD] throughout. Cell and document counts marked [VERIFY] should
-     be checked against the final export before publishing. -->
+First Workshop on Language Technologies for Crisis Preparedness and Response
+(LT4CPR), AACL-IJCNLP 2026 — Hengqin, Zhuhai, China and online, November 9, 2026.
+
+Task page: <https://lt4cpr.github.io/aacl2026-workshop-LT4CPR/shared-task.html>
 
 Generate structured situation reports from crisis social media.
 
@@ -14,7 +15,7 @@ sections, with each statement labeled by how well the evidence supports it.
 
 ## What is in this release
 
-**Training data: 10 crisis documents, 163 cells.** [VERIFY]
+**Training data: 10 crisis documents, 163 cells.**
 
 Each crisis is a separate fictional scenario. Each is divided into four
 cumulative time windows, and each window is sampled several times, giving a set
@@ -25,17 +26,16 @@ data/train/{crisis}/{crisis}.{window}.{replicate}.tweets.jsonl    input
 data/train/{crisis}/{crisis}.{window}.{replicate}.report.json     target
 ```
 
-**Development and test data are not yet released.** Two development documents
-and six test documents are being prepared and will be published on the dates
-below. They are new crises, distinct from the ten in this release, so nothing
-in the training data anticipates them. Test inputs will be released without
-reports; reports will be published after the submission deadline.
+**Development and test data are released later.** Both consist of new crises,
+distinct from the ten in this release, so nothing in the training data
+anticipates them. Test inputs are released without reference reports; the
+reports are published after the submission deadline.
 
-| | Documents | Released |
-| --- | --- | --- |
-| Train | 10 | Now |
-| Development | 2 | [TBD] |
-| Test | 6 | [TBD] |
+| | Released |
+| --- | --- |
+| Train | August 7, 2026 |
+| Development | To be announced |
+| Test | September 1, 2026 |
 
 ---
 
@@ -116,20 +116,28 @@ text similarity and a bullet-level alignment, together with agreement on
 confidence labels. Scores are averaged over replicates within a window, then
 over windows within a crisis, then over crises.
 
-Full detail, including the submission format, is in the evaluation guide
-[TBD: released with the development data].
+Evaluation metric scripts, definitions, baseline code and submission format
+validation are released between August 7 and September 1, 2026. See the task
+page for the current status.
 
 ---
 
 ## Dates
 
+All deadlines are 11:59 p.m. Anywhere on Earth. Dates are tentative; consult
+the task page for updates.
+
 | | |
 | --- | --- |
-| Training data released | [TBD] |
-| Development data released | [TBD] |
-| Test inputs released | [TBD] |
-| Submission deadline | [TBD] |
-| Results returned | [TBD] |
+| Training data release | August 7, 2026 |
+| Evaluation resources and baselines | August 7 – September 1, 2026 |
+| Participant registration deadline | August 25, 2026 |
+| Test data release | September 1, 2026 |
+| System output submission deadline | September 7, 2026 |
+| System description paper deadline | September 15, 2026 |
+| Notification of acceptance | October 1, 2026 |
+| Camera-ready papers due | October 10, 2026 |
+| LT4CPR workshop | November 9, 2026 |
 
 ---
 
@@ -146,8 +154,16 @@ see `DATASHEET.md`.
 
 ## Citation
 
-[TBD]
+A shared task overview paper will be published; until then cite the task page.
 
 ## Contact
 
-[TBD]
+<lt4cpr.sharedtask@gmail.com>
+
+Questions about the data or the task should go to this address. Updates are
+posted on the task page.
+
+---
+
+This material is based upon work supported by the National Science Foundation
+under Grant Nos. 2346334 and 2346335.
