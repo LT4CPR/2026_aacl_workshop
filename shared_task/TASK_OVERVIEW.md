@@ -1,4 +1,3 @@
-
 # Task overview
 
 ## Generating situation reports from crisis social media
@@ -15,11 +14,11 @@ in time.
 tweets from a crisis  ->  [ your system ]  ->  situation report
 ```
 
-This is a summarisation task with two properties that distinguish it from
-ordinary summarisation.
+This is a summarization task with two properties that distinguish it from
+ordinary summarization.
 
 **The output is structured.** A report is not free text. It is a set of
-sections, each containing short factual statements, each labelled with how well
+sections, each containing short factual statements, each labeled with how well
 the evidence supports it.
 
 **The input is partial.** Each set of tweets covers a bounded period, often
@@ -38,17 +37,17 @@ time, used in emergency management to give responders a shared picture of what
 is known. Real sitreps are produced by hand under time pressure; this task asks
 whether they can be produced automatically from social media.
 
-**Document.** One crisis scenario, with its own places, organisations, hazard
+**Document.** One crisis scenario, with its own places, organizations, hazard
 and timeline. This dataset contains ten. A document is the largest unit: no
 information carries across documents.
 
-**Window.** A period of time from the start of the event, labelled `W1` to
+**Window.** A period of time from the start of the event, labeled `W1` to
 `W4`. Windows are **cumulative**: `W2` covers everything `W1` covers and more.
 `W1` is the opening hours, when little is confirmed; `W4` covers the complete
 event. Window boundaries were chosen where the reported situation changed most,
 so they differ between documents.
 
-**Replicate.** One sample of tweets from a window, labelled `k1`, `k2`, and so
+**Replicate.** One sample of tweets from a window, labeled `k1`, `k2`, and so
 on. Replicates of the same window are drawn independently, so they overlap
 substantially but are not identical. They exist because a system should not
 depend on receiving one particular set of posts.
@@ -111,7 +110,7 @@ little to work with; the largest cover a complete event.
 
 ## 4. The data is synthetic
 
-Every crisis in this dataset is fictional. The places, organisations and people
+Every crisis in this dataset is fictional. The places, organizations and people
 do not exist.
 
 This is a deliberate choice, and the reasons matter for how the task should be
@@ -125,9 +124,9 @@ posts, and platform terms often prevent redistributing the posts themselves.
 was generated from a record of exactly what it reports. The reference report is
 then derived from those records by fixed rules, so the relationship between a
 set of tweets and its report is exact rather than a matter of annotator
-judgement. This is described in **`DERIVATION_RULES.md`**.
+judgment. This is described in **`DERIVATION_RULES.md`**.
 
-**Fictional content prevents memorisation.** A model that has read about a real
+**Fictional content prevents memorization.** A model that has read about a real
 event can reproduce facts about it without reading the input. Fictional events
 make that impossible: the only source of information is the tweets provided.
 
@@ -161,7 +160,7 @@ passengers move between rescued, unaccounted for, and confirmed dead as a
 search progresses. Missing is not dead. A system that adds these together, or
 treats one as the other, is wrong.
 
-**Recognising superseded guidance.** In one document an evacuation radius
+**Recognizing superseded guidance.** In one document an evacuation radius
 changes four times. Earlier instructions become incorrect, not merely
 incomplete. The report must state what is operative now.
 
@@ -209,7 +208,7 @@ Systems are scored against the reference reports.
 
 **Scope.** Reports contain sections 1 to 11. Sections 3 to 11 — those
 containing atomic factual claims — are scored. Sections 1 and 2 (overview and
-timeline) synthesise across claims and are not scored, but systems should still
+timeline) synthesize across claims and are not scored, but systems should still
 produce them.
 
 **Metrics.** Text similarity against the reference, and a bullet-level
