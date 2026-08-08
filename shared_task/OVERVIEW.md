@@ -38,8 +38,8 @@ is known. Real sitreps are produced by hand under time pressure; this task asks
 whether they can be produced automatically from social media.
 
 **Document.** One crisis scenario, with its own places, organizations, hazard
-and timeline. This dataset contains ten. A document is the largest unit: no
-information carries across documents.
+and timeline. The training release contains ten. A document is the largest
+unit: no information carries across documents.
 
 **Window.** A period of time from the start of the event, labeled `W1` to
 `W4`. Windows are **cumulative**: `W2` covers everything `W1` covers and more.
@@ -94,7 +94,7 @@ timestamp. The target is the structured report.
 
 Formats are specified in full in **`DATA_FORMAT.md`**.
 
-Corpus scale, across the ten documents:
+Scale of the training release:
 
 | | |
 | --- | --- |
@@ -108,7 +108,29 @@ little to work with; the largest cover a complete event.
 
 ---
 
-## 4. The data is synthetic
+## 4. Data splits
+
+The data is released in stages.
+
+| Split | Documents | Released | Contents |
+| --- | --- | --- | --- |
+| Train | 10 | August 7, 2026 | Tweets and reference reports |
+| Development | To be announced | Later | Tweets and reference reports |
+| Test | To be announced | September 1, 2026 | Tweets only; reports published after the submission deadline |
+
+Development and test documents are **new crises**, distinct from the ten in the
+training release. Nothing in the training data describes them, and no external
+source contains information about them, since all crises are fictional.
+
+Development data is intended for tuning and model selection. It will be
+released after the training data; watch the task page for the date.
+
+Consult the task page for the current schedule:
+<https://lt4cpr.github.io/aacl2026-workshop-LT4CPR/shared-task.html>
+
+---
+
+## 5. The data is synthetic
 
 Every crisis in this dataset is fictional. The places, organizations and people
 do not exist.
@@ -140,7 +162,7 @@ works.
 
 ---
 
-## 5. What the task tests
+## 6. What the task tests
 
 Each document was built around a specific difficulty. Together they test
 capabilities a usable system would need.
@@ -180,7 +202,7 @@ the main event, covering the forecast or warning phase.
 
 ---
 
-## 6. Rules
+## 7. Rules
 
 ### Each cell must be processed independently
 
@@ -202,7 +224,7 @@ fictional, so no external source contains information about them.
 
 ---
 
-## 7. Evaluation
+## 8. Evaluation
 
 Systems are scored against the reference reports.
 
@@ -226,19 +248,21 @@ Full detail is in the evaluation guide.
 
 ---
 
-## 8. Documents in this package
+## 9. Documents in this package
 
 | File | Contents |
 | --- | --- |
+| `README.md` | Release contents, quick start, dates and contact. |
 | `OVERVIEW.md` | This document. |
 | `DATA_FORMAT.md` | File formats, section schema, confidence labels, submission layout. |
 | `DERIVATION_RULES.md` | How reference reports were produced from tweets. |
 | `TAXONOMY_GUIDE.md` | The event and entity categories underlying the reports. |
 | `taxonomy.yaml` | The taxonomy in machine-readable form. |
+| `DATASHEET.md` | Provenance, generation method, limitations, license. |
 
 ---
 
-## 9. Where to start
+## 10. Where to start
 
 1. Read `DATA_FORMAT.md` and open one pair — the input file and its report side
    by side.
