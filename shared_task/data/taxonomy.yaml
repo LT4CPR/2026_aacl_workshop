@@ -1,0 +1,1253 @@
+version: 2.0
+domain: crisis_and_general_events
+event_metadata:
+  realis:
+    description: 'Realis status of the event: how it is presented with respect to reality and time.'
+    values:
+    - actual
+    - generic
+    - possible
+    - conditional
+    - planned
+    - pledged
+    - forecasted
+    - counterfactual
+  negated:
+    description: Whether the event is negated.
+    values:
+      - None
+      - negated
+    
+entity_types:
+  person:
+    fields:
+      gender:
+        subtypes:
+          male:
+            subtypes: {}
+          female:
+            subtypes: {}
+          mixed:
+            subtypes: {}
+          unknown:
+            subtypes: {}
+  
+      age_group:
+        subtypes:
+          child:
+            subtypes: {}
+          youth:
+            subtypes: {}
+          adult:
+            subtypes: {}
+          elderly:
+            subtypes: {}
+          unknown:
+            subtypes: {}
+      age:
+      description:
+      count:
+
+  organization:
+    fields:
+      org_type:
+        government:
+          subtypes: {}
+        ngo:
+          subtypes: {}
+        emergency_service:
+          subtypes: {}
+        company:
+          subtypes: {}
+        military:
+          subtypes: {}
+        unspecified_organization:
+          subtypes: {}
+      
+      
+  hazard:
+    fields:
+      hazard_type:
+        natural_disaster:
+          subtypes:
+            geophysical:
+              subtypes:
+                earthquake:
+                  subtypes:
+                    aftershock:
+                      subtypes: {}
+                tsunami:
+                  subtypes: {}
+                volcano:
+                  subtypes: {}
+                landslide:
+                  subtypes: {}
+                avalanche:
+                  subtypes: {}
+            hydrological:
+              subtypes:
+                flood:
+                  subtypes: {}
+            meteorological:
+              subtypes:
+                thunderstorm:
+                  subtypes: {}
+                blizzard:
+                  subtypes: {}
+                hurricane:
+                  subtypes: {}
+                typhoon:
+                  subtypes: {}
+                cyclone:
+                  subtypes: {}
+                tornado:
+                  subtypes: {}
+                heavy_rain:
+                  subtypes: {}
+                strong_winds:
+                  subtypes: {}
+            climatological:
+              subtypes:
+                wildfire:
+                  subtypes: {}
+                drought:
+                  subtypes: {}
+                temperature_extreme:
+                  subtypes:
+                    heatwave:
+                      subtypes: {}
+                    cold_wave:
+                      subtypes: {}
+  
+        human_induced_hazard:
+          subtypes:
+            chemical_spill:
+              subtypes: {}
+            toxic_release:
+              subtypes: {}
+            gas_leak:
+              subtypes: {}
+            oil_spill:
+              subtypes: {}
+            nuclear_incident:
+              subtypes: {}
+            radiation_leak:
+              subtypes: {}
+            explosion:
+              subtypes: {}
+            fire_industrial:
+              subtypes: {}
+            hazardous_waste:
+              subtypes: {}
+  
+        health_hazard:
+          subtypes:
+            epidemic:
+              subtypes: {}
+            pandemic:
+              subtypes: {}
+            disease_outbreak:
+              subtypes: {}
+            environmental_exposure:
+              subtypes:
+                contamination_biological:
+                  subtypes: {}
+                air_pollution:
+                  subtypes: {}
+                water_contamination:
+                  subtypes: {}
+                soil_contamination:
+                  subtypes: {}
+  
+        conflict_hazard:
+          subtypes:
+            armed_conflict:
+              subtypes:
+                shelling:
+                  subtypes: {}
+                bombing:
+                  subtypes: {}
+                shooting:
+                  subtypes: {}
+                war:
+                  subtypes: {}
+            civil_unrest:
+              subtypes:
+                riot:
+                  subtypes: {}
+                mass_panic:
+                  subtypes: {}
+            terrorism:
+              subtypes: {}
+  
+        utility_hazard:
+          subtypes:
+            power_outage:
+              subtypes: {}
+            grid_failure:
+              subtypes: {}
+            dam_failure:
+              subtypes: {}
+            bridge_collapse_risk:
+              subtypes: {}
+            building_collapse_risk:
+              subtypes: {}
+  
+        unspecified_hazard:
+          subtypes: {}
+
+        
+  infrastructure:
+    fields:
+      infra_type:
+        transportation:
+          subtypes:
+            airport:
+              subtypes: {}
+            road:
+              subtypes: {}
+            bridge:
+              subtypes: {}
+            port:
+              subtypes: {}
+            rail:
+              subtypes: {}
+            ferry:
+              subtypes: {}
+  
+        utility:
+          subtypes:
+            power_plant:
+              subtypes: {}
+            electricity:
+              subtypes: {}
+            telecom:
+              subtypes: {}
+            water_supply:
+              subtypes: {}
+            dam:
+              subtypes: {}
+            natural_gas:
+              subtypes: {}
+            gas_station:
+              subtypes: {}
+              
+        public_service:
+          subtypes:
+            medical_facility:
+              subtypes: {}
+            school:
+              subtypes: {}
+            shelter:
+              subtypes: {}
+            food_bank:
+              subtypes: {}
+            government_building:
+              subtypes: {}
+            place_of_worship:
+              subtypes: {}
+            landmarks:
+              subtypes: {}
+          
+          
+
+
+      
+  resource:
+    fields:
+      resource_type:
+        food:
+          subtypes: {}
+        water:
+          subtypes: {}
+        electricity:
+          subtypes: {}
+        shelter:
+          subtypes: {}
+        fuel:
+          subtypes: {}
+        medical:
+          subtypes: {}
+        phone:
+          subtypes:
+        internet:
+          subtypes: {}
+        other:
+          subtypes: {}
+
+
+
+  time:
+    fields:
+      time_type:
+        absolute:
+          subtypes: {}
+        duration:
+          subtypes: {}
+        recurring:
+          subtypes: {}
+        unknown:
+          subtypes: {}
+
+      
+  loc:
+    fields:
+      loc_type:
+        gpe:
+          subtypes:
+            supranational_region:
+              subtypes: {}
+            admin_0_country:
+              subtypes: {}
+            admin_1_state_province_prefecture:
+              subtypes: {}
+            admin_2_county_district:
+              subtypes: {}
+            locality_city:
+              subtypes: {}
+            locality_town:
+              subtypes: {}
+            locality_village:
+              subtypes: {}
+            sublocality_neighborhood:
+              subtypes: {}
+            unspecified_loc:
+              subtypes: {}
+  
+        natural_loc:   
+          subtypes:
+            water_body:
+              subtypes: {}
+            landform:           
+              subtypes: {}
+            coastal:  #?
+              subtypes: {}
+            vegetation_area: # forest, woods, 
+              subtypes: {}
+            unspecified_natural_loc:
+              subtypes: {}
+  
+        address_or_intersection:
+          subtypes:
+            street_address:
+              subtypes: {}
+            intersection:
+              subtypes: {}
+            landmark_reference:
+              subtypes: {}
+            unspecified_address_or_intersection:
+              subtypes: {}
+  
+
+
+      
+propbank_roles:
+  ARG0: Proto-agent / causer / doer (e.g., responders, authorities, organizations, sometimes speaker).
+  ARG1: Proto-patient / affected entity / theme (e.g., victim, damaged object, evacuee, resource, policy).
+  ARG2: Secondary core argument (beneficiary, secondary participant, or event-specific core).
+  ARGM-LOC: 'Locative modifier: where the event occurs or is targeted.'
+  ARGM-TMP: 'Temporal modifier: when the event occurs.'
+  ARGM-CAU: 'Causal modifier: hazard or reason that causes the event.'
+  ARGM-SRC: Source/origin of movement or transfer.
+  ARGM-DIR: Direction/destination of movement or transfer.
+  ARGM-MNR: Manner or means (e.g., method, vehicle, modality of action).
+  ARGM-PRP: Purpose or reason (e.g., for shelter, for protest, for coordination).
+
+
+
+  
+superclasses:
+  person_state_change:
+    label: Person State Change
+    description: Changes to physical/health/life state of people.
+    event_types:
+      INJURE:
+        description: One or more people are injured.
+        event_fields:
+          injury_severity:
+            type: str
+            required: false
+            description: Severity level such as minor, moderate, severe, critical.
+          injury_type:
+            type: str
+            required: false
+            description: Type of injury if known (e.g., burns, fractures, cuts, smoke inhalation).
+        arg_roles:
+          ARG0:
+            description: Causer or agent of the injury (person, organization, or responder).
+            fills:
+            - hazard
+            - infrastructure
+            - person
+          ARG1:
+            description: Injured person(s).
+            fills:
+            - person
+          ARGM-LOC:
+            description: Location of the injury event.
+            fills:
+            - loc
+          ARGM-TMP:
+            description: Time of the injury event.
+            fills:
+            - time
+      KILL:
+        description: One or more people die.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Cause of death (person if explicitly responsible; otherwise hazard or infrastructure failure).
+            fills:
+              - person
+              - hazard
+              - infrastructure
+              - organization
+          ARG1:
+            description: Person(s) who died.
+            fills:
+              - person
+          ARGM-LOC:
+            description: Location where the deaths occur.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the deaths occur.
+            fills:
+              - time
+      MISSING:
+        description: One or more people are missing or unaccounted for.
+        event_fields: None
+        arg_roles:
+          ARG1:
+            description: Missing person(s) or group.
+            fills:
+              - person
+          ARGM-LOC:
+            description: Location where they are missing from or last seen.
+            fills:
+              - loc
+          ARGM-CAU:
+            description: Cause of the missing status (used for non-transitive/status events).
+            fills:
+              - hazard
+              - infrastructure
+          ARGM-TMP:
+            description: Time reference for missing status.
+            fills:
+              - time
+      RESCUE:
+        description: People are extracted from danger.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Rescuer (responders, volunteers, or other agents).
+            fills:
+            - person
+            - organization
+          ARG1:
+            description: Person(s) rescued.
+            fills:
+            - person
+          ARGM-LOC:
+            description: Location of the rescue.
+            fills:
+            - loc
+          ARGM-TMP:
+            description: Time of the rescue.
+            fills:
+            - time
+      TRAP:
+        description: People are trapped or confined.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Agents that trap the person.
+            fills:
+            - hazard
+            - infrastructure
+          ARG1:
+            description: Person(s) trapped.
+            fills:
+            - person
+          ARGM-CAU:
+            description: Cause of the trapped status (used for non-transitive/status events).
+            fills:
+              - hazard
+              - infrastructure
+          ARGM-LOC:
+            description: Location where they are trapped.
+            fills:
+            - loc
+          ARGM-TMP:
+            description: Time reference for the trapped state.
+            fills:
+            - time
+      FOUND:
+        description: Missing people are located.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Finder or rescuing agent (if mentioned).
+            fills:
+            - person
+          ARG1:
+            description: Person(s) found.
+            fills:
+            - person
+          ARGM-LOC:
+            description: Location where they were found.
+            fills:
+            - loc
+          ARGM-TMP:
+            description: Time of being found.
+            fills:
+            - time
+
+
+            
+  object_infra_change:
+    label: Object / Infrastructure Change
+    description: Damage, destruction, or restoration of physical objects/infrastructure.
+    event_types:
+      DAMAGE:
+        description: Objects/infrastructure are damaged but not completely destroyed.
+        event_fields:
+          damage_severity:
+            type: str
+            required: false
+            description: Severity such as minor, moderate, severe.
+        arg_roles:
+          ARG0:
+            description: Cause of the damage (hazard, infrastructure failure, or responsible actor if explicit).
+            fills:
+              - hazard
+              - infrastructure
+              - person
+              - organization
+          ARG1:
+            description: Infrastructure that is damaged.
+            fills:
+              - infrastructure
+          ARGM-LOC:
+            description: Location of the damaged infrastructure.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the damage occurred or is described.
+            fills:
+              - time
+  
+      DESTROY:
+        description: Objects/infrastructure are completely destroyed or irreparable.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Cause of the destruction (hazard, infrastructure failure, or responsible actor if explicit).
+            fills:
+              - hazard
+              - infrastructure
+              - person
+              - organization
+          ARG1:
+            description: Infrastructure that is destroyed.
+            fills:
+              - infrastructure
+          ARGM-LOC:
+            description: Location of the destroyed infrastructure.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the destruction occurred or is described.
+            fills:
+              - time
+  
+      DISRUPT_SERVICE:
+        description: Disruption to services or infrastructure (e.g., power, water, internet).
+        event_fields:
+          critical_service:
+            type: bool
+            required: false
+            description: True if the service is clearly critical (e.g., hospitals, emergency comms).
+        arg_roles:
+          ARG0:
+            description: Cause of the disruption if explicit (hazard, infrastructure failure, or responsible actor).
+            fills:
+              - hazard
+              - infrastructure
+              - person
+              - organization
+          ARG1:
+            description: Infrastructure/service whose functionality is disrupted.
+            fills:
+              - infrastructure
+          ARGM-LOC:
+            description: Location where service disruption occurs.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time or duration of the disruption.
+            fills:
+              - time
+  
+      RESTORE:
+        description: Repair or restoration of infrastructure/services.
+        event_fields:
+          restoration_status:
+            type: str
+            required: false
+            description: Stage of restoration (e.g., partial, full, ongoing).
+        arg_roles:
+          ARG0:
+            description: Actor carrying out the restoration.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Infrastructure/service being restored.
+            fills:
+              - infrastructure
+          ARGM-LOC:
+            description: Location where restoration occurs.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time or phase of restoration.
+            fills:
+              - time
+
+
+              
+  movement_displacement:
+    label: Movement / Displacement
+    description: People moving, evacuating, or being displaced.
+    event_types:
+      EVACUATE:
+        description: Voluntary or mandatory evacuation from at-risk areas.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Evacuation organizer/enforcer if explicit (e.g., authorities/organizations), or evacuating individuals.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: People being evacuated.
+            fills:
+              - person
+          ARGM-SRC:
+            description: Origin of evacuation (where people are leaving from).
+            fills:
+              - loc
+          ARGM-DIR:
+            description: Destination of evacuation (where people are moved to).
+            fills:
+              - loc
+          ARGM-MNR:
+            description: Means/mode of evacuation if explicitly an asset (bus/boat/vehicle).
+            fills:
+              - infrastructure
+          ARGM-TMP:
+            description: Time of evacuation.
+            fills:
+              - time
+  
+      DISPLACE:
+        description: People are forced to leave a location or are unable to continue normal movement (e.g., stranded) due to a crisis.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Cause of displacement if explicit.
+            fills:
+              - hazard
+              - infrastructure
+              - person
+              - organization
+          ARG1:
+            description: People who are displaced.
+            fills:
+              - person
+          ARGM-SRC:
+            description: Home/origin location people are displaced from.
+            fills:
+              - loc
+          ARGM-DIR:
+            description: Location or area to which people move.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time or duration of displacement.
+            fills:
+              - time
+  
+      RETURN:
+        description: People return to homes or areas after displacement.
+        event_fields: None
+        arg_roles:
+          ARG1:
+            description: People returning after displacement.
+            fills:
+              - person
+          ARGM-SRC:
+            description: Location they are returning from.
+            fills:
+              - loc
+          ARGM-DIR:
+            description: Location they are returning to (often original home).
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time of return.
+            fills:
+              - time
+
+            
+  communication:
+    label: Communication
+    description: Crisis-related communication and information sharing.
+    event_types:
+      WARN:
+        description: Warnings or alerts issued about a hazard or risk.
+        event_fields:
+          warning_channel:
+            type: str
+            required: false
+            description: Communication channel (e.g., SMS, siren, TV, social media).
+          warning_urgency:
+            type: str
+            required: false
+            description: Urgency level if expressed (e.g., immediate, advisory).
+        arg_roles:
+          ARG0:
+            description: Issuer of the warning.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Hazard or risk being warned about.
+            fills:
+              - hazard
+          ARG2:
+            description: Audience if explicitly mentioned.
+            fills:
+              - person
+              - organization
+          ARGM-LOC:
+            description: Target location/area covered by the warning.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the warning is issued or valid.
+            fills:
+              - time
+  
+      REQUEST:
+        description: Requests for help, resources, or information.
+        event_fields:
+          urgency:
+            type: str
+            required: false
+            description: Level of urgency (e.g., urgent, emergency, long-term).
+        arg_roles:
+          ARG0:
+            description: Entity making the request.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Resource/help being requested.
+            fills:
+              - resource
+          ARG2:
+            description: Intended addressee if stated.
+            fills:
+              - person
+              - organization
+          ARGM-LOC:
+            description: Location for which the help is requested.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time of request or time frame of need.
+            fills:
+              - time
+  
+      INFORM:
+        description: Informational updates about the situation.
+        event_fields:
+          information_type:
+            type: str
+            required: false
+            description: Type of information (e.g., situation update, statistics, guidance).
+          info_source:
+            type: str
+            required: false
+            description: Source of information (e.g., official, media, eyewitness).
+          info_scope:
+            type: str
+            required: false
+            description: What the information covers (e.g., specific location, region).
+        arg_roles:
+          ARG0:
+            description: Source or speaker providing information.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Main entity/event referenced in the information (as mentioned explicitly).
+            fills:
+              - hazard
+              - infrastructure
+              - resource
+              - person
+              - organization
+          ARG2:
+            description: Audience receiving the information if explicitly mentioned.
+            fills:
+              - person
+              - organization
+          ARGM-PRP:
+            description: Topic focus if represented by an entity mentioned explicitly.
+            fills:
+              - hazard
+              - infrastructure
+              - resource
+          ARGM-TMP:
+            description: Time of the information or when it applies.
+            fills:
+              - time
+
+              
+  response:
+    label: Response
+    description: Non-aid operational response actions (e.g., deployment, coordination).
+    event_types:
+      DEPLOY:
+        description: Deployment of teams or resources (e.g., rescue teams, equipment).
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Authority/responder deploying teams/resources.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Resources being deployed.
+            fills:
+              - resource
+          ARGM-LOC:
+            description: Target location for the deployment.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time of deployment.
+            fills:
+              - time
+  
+      COORDINATE:
+        description: Coordination actions between organizations or levels of government.
+        event_fields:
+          mechanism:
+            type: str
+            required: false
+            description: Coordination mechanism (e.g., cluster, task force, EOC).
+        arg_roles:
+          ARG0:
+            description: Lead coordinator entity.
+            fills:
+              - organization
+              - person
+          ARG1:
+            description: Partner entities involved in coordination.
+            fills:
+              - organization
+          ARGM-LOC:
+            description: Location/administrative level where coordination occurs.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time or phase of coordination.
+            fills:
+              - time
+
+
+            
+  socio_political:
+    label: Socio-Political
+    description: Political or social actions or responses related to the crisis.
+    event_types:
+      POLICY_CHANGE:
+        description: Policy or regulatory changes linked to the crisis.
+        event_fields:
+          policy_measure:
+            type: str
+            required: false
+            description: Policy/regulatory measure being changed or introduced (free text).
+        arg_roles:
+          ARG0:
+            description: Authority/issuer responsible for the policy change.
+            fills:
+              - organization
+              - person
+          ARG1:
+            description: People/populations affected (if explicitly mentioned).
+            fills:
+              - person
+              - organization
+          ARGM-TMP:
+            description: Time when the policy change takes effect or is announced.
+            fills:
+              - time
+  
+      PROTEST:
+        description: Protests or demonstrations related to the crisis.
+        event_fields:
+          protest_size:
+            type: str
+            required: false
+            description: Qualitative or quantitative size (e.g., hundreds, thousands).
+        arg_roles:
+          ARG0:
+            description: Protest participants (entities explicitly mentioned).
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Protest target if an entity is explicitly named.
+            fills:
+              - organization
+          ARGM-LOC:
+            description: Location where the protest occurs.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the protest occurs.
+            fills:
+              - time
+  
+      FUNDING:
+        description: Funding or pledges related to crisis response or recovery.
+        event_fields:
+          funding_purpose:
+            type: str
+            required: false
+            description: Purpose of funding (e.g., relief, reconstruction).
+        arg_roles:
+          ARG0:
+            description: Donor/funder providing resources.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Funding or resource being provided.
+            fills:
+              - resource
+          ARG2:
+            description: Beneficiary/recipient receiving the funding/resources.
+            fills:
+              - person
+              - organization
+          ARGM-TMP:
+            description: Time of pledge or disbursement.
+            fills:
+              - time
+
+              
+  transaction:
+    label: Transaction
+    description: Economic or resource transfers not fully covered by response.
+    event_types:
+      TRANSFER:
+        description: Resource or financial transfers between actors.
+        event_fields: None
+        arg_roles:
+          ARG0:
+            description: Sender/donor of the transfer.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Resource/funds being transferred.
+            fills:
+              - resource
+          ARG2:
+            description: Recipient/beneficiary of the transfer.
+            fills:
+              - person
+              - organization
+          ARGM-LOC:
+            description: Location where the transfer is received.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the transfer occurs.
+            fills:
+              - time
+
+              
+  org_admin:
+    label: Organizational / Administrative
+    description: Organizational actions not directly about crisis response.
+    event_types:
+      MEETING:
+        description: Meetings to discuss or plan crisis-related actions.
+        event_fields:
+          meeting_purpose:
+            type: str
+            required: false
+            description: Purpose of the meeting (e.g., coordination, planning, evaluation).
+          outcome_summary:
+            type: str
+            required: false
+            description: Brief description of any outcome or decision.
+        arg_roles:
+          ARG0:
+            description: Main organization or convening body for the meeting.
+            fills:
+              - organization
+          ARG1:
+            description: Other entities participating if explicitly named.
+            fills:
+              - organization
+              - person
+          ARGM-LOC:
+            description: Location where the meeting takes place.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time or date of the meeting.
+            fills:
+              - time
+
+              
+  situational_state:
+    label: Situational State
+    description: Descriptions of conditions without a clear action or transition.
+    event_types:
+      SITUATION_STATE:
+        description: Static or slowly changing description of conditions.
+        event_fields:
+          condition_type:
+            type: str
+            required: false
+            description: Type of condition (e.g., overcrowding, shortage, contamination).
+          severity:
+            type: str
+            required: false
+            description: Severity level of the condition as expressed in text.
+        arg_roles:
+          ARG1:
+            description: Main entity experiencing the condition (resource/infrastructure).
+            fills:
+              - resource
+              - infrastructure
+          ARGM-LOC:
+            description: Location where the condition holds.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time frame over which the condition holds.
+            fills:
+              - time
+  
+      HAZARDOUS_CONDITION:
+        description: A hazardous condition is present without asserting a new hazard-occurrence event.
+        event_fields:
+          condition_severity:
+            type: str
+            required: false
+            description: Severity level of the hazard condition as expressed in text.
+          magnitude:
+            type: str
+            required: false
+            description: Quantitative measure if present (e.g., rainfall amount, wind speed).
+        arg_roles:
+          ARG1:
+            description: Hazard that defines the hazardous condition.
+            fills:
+              - hazard
+          ARGM-LOC:
+            description: Location affected by the hazardous condition.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when the condition holds or is reported.
+            fills:
+              - time
+
+            
+  cognitive:
+    label: Cognitive
+    description: Beliefs, perceptions, or attitudes related to the crisis.
+    event_types:
+      ATTITUDE:
+        description: Expressions of opinions or feelings about the crisis.
+        event_fields:
+          attitude_polarity:
+            type: str
+            required: false
+            description: Polarity of attitude (e.g., supportive, critical, fearful).
+        arg_roles:
+          ARG0:
+            description: Entity expressing the attitude/emotion.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Entity/situation that the attitude/emotion is expressed towards.
+            fills:
+              - hazard
+              - infrastructure
+              - resource
+              - person
+              - organization
+          ARGM-CAU:
+            description: Cause of the expressed attitude/emotion.
+            fills:
+              - hazard
+              - infrastructure
+              - resource
+              - person
+              - organization
+          ARGM-TMP:
+            description: Time when the attitude is expressed or relevant.
+            fills:
+              - time
+
+              
+  social:
+    label: Social
+    description: Social interactions or behaviors not covered elsewhere.
+    event_types:
+      SOCIAL_SUPPORT:
+        description: Informal social support (e.g., neighbors helping neighbors).
+        event_fields:
+          support_type:
+            type: str
+            required: false
+            description: Type of support (e.g., hosting, sharing food, carpooling).
+        arg_roles:
+          ARG0:
+            description: Helper/volunteer providing support.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Beneficiary/recipient of support.
+            fills:
+              - person
+              - organization
+          ARGM-LOC:
+            description: Location where social support occurs.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when social support is provided.
+            fills:
+              - time
+
+
+              
+  provide_help:
+    label: Provide Help
+    description: Provider-centric aid or assistance delivered to affected people or areas.
+    event_types:
+      PROVIDE_HELP:
+        description: Delivery or distribution of aid, resources, or services.
+        event_fields:
+          delivery_mode:
+            type: str
+            required: false
+            description: Mode of delivery (e.g., in-kind, cash, vouchers).
+        arg_roles:
+          ARG0:
+            description: Provider delivering aid.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Aid resource being provided.
+            fills:
+              - resource
+          ARG2:
+            description: Recipient/beneficiary receiving aid.
+            fills:
+              - person
+              - organization
+          ARGM-LOC:
+            description: Location where aid is delivered.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when aid is provided.
+            fills:
+              - time
+  
+  receive_help:
+    label: Receive Help
+    description: Recipient-centric receipt of aid, assistance, or services.
+    event_types:
+      RECEIVE_HELP:
+        description: Affected people or organizations receive aid, resources, or services.
+        event_fields:
+          delivery_mode:
+            type: str
+            required: false
+            description: Mode of delivery (e.g., in-kind, cash, vouchers).
+        arg_roles:
+          ARG0:
+            description: Recipient/beneficiary receiving aid.
+            fills:
+              - person
+              - organization
+          ARG1:
+            description: Aid resource received.
+            fills:
+              - resource
+          ARG2:
+            description: Provider delivering the aid (if stated).
+            fills:
+              - person
+              - organization
+          ARGM-LOC:
+            description: Location where aid is received.
+            fills:
+              - loc
+          ARGM-TMP:
+            description: Time when aid is received.
+            fills:
+              - time
+
+
+relations:
+  event_event:
+    causal:
+      - CAUSES
+      - ENABLES
+      - PREVENTS
+      - MITIGATES
+      - AGGRAVATES
+    temporal:
+      - BEFORE
+      - AFTER
+      - DURING
+      - OVERLAPS
+    structural:
+      - SUBEVENT_OF
+      - PART_OF_PROCESS
+    coreference:
+      - COREFERS
+
+
+  entity_entity:
+    spatial:
+      - LOCATED_IN
+      - NEAR
+    affiliation:
+      - MEMBER_OF         
+      - AFFILIATED_WITH    
+    structural:
+      - SUBSET_OF 
+      - PART_OF
+    coreference:
+      - COREFERS
+  
