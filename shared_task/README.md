@@ -71,6 +71,33 @@ between them is the task.
 
 ---
 
+## Viewing the data
+
+Two tools are included.
+
+**`view_cell.py`** renders one pair as a self-contained HTML page: the tweets
+on the left, the reference report on the right. Selecting a statement
+illuminates the tweets that support it; selecting a tweet illuminates the
+statements it supports. That relationship is the task, and it is the fastest
+way to understand what a correct report looks like.
+
+```bash
+python3 view_cell.py data/train/volcano/volcano.W2.k1 --open
+```
+
+**`show_tweets.py`** prints tweets in the terminal, with filtering and a
+summary of the stream.
+
+```bash
+python3 show_tweets.py data/train/volcano/volcano.W1.k1.tweets.jsonl
+python3 show_tweets.py data/train/ferry/ferry.W2.k1.tweets.jsonl --stats
+python3 show_tweets.py data/train/ferry/ferry.W2.k1.tweets.jsonl -s Government -g "rescued|missing"
+```
+
+Both are plain Python with no dependencies.
+
+---
+
 ## Documentation
 
 Read in this order:
@@ -83,6 +110,8 @@ Read in this order:
 | `TAXONOMY_GUIDE.md` | The event and entity categories underlying the reports. |
 | `taxonomy.yaml` | The taxonomy in machine-readable form. |
 | `DATASHEET.md` | Provenance, generation method, limitations, license. |
+| `view_cell.py` | Render a pair as an HTML page. |
+| `show_tweets.py` | Inspect tweets in the terminal. |
 
 `DERIVATION_RULES.md` is the one most worth reading before building anything.
 It explains why an early-window report is short, and why the same statement
