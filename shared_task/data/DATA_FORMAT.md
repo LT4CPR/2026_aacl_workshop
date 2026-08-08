@@ -35,17 +35,15 @@ Directory layout:
 
 ```
 data/
-├── train/
-│   ├── {doc}/
-│   │   ├── {doc}.W1.k1.tweets.jsonl
-│   │   ├── {doc}.W1.k1.report.json
-│   │   └── ...
-└── dev/
-    └── {doc}/
+└── train/
+    └── {crisis}/
+        ├── {crisis}.W1.k1.tweets.jsonl
+        ├── {crisis}.W1.k1.report.json
         └── ...
 ```
 
-Test inputs are released without reports.
+Development and test data follow the same layout under `data/dev/` and
+`data/test/`, released later. Test inputs are released without reports.
 
 ### Independence requirement
 
