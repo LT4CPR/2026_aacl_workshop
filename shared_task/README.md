@@ -82,18 +82,18 @@ statements it supports. That relationship is the task, and it is the fastest
 way to understand what a correct report looks like.
 
 ```bash
-python3 tools/view_cell.py data/train/volcano/volcano.W2.k1 --open
+python3 tools/visualization_tools/view_cell.py data/train/volcano/volcano.W2.k1 --open
 ```
 
 **`show_tweets.py`** prints tweets in the terminal, with filtering and a
 summary of the stream.
 
 ```bash
-python3 tools/show_tweets.py data/train/ferry/ferry.W2.k1.tweets.jsonl --stats
+python3 tools/visualization_tools/show_tweets.py data/train/ferry/ferry.W2.k1.tweets.jsonl --stats
 ```
 
 Both are plain Python with no dependencies. Full options, and recipes for
-running them in Colab or Jupyter, are in `tools/README.md`.
+running them in Colab or Jupyter, are in `tools/visualization_tools/README.md`.
 
 ---
 
@@ -109,7 +109,7 @@ Read in this order:
 | `TAXONOMY_GUIDE.md` | The event and entity categories underlying the reports. |
 | `taxonomy.yaml` | The taxonomy in machine-readable form. |
 | `DATASHEET.md` | Provenance, generation method, limitations, license. |
-| `tools/README.md` | The visualization tools: options, examples, notebook recipes. |
+| `tools/visualization_tools/README.md` | The visualization tools: options, examples, notebook recipes. |
 
 `DERIVATION_RULES.md` is the one most worth reading before building anything.
 It explains why an early-window report is short, and why the same statement
