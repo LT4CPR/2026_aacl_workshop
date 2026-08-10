@@ -159,9 +159,9 @@ the task page for updates.
 | Training data release | August 7, 2026 |
 | Evaluation resources and baselines | August 7 – September 1, 2026 |
 | Participant registration deadline | August 25, 2026 |
-| Test data release | September 1, 2026 |
-| System output submission deadline | September 7, 2026 |
-| System description paper deadline | September 15, 2026 |
+| Test data release | September 7, 2026 |
+| System output submission deadline | September 10, 2026 |
+| System description paper deadline | September 17, 2026 |
 | Notification of acceptance | October 1, 2026 |
 | Camera-ready papers due | October 10, 2026 |
 | LT4CPR workshop | November 9, 2026 |
