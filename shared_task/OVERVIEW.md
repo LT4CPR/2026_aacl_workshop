@@ -230,7 +230,7 @@ Systems are scored against the reference reports.
 
 **Scope.** Reports contain sections 1 to 11. Sections 3 to 11 — those
 containing atomic factual claims — are scored. Sections 1 and 2 (overview and
-timeline) synthesize across claims and are not scored, but systems should still
+timeline) synthesize across claims and are **not** scored, but systems should still
 produce them.
 
 **Metrics.** Text similarity against the reference, and a bullet-level
