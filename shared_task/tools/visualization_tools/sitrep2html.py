@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sitrep2html.py - render a gold situation report JSON as a standalone HTML page.
+sitrep2html.py - render a situation report JSON as a standalone HTML page.
 
 Usage:
     python3 sitrep2html.py INPUT.json [OUTPUT.html]
@@ -10,8 +10,10 @@ basename (e.g. earthquake-gold.json -> earthquake-gold.html).
 
 The JSON is embedded in the page, so the output is a single self-contained
 file with no runtime dependencies beyond Google Fonts (degrades gracefully
-offline). Expected schema: meta / metrics / sections / canonical_entities /
-noise_tweets / sources, as in the crisis sitrep gold files.
+offline). Accepts both the internal gold schema (meta / metrics / sections /
+canonical_entities / noise_tweets / sources) and the released participant
+report, which carries only meta.schema_version and sections. Fields absent from
+the participant view are simply not rendered.
 """
 import json
 import sys
@@ -31,7 +33,7 @@ html = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__TITLE__ — Gold Situation Report</title>
+<title>__TITLE__ — Situation Report</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -183,21 +185,29 @@ section.sec{margin-bottom:44px;scroll-margin-top:14px}
 <script>
 const DATA = JSON.parse(document.getElementById('report-data').textContent);
 const tweetById = {};
-DATA.sources.forEach(s => tweetById[s.tweet_id] = s.summary);
+// Internal gold files carry sources and noise_tweets; participant reports do
+// not, since the tweets travel in a separate file. Both render.
+(DATA.sources || []).forEach(s => tweetById[s.tweet_id] = s.summary);
 const noiseIds = new Set((DATA.noise_tweets||[]).map(n => n.tweet_id));
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 /* header */
-document.getElementById('title').textContent = DATA.meta.title;
-document.getElementById('subtitle').textContent = DATA.meta.subtitle;
-document.title = DATA.meta.title + ' — Gold Situation Report';
-document.documentElement.style.setProperty('--accent', DATA.meta.accent);
-document.documentElement.style.setProperty('--accent-dark', DATA.meta.accent_dark);
+// Participant reports carry only schema_version, since title, hazard and
+// window travel with the tweet file; internal gold files carry the rest.
+const META = DATA.meta || {};
+const TITLE = META.title || 'Situation report';
+document.getElementById('title').textContent = TITLE;
+document.getElementById('subtitle').textContent = META.subtitle || '';
+document.title = TITLE + ' — Situation Report';
+if (META.accent) {
+  document.documentElement.style.setProperty('--accent', META.accent);
+  document.documentElement.style.setProperty('--accent-dark', META.accent_dark);
+}
 document.getElementById('stamps').innerHTML =
   '<span class="stamp accent">Gold situation report</span>' +
-  '<span class="stamp">dataset: ' + esc(DATA.meta.dataset) + '</span>' +
-  '<span class="stamp">model: ' + esc(DATA.meta.model) + '</span>';
-document.getElementById('metrics').innerHTML = DATA.metrics.map(m =>
+  (META.dataset ? '<span class="stamp">dataset: ' + esc(META.dataset) + '</span>' : '') +
+  (META.model ? '<span class="stamp">model: ' + esc(META.model) + '</span>' : '');
+document.getElementById('metrics').innerHTML = (DATA.metrics || []).map(m =>
   '<div class="metric"><div class="v">' + esc(m.value) + '</div><div class="l">' + esc(m.label) + '</div></div>').join('');
 
 /* helpers */
@@ -236,7 +246,7 @@ DATA.sections.forEach(sec => {
   html += '<section class="sec" id="' + anchor + '"><div class="sec-head"><span class="num">' + esc(sec.id) + '</span><h2>' + esc(sec.title) + '</h2></div>';
 
   if(sec.id === '12'){
-    html += '<div class="entity-grid">' + DATA.canonical_entities.map(e =>
+    html += '<div class="entity-grid">' + (DATA.canonical_entities || []).map(e =>
       '<div class="entity"><div class="e-head"><span class="e-name">' + esc(e.canonical) + '</span>' +
       '<span class="e-type">' + esc(e.type) + (e.subtype ? ' / ' + esc(e.subtype) : '') + '</span></div>' +
       '<div class="e-role">' + esc(e.role) + '</div>' +
@@ -265,7 +275,7 @@ DATA.sections.forEach(sec => {
 toc.insertAdjacentHTML('beforeend', '<a href="#sec-src" data-sec="sec-src"><span class="num">S</span>Source tweets</a>');
 html += '<section class="sec" id="sec-src"><div class="sec-head"><span class="num">S</span><h2>Source tweets</h2></div>' +
   '<div class="src-tools"><input id="src-filter" type="search" placeholder="Filter by id or text…" aria-label="Filter source tweets"></div>' +
-  '<div class="src-list" id="src-list">' + DATA.sources.map(s =>
+  '<div class="src-list" id="src-list">' + (DATA.sources || []).map(s =>
     '<div class="src-item' + (noiseIds.has(s.tweet_id) ? ' noise' : '') + '" id="src-' + esc(s.tweet_id) + '">' +
     '<span class="sid">#' + esc(s.tweet_id) + (noiseIds.has(s.tweet_id) ? '<span class="noise-label">noise</span>' : '') + '</span>' +
     '<span class="stx">' + esc(s.summary) +
@@ -334,6 +344,9 @@ document.querySelectorAll('section.sec').forEach(s => obs.observe(s));
 </html>
 """
 
-html = html.replace("__TITLE__", data["meta"]["title"]).replace("__DATA__", payload.replace("</", "<\\/"))
+# Participant reports carry only schema_version in meta; internal gold files
+# carry a title. Fall back to the file name so either renders.
+_title = (data.get("meta") or {}).get("title") or Path(sys.argv[1]).stem
+html = html.replace("__TITLE__", _title).replace("__DATA__", payload.replace("</", "<\\/"))
 out_path.write_text(html)
 print(f"Wrote {out_path} ({len(html):,} bytes) from {in_path}")
