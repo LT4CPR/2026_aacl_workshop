@@ -45,8 +45,8 @@ restriction.
 
 | | |
 | --- | --- |
-| Crisis documents | 10 |
-| Training pairs (cells) | 163 |
+| Crisis documents | 10: 8 training, 2 development |
+| Training pairs (cells) | 140 training, 23 development |
 | Tweets | 9,848 |
 | Tweets per document | 972 to 997 |
 | Bullets per reference report | 8 to 93, median 31 |
@@ -143,15 +143,34 @@ data. Transfer is an open question the shared task is intended to help answer.
 
 Stated because they affect what the data can support.
 
-**Reference reports can assert slightly more than a sample establishes.** A
-statement supported by several posts survives when at least one of them is
-present, so it can be retained on a subset of its evidence. This concentrates
-in the earliest windows and in sections that are not scored.
+**Reference statements can assert more than their cited posts state.** This is
+the most consequential limitation and takes two forms.
+
+The first is partial attestation: a statement supported by several posts
+survives when at least one of them is present, so it can be retained on a
+subset of its evidence. This concentrates in the earliest windows.
+
+The second is more general. Rule R1 keeps a statement when a post expresses one
+of its events; it does not require the post to state what the statement says.
+Because surface realization preserves the event and its principal entity but
+not every attribute, a statement can survive on evidence that names the event
+and omits its specifics. A statement recording that an alert level moved from
+Green to Yellow, for example, may cite posts that report only a tremor. Numeric
+figures were made first-class content during development and are now stated in
+the posts that evidence them, but named categorical values -- alert levels,
+order states, thresholds -- were not given the same treatment.
+
+An entailment-based audit of the released reference statements is provided with
+the release (`audit_faithfulness.py`), classifying each statement against its
+cited posts as supported, unsupported, or contradicted. Users evaluating
+faithfulness should be aware that the reference itself is not fully entailed by
+the posts, and should consult that audit before treating reference statements as
+a faithfulness ceiling.
 
 **Confidence labels are unevenly distributed.** Roughly three quarters of
-statements are `confirmed` and one quarter `potential`; `absent` and
-`announced` together account for under one percent, which is too few to learn
-from reliably.
+statements are `confirmed` and one quarter `unconfirmed`. The released
+vocabulary is binary; a finer four-level scheme is retained internally but
+three of its levels were too sparse to learn or score reliably.
 
 **Figure extraction is heuristic.** The derivation rules locate numeric figures
 by pattern matching, so unusual phrasings can be missed and a small number of
@@ -179,15 +198,16 @@ shared task schedule.
 
 | Component | Date |
 | --- | --- |
-| Training data | August 7, 2026 |
+| Training and development data | August 7, 2026 |
 | Evaluation metrics, baselines and validation scripts | August 7 to September 1, 2026 |
-| Development data | To be announced |
 | Test data | September 1, 2026 |
 | System output submission deadline | September 7, 2026 |
 
-Development and test documents are new crises, distinct from the ten released
-here. Test inputs will be released without reference reports; the reports will
-be published after the submission deadline.
+Two of the ten documents are held out as a development set, released alongside
+the training documents but kept separate so that tuning does not happen on the
+data a system was fitted to. Test documents are new crises, distinct from all
+ten released here. Test inputs will be released without reference reports; the
+reports will be published after the submission deadline.
 
 ---
 
