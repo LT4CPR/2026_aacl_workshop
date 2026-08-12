@@ -15,7 +15,8 @@ sections, with each statement labeled by how well the evidence supports it.
 
 ## What is in this release
 
-**Training data: 10 crisis documents, 163 cells.**
+**Training data: 8 crisis documents, 140 cells.**
+**Development data: 2 crisis documents, 23 cells.**
 
 Each crisis is a separate fictional scenario. Each is divided into four
 cumulative time windows, and each window is sampled several times, giving a set
@@ -24,18 +25,22 @@ of (tweets, report) pairs that vary in how much evidence they contain.
 ```
 data/train/{crisis}/{crisis}.{window}.{replicate}.tweets.jsonl    input
 data/train/{crisis}/{crisis}.{window}.{replicate}.report.json     target
+data/dev/{crisis}/...                                             same layout
 ```
 
-**Development and test data are released later.** Both consist of new crises,
-distinct from the ten in this release, so nothing in the training data
-anticipates them. Test inputs are released without reference reports; the
-reports are published after the submission deadline.
+Development documents are separate crises from the training ones. Use them for
+tuning and model selection, not for fitting.
 
-| | Released |
-| --- | --- |
-| Train | August 7, 2026 |
-| Development | To be announced |
-| Test | September 1, 2026 |
+**Test data is released later.** It consists of new crises, distinct from those
+in this release, so nothing here anticipates them. Test inputs are released
+without reference reports; the reports are published after the submission
+deadline.
+
+| | Documents | Cells | Released |
+| --- | --- | --- | --- |
+| Train | 8 | 140 | August 7, 2026 |
+| Development | 2 | 23 | August 7, 2026 |
+| Test | New crises | -- | September 1, 2026 |
 
 ---
 
@@ -159,9 +164,9 @@ the task page for updates.
 | Training data release | August 7, 2026 |
 | Evaluation resources and baselines | August 7 – September 1, 2026 |
 | Participant registration deadline | August 25, 2026 |
-| Test data release | September 7, 2026 |
-| System output submission deadline | September 10, 2026 |
-| System description paper deadline | September 17, 2026 |
+| Test data release | September 1, 2026 |
+| System output submission deadline | September 7, 2026 |
+| System description paper deadline | September 15, 2026 |
 | Notification of acceptance | October 1, 2026 |
 | Camera-ready papers due | October 10, 2026 |
 | LT4CPR workshop | November 9, 2026 |
