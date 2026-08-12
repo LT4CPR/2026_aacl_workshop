@@ -160,12 +160,22 @@ figures were made first-class content during development and are now stated in
 the posts that evidence them, but named categorical values -- alert levels,
 order states, thresholds -- were not given the same treatment.
 
-An entailment-based audit of the released reference statements is provided with
-the release (`audit_faithfulness.py`), classifying each statement against its
-cited posts as supported, unsupported, or contradicted. Users evaluating
-faithfulness should be aware that the reference itself is not fully entailed by
-the posts, and should consult that audit before treating reference statements as
-a faithfulness ceiling.
+An audit tool is provided with the release (`audit_faithfulness.py`). It
+decomposes each statement into atomic claims and scores each against its cited
+posts by entailment, reporting the fraction of claims supported. Decomposition
+is necessary rather than optional: 44 percent of statements carry more than one
+claim, and entailment of a compound sentence fails whenever any conjunct is
+unsupported, which understates support severely.
+
+Two cautions apply to its output. Contradiction judgments on this data are
+unreliable, because the premise is a concatenation of informal posts rather than
+the clean sentence pairs the models are trained on; spot checks found confident
+contradictions that are not contradictions. And a claim can be semantically
+supported by a paraphrase the model does not recognize.
+
+Users evaluating faithfulness should be aware that the reference itself is not
+fully entailed by the posts, and should consult the audit before treating
+reference statements as a faithfulness ceiling.
 
 **Confidence labels are unevenly distributed.** Roughly three quarters of
 statements are `confirmed` and one quarter `unconfirmed`. The released
