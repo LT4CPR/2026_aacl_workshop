@@ -231,8 +231,8 @@ Inventing plausible detail is penalised far more often than it is rewarded,
 because most statements are supported and several documents are built
 specifically to detect fabrication.
 
-An audit tool (`audit_faithfulness.py`) is included so this can be measured
-rather than guessed at. It decomposes each statement into atomic claims and
+An audit tool (`tools/other_tools/audit_faithfulness.py`) is included so this
+can be measured rather than guessed at. It decomposes each statement into atomic claims and
 scores each against the cited tweets by entailment.
 
 ---
@@ -293,7 +293,7 @@ Full detail is in the evaluation guide.
 | `DERIVATION_RULES.md` | How reference reports were produced from tweets. |
 | `TAXONOMY_GUIDE.md` | The event and entity categories underlying the reports. |
 | `taxonomy.yaml` | The taxonomy in machine-readable form. |
-| `audit_faithfulness.py` | Measure how well each reference statement is supported by its cited tweets. |
+| `tools/other_tools/audit_faithfulness.py` | Measure how well each reference statement is supported by its cited tweets. |
 | `DATASHEET.md` | Provenance, generation method, limitations, license. |
 
 ---
