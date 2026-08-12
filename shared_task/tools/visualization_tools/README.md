@@ -1,6 +1,8 @@
 # Visualization tools
 
-Two tools for inspecting the shared task data. Plain Python 3, no dependencies.
+Three tools for inspecting the shared task data. Plain Python 3, no
+dependencies. For analysis tools that measure properties of the corpus rather
+than display it, see `tools/other_tools/`.
 
 | Tool | Purpose |
 | --- | --- |
