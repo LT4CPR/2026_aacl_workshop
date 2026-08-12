@@ -206,7 +206,38 @@ the main event, covering the forecast or warning phase.
 
 ---
 
-## 7. Rules
+## 7. A property of the reference reports
+
+A reference statement is kept when the cell contains a tweet reporting the event
+it describes. That guarantees the event is present. It does not guarantee that
+the tweets state every detail the statement carries.
+
+Surface realization preserves the event and the entities involved, but not
+always the specific values attached to them. A statement recording that an alert
+level moved from Green to Yellow may cite tweets that report only a tremor at
+the summit; a statement that trains resumed on a reduced, free timetable may
+cite a tweet saying services are coming back online. Numeric figures are stated
+in the tweets that evidence them; named categorical values are not always.
+
+Two consequences are worth planning for.
+
+**Some statements cannot be reproduced from the input.** A system that reports
+only what the tweets support will fall short of the reference on those
+statements. This is a property of the data, not a failure of the system, and it
+applies equally to every participant.
+
+**Do not treat it as licence to elaborate.** The gap is narrow and specific.
+Inventing plausible detail is penalised far more often than it is rewarded,
+because most statements are supported and several documents are built
+specifically to detect fabrication.
+
+An audit tool (`audit_faithfulness.py`) is included so this can be measured
+rather than guessed at. It decomposes each statement into atomic claims and
+scores each against the cited tweets by entailment.
+
+---
+
+## 8. Rules
 
 ### Each cell must be processed independently
 
@@ -228,7 +259,7 @@ fictional, so no external source contains information about them.
 
 ---
 
-## 8. Evaluation
+## 9. Evaluation
 
 Systems are scored against the reference reports.
 
@@ -252,7 +283,7 @@ Full detail is in the evaluation guide.
 
 ---
 
-## 9. Documents in this package
+## 10. Documents in this package
 
 | File | Contents |
 | --- | --- |
@@ -262,11 +293,12 @@ Full detail is in the evaluation guide.
 | `DERIVATION_RULES.md` | How reference reports were produced from tweets. |
 | `TAXONOMY_GUIDE.md` | The event and entity categories underlying the reports. |
 | `taxonomy.yaml` | The taxonomy in machine-readable form. |
+| `audit_faithfulness.py` | Measure how well each reference statement is supported by its cited tweets. |
 | `DATASHEET.md` | Provenance, generation method, limitations, license. |
 
 ---
 
-## 10. Where to start
+## 11. Where to start
 
 1. Read `DATA_FORMAT.md` and open one pair — the input file and its report side
    by side.
