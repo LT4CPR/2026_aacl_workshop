@@ -90,6 +90,14 @@ way to understand what a correct report looks like.
 python3 tools/visualization_tools/view_cell.py data/train/volcano/volcano.W2.k1 --open
 ```
 
+**`sitrep2html.py`** renders a report on its own as a formatted document with
+section navigation, which is the better view for reading a report end to end or
+comparing your system's output against the reference.
+
+```bash
+python3 tools/visualization_tools/sitrep2html.py data/train/volcano/volcano.W2.k1.report.json
+```
+
 **`show_tweets.py`** prints tweets in the terminal, with filtering and a
 summary of the stream.
 
@@ -97,7 +105,7 @@ summary of the stream.
 python3 tools/visualization_tools/show_tweets.py data/train/ferry/ferry.W2.k1.tweets.jsonl --stats
 ```
 
-Both are plain Python with no dependencies. Full options, and recipes for
+All three are plain Python with no dependencies. Full options, and recipes for
 running them in Colab or Jupyter, are in `tools/visualization_tools/README.md`.
 
 ---
