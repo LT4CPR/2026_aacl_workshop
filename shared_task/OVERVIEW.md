@@ -38,8 +38,9 @@ is known. Real sitreps are produced by hand under time pressure; this task asks
 whether they can be produced automatically from social media.
 
 **Document.** One crisis scenario, with its own places, organizations, hazard
-and timeline. The training release contains ten. A document is the largest
-unit: no information carries across documents.
+and timeline. This release contains ten: eight for training and two for
+development. A document is the largest unit: no information carries across
+documents.
 
 **Window.** A period of time from the start of the event, labeled `W1` to
 `W4`. Windows are **cumulative**: `W2` covers everything `W1` covers and more.
@@ -68,7 +69,8 @@ displacement, and so on. The section schema is fixed and given in the data
 format specification.
 
 **Confidence.** A label on each bullet recording how well the tweets support
-it: `confirmed`, `potential`, `announced`, or `absent`.
+it: `confirmed` when corroborated by enough independent reports in the window,
+`unconfirmed` otherwise.
 
 **Off-topic tweets.** Ordinary social media content unrelated to the crisis,
 present in every cell. Real crisis streams contain them and a system has to
@@ -94,14 +96,14 @@ timestamp. The target is the structured report.
 
 Formats are specified in full in **`DATA_FORMAT.md`**.
 
-Scale of the training release:
+Scale of this release:
 
-| | |
-| --- | --- |
-| Documents | 10 |
-| Cells | 163 |
-| Tweets per cell | 22 to 997 |
-| Bullets per report | 8 to 93, median 31 |
+| | Train | Development |
+| --- | --- | --- |
+| Documents | 8 | 2 |
+| Cells | 140 | 23 |
+| Tweets per cell | 22 to 993 | 74 to 997 |
+| Bullets per report | 8 to 85, median 27 | 17 to 93, median 58 |
 
 Cells vary in size by design. The smallest are early windows where a system has
 little to work with; the largest cover a complete event.
@@ -112,18 +114,20 @@ little to work with; the largest cover a complete event.
 
 The data is released in stages.
 
-| Split | Documents | Released | Contents |
-| --- | --- | --- | --- |
-| Train | 10 | August 7, 2026 | Tweets and reference reports |
-| Development | To be announced | Later | Tweets and reference reports |
-| Test | To be announced | September 1, 2026 | Tweets only; reports published after the submission deadline |
+| Split | Documents | Cells | Released | Contents |
+| --- | --- | --- | --- | --- |
+| Train | 8 | 140 | August 7, 2026 | Tweets and reference reports |
+| Development | 2 | 23 | August 7, 2026 | Tweets and reference reports |
+| Test | New crises | -- | September 1, 2026 | Tweets only; reports published after the submission deadline |
 
-Development and test documents are **new crises**, distinct from the ten in the
-training release. Nothing in the training data describes them, and no external
-source contains information about them, since all crises are fictional.
+Every document is a separate crisis. The two development documents are
+distinct crises from the eight training ones, and the test documents are
+distinct again from both. Nothing in one split describes another, and no
+external source contains information about any of them, since all crises are
+fictional.
 
-Development data is intended for tuning and model selection. It will be
-released after the training data; watch the task page for the date.
+Development data is for tuning and model selection. Fitting on it defeats its
+purpose.
 
 Consult the task page for the current schedule:
 <https://lt4cpr.github.io/aacl2026-workshop-LT4CPR/shared-task.html>
@@ -230,7 +234,7 @@ Systems are scored against the reference reports.
 
 **Scope.** Reports contain sections 1 to 11. Sections 3 to 11 — those
 containing atomic factual claims — are scored. Sections 1 and 2 (overview and
-timeline) synthesize across claims and are **not** scored, but systems should still
+timeline) synthesize across claims and are not scored, but systems should still
 produce them.
 
 **Metrics.** Text similarity against the reference, and a bullet-level
