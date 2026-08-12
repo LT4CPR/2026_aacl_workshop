@@ -233,7 +233,7 @@ appear in the data.
 
 Reports contain sections 1 to 11. Only sections 3 to 11 are scored. Systems
 should still produce sections 1 and 2, which are described below, but their
-content does not affect the score.
+content does not affect the score.  **to-do**
 
 ### Section 1: situation overview
 
