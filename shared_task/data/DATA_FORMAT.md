@@ -229,6 +229,8 @@ appear in the data.
 | **9** | **Aid and relief** | **Yes** | Aid provided, aid received and unmet needs, donations and financial transfers. |
 | **10** | **Organizational and administrative activity** | **Yes** | Meetings and decisions, administrative and economic measures. |
 | **11** | **Social and community response** | **Yes** | Social support, public sentiment. |
+
+
 Reports contain sections 1 to 11. Only sections 3 to 11 are scored. Systems
 should still produce sections 1 and 2, which are described below, but their
 content does not affect the score.
