@@ -6,6 +6,7 @@ Two tools for inspecting the shared task data. Plain Python 3, no dependencies.
 | --- | --- |
 | `view_cell.py` | Render one training pair as an HTML page: tweets and reference report side by side, linked by evidence. |
 | `show_tweets.py` | Inspect tweets in the terminal, with filtering and a summary of the stream. |
+| `sitrep2html.py` | Render a report on its own as a formatted document, with navigation. |
 
 Layout:
 
@@ -17,7 +18,8 @@ shared_task/
     └── visualization_tools/
         ├── README.md
         ├── view_cell.py
-        └── show_tweets.py
+        ├── show_tweets.py
+        └── sitrep2html.py
 ```
 
 Commands below are written to run from `shared_task/`. Both tools accept
@@ -96,6 +98,44 @@ and `Not labeled`. See `DATA_FORMAT.md`.
 
 ---
 
+## sitrep2html.py
+
+Renders a report on its own, without the tweets beside it.
+
+```bash
+python3 tools/visualization_tools/sitrep2html.py \
+    data/train/volcano/volcano.W2.k1.report.json
+```
+
+The second argument is optional; without it the output is written next to the
+input with an `.html` extension.
+
+Where `view_cell.py` answers ``what in the tweets supports this statement'',
+this answers ``what does the report say''. It lays the report out as a document
+with a section navigator, so it is the better view for reading a report end to
+end, comparing the same section across windows, or checking that your own
+system output has the expected shape.
+
+It accepts any file following the report schema, so it renders both the
+reference reports and the reports your system produces. Fields the participant
+view does not carry are simply omitted from the page.
+
+The output is one self-contained file and opens offline.
+
+---
+
+## Which tool to use
+
+| If you want to | Use |
+| --- | --- |
+| See what evidence supports a statement | `view_cell.py` |
+| Read a report end to end | `sitrep2html.py` |
+| Compare your output against the reference | `sitrep2html.py` on each |
+| Search or filter the tweets | `show_tweets.py` |
+| Check how a stream is composed | `show_tweets.py --stats` |
+
+---
+
 ## Running in a notebook
 
 Colab and Jupyter cannot open a browser, and terminal color codes do not render
@@ -152,6 +192,9 @@ escape codes:
 !python3 tools/visualization_tools/show_tweets.py data/train/volcano/volcano.W1.k1.tweets.jsonl --plain -n 15
 !python3 tools/visualization_tools/show_tweets.py data/train/volcano/volcano.W1.k1.tweets.jsonl --stats --plain
 ```
+
+Both `view_cell.py` and `sitrep2html.py` produce standalone HTML and can be
+displayed the same way.
 
 **Download an HTML page to open locally** (Colab):
 
