@@ -160,7 +160,8 @@ figures were made first-class content during development and are now stated in
 the posts that evidence them, but named categorical values -- alert levels,
 order states, thresholds -- were not given the same treatment.
 
-An audit tool is provided with the release (`audit_faithfulness.py`). It
+An audit tool is provided with the release
+(`tools/other_tools/audit_faithfulness.py`). It
 decomposes each statement into atomic claims and scores each against its cited
 posts by entailment, reporting the fraction of claims supported. Decomposition
 is necessary rather than optional: 44 percent of statements carry more than one
