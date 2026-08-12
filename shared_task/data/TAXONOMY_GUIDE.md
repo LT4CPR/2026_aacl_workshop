@@ -140,6 +140,7 @@ This is closely related to the `confidence` label on report bullets, but not
 identical. `realis` is about the event's status in the world; `confidence` is
 about how well the available tweets support the claim. A pledged aid fund that
 several sources report is `pledged` in realis and `confirmed` in confidence.
+The two vary independently.
 
 **`negated`** — whether the event is asserted not to have occurred. Negated
 events are reportable and appear in the corpus: a report stating that no
