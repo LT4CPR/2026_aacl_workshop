@@ -35,15 +35,18 @@ Directory layout:
 
 ```
 data/
-└── train/
+├── train/
+│   └── {crisis}/
+│       ├── {crisis}.W1.k1.tweets.jsonl
+│       ├── {crisis}.W1.k1.report.json
+│       └── ...
+└── dev/
     └── {crisis}/
-        ├── {crisis}.W1.k1.tweets.jsonl
-        ├── {crisis}.W1.k1.report.json
         └── ...
 ```
 
-Development and test data follow the same layout under `data/dev/` and
-`data/test/`, released later. Test inputs are released without reports.
+Test data follows the same layout under `data/test/`, released later, with
+inputs only.
 
 ### Independence requirement
 
@@ -184,23 +187,26 @@ evaluation combines text similarity with overlap of the cited ids.
 
 ## 4. Confidence labels
 
-Confidence is part of the task and is evaluated. It records how well the
-available tweets support the claim, not how important the claim is.
+Confidence is part of the task and is evaluated. It records how well the tweets
+in the cell support the claim.
 
 | Label | Use |
 | --- | --- |
-| `confirmed` | Attested by sufficient evidence in the window, typically from more than one source or from an official source. |
-| `potential` | Reported but not sufficiently corroborated within the window. Includes claims that are unattributed, single-sourced, or contradicted elsewhere. |
-| `announced` | A stated future intention or commitment that has not yet occurred. |
-| `absent` | A recorded information gap: something that would be expected to be reported and is not. Rare. |
+| `confirmed` | Corroborated by enough independent reports within the window. |
+| `unconfirmed` | Reported but not sufficiently corroborated. Covers claims that are single-sourced, contradicted elsewhere, or stated as an intention that has not yet occurred. |
 
-The same claim can hold different labels in different windows. A figure
-reported by one account in an early window is `potential`; once corroborated in
-a later window it becomes `confirmed`. Systems are expected to reflect this.
+The distinction is **corroboration, not source type**. An official account
+reporting something once does not make it confirmed, and a claim can be
+confirmed on the strength of several non-official reports. This mirrors real
+crisis reporting, where official sources are also wrong early on; several of the
+documents contain official statements that are later corrected.
 
-The labels are unevenly distributed. Across the released reports, roughly 74
-percent of bullets are `confirmed` and 25 percent `potential`; `absent` and
-`announced` together account for under one percent.
+The same claim can hold different labels in different windows. A figure reported
+by one account in an early window is `unconfirmed`; once corroborated in a later
+window it becomes `confirmed`. Systems are expected to reflect this.
+
+Across the released reports, roughly 74 percent of bullets are `confirmed` and
+26 percent `unconfirmed`.
 
 ---
 
