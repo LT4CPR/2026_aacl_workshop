@@ -1,0 +1,435 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-17T11:40:40.430800+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : conflict
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/conflict-gold.json
+System              : sample_data/sysId-output/UW-sys1/conflict-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.9637
+  ROUGE-2 F1  : 0.9618
+  ROUGE-L F1  : 0.9637
+
+BERTScore (Subsection)
+  Precision   : 0.9680
+  Recall      : 0.9862
+  F1          : 0.9770
+
+BLEURT (Subsection)
+  Score       : 0.9424
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.7540
+Soft Recall         : 0.7944
+Soft F1             : 0.7737
+
+Matched pairs       : 55
+Unmatched gold      : 1
+Unmatched system    : 4
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           0.9637      0.9618      0.9637        0.9770   0.9424            0.7737
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=8 system=8 matched=8 unmatched_gold=0 unmatched_system=0
+subsections: gold=22 system=22 matched=22 unmatched_gold=0 unmatched_system=0
+bullets: gold=56 system=59 matched=55 unmatched_gold=1 unmatched_system=4
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=22 system_units=22 matched_units=22 scored_units=22 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=929 system_ngrams=972 overlapping_ngrams=916
+  rouge2: gold_ngrams=907 system_ngrams=950 overlapping_ngrams=893
+  rougeL: gold_tokens=929 system_tokens=972 total_lcs_length=916
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11a
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=11a.2 system=11a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Lumerian volunteers welcomed refugees at Mirefeld with hot soup and blankets.
+    system_text=Lumerian volunteers welcomed refugees at Mirefeld with hot soup and blankets.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 11/11b
+  gold=2 system=3 matched=2 soft_f1=0.6533
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.8333
+    gold_text=Residents expressed fear during the bombardment alongside solidarity, with accounts of neighbors sheltering together and sharing music in metro stations.
+    system_text=Residents expressed fear during the bombardment alongside solidarity, with accounts of neighbors sheltering together and sharing music in metro stations.
+  - gold=11b.2 system=11b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Grief over damage to the Old Weavers Guild Hall landmark and pride in local volunteers were recurring themes.
+    system_text=Grief over damage to the Old Weavers Guild Hall landmark and pride in local volunteers were recurring themes.
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.3 text="Relief and cautious optimism emerged as shelling eased, with residents celebrating restored power and reopened shops."
+
+Group 3/3a
+  gold=3 system=3 matched=3 soft_f1=0.8194
+  matched_pairs:
+  - gold=3a.1 system=3a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=At least 3 civilians were killed in the initial shelling of Varenholm.
+    system_text=At least 3 civilians were killed in the initial shelling of Varenholm.
+  - gold=3a.2 system=3a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=The civilian death toll rose to 8 by the second day of fighting.
+    system_text=The civilian death toll rose to 8 by the second day of fighting.
+  - gold=3a.3 system=3a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=After four days, officials confirmed 14 civilian and 6 military deaths.
+    system_text=After four days, officials confirmed 14 civilian and 6 military deaths.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3b
+  gold=3 system=3 matched=3 soft_f1=0.8061
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Twelve people were wounded in the opening bombardment, rising to 41 by the second day and 97 overall after four days.
+    system_text=Twelve people were wounded in the opening bombardment, rising to 41 by the second day and 97 overall after four days.
+  - gold=3b.2 system=3b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Halloway General Hospital received the wounded and appealed for blood donors before itself being struck.
+    system_text=Halloway General Hospital received the wounded and appealed for blood donors before itself being struck.
+  - gold=3b.3 system=3b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Two Ostravian Relief Society volunteers were lightly injured by shrapnel near the corridor route and were reported in stable condition.
+    system_text=Two Ostravian Relief Society volunteers were lightly injured by shrapnel near the corridor route and were reported in stable condition.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3c
+  gold=2 system=2 matched=2 soft_f1=0.8200
+  matched_pairs:
+  - gold=3c.1 system=3c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=At least 11 civilians were reported unaccounted for in Varenholm's northern districts, with families directed to the ORS hotline.
+    system_text=At least 11 civilians were reported unaccounted for in Varenholm's northern districts, with families directed to the ORS hotline.
+  - gold=3c.2 system=3c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Seven of the missing were later located safe in shelters or in Lumeria, leaving 4 cases open at the end of the reporting window.
+    system_text=Seven of the missing were later located safe in shelters or in Lumeria, leaving 4 cases open at the end of the reporting window.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3d
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=3d.1 system=3d.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Residents were reported trapped in basements in the Weavers Quarter, including on Foundry Lane, where shelling was too heavy to leave.
+    system_text=Residents were reported trapped in basements in the Weavers Quarter, including on Foundry Lane, where shelling was too heavy to leave.
+  - gold=3d.2 system=3d.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=People were trapped under two collapsed apartment buildings in Varenholm while rescue teams dug through the rubble.
+    system_text=People were trapped under two collapsed apartment buildings in Varenholm while rescue teams dug through the rubble.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3e
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=3e.1 system=3e.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Five survivors, including two children, were pulled from a collapsed apartment block on Tanners Row.
+    system_text=Five survivors, including two children, were pulled from a collapsed apartment block on Tanners Row.
+  - gold=3e.2 system=3e.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=An elderly couple trapped for two days in a Foundry Lane basement were brought out during the corridor operation.
+    system_text=An elderly couple trapped for two days in a Foundry Lane basement were brought out during the corridor operation.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3f
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=3f.1 system=3f.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Seven previously unaccounted-for residents were found safe in shelters or across the border in Lumeria.
+    system_text=Seven previously unaccounted-for residents were found safe in shelters or across the border in Lumeria.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4a
+  gold=5 system=5 matched=5 soft_f1=0.8036
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=The eastern wing of Halloway General Hospital was struck and rendered unusable.
+    system_text=The eastern wing of Halloway General Hospital was struck and rendered unusable.
+  - gold=4a.2 system=4a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Shrapnel damaged the transformer yard of the Duskany Thermal Power Station, forcing a shutdown.
+    system_text=Shrapnel damaged the transformer yard of the Duskany Thermal Power Station, forcing a shutdown.
+  - gold=4a.3 system=4a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A city damage survey recorded at least 220 residential buildings damaged in the northern districts.
+    system_text=A city damage survey recorded at least 220 residential buildings damaged in the northern districts.
+  - gold=4a.4 system=4a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The bell tower of the Old Weavers Guild Hall, a 400-year-old landmark, was badly damaged by shelling.
+    system_text=The bell tower of the Old Weavers Guild Hall, a 400-year-old landmark, was badly damaged by shelling.
+  - gold=4a.5 system=4a.5
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A water pumping station and a mobile relay mast were damaged, disrupting utilities and communications.
+    system_text=A water pumping station and a mobile relay mast were damaged, disrupting utilities and communications.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4b
+  gold=2 system=1 matched=1 soft_f1=0.5333
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The Alder Gate bridge over the Varn River was destroyed, severing the main road between Varenholm and Selkova.
+    system_text=The Alder Gate bridge over the Varn River was destroyed, severing the main road between Varenholm and Selkova.
+  unmatched_gold:
+  - id=4b.2 text="Thirty-four residential buildings in Varenholm's northern districts were recorded as destroyed."
+  unmatched_system: none
+
+Group 4/4c
+  gold=4 system=4 matched=4 soft_f1=0.8125
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Rolling blackouts affected Varenholm after the power station shutdown.
+    system_text=Rolling blackouts affected Varenholm after the power station shutdown.
+  - gold=4c.2 system=4c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Running water was limited to three hours a day after damage to a pumping station.
+    system_text=Running water was limited to three hours a day after damage to a pumping station.
+  - gold=4c.3 system=4c.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.8500
+    gold_text=Mobile coverage failed across the northern districts after a relay mast was hit.
+    system_text=Mobile coverage failed across the northern districts after a relay mast was hit.
+  - gold=4c.4 system=4c.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Fuel stations along evacuation route D4 ran dry, and pharmacies reported shortages of insulin and blood pressure medication.
+    system_text=Fuel stations along evacuation route D4 ran dry, and pharmacies reported shortages of insulin and blood pressure medication.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4d
+  gold=3 system=4 matched=3 soft_f1=0.6857
+  matched_pairs:
+  - gold=4d.1 system=4d.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Halloway General Hospital resumed emergency surgery in its west wing after generator deliveries.
+    system_text=Halloway General Hospital resumed emergency surgery in its west wing after generator deliveries.
+  - gold=4d.2 system=4d.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Power was partially restored in central Varenholm after crews patched the transformer yard.
+    system_text=Power was partially restored in central Varenholm after crews patched the transformer yard.
+  - gold=4d.4 system=4d.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Southbound trains from Varenholm Central Station resumed on a reduced, free timetable for evacuees.
+    system_text=Southbound trains from Varenholm Central Station resumed on a reduced, free timetable for evacuees.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4d.3 text="Fourteen water distribution points were established across the city."
+
+Group 5/5a
+  gold=3 system=3 matched=3 soft_f1=0.8121
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Residents were urged into shelters, with families using metro stations and basements during repeated air raid alerts.
+    system_text=Residents were urged into shelters, with families using metro stations and basements during repeated air raid alerts.
+  - gold=5a.2 system=5a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=A negotiated corridor via Corver Street evacuated around 4,200 civilians from the Weavers Quarter, including 60 hospital patients, with priority given to elderly, disabled and families with children.
+    system_text=A negotiated corridor via Corver Street evacuated around 4,200 civilians from the Weavers Quarter, including 60 hospital patients, with priority given to elderly, disabled and families with children.
+  - gold=5a.3 system=5a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=ORS opened reception points at Varenholm Central Station and the Millgate school for residents fleeing the northern districts.
+    system_text=ORS opened reception points at Varenholm Central Station and the Millgate school for residents fleeing the northern districts.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/5b
+  gold=3 system=3 matched=3 soft_f1=0.8000
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=An estimated 30,000 people fled Varenholm and surrounding villages within the first 36 hours.
+    system_text=An estimated 30,000 people fled Varenholm and surrounding villages within the first 36 hours.
+  - gold=5b.2 system=5b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Lumerian authorities registered 18,600 Ostravian refugees at the Mirefeld crossing, doubling reception capacity with IHCO support.
+    system_text=Lumerian authorities registered 18,600 Ostravian refugees at the Mirefeld crossing, doubling reception capacity with IHCO support.
+  - gold=5b.3 system=5b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=School buildings in southern Varenholm sheltered about 5,500 internally displaced people.
+    system_text=School buildings in southern Varenholm sheltered about 5,500 internally displaced people.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/5c
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=5c.1 system=5c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=As shelling eased, some shops reopened in the Brassmarket district and residents began queuing calmly for bread.
+    system_text=As shelling eased, some shops reopened in the Brassmarket district and residents began queuing calmly for bread.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/6a
+  gold=6 system=6 matched=6 soft_f1=0.8329
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.7143 text_weight=0.8000 final_edge_score=0.9429
+    gold_text=The primary hazard was sustained cross-river artillery shelling of populated districts of Varenholm by Karvale Front forces.
+    system_text=The primary hazard was sustained cross-river artillery shelling of populated districts of Varenholm by Karvale Front forces.
+  - gold=6a.2 system=6a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Ground fighting was concentrated along the Varn River, including a repelled crossing attempt near Selkova.
+    system_text=Ground fighting was concentrated along the Varn River, including a repelled crossing attempt near Selkova.
+  - gold=6a.3 system=6a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Strikes near the humanitarian corridor route during the agreed pause posed a direct risk to evacuees and aid workers.
+    system_text=Strikes near the humanitarian corridor route during the agreed pause posed a direct risk to evacuees and aid workers.
+  - gold=6a.4 system=6a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=ODF counter-battery strikes on artillery positions north of the river were credited with reducing shelling intensity by about 60 percent by day four.
+    system_text=ODF counter-battery strikes on artillery positions north of the river were credited with reducing shelling intensity by about 60 percent by day four.
+  - gold=6a.5 system=6a.5
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=The status of Selkova remained contested, with competing claims of control.
+    system_text=The status of Selkova remained contested, with competing claims of control.
+  - gold=6a.6 system=6a.6
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=A wider intervention by the Northern Compact remained unconfirmed, with Compact officials describing their role as limited to mediation.
+    system_text=A wider intervention by the Northern Compact remained unconfirmed, with Compact officials describing their role as limited to mediation.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/7a
+  gold=3 system=4 matched=3 soft_f1=0.6909
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Ostravia declared a state of emergency in the Duskany region within hours of the first strikes.
+    system_text=Ostravia declared a state of emergency in the Duskany region within hours of the first strikes.
+  - gold=7a.2 system=7a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Rescue teams conducted search operations at two collapsed apartment buildings, recovering multiple survivors.
+    system_text=Rescue teams conducted search operations at two collapsed apartment buildings, recovering multiple survivors.
+  - gold=7a.3 system=7a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Mediated negotiations produced a 3-hour humanitarian pause, later extended to daily windows, with buses staged at Varenholm Central Station under ORS escort.
+    system_text=Mediated negotiations produced a 3-hour humanitarian pause, later extended to daily windows, with buses staged at Varenholm Central Station under ORS escort.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.4 text="IHCO monitors visited the Halloway General Hospital grounds and found no military presence, countering Karvale Front claims."
+
+Group 8/8a
+  gold=2 system=3 matched=2 soft_f1=0.6400
+  matched_pairs:
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Authorities urged residents to use SMS in the northern districts after mobile coverage failed.
+    system_text=Authorities urged residents to use SMS in the northern districts after mobile coverage failed.
+  - gold=8a.3 system=8a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The city council published a map of water distribution points and advised residents to check it before traveling.
+    system_text=The city council published a map of water distribution points and advised residents to check it before traveling.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Air raid sirens sounded repeatedly across Varenholm from the first morning of the attack."
+
+Group 8/8b
+  gold=3 system=3 matched=3 soft_f1=0.8000
+  matched_pairs:
+  - gold=8b.1 system=8b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Casualty and situation updates were issued by the regional governor, the ODF, the mayor and IHCO throughout the four days.
+    system_text=Casualty and situation updates were issued by the regional governor, the ODF, the mayor and IHCO throughout the four days.
+  - gold=8b.2 system=8b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Fact-checkers debunked a viral video that used video game footage to claim Karvale Front tanks had entered central Varenholm.
+    system_text=Fact-checkers debunked a viral video that used video game footage to claim Karvale Front tanks had entered central Varenholm.
+  - gold=8b.3 system=8b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Families of missing persons were directed to the ORS hotline 084.
+    system_text=Families of missing persons were directed to the ORS hotline 084.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8c
+  gold=2 system=2 matched=2 soft_f1=0.8091
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Halloway General Hospital appealed for blood donors, and ORS asked donors to prioritize scarce medical supplies such as insulin.
+    system_text=Halloway General Hospital appealed for blood donors, and ORS asked donors to prioritize scarce medical supplies such as insulin.
+  - gold=8c.2 system=8c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Residents used social media to request evacuation of trapped relatives, including from Foundry Lane in the Weavers Quarter.
+    system_text=Residents used social media to request evacuation of trapped relatives, including from Foundry Lane in the Weavers Quarter.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/9a
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=9a.1 system=9a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=An IHCO convoy of 12 trucks delivered food, water and medical supplies to Duskany via the Mirefeld crossing.
+    system_text=An IHCO convoy of 12 trucks delivered food, water and medical supplies to Duskany via the Mirefeld crossing.
+  - gold=9a.2 system=9a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Generator deliveries restored surgical capacity at Halloway General Hospital, and Lumerian volunteers provided hot food and blankets to arriving refugees.
+    system_text=Generator deliveries restored surgical capacity at Halloway General Hospital, and Lumerian volunteers provided hot food and blankets to arriving refugees.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/9b
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=9b.2 system=9b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Displaced residents received shelter in converted school buildings and services at ORS reception points.
+    system_text=Displaced residents received shelter in converted school buildings and services at ORS reception points.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

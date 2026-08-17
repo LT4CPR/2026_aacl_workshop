@@ -1,0 +1,179 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-17T11:40:40.430800+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : blackout
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/blackout-gold.json
+System              : sample_data/sysId-output/UW-sys1/blackout-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.9609
+  ROUGE-2 F1  : 0.9595
+  ROUGE-L F1  : 0.9609
+
+BERTScore (Subsection)
+  Precision   : 0.9646
+  Recall      : 0.9957
+  F1          : 0.9799
+
+BLEURT (Subsection)
+  Score       : 0.9629
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.7710
+Soft Recall         : 0.8303
+Soft F1             : 0.7996
+
+Matched pairs       : 13
+Unmatched gold      : 0
+Unmatched system    : 1
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           0.9609      0.9595      0.9609        0.9799   0.9629            0.7996
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=7 matched=7 unmatched_gold=0 unmatched_system=0
+subsections: gold=8 system=8 matched=8 unmatched_gold=0 unmatched_system=0
+bullets: gold=13 system=14 matched=13 unmatched_gold=0 unmatched_system=1
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=8 system_units=8 matched_units=8 scored_units=8 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=221 system_ngrams=239 overlapping_ngrams=221
+  rouge2: gold_ngrams=213 system_ngrams=231 overlapping_ngrams=213
+  rougeL: gold_tokens=221 system_tokens=239 total_lcs_length=221
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11b
+  gold=1 system=1 matched=1 soft_f1=0.8667
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.8667
+    gold_text=Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat.
+    system_text=Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3d
+  gold=1 system=2 matched=1 soft_f1=0.5333
+  matched_pairs:
+  - gold=3d.1 system=3d.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Three metro trains carrying 380 passengers were stranded in tunnels between stations.
+    system_text=Three metro trains carrying 380 passengers were stranded in tunnels between stations.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3d.2 text="Dozens of people were trapped in elevators across the city center, prompting warnings not to force lift doors."
+
+Group 3/3e
+  gold=2 system=2 matched=2 soft_f1=0.8591
+  matched_pairs:
+  - gold=3e.1 system=3e.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations.
+    system_text=All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations.
+  - gold=3e.2 system=3e.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.9000
+    gold_text=Fire crews worked through dozens of elevator entrapment calls.
+    system_text=Fire crews worked through dozens of elevator entrapment calls.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4c
+  gold=3 system=3 matched=3 soft_f1=0.8133
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout.
+    system_text=An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout.
+  - gold=4c.2 system=4c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays.
+    system_text=The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays.
+  - gold=4c.3 system=4c.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections.
+    system_text=Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/5a
+  gold=1 system=1 matched=1 soft_f1=0.8182
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains.
+    system_text=Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/6a
+  gold=2 system=2 matched=2 soft_f1=0.8291
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life.
+    system_text=The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life.
+  - gold=6a.3 system=6a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines.
+    system_text=Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/7a
+  gold=1 system=1 matched=1 soft_f1=0.8200
+  matched_pairs:
+  - gold=7a.2 system=7a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1000 text_weight=0.8000 final_edge_score=0.8200
+    gold_text=Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections.
+    system_text=Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8a
+  gold=2 system=2 matched=2 soft_f1=0.8367
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors.
+    system_text=Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors.
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.8333
+    gold_text=Water customers were advised to fill containers pre-emptively and later to flush taps before drinking.
+    system_text=Water customers were advised to fill containers pre-emptively and later to flush taps before drinking.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

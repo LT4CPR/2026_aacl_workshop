@@ -1,0 +1,29 @@
+# LT4CPR evaluation release environment.
+# Tested with Python 3.11.15. Exact versions keep learned-metric scores and
+# model-loading behavior reproducible across installations.
+
+# Core evaluation.
+rouge-score==0.1.2
+PyYAML==6.0.3
+numpy==1.26.4
+scipy==1.17.1
+evaluate==0.4.6
+datasets==5.0.0
+
+# BERTScore and sentence-embedding metrics.
+bert-score==0.3.13
+sentence-transformers==5.6.0
+transformers==4.57.6
+torch==2.12.1
+
+# BLEURT-20 runtime. BLEURT is installed from a fixed source commit because it
+# is not published on PyPI.
+tensorflow==2.16.2
+pandas==3.0.3
+protobuf==4.25.9
+sentencepiece==0.2.1
+tf-slim==1.1.0
+BLEURT @ git+https://github.com/google-research/bleurt.git@cebe7e6f996b40910cfaa520a63db47807e3bf5c
+
+# Release test suite.
+pytest==9.1.1

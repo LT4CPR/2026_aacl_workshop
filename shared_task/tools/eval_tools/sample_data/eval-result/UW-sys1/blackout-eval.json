@@ -1,0 +1,1492 @@
+{
+  "generated_at_utc": "2026-08-17T11:40:40.430800+00:00",
+  "config": "config/evaluation.yaml",
+  "gold_dir": "sample_data/gold-output",
+  "system_dir": "sample_data/sysId-output/UW-sys1",
+  "system_id": "UW-sys1",
+  "evaluation_scope": {
+    "sections": [
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "source": "config"
+  },
+  "disaster_id": "blackout",
+  "aggregation": {
+    "level": "within_document",
+    "method": "micro"
+  },
+  "results": [
+    {
+      "file_id": "blackout",
+      "sys_id": "UW-sys1",
+      "gold_file": "sample_data/gold-output/blackout-gold.json",
+      "system_file": "sample_data/sysId-output/UW-sys1/blackout-sum.json",
+      "status": "scored",
+      "summary": {
+        "rouge": {
+          "mode": "subsection",
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "system",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            },
+            {
+              "side": "reference",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            }
+          ],
+          "aggregation": "micro",
+          "n_scored": 8,
+          "n_skipped_both_empty": 0,
+          "rouge1": {
+            "precision": 0.9247,
+            "recall": 1.0,
+            "fmeasure": 0.9609
+          },
+          "rouge2": {
+            "precision": 0.9221,
+            "recall": 1.0,
+            "fmeasure": 0.9595
+          },
+          "rougeL": {
+            "precision": 0.9247,
+            "recall": 1.0,
+            "fmeasure": 0.9609
+          },
+          "micro": {
+            "rouge1": {
+              "precision": 0.9247,
+              "recall": 1.0,
+              "fmeasure": 0.9609
+            },
+            "rouge2": {
+              "precision": 0.9221,
+              "recall": 1.0,
+              "fmeasure": 0.9595
+            },
+            "rougeL": {
+              "precision": 0.9247,
+              "recall": 1.0,
+              "fmeasure": 0.9609
+            },
+            "denominator_policy": "whole_gold"
+          }
+        },
+        "bertscore": {
+          "mode": "subsection",
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "system",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            },
+            {
+              "side": "reference",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            }
+          ],
+          "aggregation": "micro",
+          "n_scored": 8,
+          "n_skipped_both_empty": 0,
+          "precision": 0.964637,
+          "recall": 0.995663,
+          "f1": 0.979905,
+          "micro": {
+            "precision": 0.964637,
+            "recall": 0.995663,
+            "f1": 0.979905,
+            "model_type": "microsoft/deberta-xlarge-mnli",
+            "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+          }
+        },
+        "bleurt": {
+          "mode": "subsection",
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "system",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            },
+            {
+              "side": "reference",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            }
+          ],
+          "aggregation": "micro",
+          "n_scored": 8,
+          "n_skipped_both_empty": 0,
+          "score": 0.962923,
+          "micro": {
+            "score": 0.962923,
+            "config_name": "BLEURT-20"
+          }
+        },
+        "weighted_alignment": {
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "gold",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            },
+            {
+              "side": "system",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            }
+          ],
+          "scope": "subsection",
+          "metric": "rougeL",
+          "threshold": 0.1,
+          "micro_soft_precision": 0.7710389610389611,
+          "micro_soft_recall": 0.8303496503496504,
+          "micro_soft_f1": 0.7995959595959596,
+          "structure_recall": 1.0,
+          "structure_precision": 1.0,
+          "matched_pairs": 13,
+          "gold_units": 13,
+          "system_units": 14,
+          "warning_count": 2
+        }
+      },
+      "evaluation": {
+        "generated_at_utc": "2026-08-17T11:39:39.286020+00:00",
+        "gold": "sample_data/gold-output/blackout-gold.json",
+        "system": "sample_data/sysId-output/UW-sys1/blackout-sum.json",
+        "config": "config/evaluation.yaml",
+        "view": "single",
+        "evaluation_scope": {
+          "sections": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "source": "config"
+        },
+        "configured_metrics": {
+          "rouge": {
+            "mode": "subsection",
+            "status": "scored",
+            "warnings": [
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 8,
+            "n_compared": 8,
+            "n_zero_scored": 0,
+            "n_skipped_both_empty": 0,
+            "items": [
+              {
+                "unit_id": "subsection:3/3d",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.4,
+                    "recall": 1.0,
+                    "fmeasure": 0.5714
+                  },
+                  "rouge2": {
+                    "precision": 0.3793,
+                    "recall": 1.0,
+                    "fmeasure": 0.55
+                  },
+                  "rougeL": {
+                    "precision": 0.4,
+                    "recall": 1.0,
+                    "fmeasure": 0.5714
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:3/3e",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:4/4c",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:5/5a",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:6/6a",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:7/7a",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:8/8a",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:11/11b",
+                "status": "matched",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              }
+            ],
+            "aggregates": {
+              "micro": {
+                "rouge1": {
+                  "precision": 0.9247,
+                  "recall": 1.0,
+                  "fmeasure": 0.9609
+                },
+                "rouge2": {
+                  "precision": 0.9221,
+                  "recall": 1.0,
+                  "fmeasure": 0.9595
+                },
+                "rougeL": {
+                  "precision": 0.9247,
+                  "recall": 1.0,
+                  "fmeasure": 0.9609
+                },
+                "denominator_policy": "whole_gold"
+              }
+            },
+            "overall": {
+              "rouge1": {
+                "precision": 0.9247,
+                "recall": 1.0,
+                "fmeasure": 0.9609
+              },
+              "rouge2": {
+                "precision": 0.9221,
+                "recall": 1.0,
+                "fmeasure": 0.9595
+              },
+              "rougeL": {
+                "precision": 0.9247,
+                "recall": 1.0,
+                "fmeasure": 0.9609
+              },
+              "denominator_policy": "whole_gold"
+            },
+            "diagnostics": {
+              "gold_units": 8,
+              "system_units": 8,
+              "matched_units": 8,
+              "scored_units": 8,
+              "skipped_both_empty_units": 0,
+              "denominator": "whole_gold",
+              "denominator_policy": "whole_gold",
+              "rouge1": {
+                "gold_ngrams": 221,
+                "matched_gold_ngrams": 221,
+                "whole_gold_ngrams": 221,
+                "system_ngrams": 239,
+                "matched_system_ngrams": 239,
+                "whole_system_ngrams": 239,
+                "overlapping_ngrams": 221
+              },
+              "rouge2": {
+                "gold_ngrams": 213,
+                "matched_gold_ngrams": 213,
+                "whole_gold_ngrams": 213,
+                "system_ngrams": 231,
+                "matched_system_ngrams": 231,
+                "whole_system_ngrams": 231,
+                "overlapping_ngrams": 213
+              },
+              "rougeL": {
+                "gold_tokens": 221,
+                "matched_gold_tokens": 221,
+                "whole_gold_tokens": 221,
+                "system_tokens": 239,
+                "matched_system_tokens": 239,
+                "whole_system_tokens": 239,
+                "total_lcs_length": 221
+              }
+            }
+          },
+          "bertscore": {
+            "mode": "subsection",
+            "status": "scored",
+            "warnings": [
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 8,
+            "n_compared": 8,
+            "n_zero_scored": 0,
+            "n_skipped_both_empty": 0,
+            "items": [
+              {
+                "unit_id": "subsection:3/3d",
+                "status": "matched",
+                "scores": {
+                  "precision": 0.726525,
+                  "recall": 0.922662,
+                  "f1": 0.812931
+                }
+              },
+              {
+                "unit_id": "subsection:3/3e",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:4/4c",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:5/5a",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:6/6a",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:7/7a",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:8/8a",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:11/11b",
+                "status": "matched",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              }
+            ],
+            "aggregates": {
+              "micro": {
+                "precision": 0.964637,
+                "recall": 0.995663,
+                "f1": 0.979905,
+                "model_type": "microsoft/deberta-xlarge-mnli",
+                "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+              }
+            },
+            "overall": {
+              "precision": 0.964637,
+              "recall": 0.995663,
+              "f1": 0.979905,
+              "model_type": "microsoft/deberta-xlarge-mnli",
+              "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+            }
+          },
+          "bleurt": {
+            "mode": "subsection",
+            "status": "scored",
+            "warnings": [
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 8,
+            "n_compared": 8,
+            "n_zero_scored": 0,
+            "n_skipped_both_empty": 0,
+            "items": [
+              {
+                "unit_id": "subsection:3/3d",
+                "status": "matched",
+                "score": 0.619554
+              },
+              {
+                "unit_id": "subsection:3/3e",
+                "status": "matched",
+                "score": 0.990208
+              },
+              {
+                "unit_id": "subsection:4/4c",
+                "status": "matched",
+                "score": 0.984418
+              },
+              {
+                "unit_id": "subsection:5/5a",
+                "status": "matched",
+                "score": 0.974733
+              },
+              {
+                "unit_id": "subsection:6/6a",
+                "status": "matched",
+                "score": 0.989283
+              },
+              {
+                "unit_id": "subsection:7/7a",
+                "status": "matched",
+                "score": 0.987242
+              },
+              {
+                "unit_id": "subsection:8/8a",
+                "status": "matched",
+                "score": 0.981614
+              },
+              {
+                "unit_id": "subsection:11/11b",
+                "status": "matched",
+                "score": 0.960771
+              }
+            ],
+            "aggregates": {
+              "micro": {
+                "score": 0.962923,
+                "config_name": "BLEURT-20"
+              }
+            },
+            "overall": {
+              "score": 0.962923,
+              "config_name": "BLEURT-20"
+            }
+          }
+        },
+        "weighted_alignment": {
+          "gold": "sample_data/gold-output/blackout-gold.json",
+          "system": "sample_data/sysId-output/UW-sys1/blackout-sum.json",
+          "metric": "rougeL",
+          "threshold": 0.1,
+          "configuration": {
+            "mode": 3,
+            "unit_mode": "bullet",
+            "scope": "subsection",
+            "aggregation": "micro",
+            "metric": "rougeL",
+            "models": {
+              "bertscore": "microsoft/deberta-xlarge-mnli",
+              "cosine": "sentence-transformers/all-mpnet-base-v2"
+            },
+            "batch_size": 16,
+            "thresholds": {
+              "rougeL": 0.1,
+              "bertscore": 0.5,
+              "cosine": 0.3
+            },
+            "tweet_id_overlap": {
+              "enabled": true,
+              "metric": "jaccard",
+              "text_weight": 0.8,
+              "tweet_id_weight": 0.19999999999999996
+            },
+            "alignment_method": "bipartite",
+            "alignment_algorithm": "hungarian",
+            "on_missing_structure": "warn",
+            "config_path": "config/evaluation.yaml",
+            "model": "microsoft/deberta-xlarge-mnli",
+            "threshold": 0.1,
+            "evaluation_scope": {
+              "sections": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "source": "config"
+            }
+          },
+          "status": "scored",
+          "warnings": [
+            {
+              "side": "gold",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            },
+            {
+              "side": "system",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10"
+              ]
+            }
+          ],
+          "summary": {
+            "gold_units": 13,
+            "system_units": 14,
+            "gold_source_bullets": 13,
+            "system_source_bullets": 14,
+            "matched_pairs": 13,
+            "compared_groups": 8,
+            "groups_with_accepted_pairs": 8,
+            "unmatched_gold": 0,
+            "unmatched_system": 1,
+            "mean_positive_edge_weight": 0.8303496503496504,
+            "micro_soft_precision": 0.7710389610389611,
+            "micro_soft_recall": 0.8303496503496504,
+            "micro_soft_f1": 0.7995959595959596,
+            "gold_groups": 8,
+            "system_groups": 8,
+            "shared_groups": 8,
+            "structure_recall": 1.0,
+            "structure_precision": 1.0,
+            "warning_count": 2,
+            "warning_codes": "selected_sections_not_found",
+            "gold_only_groups": 0,
+            "system_only_groups": 0
+          },
+          "groups": [
+            {
+              "scope": "subsection",
+              "group_id": "11/11b",
+              "section_id": "11",
+              "subsection_id": "11b",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.8666666666666667,
+              "soft_precision": 0.8666666666666667,
+              "soft_recall": 0.8666666666666667,
+              "soft_f1": 0.8666666666666667,
+              "total_weight": 0.8666666666666667,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8666666666666667,
+                  "gold_bullet_id": "11b.1",
+                  "system_bullet_id": "11b.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.3333333333333333,
+                  "gold_tweet_ids": [
+                    "10",
+                    "6",
+                    "62"
+                  ],
+                  "system_tweet_ids": [
+                    "6"
+                  ],
+                  "gold_text": "Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat.",
+                  "system_text": "Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "3/3d",
+              "section_id": "3",
+              "subsection_id": "3d",
+              "gold_count": 1,
+              "system_count": 2,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.8,
+              "soft_precision": 0.4,
+              "soft_recall": 0.8,
+              "soft_f1": 0.5333333333333333,
+              "total_weight": 0.8,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8,
+                  "gold_bullet_id": "3d.1",
+                  "system_bullet_id": "3d.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.0,
+                  "gold_tweet_ids": [
+                    "108",
+                    "119",
+                    "62",
+                    "77",
+                    "90"
+                  ],
+                  "system_tweet_ids": [
+                    "100",
+                    "43",
+                    "50",
+                    "76",
+                    "81",
+                    "99"
+                  ],
+                  "gold_text": "Three metro trains carrying 380 passengers were stranded in tunnels between stations.",
+                  "system_text": "Three metro trains carrying 380 passengers were stranded in tunnels between stations."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "3",
+                  "subsection_id": "3d",
+                  "bullet_id": "3d.2",
+                  "text": "Dozens of people were trapped in elevators across the city center, prompting warnings not to force lift doors.",
+                  "tweet_ids": [
+                    53,
+                    95
+                  ],
+                  "confidence": "unconfirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "3/3e",
+              "section_id": "3",
+              "subsection_id": "3e",
+              "gold_count": 2,
+              "system_count": 2,
+              "matched_count": 2,
+              "mean_positive_edge_weight": 0.8590909090909091,
+              "soft_precision": 0.8590909090909091,
+              "soft_recall": 0.8590909090909091,
+              "soft_f1": 0.8590909090909091,
+              "total_weight": 1.7181818181818183,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8181818181818182,
+                  "gold_bullet_id": "3e.1",
+                  "system_bullet_id": "3e.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.09090909090909091,
+                  "gold_tweet_ids": [
+                    "39",
+                    "42",
+                    "45",
+                    "72",
+                    "83",
+                    "88"
+                  ],
+                  "system_tweet_ids": [
+                    "38",
+                    "45",
+                    "47",
+                    "48",
+                    "71",
+                    "89"
+                  ],
+                  "gold_text": "All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations.",
+                  "system_text": "All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations."
+                },
+                {
+                  "gold_index": 1,
+                  "system_index": 1,
+                  "weight": 0.9,
+                  "gold_bullet_id": "3e.2",
+                  "system_bullet_id": "3e.2",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.5,
+                  "gold_tweet_ids": [
+                    "36"
+                  ],
+                  "system_tweet_ids": [
+                    "36",
+                    "80"
+                  ],
+                  "gold_text": "Fire crews worked through dozens of elevator entrapment calls.",
+                  "system_text": "Fire crews worked through dozens of elevator entrapment calls."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "4/4c",
+              "section_id": "4",
+              "subsection_id": "4c",
+              "gold_count": 3,
+              "system_count": 3,
+              "matched_count": 3,
+              "mean_positive_edge_weight": 0.8133333333333335,
+              "soft_precision": 0.8133333333333335,
+              "soft_recall": 0.8133333333333335,
+              "soft_f1": 0.8133333333333334,
+              "total_weight": 2.4400000000000004,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8,
+                  "gold_bullet_id": "4c.1",
+                  "system_bullet_id": "4c.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.0,
+                  "gold_tweet_ids": [
+                    "103",
+                    "15",
+                    "24",
+                    "74"
+                  ],
+                  "system_tweet_ids": [
+                    "10",
+                    "13",
+                    "14",
+                    "68",
+                    "8"
+                  ],
+                  "gold_text": "An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout.",
+                  "system_text": "An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout."
+                },
+                {
+                  "gold_index": 1,
+                  "system_index": 1,
+                  "weight": 0.8,
+                  "gold_bullet_id": "4c.2",
+                  "system_bullet_id": "4c.2",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.0,
+                  "gold_tweet_ids": [
+                    "111",
+                    "48",
+                    "64",
+                    "67",
+                    "99"
+                  ],
+                  "system_tweet_ids": [
+                    "42",
+                    "51",
+                    "61",
+                    "66"
+                  ],
+                  "gold_text": "The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays.",
+                  "system_text": "The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays."
+                },
+                {
+                  "gold_index": 2,
+                  "system_index": 2,
+                  "weight": 0.8400000000000001,
+                  "gold_bullet_id": "4c.3",
+                  "system_bullet_id": "4c.3",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.2,
+                  "gold_tweet_ids": [
+                    "11",
+                    "13",
+                    "30",
+                    "53",
+                    "7",
+                    "9"
+                  ],
+                  "system_tweet_ids": [
+                    "24",
+                    "29",
+                    "5",
+                    "55",
+                    "7",
+                    "9"
+                  ],
+                  "gold_text": "Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections.",
+                  "system_text": "Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "5/5a",
+              "section_id": "5",
+              "subsection_id": "5a",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.8181818181818182,
+              "soft_precision": 0.8181818181818182,
+              "soft_recall": 0.8181818181818182,
+              "soft_f1": 0.8181818181818182,
+              "total_weight": 0.8181818181818182,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8181818181818182,
+                  "gold_bullet_id": "5a.1",
+                  "system_bullet_id": "5a.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.09090909090909091,
+                  "gold_tweet_ids": [
+                    "32",
+                    "41",
+                    "47",
+                    "68",
+                    "69",
+                    "84"
+                  ],
+                  "system_tweet_ids": [
+                    "31",
+                    "41",
+                    "63",
+                    "67",
+                    "74",
+                    "90"
+                  ],
+                  "gold_text": "Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains.",
+                  "system_text": "Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "6/6a",
+              "section_id": "6",
+              "subsection_id": "6a",
+              "gold_count": 2,
+              "system_count": 2,
+              "matched_count": 2,
+              "mean_positive_edge_weight": 0.8290909090909091,
+              "soft_precision": 0.8290909090909091,
+              "soft_recall": 0.8290909090909091,
+              "soft_f1": 0.8290909090909091,
+              "total_weight": 1.6581818181818182,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8400000000000001,
+                  "gold_bullet_id": "6a.1",
+                  "system_bullet_id": "6a.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.2,
+                  "gold_tweet_ids": [
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "22",
+                    "25"
+                  ],
+                  "system_tweet_ids": [
+                    "10",
+                    "12",
+                    "16",
+                    "17",
+                    "18",
+                    "21"
+                  ],
+                  "gold_text": "The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life.",
+                  "system_text": "The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life."
+                },
+                {
+                  "gold_index": 1,
+                  "system_index": 1,
+                  "weight": 0.8181818181818182,
+                  "gold_bullet_id": "6a.3",
+                  "system_bullet_id": "6a.3",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.09090909090909091,
+                  "gold_tweet_ids": [
+                    "29",
+                    "34",
+                    "35",
+                    "38",
+                    "43",
+                    "46"
+                  ],
+                  "system_tweet_ids": [
+                    "30",
+                    "34",
+                    "44",
+                    "49",
+                    "55",
+                    "62"
+                  ],
+                  "gold_text": "Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines.",
+                  "system_text": "Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "7/7a",
+              "section_id": "7",
+              "subsection_id": "7a",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.8200000000000001,
+              "soft_precision": 0.8200000000000001,
+              "soft_recall": 0.8200000000000001,
+              "soft_f1": 0.8200000000000001,
+              "total_weight": 0.8200000000000001,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8200000000000001,
+                  "gold_bullet_id": "7a.2",
+                  "system_bullet_id": "7a.2",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.1,
+                  "gold_tweet_ids": [
+                    "104",
+                    "59",
+                    "78",
+                    "86",
+                    "87"
+                  ],
+                  "system_tweet_ids": [
+                    "101",
+                    "59",
+                    "60",
+                    "70",
+                    "77",
+                    "79"
+                  ],
+                  "gold_text": "Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections.",
+                  "system_text": "Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "8/8a",
+              "section_id": "8",
+              "subsection_id": "8a",
+              "gold_count": 2,
+              "system_count": 2,
+              "matched_count": 2,
+              "mean_positive_edge_weight": 0.8366666666666667,
+              "soft_precision": 0.8366666666666667,
+              "soft_recall": 0.8366666666666667,
+              "soft_f1": 0.8366666666666667,
+              "total_weight": 1.6733333333333333,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.8400000000000001,
+                  "gold_bullet_id": "8a.1",
+                  "system_bullet_id": "8a.1",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.2,
+                  "gold_tweet_ids": [
+                    "33",
+                    "37",
+                    "40",
+                    "51",
+                    "52",
+                    "57"
+                  ],
+                  "system_tweet_ids": [
+                    "32",
+                    "37",
+                    "39",
+                    "40",
+                    "54",
+                    "56"
+                  ],
+                  "gold_text": "Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors.",
+                  "system_text": "Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors."
+                },
+                {
+                  "gold_index": 1,
+                  "system_index": 1,
+                  "weight": 0.8333333333333334,
+                  "gold_bullet_id": "8a.2",
+                  "system_bullet_id": "8a.2",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 0.16666666666666666,
+                  "gold_tweet_ids": [
+                    "120",
+                    "123",
+                    "125"
+                  ],
+                  "system_tweet_ids": [
+                    "113",
+                    "115",
+                    "119",
+                    "123"
+                  ],
+                  "gold_text": "Water customers were advised to fill containers pre-emptively and later to flush taps before drinking.",
+                  "system_text": "Water customers were advised to fill containers pre-emptively and later to flush taps before drinking."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            }
+          ]
+        },
+        "summary": {
+          "rouge": {
+            "mode": "subsection",
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 8,
+            "n_skipped_both_empty": 0,
+            "rouge1": {
+              "precision": 0.9247,
+              "recall": 1.0,
+              "fmeasure": 0.9609
+            },
+            "rouge2": {
+              "precision": 0.9221,
+              "recall": 1.0,
+              "fmeasure": 0.9595
+            },
+            "rougeL": {
+              "precision": 0.9247,
+              "recall": 1.0,
+              "fmeasure": 0.9609
+            },
+            "micro": {
+              "rouge1": {
+                "precision": 0.9247,
+                "recall": 1.0,
+                "fmeasure": 0.9609
+              },
+              "rouge2": {
+                "precision": 0.9221,
+                "recall": 1.0,
+                "fmeasure": 0.9595
+              },
+              "rougeL": {
+                "precision": 0.9247,
+                "recall": 1.0,
+                "fmeasure": 0.9609
+              },
+              "denominator_policy": "whole_gold"
+            }
+          },
+          "bertscore": {
+            "mode": "subsection",
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 8,
+            "n_skipped_both_empty": 0,
+            "precision": 0.964637,
+            "recall": 0.995663,
+            "f1": 0.979905,
+            "micro": {
+              "precision": 0.964637,
+              "recall": 0.995663,
+              "f1": 0.979905,
+              "model_type": "microsoft/deberta-xlarge-mnli",
+              "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+            }
+          },
+          "bleurt": {
+            "mode": "subsection",
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 8,
+            "n_skipped_both_empty": 0,
+            "score": 0.962923,
+            "micro": {
+              "score": 0.962923,
+              "config_name": "BLEURT-20"
+            }
+          },
+          "weighted_alignment": {
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "gold",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              },
+              {
+                "side": "system",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10"
+                ]
+              }
+            ],
+            "scope": "subsection",
+            "metric": "rougeL",
+            "threshold": 0.1,
+            "micro_soft_precision": 0.7710389610389611,
+            "micro_soft_recall": 0.8303496503496504,
+            "micro_soft_f1": 0.7995959595959596,
+            "structure_recall": 1.0,
+            "structure_precision": 1.0,
+            "matched_pairs": 13,
+            "gold_units": 13,
+            "system_units": 14,
+            "warning_count": 2
+          }
+        }
+      },
+      "structure_summary": {
+        "sections": {
+          "gold": 7,
+          "system": 7,
+          "matched": 7,
+          "unmatched_gold": 0,
+          "unmatched_system": 0
+        },
+        "subsections": {
+          "gold": 8,
+          "system": 8,
+          "matched": 8,
+          "unmatched_gold": 0,
+          "unmatched_system": 0
+        },
+        "bullets": {
+          "gold": 13,
+          "system": 14,
+          "matched": 13,
+          "unmatched_gold": 0,
+          "unmatched_system": 1
+        }
+      },
+      "diagnostics": {
+        "structure_summary": {
+          "sections": {
+            "gold": 7,
+            "system": 7,
+            "matched": 7,
+            "unmatched_gold": 0,
+            "unmatched_system": 0
+          },
+          "subsections": {
+            "gold": 8,
+            "system": 8,
+            "matched": 8,
+            "unmatched_gold": 0,
+            "unmatched_system": 0
+          },
+          "bullets": {
+            "gold": 13,
+            "system": 14,
+            "matched": 13,
+            "unmatched_gold": 0,
+            "unmatched_system": 1
+          }
+        }
+      }
+    }
+  ]
+}

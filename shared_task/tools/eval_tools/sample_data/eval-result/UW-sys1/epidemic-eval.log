@@ -1,0 +1,311 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-17T11:40:40.430800+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : epidemic
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/epidemic-gold.json
+System              : sample_data/sysId-output/UW-sys1/epidemic-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.9876
+  ROUGE-2 F1  : 0.9872
+  ROUGE-L F1  : 0.9876
+
+BERTScore (Subsection)
+  Precision   : 0.9853
+  Recall      : 0.9960
+  F1          : 0.9907
+
+BLEURT (Subsection)
+  Score       : 0.9685
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.8110
+Soft Recall         : 0.8349
+Soft F1             : 0.8228
+
+Matched pairs       : 34
+Unmatched gold      : 0
+Unmatched system    : 1
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           0.9876      0.9872      0.9876        0.9907   0.9685            0.8228
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=9 system=9 matched=9 unmatched_gold=0 unmatched_system=0
+subsections: gold=16 system=16 matched=16 unmatched_gold=0 unmatched_system=0
+bullets: gold=34 system=35 matched=34 unmatched_gold=0 unmatched_system=1
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=16 system_units=16 matched_units=16 scored_units=16 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=556 system_ngrams=570 overlapping_ngrams=556
+  rouge2: gold_ngrams=540 system_ngrams=554 overlapping_ngrams=540
+  rougeL: gold_tokens=556 system_tokens=570 total_lcs_length=556
+
+============================================================
+Alignment Details
+============================================================
+Group 10/10a
+  gold=1 system=1 matched=1 soft_f1=0.9500
+  matched_pairs:
+  - gold=10a.1 system=10a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.7500 text_weight=0.8000 final_edge_score=0.9500
+    gold_text=The health directorate and Riverlands Health Trust held the first daily coordination meeting at the Serriport district office, agreeing case-definition and reporting procedures.
+    system_text=The health directorate and Riverlands Health Trust held the first daily coordination meeting at the Serriport district office, agreeing case-definition and reporting procedures.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 11/11a
+  gold=1 system=1 matched=1 soft_f1=0.8444
+  matched_pairs:
+  - gold=11a.2 system=11a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2222 text_weight=0.8000 final_edge_score=0.8444
+    gold_text=Volunteers in Tanmere organised a boat service to deliver supplies to cut-off households.
+    system_text=Volunteers in Tanmere organised a boat service to deliver supplies to cut-off households.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 11/11b
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Residents expressed alarm at the speed of the outbreak and frustration at shortages of rehydration salts.
+    system_text=Residents expressed alarm at the speed of the outbreak and frustration at shortages of rehydration salts.
+  - gold=11b.2 system=11b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Public gratitude was expressed toward treatment centre staff and health workers conducting household checks.
+    system_text=Public gratitude was expressed toward treatment centre staff and health workers conducting household checks.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3a
+  gold=3 system=3 matched=3 soft_f1=0.8194
+  matched_pairs:
+  - gold=3a.1 system=3a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Two deaths were initially reported as under investigation during the early phase of the outbreak.
+    system_text=Two deaths were initially reported as under investigation during the early phase of the outbreak.
+  - gold=3a.2 system=3a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=Four deaths were subsequently confirmed as caused by cholera.
+    system_text=Four deaths were subsequently confirmed as caused by cholera.
+  - gold=3a.3 system=3a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Two of the earlier reported deaths were determined to be from unrelated causes and were excluded from the outbreak toll.
+    system_text=Two of the earlier reported deaths were determined to be from unrelated causes and were excluded from the outbreak toll.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3b
+  gold=3 system=3 matched=3 soft_f1=0.8556
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.9000
+    gold_text=The first official count recorded 34 suspected cases of acute watery diarrhoea across the delta.
+    system_text=The first official count recorded 34 suspected cases of acute watery diarrhoea across the delta.
+  - gold=3b.2 system=3b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Suspected cases rose to 76 and then to 148 under a broad case definition covering all acute watery diarrhoea.
+    system_text=Suspected cases rose to 76 and then to 148 under a broad case definition covering all acute watery diarrhoea.
+  - gold=3b.3 system=3b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.8667
+    gold_text=Laboratory testing confirmed 89 cases of cholera among the 148 investigated, with the remainder reclassified to other causes.
+    system_text=Laboratory testing confirmed 89 cases of cholera among the 148 investigated, with the remainder reclassified to other causes.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3c
+  gold=2 system=3 matched=2 soft_f1=0.6400
+  matched_pairs:
+  - gold=3c.1 system=3c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Serriport District Hospital reached ward capacity and opened an overflow tent in its car park.
+    system_text=Serriport District Hospital reached ward capacity and opened an overflow tent in its car park.
+  - gold=3c.2 system=3c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Forty-one patients were admitted at the peak of the reported admissions figures.
+    system_text=Forty-one patients were admitted at the peak of the reported admissions figures.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3c.4 text="New admissions fell for two consecutive days before the outbreak was assessed as contained."
+
+Group 4/4a
+  gold=4 system=4 matched=4 soft_f1=0.8206
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1000 text_weight=0.8000 final_edge_score=0.8200
+    gold_text=Chlorination at the Meskin Reservoir intake was interrupted for 48 hours during pump repairs in the week before the outbreak.
+    system_text=Chlorination at the Meskin Reservoir intake was interrupted for 48 hours during pump repairs in the week before the outbreak.
+  - gold=4a.3 system=4a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1111 text_weight=0.8000 final_edge_score=0.8222
+    gold_text=The Kelvaig clinic exhausted its stock of oral rehydration salts early in the outbreak.
+    system_text=The Kelvaig clinic exhausted its stock of oral rehydration salts early in the outbreak.
+  - gold=4a.4 system=4a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Schools in Kelvaig and southern Serriport were closed for the week as a precaution.
+    system_text=Schools in Kelvaig and southern Serriport were closed for the week as a precaution.
+  - gold=4a.5 system=4a.5
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=A boil-water notice was issued for all Ondaraya Delta connections.
+    system_text=A boil-water notice was issued for all Ondaraya Delta connections.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4b
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Emergency chlorination was started and chlorine residual returned to target range at the reservoir outlet.
+    system_text=Emergency chlorination was started and chlorine residual returned to target range at the reservoir outlet.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/5a
+  gold=1 system=1 matched=1 soft_f1=0.8667
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.8667
+    gold_text=Households in Tanmere were cut off by the flooded canal path and were reached by a volunteer boat service.
+    system_text=Households in Tanmere were cut off by the flooded canal path and were reached by a volunteer boat service.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/6a
+  gold=2 system=2 matched=2 soft_f1=0.8400
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=Laboratory testing identified Vibrio cholerae in 11 of the first 15 samples analysed.
+    system_text=Laboratory testing identified Vibrio cholerae in 11 of the first 15 samples analysed.
+  - gold=6a.3 system=6a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=The health directorate stated there was no evidence of deliberate contamination of the reservoir.
+    system_text=The health directorate stated there was no evidence of deliberate contamination of the reservoir.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/7a
+  gold=4 system=4 matched=4 soft_f1=0.8250
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.9000
+    gold_text=The Ondaraya Health Directorate opened an investigation into the case cluster and issued water safety advisories.
+    system_text=The Ondaraya Health Directorate opened an investigation into the case cluster and issued water safety advisories.
+  - gold=7a.2 system=7a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The National Epidemic Response Unit deployed an epidemiological team and two tonnes of medical supplies to Serriport.
+    system_text=The National Epidemic Response Unit deployed an epidemiological team and two tonnes of medical supplies to Serriport.
+  - gold=7a.3 system=7a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A 60-bed cholera treatment centre was opened at the Serriport fairground, jointly run with Riverlands Health Trust.
+    system_text=A 60-bed cholera treatment centre was opened at the Serriport fairground, jointly run with Riverlands Health Trust.
+  - gold=7a.4 system=7a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The Delta Water Board began emergency chlorination and issued a delta-wide boil-water notice.
+    system_text=The Delta Water Board began emergency chlorination and issued a delta-wide boil-water notice.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8a
+  gold=2 system=2 matched=2 soft_f1=0.8600
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.6000 text_weight=0.8000 final_edge_score=0.9200
+    gold_text=The health directorate advised residents not to drink untreated canal water and to boil water for at least one minute or use purification tablets.
+    system_text=The health directorate advised residents not to drink untreated canal water and to boil water for at least one minute or use purification tablets.
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A boil-water notice was issued for all delta connections and remained in force pending clear samples.
+    system_text=A boil-water notice was issued for all delta connections and remained in force pending clear samples.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8b
+  gold=2 system=2 matched=2 soft_f1=0.8591
+  matched_pairs:
+  - gold=8b.1 system=8b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.9000
+    gold_text=The health directorate issued daily briefings recording confirmed cases, deaths and current admissions.
+    system_text=The health directorate issued daily briefings recording confirmed cases, deaths and current admissions.
+  - gold=8b.2 system=8b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Officials publicly rejected a rumour that the reservoir had been deliberately poisoned, attributing the outbreak to a treatment interruption.
+    system_text=Officials publicly rejected a rumour that the reservoir had been deliberately poisoned, attributing the outbreak to a treatment interruption.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8c
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Residents publicly appealed for assistance as hospital wards filled during the early phase.
+    system_text=Residents publicly appealed for assistance as hospital wards filled during the early phase.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/9a
+  gold=3 system=3 matched=3 soft_f1=0.8222
+  matched_pairs:
+  - gold=9a.1 system=9a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Riverlands Health Trust deployed a mobile rehydration team to Kelvaig with oral rehydration salts and intravenous fluids.
+    system_text=Riverlands Health Trust deployed a mobile rehydration team to Kelvaig with oral rehydration salts and intravenous fluids.
+  - gold=9a.2 system=9a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.8667
+    gold_text=Ondaraya Red Wave Society volunteers distributed water purification tablets door to door in Kelvaig and 4,200 household purification kits across the delta.
+    system_text=Ondaraya Red Wave Society volunteers distributed water purification tablets door to door in Kelvaig and 4,200 household purification kits across the delta.
+  - gold=9a.3 system=9a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The National Epidemic Response Unit delivered two tonnes of medical supplies to Serriport alongside its epidemiological team.
+    system_text=The National Epidemic Response Unit delivered two tonnes of medical supplies to Serriport alongside its epidemiological team.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/9b
+  gold=2 system=2 matched=2 soft_f1=0.8667
+  matched_pairs:
+  - gold=9b.2 system=9b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.8333
+    gold_text=The Kelvaig clinic exhausted its oral rehydration salt stock before resupply, leaving demand unmet during the early phase.
+    system_text=The Kelvaig clinic exhausted its oral rehydration salt stock before resupply, leaving demand unmet during the early phase.
+  - gold=9b.3 system=9b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.9000
+    gold_text=Households in Tanmere cut off by the flooded canal path received supplies via a volunteer boat service.
+    system_text=Households in Tanmere cut off by the flooded canal path received supplies via a volunteer boat service.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: none
