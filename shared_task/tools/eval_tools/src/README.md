@@ -13,9 +13,3 @@ For the final release, run `run_eval.py`. The other modules are imported by the 
 | `evaluation_scope.py` | Loads and validates the sections included in evaluation. |
 | `reporting_config.py` | Loads and validates within-disaster aggregation, across-disaster aggregation, and primary-score settings. |
 | `runtime_env.py` | Sets safe Hugging Face and TensorFlow runtime environment options before model libraries are loaded. |
-
-Normal usage:
-
-```bash
-python src/run_eval.py --data-dir <DATA_DIR> --system-id <SYSTEM_ID> --config config/evaluation.yaml
-```
