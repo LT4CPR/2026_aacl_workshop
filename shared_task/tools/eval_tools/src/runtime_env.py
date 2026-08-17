@@ -19,7 +19,7 @@ def apply_safe_hf_env() -> None:
 
 
 def ensure_safe_hf_env_for_main(module_name: str) -> None:
-    """Restart direct script execution once with safe HuggingFace settings."""
+    """Restart direct script execution once with safe Hugging Face settings."""
     if module_name != "__main__":
         return
     if all(os.environ.get(key) == value for key, value in SAFE_HF_ENV.items()):

@@ -28,13 +28,14 @@ RELEASE_ROOT = SCRIPT_DIR.parent
 
 GOLD_DIR = RELEASE_ROOT / "data" / "gold-output"
 
-# Dataset aliases used by legacy Markdown gold helpers.
+# Dataset aliases for standalone Markdown compatibility helpers.
+# The release runner uses structured JSON inputs and does not use this mapping.
 GOLD_FILES = {
     "LA_shootings": "2013_LA_airport_shooting_consolidated_cluster_output_sitrep.md",
     "Manila_floods": "2013_Manila_floods_consolidated_cluster_output_sitrep.md",
 }
 
-# Section aliases for Markdown gold alignment.
+# Section aliases for standalone Markdown-to-JSON section alignment.
 SECTION_MAP = {
     "1": ["overview"],
     "2": ["timeline"],
@@ -46,7 +47,7 @@ SECTION_MAP = {
     "11": ["public reaction"],
     "14": ["anticipated and unconfirmed reports"],
 }
-# Sections ignored when aligning Markdown gold files.
+# Section IDs excluded only by the standalone Markdown compatibility path.
 SUPPLEMENTARY = {"6", "12", "13", "15"}
 
 ROUGE_TYPES = ["rouge1", "rouge2", "rougeL"]
@@ -64,7 +65,7 @@ def _clean(text: str) -> str:
 
 
 def parse_gold(md_path: Path) -> dict[str, dict]:
-    """Parse Markdown gold into normalized section text."""
+    """Parse a Markdown reference for standalone compatibility commands."""
     lines = md_path.read_text(encoding="utf-8").splitlines()
     sections: dict[str, dict] = {}
     cur_header: str | None = None
@@ -377,7 +378,7 @@ def _container_bullet_text(container: dict) -> list[str]:
 
 
 def _metric_hierarchy(path: Path) -> dict[str, object]:
-    """Load text and report available evaluation levels."""
+    """Load an evaluation hierarchy and report its available scoring levels."""
     suffix = path.suffix.lower()
     is_json = suffix in (".json", ".jsn")
     if suffix not in (".json", ".jsn", ".md", ".markdown", ".txt"):
@@ -620,7 +621,7 @@ def _configured_pairs(
 
 
 def _load_hf_evaluate_library():
-    """Import HuggingFace evaluate without local-module shadowing."""
+    """Import Hugging Face Evaluate without local-module shadowing."""
 
     existing = sys.modules.get("evaluate")
     if existing is not None and hasattr(existing, "load"):
@@ -656,7 +657,7 @@ def _load_hf_evaluate_library():
 
 
 def _apply_bertscore_tokenizer_compat() -> None:
-    """Cap tokenizer lengths that break bert-score."""
+    """Cap tokenizer lengths that exceed BERTScore model limits."""
 
     try:
         utils_module = importlib.import_module("bert_score.utils")
@@ -709,7 +710,7 @@ def _apply_bertscore_tokenizer_compat() -> None:
 
 
 def _find_cached_bleurt_checkpoint(config_name: str) -> Path | None:
-    """Return an extracted BLEURT checkpoint from the HuggingFace metric cache."""
+    """Return an extracted BLEURT checkpoint from the Hugging Face metric cache."""
 
     cache_root = (
         Path.home()
@@ -1109,7 +1110,7 @@ def _configured_summary_row(result: dict, name: dict) -> list:
 
 
 def configured_metrics_tree(run_dir: Path, config_path: Path, quiet: bool = False) -> int:
-    """Evaluate a run tree and write metric summaries."""
+    """Evaluate the standalone compatibility tree layout and write summaries."""
     if not run_dir.is_dir():
         sys.exit(f"[evaluate] tree directory not found: {run_dir}")
     rows = []
@@ -1150,7 +1151,7 @@ def configured_metrics_tree(run_dir: Path, config_path: Path, quiet: bool = Fals
 
 
 def load_as_sections(path: Path) -> tuple[dict[str, dict], str]:
-    """Load JSON or Markdown as section text."""
+    """Load section text for standalone JSON or Markdown comparison."""
     suffix = path.suffix.lower()
     if suffix in (".json", ".jsn"):
         kind = "json"
@@ -1177,7 +1178,7 @@ def load_as_sections(path: Path) -> tuple[dict[str, dict], str]:
 
 
 def compare_pair(cand: dict[str, dict], ref: dict[str, dict]) -> dict:
-    """Align by section id and score matched sections."""
+    """Align sections by ID for standalone ROUGE reporting."""
     sections = []
     for sid in sorted(set(cand) | set(ref), key=lambda x: (len(x), x)):
         c = cand.get(sid)
@@ -1322,7 +1323,7 @@ def align(doc: dict, gold: dict[str, dict], meta_extra: dict) -> dict:
 
 
 def alignment_to_markdown(alignment: dict) -> str:
-    """Render section alignment as Markdown."""
+    """Render a standalone section-alignment report as Markdown."""
     m = alignment["meta"]
     lines = [
         f"# Alignment: {m.get('our_file', '')}",
@@ -1346,7 +1347,7 @@ def alignment_to_markdown(alignment: dict) -> str:
 
 
 def score_alignment(alignment: dict) -> dict:
-    """Score matched alignment pairs with ROUGE."""
+    """Score matched pairs from a standalone section alignment with ROUGE."""
     sections = []
     for p in alignment["pairs"]:
         row = {
@@ -1379,7 +1380,7 @@ def score_alignment(alignment: dict) -> dict:
 
 
 def parse_name(json_path: Path) -> dict:
-    """Parse level, model, and dataset from a SITREP filename."""
+    """Parse metadata from a standalone compatibility-tree filename."""
     m = re.match(r"^([A-E])__(.+?)__(.+?)__sitrep\.json$", json_path.name)
     if m:
         return {"level": m.group(1), "model": m.group(2), "dataset": m.group(3)}
@@ -1398,7 +1399,7 @@ def detect_dataset(doc: dict, json_path: Path) -> str | None:
 
 def align_and_score_one(json_path: Path, align_json: Path, align_md: Path,
                         rouge_json: Path) -> dict:
-    """Align one SITREP to gold and write ROUGE outputs."""
+    """Run standalone Markdown-reference alignment and write ROUGE outputs."""
     doc = json.loads(json_path.read_text(encoding="utf-8"))
     name = parse_name(json_path)
     dataset = name["dataset"] or detect_dataset(doc, json_path)
@@ -1557,18 +1558,17 @@ def cmd_metrics(args: argparse.Namespace) -> int:
 
 def main() -> int:
     p = argparse.ArgumentParser(
-        description="Stage-3 SITREP evaluation: ROUGE and configured metrics.")
+        description="Standalone text-level SITREP evaluation utilities.")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     r = sub.add_parser("rouge", help="ROUGE-1/2/L word-overlap scoring.")
     r.add_argument("candidate", nargs="?", type=Path,
-                   help="Summary being graded (.json or .md). Omit with --tree.")
+                   help="System SITREP (.json or .md). Omit with --tree.")
     r.add_argument("reference", nargs="?", type=Path,
-                   help="Summary to grade against - another summary or the gold.")
+                   help="Reference SITREP (.json or .md). Omit with --tree.")
     r.add_argument("--tree", type=Path, default=None,
-                   help="Organized run dir (e.g. output/v6): align every sitrep to "
-                        "its gold and write align/, rouge/, rouge_scores.csv, "
-                        "rouge_summary.csv.")
+                   help="Standalone compatibility-tree directory: align each "
+                        "*__sitrep.json file and write alignment and ROUGE reports.")
     r.add_argument("--out", type=Path, default=None,
                    help="Single-pair mode: write the full per-section result JSON here.")
     r.add_argument("--csv", type=Path, default=None,
@@ -1580,11 +1580,12 @@ def main() -> int:
     m = sub.add_parser(
         "metrics", help="Run enabled ROUGE/BERTScore/BLEURT metrics from evaluation.yaml.")
     m.add_argument("candidate", nargs="?", type=Path,
-                   help="Summary being graded (.json or .md). Omit with --tree.")
+                   help="System SITREP (.json or .md). Omit with --tree.")
     m.add_argument("reference", nargs="?", type=Path,
-                   help="Reference summary (.json or .md). Omit with --tree.")
+                   help="Gold or reference SITREP (.json or .md). Omit with --tree.")
     m.add_argument("--tree", type=Path, default=None,
-                   help="Run directory whose immediate children contain *__sitrep.json files.")
+                   help="Standalone compatibility-tree directory whose immediate "
+                        "children contain *__sitrep.json files.")
     m.add_argument("--config", type=Path, default=DEFAULT_EVAL_CONFIG,
                    help=f"Metric policy (default: {DEFAULT_EVAL_CONFIG}).")
     m.add_argument("--out", type=Path, default=None,

@@ -65,5 +65,5 @@ def load_reporting_config(path: Path) -> dict[str, Any]:
 
 
 def load_reporting_aggregation(path: Path) -> dict[str, Any]:
-    """Return aggregation settings for callers using the legacy helper."""
+    """Return aggregation settings without the primary-score configuration."""
     return load_reporting_config(path)["aggregation"]

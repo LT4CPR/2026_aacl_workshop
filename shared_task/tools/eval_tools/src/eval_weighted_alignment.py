@@ -1,4 +1,4 @@
-"""Hungarian alignment for structured SITREP JSON."""
+"""Bullet-level Hungarian alignment for structured SITREP JSON."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ from sitrep_units import (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Evaluate system SITREPs against a JSON gold with Hungarian matching."
+        description="Align System and Gold SITREP bullets with Hungarian matching."
     )
     parser.add_argument("--gold", type=Path, required=True)
     parser.add_argument("--system", type=Path, action="append", required=True)
@@ -96,7 +96,7 @@ def load_hungarian_config(
         import yaml
     except ImportError as exc:
         raise SystemExit(
-            "YAML configuration requires PyYAML; install eval/requirements.txt"
+            "YAML configuration requires PyYAML; install requirements.txt"
         ) from exc
 
     if not path.is_file():
@@ -109,7 +109,7 @@ def load_hungarian_config(
     if spec is None:
         raise SystemExit(
             f"Missing metrics.bullet_level in config: {path} "
-            "(legacy metrics.weighted_alignment is also accepted)"
+            "(the compatibility key metrics.weighted_alignment is also accepted)"
         )
 
     mode = int(spec.get("mode", 3))
@@ -370,7 +370,7 @@ def rouge_l_scores(candidates: list[str], references: list[str], **_: object) ->
     try:
         from rouge_score import rouge_scorer
     except ImportError as exc:
-        raise SystemExit("rougeL requires rouge-score; install eval/requirements.txt") from exc
+        raise SystemExit("rougeL requires rouge-score; install requirements.txt") from exc
     scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
     return [
         float(scorer.score(ref, cand)["rougeL"].fmeasure)
@@ -386,7 +386,7 @@ def bert_scores(
         import importlib
         importlib.import_module("bert_score.utils")
     except ImportError as exc:
-        raise SystemExit("BERTScore requires bert-score; install eval/requirements.txt") from exc
+        raise SystemExit("BERTScore requires bert-score; install requirements.txt") from exc
     _apply_bertscore_tokenizer_compat()
 
     score_module = importlib.import_module("bert_score.score")
@@ -412,7 +412,7 @@ def cosine_scores(
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
         raise SystemExit(
-            "cosine requires sentence-transformers; install eval/requirements.txt"
+            "cosine requires sentence-transformers; install requirements.txt"
         ) from exc
 
     unique_texts = list(dict.fromkeys([*candidates, *references]))

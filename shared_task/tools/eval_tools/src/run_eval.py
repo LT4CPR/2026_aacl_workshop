@@ -172,7 +172,7 @@ def build_structure_summary(
 
 
 def parse_disaster_filename(path: Path, expected_suffix: str | None = None) -> str:
-    """Return the shared crisis ID prefix before a role-specific suffix."""
+    """Return the disaster ID prefix before a role-specific suffix."""
     suffixes = (expected_suffix,) if expected_suffix else (
         GOLD_INPUT_SUFFIX,
         SYSTEM_INPUT_SUFFIX,
@@ -201,7 +201,7 @@ def index_disaster_files(directory: Path, expected_suffix: str) -> dict[str, Pat
 
 
 def discover_pairs(sys_dir: Path, gold_dir: Path) -> list[dict[str, Any]]:
-    """Match gold and summary files by shared crisis ID prefix."""
+    """Match Gold and System files by their shared disaster ID prefix."""
     gold_files = index_disaster_files(gold_dir, GOLD_INPUT_SUFFIX)
     system_files = index_disaster_files(sys_dir, SYSTEM_INPUT_SUFFIX)
     disaster_ids = sorted(set(gold_files) | set(system_files))
@@ -436,9 +436,9 @@ def primary_score_is_required(payload: dict[str, Any]) -> bool:
         if item.get("status") == "scored"
         and isinstance((evaluation := item.get("evaluation")), dict)
     }
-    # Sweep runs expose many equally valid configurations and therefore do not
-    # define one release primary score. Summary-only callers have no view and
-    # retain the historical single-run behavior.
+    # Sweep runs expose multiple configurations and therefore do not define one
+    # release primary score. Callers without an explicit view are treated as a
+    # normal single-configuration run.
     return not views or views == {"single"}
 
 
@@ -587,7 +587,7 @@ def build_combined_log(payload: dict[str, Any]) -> str:
 
 
 def _strip_unselected_pair_aggregates(value: Any, selected: str) -> Any:
-    """Remove the non-primary within-document aggregate from pair output."""
+    """Remove the unselected within-document aggregate from pair output."""
     excluded = "macro" if selected == "micro" else "micro"
     if isinstance(value, dict):
         return {
@@ -604,7 +604,7 @@ def _strip_unselected_pair_aggregates(value: Any, selected: str) -> Any:
 
 
 def build_pair_output_payload(payload: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
-    """Build one disaster payload containing only its primary aggregation."""
+    """Build one disaster payload containing only its selected aggregation."""
     selected = str((payload.get("aggregation") or {}).get("within_document", "micro"))
     return {
         "generated_at_utc": payload["generated_at_utc"],

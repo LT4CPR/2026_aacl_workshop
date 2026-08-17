@@ -752,7 +752,7 @@ def _write_csv_rows(csv_path: Path, rows: list[dict[str, Any]]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Unified gold vs system evaluation (configured metrics + weighted alignment)."
+        description="Standalone evaluation of one Gold/System SITREP pair."
     )
     parser.add_argument("--gold", type=Path, required=True, help="Gold SITREP JSON.")
     parser.add_argument("--system", type=Path, required=True, help="System SITREP JSON.")
@@ -766,7 +766,7 @@ def parse_args() -> argparse.Namespace:
         "--out",
         type=Path,
         default=None,
-        help="Write combined JSON here (default: print to stdout).",
+        help="Write the pair-evaluation JSON here (default: print to stdout).",
     )
     parser.add_argument(
         "--csv",
