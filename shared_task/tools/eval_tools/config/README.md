@@ -6,7 +6,7 @@
 
 | Option | Values | Meaning |
 | --- | --- | --- |
-| `evaluation_scope.sections` | `"all"`, a comma-separated string, or a list containing IDs `3`–`11` | Selects the sections to evaluate. `all` means all officially scored sections, which are Sections 3–11. Sections 1–2 cannot be selected. |
+| `evaluation_scope.sections` | `"all"`, a comma-separated string, or a list of section IDs | Selects the sections to evaluate. The release policy lists Sections 3–11. `all` evaluates every section available in each input file, including Sections 1–2 when present. Explicit selections may also include IDs such as `1` and `2`. |
 
 ## Reporting
 
