@@ -10,6 +10,6 @@ For the final release, run `run_eval.py`. The other modules are imported by the 
 | `eval_weighted_alignment.py` | Builds bullet similarity scores, combines text and Tweet-ID similarity, runs alignment, and computes soft precision, recall, and F1. |
 | `hungarian_alignment.py` | Performs thresholded maximum-weight one-to-one Hungarian matching and returns matched and unmatched units. |
 | `sitrep_units.py` | Validates SITREP JSON and extracts scorable units by document, section, or subsection. |
-| `evaluation_scope.py` | Loads and validates the sections included in evaluation. |
+| `evaluation_scope.py` | Resolves configured or CLI-selected section IDs, including the `all` scope for every available section. |
 | `reporting_config.py` | Loads and validates within-disaster aggregation, across-disaster aggregation, and primary-score settings. |
 | `runtime_env.py` | Sets safe Hugging Face and TensorFlow runtime environment options before model libraries are loaded. |
