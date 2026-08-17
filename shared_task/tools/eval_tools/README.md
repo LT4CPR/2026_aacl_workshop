@@ -71,7 +71,7 @@ Every scorable bullet should contain `text`; `tweet_ids` is optional.
 ## 3. Official evaluation policy
 
 - Only Sections 3--11 are scored. Sections 1 and 2 may appear in a SITREP but
-  never enter the score. `--sections all` also means Sections 3--11.
+  never enter the score.
 - Section and subsection IDs are structural keys; titles are not scored.
 - The release configuration evaluates text and bullets at subsection level.
 - If a subsection exists on both sides, its content is compared normally.
@@ -85,8 +85,7 @@ Every scorable bullet should contain `text`; `tweet_ids` is optional.
 Text-level metrics are ROUGE-1/2/L, BERTScore, and BLEURT. The official ROUGE
 policy is `denominator_policy: whole_gold`, which includes all Gold text in the
 micro recall denominator and all System text in the micro precision
-denominator. `matched_only` is available only for diagnostic ROUGE micro
-analysis and is not an official shared-task aggregation policy.
+denominator.
 
 Bullet-level evaluation computes pairwise similarity, combines ROUGE-L with
 Tweet-ID Jaccard overlap using the configured weights, and performs maximum-
