@@ -26,13 +26,13 @@ class EvaluationScope:
 
 
 def _normalize_section_values(value: Any, *, location: str) -> tuple[str, ...] | None:
-    """Normalize a selection within the official scored sections (3--11)."""
+    """Normalize explicit section IDs or the all-available-sections sentinel."""
     if value is None:
         return OFFICIAL_SCORED_SECTION_IDS
     if isinstance(value, str):
         stripped = value.strip()
         if stripped.lower() == "all":
-            return OFFICIAL_SCORED_SECTION_IDS
+            return None
         values: Iterable[Any] = stripped.split(",")
     elif isinstance(value, (list, tuple)):
         values = value
@@ -52,18 +52,10 @@ def _normalize_section_values(value: Any, *, location: str) -> tuple[str, ...] |
             normalized.append(section_id)
     if not normalized:
         raise ValueError(f"{location} must contain at least one section ID or 'all'")
-    disallowed = [
-        section_id
-        for section_id in normalized
-        if section_id not in OFFICIAL_SCORED_SECTION_IDS
-    ]
-    if disallowed:
-        allowed = ", ".join(OFFICIAL_SCORED_SECTION_IDS)
-        rejected = ", ".join(disallowed)
-        raise ValueError(
-            f"{location} contains non-scored section ID(s): {rejected}; "
-            f"the official evaluation scope is {allowed}"
-        )
+    if any(section_id.lower() == "all" for section_id in normalized):
+        if len(normalized) != 1:
+            raise ValueError(f"{location} must use 'all' by itself")
+        return None
     return tuple(normalized)
 
 
@@ -84,7 +76,7 @@ def load_configured_scope(config_path: Path) -> EvaluationScope:
     if not isinstance(scope, dict):
         raise ValueError("evaluation_scope must be a mapping")
     section_ids = _normalize_section_values(
-        scope.get("sections", "all"),
+        scope.get("sections", OFFICIAL_SCORED_SECTION_IDS),
         location="evaluation_scope.sections",
     )
     return EvaluationScope(section_ids, "config")

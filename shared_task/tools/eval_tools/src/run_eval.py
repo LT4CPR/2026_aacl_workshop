@@ -1049,7 +1049,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--sections",
         default=None,
-        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
+        help=(
+            "Comma-separated section IDs to evaluate, or 'all' for every "
+            "available section (overrides config)."
+        ),
     )
     parser.add_argument(
         "--system-id",
@@ -1062,12 +1065,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--all-modes",
         action="store_true",
-        help="Evaluate document, section, and subsection levels.",
+        help=(
+            "Evaluate document, section, and subsection levels within the "
+            "resolved section scope."
+        ),
     )
     parser.add_argument(
         "--all-config",
         action="store_true",
-        help="Sweep all supported metric/level/unit combinations.",
+        help=(
+            "Sweep all supported metric/level/unit combinations within the "
+            "resolved section scope."
+        ),
     )
     parser.add_argument(
         "--no-full",

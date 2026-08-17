@@ -78,7 +78,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--sections",
         default=None,
-        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
+        help=(
+            "Comma-separated section IDs to evaluate, or 'all' for every "
+            "available section (overrides config)."
+        ),
     )
     parser.add_argument("--device", default=None)
     parser.add_argument(

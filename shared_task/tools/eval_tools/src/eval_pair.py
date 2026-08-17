@@ -779,7 +779,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Run ROUGE/BERTScore/BLEURT and weighted alignment at document, "
-            "section, and subsection levels."
+            "section, and subsection levels within the resolved section scope."
         ),
     )
     parser.add_argument(
@@ -788,13 +788,17 @@ def parse_args() -> argparse.Namespace:
         help=(
             "Sweep all config combinations: text-level ROUGE/BERTScore/BLEURT at all "
             "levels, and bullet-level Hungarian alignment at all level × unit_mode × "
-            "similarity_metric × tweet_overlap combinations."
+            "similarity_metric × tweet_overlap combinations, within the resolved "
+            "section scope."
         ),
     )
     parser.add_argument(
         "--sections",
         default=None,
-        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
+        help=(
+            "Comma-separated section IDs to evaluate, or 'all' for every "
+            "available section (overrides config)."
+        ),
     )
     parser.add_argument(
         "--full",
