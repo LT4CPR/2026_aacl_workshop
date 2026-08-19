@@ -1,0 +1,67 @@
+evaluation_scope:
+  # The official release policy scores Sections 3--11.
+  # Use "all" to evaluate every section available in the input files.
+  sections: ["3", "4", "5", "6", "7", "8", "9", "10", "11"]
+
+reporting:
+  aggregation:
+    # Pool subsection/item statistics within each document.
+    within_document: micro
+    # Give each disaster/document equal weight so large disasters do not dominate.
+    across_documents: macro
+
+  primary_score:
+    enabled: true
+    method: mean_bertscore_f1_bleurt
+
+metrics:
+  text_level:
+    # Text-blob scoring (eval_sitrep): ROUGE / BERTScore / BLEURT on concatenated
+    # mode: 0, disabled
+    # mode: 1, document
+    # mode: 2, section
+    # mode: 3, subsection
+    rouge:
+      mode: 3
+      aggregation: micro # micro | macro
+      # matched_only: score only aligned units.
+      # whole_gold: use all gold and system units in ROUGE micro denominators,
+      # so missing and unnecessary structural units are both penalized.
+      denominator_policy: whole_gold # matched_only | whole_gold
+
+    bertscore:
+      mode: 3
+      aggregation: micro # micro | macro
+
+    bleurt:
+      mode: 3
+      aggregation: micro # micro | macro
+
+  bullet_level:
+    # Hungarian weighted alignment (eval_weighted_alignment): bullet-to-bullet
+    # mode: 0, disabled
+    # mode: 1, document-level alignment over all bullets
+    # mode: 2, section-level alignment within matched sections
+    # mode: 3, subsection-level alignment within matched subsections
+    mode: 3
+    aggregation: micro # micro | macro
+    on_missing_structure: warn
+
+    similarity_metric: rougeL # rougeL | bertscore | cosine
+    tweet_id_overlap:
+      enabled: true
+      # Final edge score =
+      # text_weight * text similarity + (1 - text_weight) * tweet-id Jaccard overlap.
+      text_weight: 0.8
+    model_type:
+      bertscore: microsoft/deberta-xlarge-mnli
+      cosine: sentence-transformers/all-mpnet-base-v2
+    batch_size: 16
+
+    alignment:
+      method: bipartite
+      algorithm: hungarian
+      threshold:
+        rougeL: 0.10
+        bertscore: 0.50
+        cosine: 0.30

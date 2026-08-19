@@ -1,0 +1,76 @@
+{
+  "generated_at_utc": "2026-08-17T11:40:40.430800+00:00",
+  "config": "config/evaluation.yaml",
+  "gold_dir": "sample_data/gold-output",
+  "system_dir": "sample_data/sysId-output/UW-sys1",
+  "system_id": "UW-sys1",
+  "evaluation_scope": {
+    "sections": [
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "source": "config"
+  },
+  "aggregation": {
+    "level": "across_disasters",
+    "method": "macro",
+    "note": "Overall macro results are the equal-weight mean of the selected overall result from each scored disaster."
+  },
+  "disaster_count": 4,
+  "scored_disaster_count": 4,
+  "disaster_ids": [
+    "blackout",
+    "conflict",
+    "crowdcrush",
+    "epidemic"
+  ],
+  "coverage_ratio": 1.0,
+  "failed_disasters": [],
+  "overall_macro": {
+    "rouge1": {
+      "precision": 0.9495,
+      "recall": 0.990025,
+      "fmeasure": 0.969225
+    },
+    "rouge2": {
+      "precision": 0.94775,
+      "recall": 0.989475,
+      "fmeasure": 0.96805
+    },
+    "rougeL": {
+      "precision": 0.9495,
+      "recall": 0.990025,
+      "fmeasure": 0.969225
+    },
+    "bertscore": {
+      "precision": 0.973215,
+      "recall": 0.990401,
+      "f1": 0.981713
+    },
+    "bleurt": {
+      "score": 0.955491
+    },
+    "weighted_alignment": {
+      "precision": 0.776449,
+      "recall": 0.811712,
+      "f1": 0.793606,
+      "scope": "subsection",
+      "metric": "rougeL"
+    }
+  },
+  "primary_score": {
+    "method": "mean_bertscore_f1_bleurt",
+    "components": {
+      "bertscore_f1": 0.981713,
+      "bleurt": 0.955491
+    },
+    "score": 0.968602
+  }
+}

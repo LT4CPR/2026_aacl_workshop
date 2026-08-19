@@ -1,0 +1,355 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-17T11:40:40.430800+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : crowdcrush
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/crowdcrush-gold.json
+System              : sample_data/sysId-output/UW-sys1/crowdcrush-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.9647
+  ROUGE-2 F1  : 0.9637
+  ROUGE-L F1  : 0.9647
+
+BERTScore (Subsection)
+  Precision   : 0.9749
+  Recall      : 0.9837
+  F1          : 0.9793
+
+BLEURT (Subsection)
+  Score       : 0.9481
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.7697
+Soft Recall         : 0.7872
+Soft F1             : 0.7783
+
+Matched pairs       : 43
+Unmatched gold      : 1
+Unmatched system    : 2
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           0.9647      0.9637      0.9647        0.9793   0.9481            0.7783
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=9 system=9 matched=9 unmatched_gold=0 unmatched_system=0
+subsections: gold=17 system=17 matched=17 unmatched_gold=0 unmatched_system=0
+bullets: gold=44 system=45 matched=43 unmatched_gold=1 unmatched_system=2
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=17 system_units=17 matched_units=17 scored_units=17 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=617 system_ngrams=629 overlapping_ngrams=601
+  rouge2: gold_ngrams=600 system_ngrams=612 overlapping_ngrams=584
+  rougeL: gold_tokens=617 system_tokens=629 total_lcs_length=601
+
+============================================================
+Alignment Details
+============================================================
+Group 10/10a
+  gold=2 system=1 matched=1 soft_f1=0.5333
+  matched_pairs:
+  - gold=10a.3 system=10a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A decision was taken to suspend all large-event licences at the venue pending the licensing review.
+    system_text=A decision was taken to suspend all large-event licences at the venue pending the licensing review.
+  unmatched_gold:
+  - id=10a.1 text="Police and the ambulance service held a joint briefing on the response and the ongoing investigation."
+  unmatched_system: none
+
+Group 10/10b
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=10b.1 system=10b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The city council opened a review of the licensing conditions for events at Thornlea Park.
+    system_text=The city council opened a review of the licensing conditions for events at Thornlea Park.
+  - gold=10b.3 system=10b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The promoter stated the event had been staffed to the levels required by the licence.
+    system_text=The promoter stated the event had been staffed to the levels required by the licence.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 11/11a
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=11a.1 system=11a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Volunteers staffed the civic hall support centre continuously from the night of the incident.
+    system_text=Volunteers staffed the civic hall support centre continuously from the night of the incident.
+  - gold=11a.3 system=11a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A public vigil was held at the venue gates, attended by thousands, with flowers left along the fence line.
+    system_text=A public vigil was held at the venue gates, attended by thousands, with flowers left along the fence line.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 11/11b
+  gold=3 system=3 matched=3 soft_f1=0.8000
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Eyewitness accounts conveyed distress and disbelief at conditions in the front standing area.
+    system_text=Eyewitness accounts conveyed distress and disbelief at conditions in the front standing area.
+  - gold=11b.2 system=11b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Public frustration was directed at circulating rumours about a stage collapse and a weapon.
+    system_text=Public frustration was directed at circulating rumours about a stage collapse and a weapon.
+  - gold=11b.3 system=11b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Public solidarity was expressed through the blood donation response and the vigil.
+    system_text=Public solidarity was expressed through the blood donation response and the vigil.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3a
+  gold=4 system=4 matched=4 soft_f1=0.8045
+  matched_pairs:
+  - gold=3a.1 system=3a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Eight deaths were confirmed at the scene in the first official casualty statement.
+    system_text=Eight deaths were confirmed at the scene in the first official casualty statement.
+  - gold=3a.2 system=3a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The death toll was subsequently given as 11, comprising nine deaths at the scene and two in hospital.
+    system_text=The death toll was subsequently given as 11, comprising nine deaths at the scene and two in hospital.
+  - gold=3a.3 system=3a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=All 11 deaths were formally identified and families informed before names were released.
+    system_text=All 11 deaths were formally identified and families informed before names were released.
+  - gold=3a.4 system=3a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Reports of 30 deaths circulated in two outlets against the confirmed figure of 11.
+    system_text=Reports of 30 deaths circulated in two outlets against the confirmed figure of 11.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3b
+  gold=3 system=3 matched=3 soft_f1=0.8283
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Forty-two people were taken to hospital in the first phase of the response.
+    system_text=Forty-two people were taken to hospital in the first phase of the response.
+  - gold=3b.2 system=3b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Fifty-four people were treated in total across the response.
+    system_text=Fifty-four people were treated in total across the response.
+  - gold=3b.3 system=3b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.8667
+    gold_text=Eyewitnesses reported multiple unconscious casualties carried from the front standing area.
+    system_text=Eyewitnesses reported multiple unconscious casualties carried from the front standing area.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/3c
+  gold=3 system=3 matched=3 soft_f1=0.8000
+  matched_pairs:
+  - gold=3c.1 system=3c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Nineteen patients were admitted, four of them in critical condition.
+    system_text=Nineteen patients were admitted, four of them in critical condition.
+  - gold=3c.2 system=3c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Twelve patients were discharged, with two remaining in critical condition at that point.
+    system_text=Twelve patients were discharged, with two remaining in critical condition at that point.
+  - gold=3c.4 system=3c.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The city infirmary declared a major incident and asked the public to attend only for emergencies.
+    system_text=The city infirmary declared a major incident and asked the public to attend only for emergencies.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4a
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The festival was suspended and attendees were evacuated through the north gates.
+    system_text=The festival was suspended and attendees were evacuated through the north gates.
+  - gold=4a.2 system=4a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The city council suspended all large-event licences at Thornlea Park pending its review.
+    system_text=The city council suspended all large-event licences at Thornlea Park pending its review.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4b
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police stated there was no structural collapse at the venue, contrary to circulating reports.
+    system_text=Police stated there was no structural collapse at the venue, contrary to circulating reports.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/5a
+  gold=2 system=2 matched=2 soft_f1=0.8291
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Attendees were directed to leave the festival ground through the north gates after the event was suspended.
+    system_text=Attendees were directed to leave the festival ground through the north gates after the event was suspended.
+  - gold=5a.2 system=5a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=Casualties were lifted out over the front barrier by other attendees and stewards.
+    system_text=Casualties were lifted out over the front barrier by other attendees and stewards.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/6a
+  gold=4 system=4 matched=4 soft_f1=0.8045
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The incident was assessed as a crowd crush in the front standing area rather than a structural failure.
+    system_text=The incident was assessed as a crowd crush in the front standing area rather than a structural failure.
+  - gold=6a.2 system=6a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Eyewitnesses described a surge from behind approximately twenty minutes into the headline set.
+    system_text=Eyewitnesses described a surge from behind approximately twenty minutes into the headline set.
+  - gold=6a.3 system=6a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Survivors described barriers that funnelled the crowd toward a narrowing area at the front.
+    system_text=Survivors described barriers that funnelled the crowd toward a narrowing area at the front.
+  - gold=6a.4 system=6a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police stated there was no evidence of any weapon at the venue.
+    system_text=Police stated there was no evidence of any weapon at the venue.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/7a
+  gold=5 system=5 matched=5 soft_f1=0.8076
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=The ambulance service responded to a declared major incident with multiple units at the venue.
+    system_text=The ambulance service responded to a declared major incident with multiple units at the venue.
+  - gold=7a.2 system=7a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police declared a major incident at the festival ground and coordinated the scene response.
+    system_text=Police declared a major incident at the festival ground and coordinated the scene response.
+  - gold=7a.3 system=7a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1000 text_weight=0.8000 final_edge_score=0.8200
+    gold_text=Two hospitals received casualties, with the city infirmary declaring a major incident.
+    system_text=Two hospitals received casualties, with the city infirmary declaring a major incident.
+  - gold=7a.4 system=7a.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police established a casualty bureau with a published number for families seeking information.
+    system_text=Police established a casualty bureau with a published number for families seeking information.
+  - gold=7a.5 system=7a.5
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police opened a criminal investigation into crowd management at the event.
+    system_text=Police opened a criminal investigation into crowd management at the event.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8a
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Attendees publicly urged others near the main stage to move back and stop pushing forward.
+    system_text=Attendees publicly urged others near the main stage to move back and stop pushing forward.
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The city infirmary asked the public to attend only for emergencies during the major incident.
+    system_text=The city infirmary asked the public to attend only for emergencies during the major incident.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8b
+  gold=4 system=5 matched=4 soft_f1=0.7152
+  matched_pairs:
+  - gold=8b.1 system=8b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The ambulance service and police issued sequential casualty figures during the response.
+    system_text=The ambulance service and police issued sequential casualty figures during the response.
+  - gold=8b.2 system=8b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police corrected a circulating claim that the stage had collapsed, stating the incident was a crowd crush.
+    system_text=Police corrected a circulating claim that the stage had collapsed, stating the incident was a crowd crush.
+  - gold=8b.3 system=8b.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0909 text_weight=0.8000 final_edge_score=0.8182
+    gold_text=Police corrected a circulating claim that a weapon had caused the surge, stating the rumour was unfounded.
+    system_text=Police corrected a circulating claim that a weapon had caused the surge, stating the rumour was unfounded.
+  - gold=8b.4 system=8b.4
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Police corrected reporting of 30 deaths against the confirmed figure of 11.
+    system_text=Police corrected reporting of 30 deaths against the confirmed figure of 11.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.5 text="Police stated that names would not be confirmed until families had been informed."
+
+Group 8/8c
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Relatives publicly appealed for information about attendees in the front standing area.
+    system_text=Relatives publicly appealed for information about attendees in the front standing area.
+  - gold=8c.2 system=8c.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=A hospital issued a blood donation appeal while receiving casualties.
+    system_text=A hospital issued a blood donation appeal while receiving casualties.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/9a
+  gold=2 system=2 matched=2 soft_f1=0.8000
+  matched_pairs:
+  - gold=9a.1 system=9a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=The Verrow Community Trust opened a support centre at the civic hall for families and festivalgoers.
+    system_text=The Verrow Community Trust opened a support centre at the civic hall for families and festivalgoers.
+  - gold=9a.2 system=9a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Volunteers provided counselling, refreshments and space at the civic hall from the night of the incident.
+    system_text=Volunteers provided counselling, refreshments and space at the civic hall from the night of the incident.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/9b
+  gold=1 system=2 matched=1 soft_f1=0.5333
+  matched_pairs:
+  - gold=9b.2 system=9b.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Residents responded to the blood donation appeal in numbers, with queues reported at the donation centre.
+    system_text=Residents responded to the blood donation appeal in numbers, with queues reported at the donation centre.
+  unmatched_gold: none
+  unmatched_system:
+  - id=9b.1 text="More than 800 people used the civic hall support centre in the first two days."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: none
