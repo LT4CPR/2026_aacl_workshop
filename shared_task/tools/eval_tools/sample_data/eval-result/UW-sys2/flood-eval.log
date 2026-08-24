@@ -1,0 +1,188 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-24T15:53:35.194185+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : flood
+System ID           : UW-sys2
+
+Gold                : sample_data/gold-output/flood-gold.json
+System              : sample_data/sysId-output/UW-sys2/flood-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.1262
+  ROUGE-2 F1  : 0.0382
+  ROUGE-L F1  : 0.0965
+
+BERTScore (Subsection)
+  Precision   : 0.3356
+  Recall      : 0.6335
+  F1          : 0.4388
+
+BLEURT (Subsection)
+  Score       : 0.1265
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0371
+Soft Recall         : 0.2968
+Soft F1             : 0.0660
+
+Matched pairs       : 4
+Unmatched gold      : 0
+Unmatched system    : 28
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys2           0.1262      0.0382      0.0965        0.4388   0.1265            0.0660
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=7 matched=4 unmatched_gold=0 unmatched_system=3
+subsections: gold=4 system=22 matched=4 unmatched_gold=0 unmatched_system=18
+bullets: gold=4 system=32 matched=4 unmatched_gold=0 unmatched_system=28
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=4 system_units=11 matched_units=4 scored_units=11 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=81 system_ngrams=458 overlapping_ngrams=34
+  rouge2: gold_ngrams=77 system_ngrams=447 overlapping_ngrams=10
+  rougeL: gold_tokens=81 system_tokens=458 total_lcs_length=26
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11a
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="Neighbors were reported helping other neighbors near district officials."
+
+Group 11/11b
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.1 text="An observer expressed disbelief that the reported flooding was happening."
+  - id=11b.2 text="An observer expressed pride in the local community's mutual assistance."
+
+Group 4/4c
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="Grayford was reportedly closed, although the affected facility or route was not identified."
+
+Group 4/4d
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4d.1 text="Previously flagged embankment repairs were reported as not having been completed within the available window."
+
+Group 5/5a
+  gold=1 system=6 matched=1 soft_f1=0.1289
+  matched_pairs:
+  - gold=5a.1 system=5a.4
+    text_metric=rougeL text_similarity=0.4390 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4512
+    gold_text=Precautionary evacuation of char islands and riverside hamlets was ordered roughly two days before landfall, with boats running from the Pelley Hook jetty.
+    system_text=The Bramwick district office ordered a precautionary evacuation of char islands and riverside hamlets as the storm approached.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.1 text="People were moving away from the Tessary Delta after an alert was issued."
+  - id=5a.2 text="People were moving away from the Osel River area following a disease alert."
+  - id=5a.3 text="Evacuation activity was reported as underway around the town."
+  - id=5a.5 text="An evacuation at the char islands was subsequently reported as confirmed."
+  - id=5a.6 text="People were reported running near the river, but their destination and reason for moving were not stated."
+
+Group 6/6a
+  gold=1 system=6 matched=1 soft_f1=0.0526
+  matched_pairs:
+  - gold=6a.1 system=6a.2
+    text_metric=rougeL text_similarity=0.1053 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.1842
+    gold_text=The compound hazard combined cyclone winds around 110 km/h with 200-300 mm of rain falling on an already monsoon-swollen river.
+    system_text=Dangerous conditions were reported around the Osel River within a zone described as 110 kilometres.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A serious flood risk was reported for low-lying blocks of the Tessary Delta."
+  - id=6a.3 text="Dangerous conditions were also reported in the Osel catchment with an unexplained figure of approximately 110."
+  - id=6a.4 text="Flooding was occurring in the Osel catchment while Cyclone Vessa continued to affect the area."
+  - id=6a.5 text="Officials reported a cyclonic storm in the Osel catchment and forecast that the cyclone could persist for more than 48 hours."
+  - id=6a.6 text="A disease alert was reported at the Osel River, but the disease was not identified."
+
+Group 7/7a
+  gold=1 system=3 matched=1 soft_f1=0.1044
+  matched_pairs:
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.1111 tweet_id_jaccard=0.6000 text_weight=0.8000 final_edge_score=0.2089
+    gold_text=The district ran precautionary evacuations, opened 62 shelters, and shifted public communication to radio when networks failed.
+    system_text=A deployment associated with the Bramwick district office was confirmed, including a report that crews had been deployed there.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.2 text="Emergency response activity was underway at the Bramwick district office."
+  - id=7a.3 text="Boats were scheduled to operate from Pelley Hook jetty beginning at dawn the following day."
+
+Group 7/7b
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7b.1 text="A support point was open near Bramwick town for affected people, although the services available were not specified."
+
+Group 8/8a
+  gold=1 system=5 matched=1 soft_f1=0.1143
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.2500 tweet_id_jaccard=0.7143 text_weight=0.8000 final_edge_score=0.3429
+    gold_text=KMD issued a 48-hour landfall forecast and flood-risk warning, giving the delta a genuine preparation window.
+    system_text=Alerts and warnings were issued for the Tessary Delta and its low-lying blocks.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.2 text="A disease alert was reported for the Osel River area."
+  - id=8a.3 text="The Kethari Meteorological Department repeatedly warned of dangerous conditions around the Osel River and advised avoiding the area."
+  - id=8a.4 text="Officials advised avoiding the Osel catchment during reported flooding and cyclonic conditions over the next 48 hours."
+  - id=8a.5 text="The National Disaster Response Corps circulated a general safety message concerning the delta."
+
+Group 8/8b
+  gold=0 system=4 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Multiple accounts circulated current updates about flooding in the Osel catchment and the wider affected area."
+  - id=8b.2 text="Official and secondary accounts reported evacuation activity around the town and char islands."
+  - id=8b.3 text="District and response accounts reported that a deployment at the Bramwick district office had been confirmed."
+  - id=8b.4 text="People were reported running near the river at the time of posting."
+
+Group 8/8c
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8c.1 text="A team reporting a warning near the Tessary Delta invited donations without specifying the resources needed or intended recipients."
+  - id=8c.2 text="A user requested information about why flagged embankment repairs had not been completed."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

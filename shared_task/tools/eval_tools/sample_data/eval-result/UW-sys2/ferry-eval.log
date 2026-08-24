@@ -1,0 +1,202 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-24T15:53:35.194185+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : ferry
+System ID           : UW-sys2
+
+Gold                : sample_data/gold-output/ferry-gold.json
+System              : sample_data/sysId-output/UW-sys2/ferry-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.1391
+  ROUGE-2 F1  : 0.0406
+  ROUGE-L F1  : 0.0783
+
+BERTScore (Subsection)
+  Precision   : 0.1702
+  Recall      : 0.4783
+  F1          : 0.2511
+
+BLEURT (Subsection)
+  Score       : 0.0885
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0552
+Soft Recall         : 0.1970
+Soft F1             : 0.0862
+
+Matched pairs       : 4
+Unmatched gold      : 3
+Unmatched system    : 21
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys2           0.1391      0.0406      0.0783        0.2511   0.0885            0.0862
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=7 matched=4 unmatched_gold=0 unmatched_system=3
+subsections: gold=5 system=22 matched=5 unmatched_gold=0 unmatched_system=17
+bullets: gold=7 system=25 matched=4 unmatched_gold=3 unmatched_system=21
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=12 matched_units=3 scored_units=14 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=97 system_ngrams=363 overlapping_ngrams=32
+  rouge2: gold_ngrams=92 system_ngrams=351 overlapping_ngrams=9
+  rougeL: gold_tokens=97 system_tokens=363 total_lcs_length=18
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11b
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.1 text="Posts expressed concern for people near the coastguard and hoped that everyone was safe."
+  - id=11b.2 text="A post expressed love and solidarity toward Halvary during the emergency."
+
+Group 3/3c
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3c.1 text="Ninety-six people were recovered from the water in the first phase of the response."
+  unmatched_system: none
+
+Group 3/3d
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3d.3 text="The hospital activated its major incident plan and ambulances staged at the ferry terminal."
+  unmatched_system: none
+
+Group 3/3e
+  gold=0 system=3 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3e.1 text="Officials and other reports confirmed a rescue at the ferry or vessel without specifying how many people were involved."
+  - id=3e.2 text="The vessel's crew was reported rescued."
+  - id=3e.3 text="Coastguard updates stated that 96 people had been recovered from the water and brought ashore at Halvary."
+
+Group 4/4a
+  gold=1 system=2 matched=1 soft_f1=0.2278
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.3200 tweet_id_jaccard=0.4286 text_weight=0.8000 final_edge_score=0.3417
+    gold_text=The MV Sable Crest capsized and sank in the Marnesh Straits.
+    system_text=Officials and ferry-related accounts reported confirmed damage to the vessel in Marnesh Straits.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.2 text="An eyewitness account stated that the ferry was lying on its side."
+
+Group 4/4c
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="A ferry-news account relayed an unverified report that Grayford was closed."
+
+Group 5/5a
+  gold=1 system=2 matched=1 soft_f1=0.1762
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.1875 tweet_id_jaccard=0.5714 text_weight=0.8000 final_edge_score=0.2643
+    gold_text=Survivors were recovered from the water and brought ashore at Halvary by coastguard vessels, helicopters and fishing boats.
+    system_text=Fishing crews were instructed to evacuate Halvary or Halvary headland and avoid the area.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="An immediate evacuation notice directed people, including residents, to leave Halvary or Halvary headland."
+
+Group 6/6a
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="The ferry's position on its side indicated a serious hazardous condition at the vessel."
+  - id=6a.2 text="A vague report suggested that an unspecified serious problem was occurring in the straits."
+
+Group 7/7a
+  gold=3 system=3 matched=2 soft_f1=0.2578
+  matched_pairs:
+  - gold=7a.1 system=7a.2
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2667
+    gold_text=The Marnesh Coastguard tasked search and rescue assets in response to the distress call.
+    system_text=Marnesh Coastguard and other responders were actively responding to the Sable Crest emergency and to Halvary.
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.4667 tweet_id_jaccard=0.6667 text_weight=0.8000 final_edge_score=0.5067
+    gold_text=Multiple vessels and rescue helicopters from two stations operated on scene.
+    system_text=Search-and-rescue assets, including helicopters from two stations, were deployed or tasked to the scene in Marnesh Straits.
+  unmatched_gold:
+  - id=7a.3 text="Halvary General Hospital activated its major incident plan with ambulances staging at the terminal."
+  unmatched_system:
+  - id=7a.3 text="Officials reported that rescue operations were underway before later announcing their completion."
+
+Group 7/7b
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7b.1 text="A support point was opened near the vessel for affected people."
+
+Group 7/7c
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7c.1 text="Local and official reports stated that unspecified help had been received in connection with the Sable Crest response."
+
+Group 8/8a
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Warnings instructed fishing crews and the public to avoid the affected area around Marnesh Straits and Halvary."
+  - id=8a.2 text="Evacuation alerts instructed people to leave Halvary or Halvary headland immediately."
+
+Group 8/8b
+  gold=0 system=5 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Officials and ferry-related accounts circulated updates confirming damage to the vessel."
+  - id=8b.2 text="Officials and other accounts circulated successive updates that a rescue was confirmed, underway, and later complete."
+  - id=8b.3 text="Marnesh Coastguard reported that it was responding to the Sable Crest distress call."
+  - id=8b.4 text="Multiple accounts repeated the Coastguard update that 96 people had been recovered and brought ashore at Halvary."
+  - id=8b.5 text="Two posts advertised situation updates about Halvary without supplying substantive details in their text."
+
+Group 8/8c
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8c.1 text="A poster requested updates and an official figure for the number of vehicles on the cargo deck on behalf of family in the area."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

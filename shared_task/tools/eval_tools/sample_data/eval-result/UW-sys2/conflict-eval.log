@@ -1,0 +1,163 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-24T15:53:35.194185+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : conflict
+System ID           : UW-sys2
+
+Gold                : sample_data/gold-output/conflict-gold.json
+System              : sample_data/sysId-output/UW-sys2/conflict-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.0947
+  ROUGE-2 F1  : 0.0185
+  ROUGE-L F1  : 0.0710
+
+BERTScore (Subsection)
+  Precision   : 0.3697
+  Recall      : 0.5990
+  F1          : 0.4572
+
+BLEURT (Subsection)
+  Score       : 0.2152
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0350
+Soft Recall         : 0.1679
+Soft F1             : 0.0579
+
+Matched pairs       : 4
+Unmatched gold      : 1
+Unmatched system    : 20
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys2           0.0947      0.0185      0.0710        0.4572   0.2152            0.0579
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=5 system=7 matched=5 unmatched_gold=0 unmatched_system=2
+subsections: gold=5 system=22 matched=5 unmatched_gold=0 unmatched_system=17
+bullets: gold=5 system=24 matched=4 unmatched_gold=1 unmatched_system=20
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=8 matched_units=5 scored_units=8 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=85 system_ngrams=253 overlapping_ngrams=16
+  rouge2: gold_ngrams=80 system_ngrams=245 overlapping_ngrams=3
+  rougeL: gold_tokens=85 system_tokens=253 total_lcs_length=12
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11b
+  gold=1 system=1 matched=1 soft_f1=0.2471
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=0.0588 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.2471
+    gold_text=Residents expressed fear during the bombardment alongside solidarity, with accounts of neighbors sheltering together and sharing music in metro stations.
+    system_text=Officials reported a public reaction in central Varenholm without describing its nature or sentiment.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/4c
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="A blackout was reported across an unnamed city."
+
+Group 5/5a
+  gold=1 system=4 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5a.1 text="Residents were urged into shelters, with families using metro stations and basements during repeated air raid alerts."
+  unmatched_system:
+  - id=5a.1 text="A garbled report may describe an evacuation near an unspecified region."
+  - id=5a.2 text="Evacuation activity is underway around the Duskany region."
+  - id=5a.3 text="Evacuation activity is reported around Ostravia."
+  - id=5a.4 text="Officials confirmed that residents of the Duskany region had been evacuated."
+
+Group 6/6a
+  gold=1 system=6 matched=1 soft_f1=0.0538
+  matched_pairs:
+  - gold=6a.1 system=6a.4
+    text_metric=rougeL text_similarity=0.1935 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.1882
+    gold_text=The primary hazard was sustained cross-river artillery shelling of populated districts of Varenholm by Karvale Front forces.
+    system_text=Karvale Front forces reported dangerous conditions at Varenholm without identifying the specific danger.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="Shelling and artillery fire are repeatedly reported, including at Varenholm and an unnamed city."
+  - id=6a.2 text="Explosions were reported near Varenholm city."
+  - id=6a.3 text="Strikes were reported on the outskirts of Varenholm."
+  - id=6a.5 text="Air-raid sirens sounded across Varenholm three times during the morning."
+  - id=6a.6 text="A blackout affected an unnamed city."
+
+Group 7/7a
+  gold=1 system=1 matched=1 soft_f1=0.2762
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.0952 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.2762
+    gold_text=Ostravia declared a state of emergency in the Duskany region within hours of the first strikes.
+    system_text=Police are responding in Ostravia.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/8a
+  gold=1 system=6 matched=1 soft_f1=0.0366
+  matched_pairs:
+  - gold=8a.1 system=8a.3
+    text_metric=rougeL text_similarity=0.1600 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1280
+    gold_text=Air raid sirens sounded repeatedly across Varenholm from the first morning of the attack.
+    system_text=People were advised to avoid Varenholm because of reported dangerous conditions.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Karvale Front warned people to avoid an area following a reported citywide blackout."
+  - id=8a.2 text="Residents were urged to avoid an area after artillery fire was reported at an unnamed city."
+  - id=8a.4 text="People were advised to avoid the area after artillery shelling was reported at Varenholm."
+  - id=8a.5 text="Officials advised people to avoid the Duskany region while evacuation activity was underway."
+  - id=8a.6 text="Officials advised people to avoid the Ostravia area while evacuation activity was reported."
+
+Group 8/8b
+  gold=0 system=3 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="An official post referenced a Karvale Front spokesman without stating the substance of the report."
+  - id=8b.2 text="Officials reported an unspecified public reaction in central Varenholm."
+  - id=8b.3 text="An incoming report claimed that people were running in Duskany."
+
+Group 8/8c
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8c.1 text="Unidentified teams invited donations while reporting explosions near Varenholm."
+  - id=8c.2 text="Unidentified teams invited donations alongside an unclear evacuation report."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

@@ -1,0 +1,228 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-24T15:53:35.194185+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : blackout
+System ID           : UW-sys2
+
+Gold                : sample_data/gold-output/blackout-gold.json
+System              : sample_data/sysId-output/UW-sys2/blackout-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2280
+  ROUGE-2 F1  : 0.0700
+  ROUGE-L F1  : 0.1678
+
+BERTScore (Subsection)
+  Precision   : 0.4506
+  Recall      : 0.6482
+  F1          : 0.5316
+
+BLEURT (Subsection)
+  Score       : 0.2943
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0802
+Soft Recall         : 0.2529
+Soft F1             : 0.1218
+
+Matched pairs       : 12
+Unmatched gold      : 1
+Unmatched system    : 29
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys2           0.2280      0.0700      0.1678        0.5316   0.2943            0.1218
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=7 matched=7 unmatched_gold=0 unmatched_system=0
+subsections: gold=8 system=22 matched=8 unmatched_gold=0 unmatched_system=14
+bullets: gold=13 system=41 matched=12 unmatched_gold=1 unmatched_system=29
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=8 system_units=12 matched_units=8 scored_units=12 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=230 system_ngrams=533 overlapping_ngrams=87
+  rouge2: gold_ngrams=222 system_ngrams=521 overlapping_ngrams=26
+  rougeL: gold_tokens=230 system_tokens=533 total_lcs_length=64
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11a
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="Residents were encouraged to check on elderly neighbors and people without air conditioning, stay hydrated, and keep cool."
+
+Group 11/11b
+  gold=1 system=4 matched=1 soft_f1=0.0853
+  matched_pairs:
+  - gold=11b.1 system=11b.2
+    text_metric=rougeL text_similarity=0.2667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2133
+    gold_text=Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat.
+    system_text=Some posts expressed disbelief or alarm about the reported heat wave and evacuations.
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.1 text="Members of the public expressed concern and hopes for the safety of people near the hall, metro, district, interchange, and affected passengers."
+  - id=11b.3 text="One report described growing concern as a possible trapping incident unfolded at Canalside."
+  - id=11b.4 text="A public update urged patience and cooperation with police directing traffic."
+
+Group 3/3d
+  gold=2 system=3 matched=2 soft_f1=0.2657
+  matched_pairs:
+  - gold=3d.1 system=3d.1
+    text_metric=rougeL text_similarity=0.1875 tweet_id_jaccard=0.5714 text_weight=0.8000 final_edge_score=0.2643
+    gold_text=Three metro trains carrying 380 passengers were stranded in tunnels between stations.
+    system_text=Officials confirmed that 380 passengers were trapped within the Grayford Metro system, including on the Green, Blue, and Orange lines.
+  - gold=3d.2 system=3d.2
+    text_metric=rougeL text_similarity=0.2500 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4000
+    gold_text=Dozens of people were trapped in elevators across the city center, prompting warnings not to force lift doors.
+    system_text=The City of Grayford reported receiving information about individuals trapped in the metro area.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3d.3 text="A separate report described people as trapped at Canalside without giving a count."
+
+Group 3/3e
+  gold=1 system=3 matched=1 soft_f1=0.1879
+  matched_pairs:
+  - gold=3e.1 system=3e.1
+    text_metric=rougeL text_similarity=0.3448 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.3759
+    gold_text=All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations.
+    system_text=Officials confirmed that all 380 affected metro passengers were safely rescued from three stranded trains.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3e.2 text="A separate update stated that the rescue of residents had been completed."
+  - id=3e.3 text="Several reports described rescue operations as underway before completion was announced."
+
+Group 3/3f
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3f.1 text="Rescue crews located and reached the stranded metro passengers."
+
+Group 4/4c
+  gold=3 system=7 matched=2 soft_f1=0.0795
+  matched_pairs:
+  - gold=4c.1 system=4c.2
+    text_metric=rougeL text_similarity=0.1579 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.2263
+    gold_text=An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout.
+    system_text=Power loss and service disruption affected the Green, Blue, and Orange metro lines.
+  - gold=4c.2 system=4c.3
+    text_metric=rougeL text_similarity=0.2143 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1714
+    gold_text=The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays.
+    system_text=All Grayford Metro lines were suspended with immediate effect.
+  unmatched_gold:
+  - id=4c.3 text="Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections."
+  unmatched_system:
+  - id=4c.1 text="Power remained unavailable in Canalside, Eastbrook, and Wrenfield."
+  - id=4c.4 text="Grayford Water Works reported that its Wrenfield booster pumps were down."
+  - id=4c.5 text="The Wrenfield interchange was reported to be out or otherwise affected."
+  - id=4c.6 text="Reports described broader closures in Grayford without identifying all affected facilities."
+  - id=4c.7 text="A report described a cascading failure affecting the city."
+
+Group 4/4d
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4d.1 text="Crews were aware of the neighborhood power outages and were working on restoration."
+  - id=4d.2 text="Crews were working to restore service after the Wrenfield booster pumps failed."
+
+Group 5/5a
+  gold=1 system=2 matched=1 soft_f1=0.2471
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.2759 tweet_id_jaccard=0.7500 text_weight=0.8000 final_edge_score=0.3707
+    gold_text=Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains.
+    system_text=Evacuation activity involving 380 passengers was reported across the Grayford Metro system and the Green line.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="Officials confirmed that passengers were evacuated from the Blue and Orange lines."
+
+Group 6/6a
+  gold=2 system=5 matched=2 soft_f1=0.1052
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=0.2381 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1905
+    gold_text=The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life.
+    system_text=The primary hazard was a prolonged power outage affecting Grayford and its transport and utility systems.
+  - gold=6a.3 system=6a.4
+    text_metric=rougeL text_similarity=0.1538 tweet_id_jaccard=0.2727 text_weight=0.8000 final_edge_score=0.1776
+    gold_text=Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines.
+    system_text=Dangerous conditions were reported at the hall, Harrowfield Library, Wrenfield, the Wrenfield interchange, a high-rise, and an unspecified district.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.2 text="Heat-wave conditions were reported across Grayford, Wrenfield, the interchange, the water utility, the hall, and Harrowfield Library."
+  - id=6a.3 text="Transformer fires were reported at the hall, libraries, Wrenfield, and an unspecified district."
+  - id=6a.5 text="Some heat-wave and dangerous-condition reports remained attributed to local or unconfirmed accounts."
+
+Group 7/7a
+  gold=1 system=4 matched=1 soft_f1=0.1380
+  matched_pairs:
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.1250 text_weight=0.8000 final_edge_score=0.3450
+    gold_text=Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections.
+    system_text=Police officers directed traffic at 40 major intersections during the outage.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.2 text="Emergency crews and responding units were deployed or sent toward Vellmore and its substation."
+  - id=7a.3 text="A deployment was reported within the Grayford Metro or wider outage area."
+  - id=7a.4 text="Officers were present at a confirmed service-disruption scene."
+
+Group 8/8a
+  gold=2 system=5 matched=2 soft_f1=0.1581
+  matched_pairs:
+  - gold=8a.1 system=8a.2
+    text_metric=rougeL text_similarity=0.0667 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.1200
+    gold_text=Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors.
+    system_text=A power-outage warning was placed in effect for the Wrenfield interchange.
+  - gold=8a.2 system=8a.5
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.4333
+    gold_text=Water customers were advised to fill containers pre-emptively and later to flush taps before drinking.
+    system_text=Residents were advised to flush taps for two minutes before drinking water.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Officials repeatedly instructed the public to avoid affected areas in Canalside and across Grayford."
+  - id=8a.3 text="Warnings were reported for Wrenfield and a Wrenfield high-rise."
+  - id=8a.4 text="Grayford Water Works confirmed warnings and a water advisory."
+
+Group 8/8b
+  gold=0 system=4 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Officials issued a statement about conditions in the Grayford metropolitan area."
+  - id=8b.2 text="Grayford Water Works repeatedly updated the public about failed booster pumps and restoration work."
+  - id=8b.3 text="Updates from Grayford-Ellsworth Airport mentioned approximately 90 reports without explaining what was being counted."
+  - id=8b.4 text="General updates stated that the city continued to be affected by the outage."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

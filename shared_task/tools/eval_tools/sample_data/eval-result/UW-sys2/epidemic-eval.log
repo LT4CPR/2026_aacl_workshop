@@ -2,15 +2,15 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-08-24T15:52:12.318134+00:00
+Generated at UTC : 2026-08-24T15:53:35.194185+00:00
 Config           : config/evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 
 Disaster ID         : epidemic
-System ID           : UW-sys1
+System ID           : UW-sys2
 
 Gold                : sample_data/gold-output/epidemic-gold.json
-System              : sample_data/sysId-output/UW-sys1/epidemic-sum.json
+System              : sample_data/sysId-output/UW-sys2/epidemic-sum.json
 
 ============================================================
 Evaluation Summary
@@ -18,26 +18,26 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.0833
-  ROUGE-2 F1  : 0.0348
-  ROUGE-L F1  : 0.0667
+  ROUGE-1 F1  : 0.0976
+  ROUGE-2 F1  : 0.0282
+  ROUGE-L F1  : 0.0705
 
 BERTScore (Subsection)
-  Precision   : 0.1705
-  Recall      : 0.4069
-  F1          : 0.2403
+  Precision   : 0.1997
+  Recall      : 0.4057
+  F1          : 0.2676
 
 BLEURT (Subsection)
-  Score       : 0.0644
+  Score       : 0.0695
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.0399
-Soft Recall         : 0.1914
-Soft F1             : 0.0660
+Soft Precision      : 0.0374
+Soft Recall         : 0.1796
+Soft F1             : 0.0619
 
 Matched pairs       : 3
 Unmatched gold      : 2
@@ -46,7 +46,7 @@ Unmatched system    : 21
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys1           0.0833      0.0348      0.0667        0.2403   0.0644            0.0660
+UW-sys2           0.0976      0.0282      0.0705        0.2676   0.0695            0.0619
 
 ============================================================
 Structure Summary
@@ -60,9 +60,9 @@ ROUGE Diagnostics
 ============================================================
 subsection: gold_units=5 system_units=10 matched_units=3 scored_units=12 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=79 system_ngrams=281 overlapping_ngrams=15
-  rouge2: gold_ngrams=74 system_ngrams=271 overlapping_ngrams=6
-  rougeL: gold_tokens=79 system_tokens=281 total_lcs_length=12
+  rouge1: gold_ngrams=79 system_ngrams=290 overlapping_ngrams=18
+  rouge2: gold_ngrams=74 system_ngrams=280 overlapping_ngrams=5
+  rougeL: gold_tokens=79 system_tokens=290 total_lcs_length=13
 
 ============================================================
 Alignment Details
@@ -72,7 +72,7 @@ Group 11/11a
   matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=11a.1 text="Residents described neighbors supporting one another near affected areas in Kelvaig and the wider region."
+  - id=11a.1 text="Neighbors were reported to be helping and looking out for one another near affected areas."
 
 Group 11/11b
   gold=1 system=3 matched=1 soft_f1=0.1790
@@ -80,21 +80,22 @@ Group 11/11b
   - gold=11b.1 system=11b.1
     text_metric=rougeL text_similarity=0.3226 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.3581
     gold_text=Residents expressed alarm at the speed of the outbreak and frustration at shortages of rehydration salts.
-    system_text=A member of the public expressed concern for the safety of people near the outbreak.
+    system_text=A community member expressed concern and hope for the safety of people near the outbreak.
   unmatched_gold: none
   unmatched_system:
-  - id=11b.2 text="A social-media user expressed sustained attention to news emerging from Kelvaig."
-  - id=11b.3 text="Community-support posts expressed pride in local solidarity."
+  - id=11b.2 text="A social-media user expressed intense attention to news emerging from Kelvaig."
+  - id=11b.3 text="Community posts expressed pride in neighbors supporting one another."
 
 Group 3/3b
-  gold=1 system=1 matched=1 soft_f1=0.2731
+  gold=1 system=2 matched=1 soft_f1=0.1429
   matched_pairs:
   - gold=3b.1 system=3b.1
-    text_metric=rougeL text_similarity=0.1538 tweet_id_jaccard=0.7500 text_weight=0.8000 final_edge_score=0.2731
+    text_metric=rougeL text_similarity=0.1429 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.2143
     gold_text=The first official count recorded 34 suspected cases of acute watery diarrhoea across the delta.
-    system_text=Injuries were reported as confirmed in Ondaraya, including at the Delta.
+    system_text=Injuries were confirmed in Ondaraya, including reports associated with the delta and Kelvaig.
   unmatched_gold: none
-  unmatched_system: none
+  unmatched_system:
+  - id=3b.2 text="Additional incoming reports described injuries or suspected injury cases without clear official confirmation."
 
 Group 4/4a
   gold=1 system=0 matched=0 soft_f1=0.0000
@@ -104,23 +105,21 @@ Group 4/4a
   unmatched_system: none
 
 Group 4/4c
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="The local clinic in Kelvaig reportedly exhausted its supply of oral rehydration salts."
+  - id=4c.2 text="A confirmed acute watery diarrhoea cluster was reported to have disrupted an unspecified service."
+
+Group 6/6a
   gold=0 system=3 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=4c.1 text="The local clinic in Kelvaig reportedly ran out of oral rehydration salts."
-  - id=4c.2 text="The acute watery diarrhoea cluster was reported to have disrupted an unspecified service."
-  - id=4c.3 text="Kelvaig was reported closed by official order."
-
-Group 6/6a
-  gold=0 system=4 matched=0 soft_f1=0.0000
-  matched_pairs: none
-  unmatched_gold: none
-  unmatched_system:
-  - id=6a.1 text="Kelvaig residents reported widespread sickness associated with an acute watery diarrhoea cluster."
-  - id=6a.2 text="A total of 34 suspected cases was repeatedly reported across Ondaraya and the Delta."
-  - id=6a.3 text="Officials confirmed an outbreak-related situation update at Serriport."
-  - id=6a.4 text="Health authorities confirmed an outbreak-related situation update at the Ondaraya Delta."
+  - id=6a.1 text="The crisis is consistently identified as a cholera or acute watery diarrhoea outbreak."
+  - id=6a.2 text="A Kelvaig resident reported that half of their street was sick."
+  - id=6a.3 text="The reported outbreak burden includes 34 suspected cases, but the posts do not establish that all cases were confirmed."
 
 Group 7/7a
   gold=1 system=3 matched=1 soft_f1=0.1629
@@ -128,11 +127,11 @@ Group 7/7a
   - gold=7a.1 system=7a.3
     text_metric=rougeL text_similarity=0.3448 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.3259
     gold_text=The Ondaraya Health Directorate opened an investigation into the case cluster and issued water safety advisories.
-    system_text=The Ondaraya Health Directorate stated that an emergency response was underway across Ondaraya.
+    system_text=The Ondaraya Health Directorate reported that an emergency response was underway across Ondaraya.
   unmatched_gold: none
   unmatched_system:
-  - id=7a.1 text="Police were responding at the Delta."
-  - id=7a.2 text="Response personnel were reported as deployed at the Delta and elsewhere in Ondaraya."
+  - id=7a.1 text="Police were responding at the Ondaraya Delta."
+  - id=7a.2 text="Local and official reports described deployments to the delta and the wider Ondaraya area."
 
 Group 7/7b
   gold=0 system=1 matched=0 soft_f1=0.0000
@@ -149,23 +148,24 @@ Group 7/7c
   - id=7c.1 text="Officials confirmed that Kelvaig village residents received assistance."
 
 Group 8/8a
-  gold=0 system=4 matched=0 soft_f1=0.0000
+  gold=0 system=5 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=8a.1 text="Officials advised the public to avoid Serriport."
-  - id=8a.2 text="Health-related messages advised the public to avoid the Ondaraya Delta and another deployment area in Ondaraya."
-  - id=8a.3 text="An official report advised people to avoid Kelvaig after assistance reached residents."
-  - id=8a.4 text="Kelvaig was described as closed by official order in a boil-water-tagged warning."
+  - id=8a.1 text="The public was instructed to avoid the Serriport area."
+  - id=8a.2 text="Health-related updates instructed the public to avoid the Ondaraya Delta."
+  - id=8a.3 text="A deployment report instructed the public to avoid the affected Ondaraya area."
+  - id=8a.4 text="Residents were instructed to avoid the affected area around Kelvaig village."
+  - id=8a.5 text="An official order declared Kelvaig closed in a post carrying boil-water and cholera tags."
 
 Group 8/8b
   gold=0 system=3 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=8b.1 text="Official and local reports circulated a situation update concerning Serriport."
-  - id=8b.2 text="The Ondaraya Health Directorate circulated a latest update concerning the cholera situation at the Delta."
-  - id=8b.3 text="A regional update stated that 34 suspected cases had been reported and that the situation was under close monitoring."
+  - id=8b.1 text="Officials confirmed a situation update concerning Serriport."
+  - id=8b.2 text="A separate local report indicated an update from Serriport without identifying its subject or official source."
+  - id=8b.3 text="Health authorities and the Ondaraya Health Directorate issued situation updates concerning the delta."
 
 Group 9/9b
   gold=1 system=0 matched=0 soft_f1=0.0000

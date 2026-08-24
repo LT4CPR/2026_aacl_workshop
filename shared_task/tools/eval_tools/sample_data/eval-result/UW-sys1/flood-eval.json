@@ -18,17 +18,17 @@
     ],
     "source": "config"
   },
-  "disaster_id": "conflict",
+  "disaster_id": "flood",
   "aggregation": {
     "level": "within_document",
     "method": "micro"
   },
   "results": [
     {
-      "file_id": "conflict",
+      "file_id": "flood",
       "sys_id": "UW-sys1",
-      "gold_file": "sample_data/gold-output/conflict-gold.json",
-      "system_file": "sample_data/sysId-output/UW-sys1/conflict-sum.json",
+      "gold_file": "sample_data/gold-output/flood-gold.json",
+      "system_file": "sample_data/sysId-output/UW-sys1/flood-sum.json",
       "status": "scored",
       "summary": {
         "rouge": {
@@ -43,8 +43,7 @@
               "sections": [
                 "3",
                 "9",
-                "10",
-                "11"
+                "10"
               ]
             },
             {
@@ -55,43 +54,44 @@
                 "3",
                 "4",
                 "9",
-                "10"
+                "10",
+                "11"
               ]
             }
           ],
           "aggregation": "micro",
-          "n_scored": 9,
+          "n_scored": 11,
           "n_skipped_both_empty": 0,
           "rouge1": {
-            "precision": 0.0707,
-            "recall": 0.1529,
-            "fmeasure": 0.0967
+            "precision": 0.0954,
+            "recall": 0.358,
+            "fmeasure": 0.1506
           },
           "rouge2": {
-            "precision": 0.0114,
-            "recall": 0.025,
-            "fmeasure": 0.0156
+            "precision": 0.0341,
+            "recall": 0.1299,
+            "fmeasure": 0.0541
           },
           "rougeL": {
-            "precision": 0.0543,
-            "recall": 0.1176,
-            "fmeasure": 0.0743
+            "precision": 0.0724,
+            "recall": 0.2716,
+            "fmeasure": 0.1143
           },
           "micro": {
             "rouge1": {
-              "precision": 0.0707,
-              "recall": 0.1529,
-              "fmeasure": 0.0967
+              "precision": 0.0954,
+              "recall": 0.358,
+              "fmeasure": 0.1506
             },
             "rouge2": {
-              "precision": 0.0114,
-              "recall": 0.025,
-              "fmeasure": 0.0156
+              "precision": 0.0341,
+              "recall": 0.1299,
+              "fmeasure": 0.0541
             },
             "rougeL": {
-              "precision": 0.0543,
-              "recall": 0.1176,
-              "fmeasure": 0.0743
+              "precision": 0.0724,
+              "recall": 0.2716,
+              "fmeasure": 0.1143
             },
             "denominator_policy": "whole_gold"
           }
@@ -108,8 +108,7 @@
               "sections": [
                 "3",
                 "9",
-                "10",
-                "11"
+                "10"
               ]
             },
             {
@@ -120,20 +119,21 @@
                 "3",
                 "4",
                 "9",
-                "10"
+                "10",
+                "11"
               ]
             }
           ],
           "aggregation": "micro",
-          "n_scored": 9,
+          "n_scored": 11,
           "n_skipped_both_empty": 0,
-          "precision": 0.361234,
-          "recall": 0.434462,
-          "f1": 0.394478,
+          "precision": 0.381684,
+          "recall": 0.621418,
+          "f1": 0.472904,
           "micro": {
-            "precision": 0.361234,
-            "recall": 0.434462,
-            "f1": 0.394478,
+            "precision": 0.381684,
+            "recall": 0.621418,
+            "f1": 0.472904,
             "model_type": "microsoft/deberta-xlarge-mnli",
             "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
           }
@@ -150,8 +150,7 @@
               "sections": [
                 "3",
                 "9",
-                "10",
-                "11"
+                "10"
               ]
             },
             {
@@ -162,16 +161,17 @@
                 "3",
                 "4",
                 "9",
-                "10"
+                "10",
+                "11"
               ]
             }
           ],
           "aggregation": "micro",
-          "n_scored": 9,
+          "n_scored": 11,
           "n_skipped_both_empty": 0,
-          "score": 0.205356,
+          "score": 0.212175,
           "micro": {
-            "score": 0.205356,
+            "score": 0.212175,
             "config_name": "BLEURT-20"
           }
         },
@@ -187,7 +187,8 @@
                 "3",
                 "4",
                 "9",
-                "10"
+                "10",
+                "11"
               ]
             },
             {
@@ -200,20 +201,15 @@
               ]
             },
             {
-              "code": "gold_only_groups",
-              "message": "gold has groups with no matching system group key",
-              "count": 1,
-              "groups": [
-                "11/11b"
-              ]
-            },
-            {
               "code": "system_only_groups",
               "message": "system has groups with no matching gold group key",
-              "count": 4,
+              "count": 7,
               "groups": [
+                "11/11a",
+                "11/11b",
                 "4/4c",
                 "5/5b",
+                "7/7b",
                 "8/8b",
                 "8/8c"
               ]
@@ -222,28 +218,28 @@
               "code": "partial_key_overlap",
               "message": "only some group keys overlap between gold and system",
               "shared_groups": 4,
-              "gold_only_groups": 1,
-              "system_only_groups": 4
+              "gold_only_groups": 0,
+              "system_only_groups": 7
             }
           ],
           "scope": "subsection",
           "metric": "rougeL",
           "threshold": 0.1,
-          "micro_soft_precision": 0.028754578754578753,
-          "micro_soft_recall": 0.1265201465201465,
-          "micro_soft_f1": 0.04685931352598019,
-          "structure_recall": 0.8,
-          "structure_precision": 0.5,
-          "matched_pairs": 3,
-          "gold_units": 5,
-          "system_units": 22,
-          "warning_count": 5
+          "micro_soft_precision": 0.041709765847696874,
+          "micro_soft_recall": 0.2919683609338781,
+          "micro_soft_f1": 0.07299209023346953,
+          "structure_recall": 1.0,
+          "structure_precision": 0.36363636363636365,
+          "matched_pairs": 4,
+          "gold_units": 4,
+          "system_units": 28,
+          "warning_count": 4
         }
       },
       "evaluation": {
-        "generated_at_utc": "2026-08-24T15:51:26.784276+00:00",
-        "gold": "sample_data/gold-output/conflict-gold.json",
-        "system": "sample_data/sysId-output/UW-sys1/conflict-sum.json",
+        "generated_at_utc": "2026-08-24T15:51:56.517584+00:00",
+        "gold": "sample_data/gold-output/flood-gold.json",
+        "system": "sample_data/sysId-output/UW-sys1/flood-sum.json",
         "config": "config/evaluation.yaml",
         "view": "single",
         "evaluation_scope": {
@@ -272,8 +268,7 @@
                 "sections": [
                   "3",
                   "9",
-                  "10",
-                  "11"
+                  "10"
                 ]
               },
               {
@@ -284,14 +279,15 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               }
             ],
             "aggregation": "micro",
-            "n_scored": 9,
+            "n_scored": 11,
             "n_compared": 4,
-            "n_zero_scored": 5,
+            "n_zero_scored": 7,
             "n_skipped_both_empty": 0,
             "items": [
               {
@@ -321,19 +317,19 @@
                 "status": "matched",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.04,
-                    "recall": 0.0588,
-                    "fmeasure": 0.0476
+                    "precision": 0.2791,
+                    "recall": 0.5217,
+                    "fmeasure": 0.3636
                   },
                   "rouge2": {
-                    "precision": 0.0,
-                    "recall": 0.0,
-                    "fmeasure": 0.0
+                    "precision": 0.1905,
+                    "recall": 0.3636,
+                    "fmeasure": 0.25
                   },
                   "rougeL": {
-                    "precision": 0.04,
-                    "recall": 0.0588,
-                    "fmeasure": 0.0476
+                    "precision": 0.2326,
+                    "recall": 0.4348,
+                    "fmeasure": 0.303
                   }
                 }
               },
@@ -364,19 +360,19 @@
                 "status": "matched",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.1111,
-                    "recall": 0.3333,
-                    "fmeasure": 0.1667
+                    "precision": 0.0568,
+                    "recall": 0.2174,
+                    "fmeasure": 0.0901
                   },
                   "rouge2": {
-                    "precision": 0.0377,
-                    "recall": 0.1176,
-                    "fmeasure": 0.0571
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
                   },
                   "rougeL": {
-                    "precision": 0.0926,
-                    "recall": 0.2778,
-                    "fmeasure": 0.1389
+                    "precision": 0.0341,
+                    "recall": 0.1304,
+                    "fmeasure": 0.0541
                   }
                 }
               },
@@ -385,9 +381,9 @@
                 "status": "matched",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.4,
-                    "recall": 0.125,
-                    "fmeasure": 0.1905
+                    "precision": 0.0938,
+                    "recall": 0.1765,
+                    "fmeasure": 0.1224
                   },
                   "rouge2": {
                     "precision": 0.0,
@@ -395,9 +391,31 @@
                     "fmeasure": 0.0
                   },
                   "rougeL": {
-                    "precision": 0.2,
-                    "recall": 0.0625,
-                    "fmeasure": 0.0952
+                    "precision": 0.0938,
+                    "recall": 0.1765,
+                    "fmeasure": 0.1224
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:7/7b",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
+                  },
+                  "rouge2": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
+                  },
+                  "rougeL": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
                   }
                 }
               },
@@ -406,19 +424,19 @@
                 "status": "matched",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.0702,
-                    "recall": 0.2857,
-                    "fmeasure": 0.1127
+                    "precision": 0.15,
+                    "recall": 0.5,
+                    "fmeasure": 0.2308
                   },
                   "rouge2": {
-                    "precision": 0.0,
-                    "recall": 0.0,
-                    "fmeasure": 0.0
+                    "precision": 0.0339,
+                    "recall": 0.1176,
+                    "fmeasure": 0.0526
                   },
                   "rougeL": {
-                    "precision": 0.0526,
-                    "recall": 0.2143,
-                    "fmeasure": 0.0845
+                    "precision": 0.1,
+                    "recall": 0.3333,
+                    "fmeasure": 0.1538
                   }
                 }
               },
@@ -467,9 +485,31 @@
                 }
               },
               {
+                "unit_id": "subsection:11/11a",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
+                  },
+                  "rouge2": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
+                  },
+                  "rougeL": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
+                  }
+                }
+              },
+              {
                 "unit_id": "subsection:11/11b",
-                "status": "reference_only",
-                "zero_score_reason": "missing_system_unit",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
                 "scores": {
                   "rouge1": {
                     "precision": 0.0,
@@ -492,75 +532,75 @@
             "aggregates": {
               "micro": {
                 "rouge1": {
-                  "precision": 0.0707,
-                  "recall": 0.1529,
-                  "fmeasure": 0.0967
+                  "precision": 0.0954,
+                  "recall": 0.358,
+                  "fmeasure": 0.1506
                 },
                 "rouge2": {
-                  "precision": 0.0114,
-                  "recall": 0.025,
-                  "fmeasure": 0.0156
+                  "precision": 0.0341,
+                  "recall": 0.1299,
+                  "fmeasure": 0.0541
                 },
                 "rougeL": {
-                  "precision": 0.0543,
-                  "recall": 0.1176,
-                  "fmeasure": 0.0743
+                  "precision": 0.0724,
+                  "recall": 0.2716,
+                  "fmeasure": 0.1143
                 },
                 "denominator_policy": "whole_gold"
               }
             },
             "overall": {
               "rouge1": {
-                "precision": 0.0707,
-                "recall": 0.1529,
-                "fmeasure": 0.0967
+                "precision": 0.0954,
+                "recall": 0.358,
+                "fmeasure": 0.1506
               },
               "rouge2": {
-                "precision": 0.0114,
-                "recall": 0.025,
-                "fmeasure": 0.0156
+                "precision": 0.0341,
+                "recall": 0.1299,
+                "fmeasure": 0.0541
               },
               "rougeL": {
-                "precision": 0.0543,
-                "recall": 0.1176,
-                "fmeasure": 0.0743
+                "precision": 0.0724,
+                "recall": 0.2716,
+                "fmeasure": 0.1143
               },
               "denominator_policy": "whole_gold"
             },
             "diagnostics": {
-              "gold_units": 5,
-              "system_units": 8,
+              "gold_units": 4,
+              "system_units": 11,
               "matched_units": 4,
-              "scored_units": 9,
+              "scored_units": 11,
               "skipped_both_empty_units": 0,
               "denominator": "whole_gold",
               "denominator_policy": "whole_gold",
               "rouge1": {
-                "gold_ngrams": 85,
-                "matched_gold_ngrams": 65,
-                "whole_gold_ngrams": 85,
-                "system_ngrams": 184,
-                "matched_system_ngrams": 141,
-                "whole_system_ngrams": 184,
-                "overlapping_ngrams": 13
+                "gold_ngrams": 81,
+                "matched_gold_ngrams": 81,
+                "whole_gold_ngrams": 81,
+                "system_ngrams": 304,
+                "matched_system_ngrams": 223,
+                "whole_system_ngrams": 304,
+                "overlapping_ngrams": 29
               },
               "rouge2": {
-                "gold_ngrams": 80,
-                "matched_gold_ngrams": 61,
-                "whole_gold_ngrams": 80,
-                "system_ngrams": 176,
-                "matched_system_ngrams": 137,
-                "whole_system_ngrams": 176,
-                "overlapping_ngrams": 2
+                "gold_ngrams": 77,
+                "matched_gold_ngrams": 77,
+                "whole_gold_ngrams": 77,
+                "system_ngrams": 293,
+                "matched_system_ngrams": 219,
+                "whole_system_ngrams": 293,
+                "overlapping_ngrams": 10
               },
               "rougeL": {
-                "gold_tokens": 85,
-                "matched_gold_tokens": 65,
-                "whole_gold_tokens": 85,
-                "system_tokens": 184,
-                "matched_system_tokens": 141,
-                "whole_system_tokens": 184,
-                "total_lcs_length": 10
+                "gold_tokens": 81,
+                "matched_gold_tokens": 81,
+                "whole_gold_tokens": 81,
+                "system_tokens": 304,
+                "matched_system_tokens": 223,
+                "whole_system_tokens": 304,
+                "total_lcs_length": 22
               }
             }
           },
@@ -575,8 +615,7 @@
                 "sections": [
                   "3",
                   "9",
-                  "10",
-                  "11"
+                  "10"
                 ]
               },
               {
@@ -587,14 +626,15 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               }
             ],
             "aggregation": "micro",
-            "n_scored": 9,
+            "n_scored": 11,
             "n_compared": 4,
-            "n_zero_scored": 5,
+            "n_zero_scored": 7,
             "n_skipped_both_empty": 0,
             "items": [
               {
@@ -611,9 +651,9 @@
                 "unit_id": "subsection:5/5a",
                 "status": "matched",
                 "scores": {
-                  "precision": 0.483412,
-                  "recall": 0.546719,
-                  "f1": 0.51312
+                  "precision": 0.626257,
+                  "recall": 0.675235,
+                  "f1": 0.649825
                 }
               },
               {
@@ -630,27 +670,37 @@
                 "unit_id": "subsection:6/6a",
                 "status": "matched",
                 "scores": {
-                  "precision": 0.440431,
-                  "recall": 0.548526,
-                  "f1": 0.488571
+                  "precision": 0.448509,
+                  "recall": 0.572666,
+                  "f1": 0.50304
                 }
               },
               {
                 "unit_id": "subsection:7/7a",
                 "status": "matched",
                 "scores": {
-                  "precision": 0.731113,
-                  "recall": 0.623085,
-                  "f1": 0.67279
+                  "precision": 0.516811,
+                  "recall": 0.587013,
+                  "f1": 0.54968
+                }
+              },
+              {
+                "unit_id": "subsection:7/7b",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
+                "scores": {
+                  "precision": 0.0,
+                  "recall": 0.0,
+                  "f1": 0.0
                 }
               },
               {
                 "unit_id": "subsection:8/8a",
                 "status": "matched",
                 "scores": {
-                  "precision": 0.472683,
-                  "recall": 0.564734,
-                  "f1": 0.514624
+                  "precision": 0.556747,
+                  "recall": 0.641552,
+                  "f1": 0.596149
                 }
               },
               {
@@ -674,9 +724,19 @@
                 }
               },
               {
+                "unit_id": "subsection:11/11a",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
+                "scores": {
+                  "precision": 0.0,
+                  "recall": 0.0,
+                  "f1": 0.0
+                }
+              },
+              {
                 "unit_id": "subsection:11/11b",
-                "status": "reference_only",
-                "zero_score_reason": "missing_system_unit",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
                 "scores": {
                   "precision": 0.0,
                   "recall": 0.0,
@@ -686,17 +746,17 @@
             ],
             "aggregates": {
               "micro": {
-                "precision": 0.361234,
-                "recall": 0.434462,
-                "f1": 0.394478,
+                "precision": 0.381684,
+                "recall": 0.621418,
+                "f1": 0.472904,
                 "model_type": "microsoft/deberta-xlarge-mnli",
                 "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
               }
             },
             "overall": {
-              "precision": 0.361234,
-              "recall": 0.434462,
-              "f1": 0.394478,
+              "precision": 0.381684,
+              "recall": 0.621418,
+              "f1": 0.472904,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
             }
@@ -712,8 +772,7 @@
                 "sections": [
                   "3",
                   "9",
-                  "10",
-                  "11"
+                  "10"
                 ]
               },
               {
@@ -724,14 +783,15 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               }
             ],
             "aggregation": "micro",
-            "n_scored": 9,
+            "n_scored": 11,
             "n_compared": 4,
-            "n_zero_scored": 5,
+            "n_zero_scored": 7,
             "n_skipped_both_empty": 0,
             "items": [
               {
@@ -743,7 +803,7 @@
               {
                 "unit_id": "subsection:5/5a",
                 "status": "matched",
-                "score": 0.408649
+                "score": 0.44091
               },
               {
                 "unit_id": "subsection:5/5b",
@@ -754,17 +814,23 @@
               {
                 "unit_id": "subsection:6/6a",
                 "status": "matched",
-                "score": 0.51135
+                "score": 0.523484
               },
               {
                 "unit_id": "subsection:7/7a",
                 "status": "matched",
-                "score": 0.25707
+                "score": 0.353252
+              },
+              {
+                "unit_id": "subsection:7/7b",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
+                "score": 0.0
               },
               {
                 "unit_id": "subsection:8/8a",
                 "status": "matched",
-                "score": 0.451937
+                "score": 0.418478
               },
               {
                 "unit_id": "subsection:8/8b",
@@ -779,27 +845,33 @@
                 "score": 0.0
               },
               {
+                "unit_id": "subsection:11/11a",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
+                "score": 0.0
+              },
+              {
                 "unit_id": "subsection:11/11b",
-                "status": "reference_only",
-                "zero_score_reason": "missing_system_unit",
+                "status": "candidate_only",
+                "zero_score_reason": "system_only_unit",
                 "score": 0.0
               }
             ],
             "aggregates": {
               "micro": {
-                "score": 0.205356,
+                "score": 0.212175,
                 "config_name": "BLEURT-20"
               }
             },
             "overall": {
-              "score": 0.205356,
+              "score": 0.212175,
               "config_name": "BLEURT-20"
             }
           }
         },
         "weighted_alignment": {
-          "gold": "sample_data/gold-output/conflict-gold.json",
-          "system": "sample_data/sysId-output/UW-sys1/conflict-sum.json",
+          "gold": "sample_data/gold-output/flood-gold.json",
+          "system": "sample_data/sysId-output/UW-sys1/flood-sum.json",
           "metric": "rougeL",
           "threshold": 0.1,
           "configuration": {
@@ -855,7 +927,8 @@
                 "3",
                 "4",
                 "9",
-                "10"
+                "10",
+                "11"
               ]
             },
             {
@@ -868,20 +941,15 @@
               ]
             },
             {
-              "code": "gold_only_groups",
-              "message": "gold has groups with no matching system group key",
-              "count": 1,
-              "groups": [
-                "11/11b"
-              ]
-            },
-            {
               "code": "system_only_groups",
               "message": "system has groups with no matching gold group key",
-              "count": 4,
+              "count": 7,
               "groups": [
+                "11/11a",
+                "11/11b",
                 "4/4c",
                 "5/5b",
+                "7/7b",
                 "8/8b",
                 "8/8c"
               ]
@@ -890,42 +958,42 @@
               "code": "partial_key_overlap",
               "message": "only some group keys overlap between gold and system",
               "shared_groups": 4,
-              "gold_only_groups": 1,
-              "system_only_groups": 4
+              "gold_only_groups": 0,
+              "system_only_groups": 7
             }
           ],
           "summary": {
-            "gold_units": 5,
-            "system_units": 22,
-            "gold_source_bullets": 5,
-            "system_source_bullets": 22,
-            "matched_pairs": 3,
+            "gold_units": 4,
+            "system_units": 28,
+            "gold_source_bullets": 4,
+            "system_source_bullets": 28,
+            "matched_pairs": 4,
             "compared_groups": 4,
-            "groups_with_accepted_pairs": 3,
-            "unmatched_gold": 2,
-            "unmatched_system": 19,
-            "mean_positive_edge_weight": 0.21086691086691087,
-            "micro_soft_precision": 0.028754578754578753,
-            "micro_soft_recall": 0.1265201465201465,
-            "micro_soft_f1": 0.04685931352598019,
-            "gold_groups": 5,
-            "system_groups": 8,
+            "groups_with_accepted_pairs": 4,
+            "unmatched_gold": 0,
+            "unmatched_system": 24,
+            "mean_positive_edge_weight": 0.2919683609338781,
+            "micro_soft_precision": 0.041709765847696874,
+            "micro_soft_recall": 0.2919683609338781,
+            "micro_soft_f1": 0.07299209023346953,
+            "gold_groups": 4,
+            "system_groups": 11,
             "shared_groups": 4,
-            "structure_recall": 0.8,
-            "structure_precision": 0.5,
-            "warning_count": 5,
-            "warning_codes": "gold_only_groups;partial_key_overlap;selected_sections_not_found;system_only_groups",
-            "gold_only_groups": 1,
-            "system_only_groups": 4
+            "structure_recall": 1.0,
+            "structure_precision": 0.36363636363636365,
+            "warning_count": 4,
+            "warning_codes": "partial_key_overlap;selected_sections_not_found;system_only_groups",
+            "gold_only_groups": 0,
+            "system_only_groups": 7
           },
           "groups": [
             {
               "scope": "subsection",
-              "group_id": "11/11b",
+              "group_id": "11/11a",
               "section_id": "11",
-              "subsection_id": "11b",
-              "gold_count": 1,
-              "system_count": 0,
+              "subsection_id": "11a",
+              "gold_count": 0,
+              "system_count": 1,
               "matched_count": 0,
               "mean_positive_edge_weight": 0.0,
               "soft_precision": 0.0,
@@ -933,19 +1001,57 @@
               "soft_f1": 0.0,
               "total_weight": 0.0,
               "pairs": [],
-              "unmatched_gold": [
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "11",
+                  "subsection_id": "11a",
+                  "bullet_id": "11a.1",
+                  "text": "Neighbours were reported helping one another near district officials.",
+                  "tweet_ids": [
+                    "46"
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "11/11b",
+              "section_id": "11",
+              "subsection_id": "11b",
+              "gold_count": 0,
+              "system_count": 2,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
                 {
                   "section_id": "11",
                   "subsection_id": "11b",
                   "bullet_id": "11b.1",
-                  "text": "Residents expressed fear during the bombardment alongside solidarity, with accounts of neighbors sheltering together and sharing music in metro stations.",
+                  "text": "One observer expressed disbelief that the reported flooding was happening.",
                   "tweet_ids": [
-                    17
+                    "35"
                   ],
-                  "confidence": "unconfirmed"
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "11",
+                  "subsection_id": "11b",
+                  "bullet_id": "11b.2",
+                  "text": "A community member expressed pride in local mutual assistance.",
+                  "tweet_ids": [
+                    "46"
+                  ],
+                  "confidence": "confirmed"
                 }
-              ],
-              "unmatched_system": []
+              ]
             },
             {
               "scope": "subsection",
@@ -967,11 +1073,11 @@
                   "section_id": "4",
                   "subsection_id": "4c",
                   "bullet_id": "4c.1",
-                  "text": "A blackout was reported across an unspecified city.",
+                  "text": "Grayford was reportedly closed in a post labelled as a grid update.",
                   "tweet_ids": [
-                    "3"
+                    "11"
                   ],
-                  "confidence": "confirmed"
+                  "confidence": "potential"
                 }
               ]
             },
@@ -981,38 +1087,45 @@
               "section_id": "5",
               "subsection_id": "5a",
               "gold_count": 1,
-              "system_count": 3,
-              "matched_count": 0,
-              "mean_positive_edge_weight": 0.0,
-              "soft_precision": 0.0,
-              "soft_recall": 0.0,
-              "soft_f1": 0.0,
-              "total_weight": 0.0,
-              "pairs": [],
-              "unmatched_gold": [
+              "system_count": 4,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.44594594594594594,
+              "soft_precision": 0.11148648648648649,
+              "soft_recall": 0.44594594594594594,
+              "soft_f1": 0.1783783783783784,
+              "total_weight": 0.44594594594594594,
+              "pairs": [
                 {
-                  "section_id": "5",
-                  "subsection_id": "5a",
-                  "bullet_id": "5a.1",
-                  "text": "Residents were urged into shelters, with families using metro stations and basements during repeated air raid alerts.",
-                  "tweet_ids": [
-                    13,
-                    19,
-                    20,
-                    21,
-                    22
+                  "gold_index": 0,
+                  "system_index": 2,
+                  "weight": 0.44594594594594594,
+                  "gold_bullet_id": "5a.1",
+                  "system_bullet_id": "5a.3",
+                  "text_similarity": 0.4324324324324324,
+                  "tweet_id_similarity": 0.5,
+                  "gold_tweet_ids": [
+                    "43",
+                    "45",
+                    "47",
+                    "49"
                   ],
-                  "confidence": "unconfirmed"
+                  "system_tweet_ids": [
+                    "47",
+                    "49"
+                  ],
+                  "gold_text": "Precautionary evacuation of char islands and riverside hamlets was ordered roughly two days before landfall, with boats running from the Pelley Hook jetty.",
+                  "system_text": "The Bramwick district office ordered a precautionary evacuation of char islands and riverside hamlets."
                 }
               ],
+              "unmatched_gold": [],
               "unmatched_system": [
                 {
                   "section_id": "5",
                   "subsection_id": "5a",
                   "bullet_id": "5a.1",
-                  "text": "Evacuation activity was underway around the Duskany region.",
+                  "text": "People began moving away from the delta after an alert was issued.",
                   "tweet_ids": [
-                    "20"
+                    "1"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1020,19 +1133,20 @@
                   "section_id": "5",
                   "subsection_id": "5a",
                   "bullet_id": "5a.2",
-                  "text": "Evacuation activity was reported around Ostravia.",
+                  "text": "Evacuation activity was reported as underway around the town.",
                   "tweet_ids": [
-                    "21"
+                    "39",
+                    "40"
                   ],
                   "confidence": "confirmed"
                 },
                 {
                   "section_id": "5",
                   "subsection_id": "5a",
-                  "bullet_id": "5a.3",
-                  "text": "Officials confirmed that residents of the Duskany region had been evacuated.",
+                  "bullet_id": "5a.4",
+                  "text": "An evacuation was confirmed at the char islands.",
                   "tweet_ids": [
-                    "22"
+                    "48"
                   ],
                   "confidence": "confirmed"
                 }
@@ -1058,9 +1172,9 @@
                   "section_id": "5",
                   "subsection_id": "5b",
                   "bullet_id": "5b.1",
-                  "text": "People were reported running in Duskany.",
+                  "text": "People were reported running near the river during the current emergency.",
                   "tweet_ids": [
-                    "19"
+                    "43"
                   ],
                   "confidence": "confirmed"
                 }
@@ -1074,33 +1188,35 @@
               "gold_count": 1,
               "system_count": 8,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.23333333333333334,
-              "soft_precision": 0.029166666666666667,
-              "soft_recall": 0.23333333333333334,
-              "soft_f1": 0.05185185185185185,
-              "total_weight": 0.23333333333333334,
+              "mean_positive_edge_weight": 0.18,
+              "soft_precision": 0.0225,
+              "soft_recall": 0.18,
+              "soft_f1": 0.04,
+              "total_weight": 0.18,
               "pairs": [
                 {
                   "gold_index": 0,
-                  "system_index": 4,
-                  "weight": 0.23333333333333334,
+                  "system_index": 1,
+                  "weight": 0.18,
                   "gold_bullet_id": "6a.1",
-                  "system_bullet_id": "6a.5",
-                  "text_similarity": 0.25,
-                  "tweet_id_similarity": 0.16666666666666666,
+                  "system_bullet_id": "6a.2",
+                  "text_similarity": 0.09999999999999999,
+                  "tweet_id_similarity": 0.5,
                   "gold_tweet_ids": [
-                    "3",
+                    "10",
+                    "11",
+                    "14",
+                    "15",
                     "4",
-                    "5",
-                    "7",
-                    "8",
-                    "9"
+                    "6"
                   ],
                   "system_tweet_ids": [
-                    "9"
+                    "14",
+                    "15",
+                    "6"
                   ],
-                  "gold_text": "The primary hazard was sustained cross-river artillery shelling of populated districts of Varenholm by Karvale Front forces.",
-                  "system_text": "Artillery shelling was reported at Varenholm."
+                  "gold_text": "The compound hazard combined cyclone winds around 110 km/h with 200-300 mm of rain falling on an already monsoon-swollen river.",
+                  "system_text": "The Kethari Meteorological Department reported dangerous conditions at the Osel River within an identified 110-kilometre zone."
                 }
               ],
               "unmatched_gold": [],
@@ -1109,19 +1225,13 @@
                   "section_id": "6",
                   "subsection_id": "6a",
                   "bullet_id": "6a.1",
-                  "text": "Shelling was reported at an unspecified location.",
+                  "text": "Flooding is occurring in the Osel River catchment.",
                   "tweet_ids": [
-                    "4"
-                  ],
-                  "confidence": "confirmed"
-                },
-                {
-                  "section_id": "6",
-                  "subsection_id": "6a",
-                  "bullet_id": "6a.2",
-                  "text": "Explosions were reported near Varenholm city.",
-                  "tweet_ids": [
-                    "5"
+                    "16",
+                    "18",
+                    "23",
+                    "24",
+                    "36"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1129,9 +1239,10 @@
                   "section_id": "6",
                   "subsection_id": "6a",
                   "bullet_id": "6a.3",
-                  "text": "Artillery fire was reported at an unspecified city.",
+                  "text": "The Kethari Meteorological Department reported dangerous conditions in the Osel catchment.",
                   "tweet_ids": [
-                    "7"
+                    "20",
+                    "28"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1139,9 +1250,20 @@
                   "section_id": "6",
                   "subsection_id": "6a",
                   "bullet_id": "6a.4",
-                  "text": "Dangerous conditions were reported at Varenholm.",
+                  "text": "Current flooding was also reported without a precise location.",
                   "tweet_ids": [
-                    "8"
+                    "19",
+                    "37"
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "6",
+                  "subsection_id": "6a",
+                  "bullet_id": "6a.5",
+                  "text": "Officials reported a cyclonic storm affecting the Osel catchment.",
+                  "tweet_ids": [
+                    "13"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1149,30 +1271,30 @@
                   "section_id": "6",
                   "subsection_id": "6a",
                   "bullet_id": "6a.6",
-                  "text": "Strikes were reported on the outskirts of Varenholm.",
+                  "text": "Cyclone Vessa was expected to persist for more than 48 hours.",
                   "tweet_ids": [
-                    "11",
-                    "15"
+                    "22",
+                    "26"
                   ],
-                  "confidence": "confirmed"
+                  "confidence": "potential"
                 },
                 {
                   "section_id": "6",
                   "subsection_id": "6a",
                   "bullet_id": "6a.7",
-                  "text": "Air raid sirens sounded repeatedly across Varenholm.",
+                  "text": "Officials assessed a serious flood risk for low-lying delta blocks.",
                   "tweet_ids": [
-                    "16"
+                    "3"
                   ],
-                  "confidence": "confirmed"
+                  "confidence": "potential"
                 },
                 {
                   "section_id": "6",
                   "subsection_id": "6a",
                   "bullet_id": "6a.8",
-                  "text": "Shelling was reported in Varenholm city.",
+                  "text": "Dangerous river conditions were reported as persisting for more than 48 hours.",
                   "tweet_ids": [
-                    "18"
+                    "25"
                   ],
                   "confidence": "confirmed"
                 }
@@ -1184,34 +1306,89 @@
               "section_id": "7",
               "subsection_id": "7a",
               "gold_count": 1,
-              "system_count": 1,
+              "system_count": 3,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.27619047619047615,
-              "soft_precision": 0.27619047619047615,
-              "soft_recall": 0.27619047619047615,
-              "soft_f1": 0.27619047619047615,
-              "total_weight": 0.27619047619047615,
+              "mean_positive_edge_weight": 0.24307692307692302,
+              "soft_precision": 0.08102564102564101,
+              "soft_recall": 0.24307692307692302,
+              "soft_f1": 0.1215384615384615,
+              "total_weight": 0.24307692307692302,
               "pairs": [
                 {
                   "gold_index": 0,
-                  "system_index": 0,
-                  "weight": 0.27619047619047615,
-                  "gold_bullet_id": "7a.1",
-                  "system_bullet_id": "7a.1",
-                  "text_similarity": 0.09523809523809523,
-                  "tweet_id_similarity": 1.0,
+                  "system_index": 1,
+                  "weight": 0.24307692307692302,
+                  "gold_bullet_id": "7a.2",
+                  "system_bullet_id": "7a.2",
+                  "text_similarity": 0.15384615384615383,
+                  "tweet_id_similarity": 0.6,
                   "gold_tweet_ids": [
-                    "12"
+                    "42",
+                    "44",
+                    "46",
+                    "50",
+                    "51"
                   ],
                   "system_tweet_ids": [
-                    "12"
+                    "42",
+                    "50",
+                    "51"
                   ],
-                  "gold_text": "Ostravia declared a state of emergency in the Duskany region within hours of the first strikes.",
-                  "system_text": "Police were responding in Ostravia."
+                  "gold_text": "The district ran precautionary evacuations, opened 62 shelters, and shifted public communication to radio when networks failed.",
+                  "system_text": "Response crews were deployed to the Bramwick district office."
                 }
               ],
               "unmatched_gold": [],
-              "unmatched_system": []
+              "unmatched_system": [
+                {
+                  "section_id": "7",
+                  "subsection_id": "7a",
+                  "bullet_id": "7a.1",
+                  "text": "Emergency response operations were underway at the Bramwick district office.",
+                  "tweet_ids": [
+                    "44"
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "7",
+                  "subsection_id": "7a",
+                  "bullet_id": "7a.3",
+                  "text": "Boat operations from Pelley Hook jetty were scheduled to begin at dawn tomorrow.",
+                  "tweet_ids": [
+                    "45"
+                  ],
+                  "confidence": "announced"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "7/7b",
+              "section_id": "7",
+              "subsection_id": "7b",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "7",
+                  "subsection_id": "7b",
+                  "bullet_id": "7b.1",
+                  "text": "A support point opened near Bramwick town for affected people.",
+                  "tweet_ids": [
+                    "41"
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
             },
             {
               "scope": "subsection",
@@ -1221,28 +1398,36 @@
               "gold_count": 1,
               "system_count": 5,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.12307692307692307,
-              "soft_precision": 0.024615384615384615,
-              "soft_recall": 0.12307692307692307,
-              "soft_f1": 0.04102564102564103,
-              "total_weight": 0.12307692307692307,
+              "mean_positive_edge_weight": 0.29885057471264365,
+              "soft_precision": 0.05977011494252873,
+              "soft_recall": 0.29885057471264365,
+              "soft_f1": 0.09961685823754789,
+              "total_weight": 0.29885057471264365,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.12307692307692307,
+                  "weight": 0.29885057471264365,
                   "gold_bullet_id": "8a.1",
                   "system_bullet_id": "8a.1",
-                  "text_similarity": 0.15384615384615383,
-                  "tweet_id_similarity": 0.0,
+                  "text_similarity": 0.20689655172413793,
+                  "tweet_id_similarity": 0.6666666666666666,
                   "gold_tweet_ids": [
-                    "16"
+                    "1",
+                    "2",
+                    "3",
+                    "5",
+                    "8",
+                    "9"
                   ],
                   "system_tweet_ids": [
-                    "3"
+                    "1",
+                    "2",
+                    "5",
+                    "9"
                   ],
-                  "gold_text": "Air raid sirens sounded repeatedly across Varenholm from the first morning of the attack.",
-                  "system_text": "People were advised to avoid the city affected by the reported blackout."
+                  "gold_text": "KMD issued a 48-hour landfall forecast and flood-risk warning, giving the delta a genuine preparation window.",
+                  "system_text": "Warnings were issued for the delta and its low-lying blocks."
                 }
               ],
               "unmatched_gold": [],
@@ -1251,9 +1436,14 @@
                   "section_id": "8",
                   "subsection_id": "8a",
                   "bullet_id": "8a.2",
-                  "text": "Residents were urged to avoid the city where artillery fire was reported.",
+                  "text": "Authorities instructed the public to avoid the Osel River and catchment because of dangerous conditions.",
                   "tweet_ids": [
-                    "7"
+                    "6",
+                    "14",
+                    "15",
+                    "20",
+                    "25",
+                    "28"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1261,10 +1451,10 @@
                   "section_id": "8",
                   "subsection_id": "8a",
                   "bullet_id": "8a.3",
-                  "text": "People were advised to avoid Varenholm because of dangerous conditions and artillery shelling.",
+                  "text": "Officials advised people to avoid the Osel catchment during the next 48 hours.",
                   "tweet_ids": [
-                    "8",
-                    "9"
+                    "13",
+                    "16"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1272,9 +1462,9 @@
                   "section_id": "8",
                   "subsection_id": "8a",
                   "bullet_id": "8a.4",
-                  "text": "People were advised to avoid the Duskany region during evacuation activity.",
+                  "text": "The National Disaster Response Corps circulated a general safety message for the delta.",
                   "tweet_ids": [
-                    "20"
+                    "8"
                   ],
                   "confidence": "confirmed"
                 },
@@ -1282,11 +1472,11 @@
                   "section_id": "8",
                   "subsection_id": "8a",
                   "bullet_id": "8a.5",
-                  "text": "People were advised to avoid Ostravia during evacuation activity.",
+                  "text": "Local reports described a warning near Tessary Delta.",
                   "tweet_ids": [
-                    "21"
+                    "27"
                   ],
-                  "confidence": "confirmed"
+                  "confidence": "potential"
                 }
               ]
             },
@@ -1296,7 +1486,7 @@
               "section_id": "8",
               "subsection_id": "8b",
               "gold_count": 0,
-              "system_count": 2,
+              "system_count": 1,
               "matched_count": 0,
               "mean_positive_edge_weight": 0.0,
               "soft_precision": 0.0,
@@ -1310,19 +1500,12 @@
                   "section_id": "8",
                   "subsection_id": "8b",
                   "bullet_id": "8b.1",
-                  "text": "An official update referenced a Karvale Front spokesman without specifying the reported event.",
+                  "text": "Multiple updates stated that flooding remained active while Cyclone Vessa continued.",
                   "tweet_ids": [
-                    "2"
-                  ],
-                  "confidence": "background"
-                },
-                {
-                  "section_id": "8",
-                  "subsection_id": "8b",
-                  "bullet_id": "8b.2",
-                  "text": "Officials reported an unspecified public reaction in central Varenholm.",
-                  "tweet_ids": [
-                    "17"
+                    "23",
+                    "24",
+                    "36",
+                    "37"
                   ],
                   "confidence": "confirmed"
                 }
@@ -1348,12 +1531,11 @@
                   "section_id": "8",
                   "subsection_id": "8c",
                   "bullet_id": "8c.1",
-                  "text": "Posts reporting crisis conditions also requested donations.",
+                  "text": "A team reporting from near Tessary Delta invited donations.",
                   "tweet_ids": [
-                    "5",
-                    "13"
+                    "27"
                   ],
-                  "confidence": "confirmed"
+                  "confidence": "announced"
                 }
               ]
             }
@@ -1372,8 +1554,7 @@
                 "sections": [
                   "3",
                   "9",
-                  "10",
-                  "11"
+                  "10"
                 ]
               },
               {
@@ -1384,43 +1565,44 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               }
             ],
             "aggregation": "micro",
-            "n_scored": 9,
+            "n_scored": 11,
             "n_skipped_both_empty": 0,
             "rouge1": {
-              "precision": 0.0707,
-              "recall": 0.1529,
-              "fmeasure": 0.0967
+              "precision": 0.0954,
+              "recall": 0.358,
+              "fmeasure": 0.1506
             },
             "rouge2": {
-              "precision": 0.0114,
-              "recall": 0.025,
-              "fmeasure": 0.0156
+              "precision": 0.0341,
+              "recall": 0.1299,
+              "fmeasure": 0.0541
             },
             "rougeL": {
-              "precision": 0.0543,
-              "recall": 0.1176,
-              "fmeasure": 0.0743
+              "precision": 0.0724,
+              "recall": 0.2716,
+              "fmeasure": 0.1143
             },
             "micro": {
               "rouge1": {
-                "precision": 0.0707,
-                "recall": 0.1529,
-                "fmeasure": 0.0967
+                "precision": 0.0954,
+                "recall": 0.358,
+                "fmeasure": 0.1506
               },
               "rouge2": {
-                "precision": 0.0114,
-                "recall": 0.025,
-                "fmeasure": 0.0156
+                "precision": 0.0341,
+                "recall": 0.1299,
+                "fmeasure": 0.0541
               },
               "rougeL": {
-                "precision": 0.0543,
-                "recall": 0.1176,
-                "fmeasure": 0.0743
+                "precision": 0.0724,
+                "recall": 0.2716,
+                "fmeasure": 0.1143
               },
               "denominator_policy": "whole_gold"
             }
@@ -1437,8 +1619,7 @@
                 "sections": [
                   "3",
                   "9",
-                  "10",
-                  "11"
+                  "10"
                 ]
               },
               {
@@ -1449,20 +1630,21 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               }
             ],
             "aggregation": "micro",
-            "n_scored": 9,
+            "n_scored": 11,
             "n_skipped_both_empty": 0,
-            "precision": 0.361234,
-            "recall": 0.434462,
-            "f1": 0.394478,
+            "precision": 0.381684,
+            "recall": 0.621418,
+            "f1": 0.472904,
             "micro": {
-              "precision": 0.361234,
-              "recall": 0.434462,
-              "f1": 0.394478,
+              "precision": 0.381684,
+              "recall": 0.621418,
+              "f1": 0.472904,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
             }
@@ -1479,8 +1661,7 @@
                 "sections": [
                   "3",
                   "9",
-                  "10",
-                  "11"
+                  "10"
                 ]
               },
               {
@@ -1491,16 +1672,17 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               }
             ],
             "aggregation": "micro",
-            "n_scored": 9,
+            "n_scored": 11,
             "n_skipped_both_empty": 0,
-            "score": 0.205356,
+            "score": 0.212175,
             "micro": {
-              "score": 0.205356,
+              "score": 0.212175,
               "config_name": "BLEURT-20"
             }
           },
@@ -1516,7 +1698,8 @@
                   "3",
                   "4",
                   "9",
-                  "10"
+                  "10",
+                  "11"
                 ]
               },
               {
@@ -1529,20 +1712,15 @@
                 ]
               },
               {
-                "code": "gold_only_groups",
-                "message": "gold has groups with no matching system group key",
-                "count": 1,
-                "groups": [
-                  "11/11b"
-                ]
-              },
-              {
                 "code": "system_only_groups",
                 "message": "system has groups with no matching gold group key",
-                "count": 4,
+                "count": 7,
                 "groups": [
+                  "11/11a",
+                  "11/11b",
                   "4/4c",
                   "5/5b",
+                  "7/7b",
                   "8/8b",
                   "8/8c"
                 ]
@@ -1551,70 +1729,70 @@
                 "code": "partial_key_overlap",
                 "message": "only some group keys overlap between gold and system",
                 "shared_groups": 4,
-                "gold_only_groups": 1,
-                "system_only_groups": 4
+                "gold_only_groups": 0,
+                "system_only_groups": 7
               }
             ],
             "scope": "subsection",
             "metric": "rougeL",
             "threshold": 0.1,
-            "micro_soft_precision": 0.028754578754578753,
-            "micro_soft_recall": 0.1265201465201465,
-            "micro_soft_f1": 0.04685931352598019,
-            "structure_recall": 0.8,
-            "structure_precision": 0.5,
-            "matched_pairs": 3,
-            "gold_units": 5,
-            "system_units": 22,
-            "warning_count": 5
+            "micro_soft_precision": 0.041709765847696874,
+            "micro_soft_recall": 0.2919683609338781,
+            "micro_soft_f1": 0.07299209023346953,
+            "structure_recall": 1.0,
+            "structure_precision": 0.36363636363636365,
+            "matched_pairs": 4,
+            "gold_units": 4,
+            "system_units": 28,
+            "warning_count": 4
           }
         }
       },
       "structure_summary": {
         "sections": {
-          "gold": 5,
+          "gold": 4,
           "system": 7,
-          "matched": 5,
+          "matched": 4,
           "unmatched_gold": 0,
-          "unmatched_system": 2
+          "unmatched_system": 3
         },
         "subsections": {
-          "gold": 5,
+          "gold": 4,
           "system": 22,
-          "matched": 5,
+          "matched": 4,
           "unmatched_gold": 0,
-          "unmatched_system": 17
+          "unmatched_system": 18
         },
         "bullets": {
-          "gold": 5,
-          "system": 22,
-          "matched": 3,
-          "unmatched_gold": 2,
-          "unmatched_system": 19
+          "gold": 4,
+          "system": 28,
+          "matched": 4,
+          "unmatched_gold": 0,
+          "unmatched_system": 24
         }
       },
       "diagnostics": {
         "structure_summary": {
           "sections": {
-            "gold": 5,
+            "gold": 4,
             "system": 7,
-            "matched": 5,
+            "matched": 4,
             "unmatched_gold": 0,
-            "unmatched_system": 2
+            "unmatched_system": 3
           },
           "subsections": {
-            "gold": 5,
+            "gold": 4,
             "system": 22,
-            "matched": 5,
+            "matched": 4,
             "unmatched_gold": 0,
-            "unmatched_system": 17
+            "unmatched_system": 18
           },
           "bullets": {
-            "gold": 5,
-            "system": 22,
-            "matched": 3,
-            "unmatched_gold": 2,
-            "unmatched_system": 19
+            "gold": 4,
+            "system": 28,
+            "matched": 4,
+            "unmatched_gold": 0,
+            "unmatched_system": 24
           }
         }
       }

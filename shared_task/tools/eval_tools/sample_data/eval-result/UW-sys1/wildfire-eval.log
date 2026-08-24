@@ -1,0 +1,172 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-24T15:52:12.318134+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : wildfire
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/wildfire-gold.json
+System              : sample_data/sysId-output/UW-sys1/wildfire-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2442
+  ROUGE-2 F1  : 0.1048
+  ROUGE-L F1  : 0.1843
+
+BERTScore (Subsection)
+  Precision   : 0.4596
+  Recall      : 0.6518
+  F1          : 0.5391
+
+BLEURT (Subsection)
+  Score       : 0.3018
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0632
+Soft Recall         : 0.2529
+Soft F1             : 0.1012
+
+Matched pairs       : 5
+Unmatched gold      : 1
+Unmatched system    : 19
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           0.2442      0.1048      0.1843        0.5391   0.3018            0.1012
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=5 system=7 matched=5 unmatched_gold=0 unmatched_system=2
+subsections: gold=5 system=22 matched=5 unmatched_gold=0 unmatched_system=17
+bullets: gold=6 system=24 matched=5 unmatched_gold=1 unmatched_system=19
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=9 matched_units=5 scored_units=9 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=124 system_ngrams=310 overlapping_ngrams=53
+  rouge2: gold_ngrams=119 system_ngrams=301 overlapping_ngrams=22
+  rougeL: gold_tokens=124 system_tokens=310 total_lcs_length=40
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11a
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="Neighbors were reported helping one another near the ridge while the fire continued."
+
+Group 11/11b
+  gold=1 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=11b.1 text="Fear dominated the evacuation phase, with residents describing ember-strewn escape drives, giving way to cautious optimism as containment grew."
+  unmatched_system:
+  - id=11b.1 text="Community messages expressed concern, solidarity, and wishes for the safety of people traveling on local roads."
+
+Group 4/4c
+  gold=1 system=3 matched=1 soft_f1=0.1933
+  matched_pairs:
+  - gold=4c.2 system=4c.1
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.6000 text_weight=0.8000 final_edge_score=0.3867
+    gold_text=Route 9 was closed through the fire area, later reopening with pilot cars.
+    system_text=Route 9 south was reported closed or disrupted during evacuation operations.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.2 text="Officials reported a power cut at the ridge within a 60-kilometre zone."
+  - id=4c.3 text="Bumper-to-bumper traffic impeded movement on Route 9 south out of Ashford Mill."
+
+Group 4/4d
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4d.1 text="Route 9 was reported reopened under pilot-car traffic control."
+
+Group 5/5a
+  gold=1 system=3 matched=1 soft_f1=0.2537
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.6341 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5073
+    gold_text=A mandatory evacuation was ordered for all of Ashford Mill and zones C1-C4, with residents told to leave immediately via Route 9 south.
+    system_text=A mandatory or full evacuation order was issued for all of Ashford Mill and zones C1-C4.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="Evacuation activity was confirmed or reported around Route 9 south and the town area."
+  - id=5a.3 text="Residents were repeatedly instructed to leave via Route 9 south."
+
+Group 6/6a
+  gold=2 system=6 matched=2 soft_f1=0.0908
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=0.2222 tweet_id_jaccard=0.2222 text_weight=0.8000 final_edge_score=0.2222
+    gold_text=The fire exhibited extreme behavior early on, crowning through pines on Hollis Ridge under 60 km/h gusts and jumping Route 9.
+    system_text=The wildfire was described as active at Redpine National Forest and along Route 9.
+  - gold=6a.2 system=6a.2
+    text_metric=rougeL text_similarity=0.1765 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1412
+    gold_text=Growth progressed from 40 to 1,800 to 4,600 to 9,200 hectares over the first three days before slowing.
+    system_text=The Redpine Fire was estimated at 1,800 hectares and zero percent contained.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.3 text="An evening authority update indicated that fire growth was slowing at Redpine National Forest."
+  - id=6a.4 text="Smoke advisories or air-quality alerts covered Redpine National Forest and Hollis Ridge."
+  - id=6a.5 text="Dangerous conditions were reported along Route 9 and at Hollis Ridge within a zone described as spanning 60 kilometres."
+  - id=6a.6 text="A report from Hollis Ridge stated that the fire was moving."
+
+Group 7/7a
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Officials were actively monitoring the wildfire."
+  - id=7a.2 text="Firefighters continued responding under the Coravel Sheriff's Office update."
+
+Group 8/8a
+  gold=1 system=5 matched=1 soft_f1=0.0868
+  matched_pairs:
+  - gold=8a.1 system=8a.2
+    text_metric=rougeL text_similarity=0.2941 tweet_id_jaccard=0.1250 text_weight=0.8000 final_edge_score=0.2603
+    gold_text=The sheriff's office issued a mandatory evacuation order for Ashford Mill and zones C1-C4, followed by get-set warnings for Larkin Springs.
+    system_text=Officials issued warnings for Larkin Springs and urged immediate precautions.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Residents in Ashford Mill received warnings or alerts as the wildfire threat developed."
+  - id=8a.3 text="Ashcombe was reportedly warned and placed on alert as the wildfire threat grew."
+  - id=8a.4 text="Reports claimed that a boil-water notice applied at Redpine National Forest."
+  - id=8a.5 text="Smoke advisories instructed people near Redpine National Forest and Hollis Ridge to limit exposure or take precautions."
+
+Group 8/8b
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Several fragmentary posts relayed unspecified media reports from the ridge."
+  - id=8b.2 text="An official-style post used the unclear phrase that an attitude was confirmed at the Redpine wildfire."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

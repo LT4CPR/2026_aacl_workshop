@@ -1,0 +1,222 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-08-24T15:53:35.194185+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+
+Disaster ID         : crowdcrush
+System ID           : UW-sys2
+
+Gold                : sample_data/gold-output/crowdcrush-gold.json
+System              : sample_data/sysId-output/UW-sys2/crowdcrush-sum.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2267
+  ROUGE-2 F1  : 0.0512
+  ROUGE-L F1  : 0.1460
+
+BERTScore (Subsection)
+  Precision   : 0.4659
+  Recall      : 0.5988
+  F1          : 0.5241
+
+BLEURT (Subsection)
+  Score       : 0.2519
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0927
+Soft Recall         : 0.2496
+Soft F1             : 0.1352
+
+Matched pairs       : 12
+Unmatched gold      : 1
+Unmatched system    : 23
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys2           0.2267      0.0512      0.1460        0.5241   0.2519            0.1352
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=6 system=7 matched=6 unmatched_gold=0 unmatched_system=1
+subsections: gold=8 system=22 matched=8 unmatched_gold=0 unmatched_system=14
+bullets: gold=13 system=35 matched=12 unmatched_gold=1 unmatched_system=23
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=8 system_units=11 matched_units=7 scored_units=12 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=180 system_ngrams=464 overlapping_ngrams=73
+  rouge2: gold_ngrams=172 system_ngrams=453 overlapping_ngrams=16
+  rougeL: gold_tokens=180 system_tokens=464 total_lcs_length=47
+
+============================================================
+Alignment Details
+============================================================
+Group 11/11a
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="Neighbors were observed helping other neighbors near the front barrier area."
+  - id=11a.2 text="Volunteers were present near the barrier area during the incident."
+
+Group 11/11b
+  gold=2 system=5 matched=2 soft_f1=0.1170
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=0.2857 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2286
+    gold_text=Eyewitness accounts conveyed distress and disbelief at conditions in the front standing area.
+    system_text=Posts expressed hope, concern, and affection for people around the front, barrier area, and crush.
+  - gold=11b.2 system=11b.4
+    text_metric=rougeL text_similarity=0.1429 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.1810
+    gold_text=Public frustration was directed at circulating rumours about a stage collapse and a weapon.
+    system_text=Posts reported public reaction or an unspecified attitude near the front and crowd surge.
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.2 text="One poster described being unable to stop watching news about the front pen."
+  - id=11b.3 text="A post expressed disbelief that the incident was happening locally."
+  - id=11b.5 text="Community-focused posts expressed pride in local helpers and gratitude toward the ambulance service."
+
+Group 3/3b
+  gold=1 system=4 matched=1 soft_f1=0.1143
+  matched_pairs:
+  - gold=3b.3 system=3b.4
+    text_metric=rougeL text_similarity=0.3571 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2857
+    gold_text=Eyewitnesses reported multiple unconscious casualties carried from the front standing area.
+    system_text=An eyewitness account stated that at least six people were carried out unconscious from the front pen.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3b.1 text="Local reports described people as injured near the barrier area, but details remained unclear or unconfirmed."
+  - id=3b.2 text="Officially attributed reports stated that people were injured at the front."
+  - id=3b.3 text="A post reporting volunteers at the barrier area also described a possible injury."
+
+Group 3/3e
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3e.1 text="At least six unconscious people were reportedly carried out of the front pen."
+
+Group 4/4a
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4a.1 text="The festival was suspended and attendees were evacuated through the north gates."
+  unmatched_system: none
+
+Group 4/4c
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="The incident was confirmed to have disrupted an unspecified service associated with VerrowFest."
+
+Group 5/5a
+  gold=2 system=3 matched=2 soft_f1=0.2850
+  matched_pairs:
+  - gold=5a.1 system=5a.3
+    text_metric=rougeL text_similarity=0.2222 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.3778
+    gold_text=Attendees were directed to leave the festival ground through the north gates after the event was suspended.
+    system_text=Officials confirmed an evacuation at the festival ground or venue.
+  - gold=5a.2 system=5a.1
+    text_metric=rougeL text_similarity=0.2308 tweet_id_jaccard=0.7500 text_weight=0.8000 final_edge_score=0.3346
+    gold_text=Casualties were lifted out over the front barrier by other attendees and stewards.
+    system_text=Initial local and official reports described evacuation activity around the front barrier area.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="People were observed moving away from the barrier and front standing areas."
+
+Group 6/6a
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A crush or crowd surge was reported around the front area and was still described as ongoing in contemporaneous posts."
+  - id=6a.2 text="Witness and official descriptions characterized conditions at the festival ground as serious, chaotic, and a major incident."
+
+Group 7/7a
+  gold=3 system=7 matched=3 soft_f1=0.1648
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.3077 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.2795
+    gold_text=The ambulance service responded to a declared major incident with multiple units at the venue.
+    system_text=Verrow Ambulance Service announced a planned presence at VerrowFest in Thornlea.
+  - gold=7a.2 system=7a.2
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3200
+    gold_text=Police declared a major incident at the festival ground and coordinated the scene response.
+    system_text=Crews and a crowd-safety team were reported or confirmed at the festival ground and venue.
+  - gold=7a.3 system=7a.6
+    text_metric=rougeL text_similarity=0.2308 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.2246
+    gold_text=Two hospitals received casualties, with the city infirmary declaring a major incident.
+    system_text=The city infirmary and Verrow Royal Infirmary were reported as responding to the crisis.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.3 text="Volunteers were reported on site near the barrier area."
+  - id=7a.4 text="Police units were reported on scene in Verrow while updates were emerging from police."
+  - id=7a.5 text="Emergency response activity was reported as underway across Thornlea and Verrow."
+  - id=7a.7 text="Relief teams were working around the city."
+
+Group 8/8a
+  gold=2 system=3 matched=2 soft_f1=0.1980
+  matched_pairs:
+  - gold=8a.1 system=8a.3
+    text_metric=rougeL text_similarity=0.2581 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.2465
+    gold_text=Attendees publicly urged others near the main stage to move back and stop pushing forward.
+    system_text=Social-media posts urged people around the crush to stay safe and thanked the ambulance service.
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=0.0606 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.2485
+    gold_text=The city infirmary asked the public to attend only for emergencies during the major incident.
+    system_text=A warning for Verrow was subsequently described as confirmed, with instructions to remain alert and follow official guidance.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Initial reports said officials had issued warnings about the incident or crush and advised people to avoid the area."
+
+Group 8/8b
+  gold=1 system=4 matched=1 soft_f1=0.1292
+  matched_pairs:
+  - gold=8b.2 system=8b.4
+    text_metric=rougeL text_similarity=0.1538 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.3231
+    gold_text=Police corrected a circulating claim that the stage had collapsed, stating the incident was a crowd crush.
+    system_text=A post noted that numerous police updates were emerging.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Multiple posts circulated incomplete or unconfirmed updates about the front standing and front pen areas."
+  - id=8b.2 text="A team issued an update from near the front pen while inviting donations."
+  - id=8b.3 text="A location-only update was posted from the festival ground in Thornlea."
+
+Group 8/8c
+  gold=1 system=3 matched=1 soft_f1=0.0973
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.1600 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.1947
+    gold_text=Relatives publicly appealed for information about attendees in the front standing area.
+    system_text=An unconfirmed report described an urgent but unspecified need near the barrier area.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8c.2 text="Team updates requested donations in connection with activity near the front and crowd surge."
+  - id=8c.3 text="Relief teams stated that more supplies were needed around the city."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap
