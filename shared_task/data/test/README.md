@@ -507,9 +507,69 @@ Unless the submission platform explicitly requests a different archive name, use
 
 ---
 
+
+## Submission Validator
+
+Before uploading your team submission, run the official submission validator:
+
+```text
+tools/other_tools/validate_submission.py
+```
+
+The validator checks the team-level ZIP structure, `submission.json`, declared
+systems, report-file coverage, report JSON structure, section/bullet hierarchy,
+confidence labels, and evidence tweet IDs.
+
+Run it from the root of the shared-task repository:
+
+```bash
+python3 tools/other_tools/validate_submission.py \
+    --submission path/to/<team_id>.zip \
+    --test-data data/test
+```
+
+If you are validating against the released test ZIP directly instead of an
+extracted `data/test/` directory, pass the ZIP path:
+
+```bash
+python3 tools/other_tools/validate_submission.py \
+    --submission path/to/<team_id>.zip \
+    --test-data path/to/test.zip
+```
+
+A valid submission prints:
+
+```text
+VALID — submission passed all checks against 117 test cells.
+```
+
+The validator uses the released test data to derive the exact expected cell
+inventory and valid tweet IDs. This means it checks more than the total number
+of files: it verifies that every expected test cell is present for every
+declared system and that every cited `tweet_id` actually occurs in the
+corresponding input file.
+
+The validator checks **submission format and referential integrity**. Passing
+validation does not mean that a generated statement is factually correct or
+supported by its cited tweets; semantic quality is evaluated separately.
+
+Exit codes are:
+
+| Exit code | Meaning |
+| ---: | --- |
+| `0` | Submission is valid |
+| `1` | Submission is invalid |
+| `2` | Validator/configuration error |
+
+Participants are strongly encouraged to run the validator immediately before
+submission. The version distributed with the shared-task repository should be
+treated as authoritative if it differs from an older local copy.
+
+---
+
 ## Submission Checklist
 
-Before uploading, verify that:
+Before uploading, run `tools/other_tools/validate_submission.py` and verify that:
 
 1. the ZIP contains exactly one top-level directory named `<team_id>/`;
 2. `<team_id>/submission.json` exists and is valid UTF-8 JSON;
