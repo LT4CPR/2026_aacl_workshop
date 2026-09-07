@@ -1,0 +1,260 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-07T21:43:07.280998+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : epidemic/epidemic.W4.k1
+Crisis ID           : epidemic
+Cell ID             : epidemic.W4.k1
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/epidemic/epidemic.W4.k1.report.json
+System              : sample_data/sysId-output/UW-sys1/epidemic/epidemic.W4.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2472
+  ROUGE-2 F1  : 0.0941
+  ROUGE-L F1  : 0.1910
+
+BERTScore (Subsection)
+  Precision   : 0.6055
+  Recall      : 0.7198
+  F1          : 0.6577
+
+BLEURT (Subsection)
+  Score       : 0.4544
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0480
+Soft Recall         : 0.2306
+Soft F1             : 0.0795
+
+Matched pairs       : 3
+Unmatched gold      : 2
+Unmatched system    : 21
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           0.2472      0.0941      0.1910        0.6577   0.4544            0.0795
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=5 system=7 matched=4 unmatched_gold=1 unmatched_system=3
+subsections: gold=5 system=22 matched=3 unmatched_gold=2 unmatched_system=19
+bullets: gold=5 system=24 matched=3 unmatched_gold=2 unmatched_system=21
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=22 matched_units=3 scored_units=3 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=79 system_ngrams=99 overlapping_ngrams=22
+  rouge2: gold_ngrams=74 system_ngrams=96 overlapping_ngrams=8
+  rougeL: gold_tokens=79 system_tokens=99 total_lcs_length=17
+
+============================================================
+Alignment Details
+============================================================
+Group 11/header=public sentiment
+  gold=1 system=3 matched=1 soft_f1=0.1790
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=0.3226 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.3581
+    gold_text=Residents expressed alarm at the speed of the outbreak and frustration at shortages of rehydration salts.
+    system_text=A member of the public expressed concern for the safety of people near the outbreak.
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.2 text="A social-media user expressed sustained attention to news emerging from Kelvaig."
+  - id=11b.3 text="Community-support posts expressed pride in local solidarity."
+
+Group 11/header=social support
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="Residents described neighbors supporting one another near affected areas in Kelvaig and the wider region."
+
+Group 3/header=cases
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3b.1 text="The first official count recorded 34 suspected cases of acute watery diarrhoea across the delta."
+  unmatched_system: none
+
+Group 3/header=fatalities
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=found persons
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=injuries
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3b.1 text="Injuries were reported as confirmed in Ondaraya, including at the Delta."
+
+Group 3/header=missing persons
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=rescued persons
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=trapped persons
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=restoration progress
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=3 matched=1 soft_f1=0.2346
+  matched_pairs:
+  - gold=4a.3 system=4c.1
+    text_metric=rougeL text_similarity=0.4615 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4692
+    gold_text=The Kelvaig clinic exhausted its stock of oral rehydration salts early in the outbreak.
+    system_text=The local clinic in Kelvaig reportedly ran out of oral rehydration salts.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.2 text="The acute watery diarrhoea cluster was reported to have disrupted an unspecified service."
+  - id=4c.3 text="Kelvaig was reported closed by official order."
+
+Group 5/header=displacement
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=returns
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=4 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="Kelvaig residents reported widespread sickness associated with an acute watery diarrhoea cluster."
+  - id=6a.2 text="A total of 34 suspected cases was repeatedly reported across Ondaraya and the Delta."
+  - id=6a.3 text="Officials confirmed an outbreak-related situation update at Serriport."
+  - id=6a.4 text="Health authorities confirmed an outbreak-related situation update at the Ondaraya Delta."
+
+Group 7/header=aid delivery
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7b.1 text="Emergency assistance was delivered to Kelvaig village."
+
+Group 7/header=aid receipt
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7c.1 text="Officials confirmed that Kelvaig village residents received assistance."
+
+Group 7/header=operational response
+  gold=1 system=3 matched=1 soft_f1=0.1629
+  matched_pairs:
+  - gold=7a.1 system=7a.3
+    text_metric=rougeL text_similarity=0.3448 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.3259
+    gold_text=The Ondaraya Health Directorate opened an investigation into the case cluster and issued water safety advisories.
+    system_text=The Ondaraya Health Directorate stated that an emergency response was underway across Ondaraya.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Police were responding at the Delta."
+  - id=7a.2 text="Response personnel were reported as deployed at the Delta and elsewhere in Ondaraya."
+
+Group 8/header=information updates
+  gold=0 system=3 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Official and local reports circulated a situation update concerning Serriport."
+  - id=8b.2 text="The Ondaraya Health Directorate circulated a latest update concerning the cholera situation at the Delta."
+  - id=8b.3 text="A regional update stated that 34 suspected cases had been reported and that the situation was under close monitoring."
+
+Group 8/header=requests for help
+  gold=0 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=0 system=4 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Officials advised the public to avoid Serriport."
+  - id=8a.2 text="Health-related messages advised the public to avoid the Ondaraya Delta and another deployment area in Ondaraya."
+  - id=8a.3 text="An official report advised people to avoid Kelvaig after assistance reached residents."
+  - id=8a.4 text="Kelvaig was described as closed by official order in a boil-water-tagged warning."
+
+Group 9/header=aid received and needs coverage
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=9b.2 text="The Kelvaig clinic exhausted its oral rehydration salt stock before resupply, leaving demand unmet during the early phase."
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

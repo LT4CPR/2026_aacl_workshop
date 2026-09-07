@@ -1,0 +1,121 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-07T21:43:07.280998+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : volcano/volcano.W1.k1
+Crisis ID           : volcano
+Cell ID             : volcano.W1.k1
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/volcano/volcano.W1.k1.report.json
+System              : sample_data/sysId-output/UW-sys1/volcano/volcano.W1.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 1.0000
+  ROUGE-2 F1  : 1.0000
+  ROUGE-L F1  : 1.0000
+
+BERTScore (Subsection)
+  Precision   : 1.0000
+  Recall      : 1.0000
+  F1          : 1.0000
+
+BLEURT (Subsection)
+  Score       : 0.9720
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 1.0000
+Soft Recall         : 1.0000
+Soft F1             : 1.0000
+
+Matched pairs       : 4
+Unmatched gold      : 0
+Unmatched system    : 0
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           1.0000      1.0000      1.0000        1.0000   0.9720            1.0000
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+subsections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+bullets: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=4 system_units=4 matched_units=4 scored_units=4 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=57 system_ngrams=57 overlapping_ngrams=57
+  rouge2: gold_ngrams=53 system_ngrams=53 overlapping_ngrams=53
+  rougeL: gold_tokens=57 system_tokens=57 total_lcs_length=57
+
+============================================================
+Alignment Details
+============================================================
+Group 11/header=public sentiment
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=11b.1 system=11b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=Residents expressed unease at unfamiliar tremors before the alert was raised.
+    system_text=Residents expressed unease at unfamiliar tremors before the alert was raised.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=A swarm of shallow volcanic earthquakes preceded the eruption, with 240 events recorded in 24 hours.
+    system_text=A swarm of shallow volcanic earthquakes preceded the eruption, with 240 events recorded in 24 hours.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=The Sarnat Volcano Observatory operated the alert level system and issued escalation and de-escalation statements.
+    system_text=The Sarnat Volcano Observatory operated the alert level system and issued escalation and de-escalation statements.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=The alert level was raised from Green to Yellow after the initial earthquake swarm.
+    system_text=The alert level was raised from Green to Yellow after the initial earthquake swarm.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

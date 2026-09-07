@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-17T11:40:40.430800+00:00",
+  "generated_at_utc": "2026-09-07T21:43:07.280998+00:00",
   "config": "config/evaluation.yaml",
   "gold_dir": "sample_data/gold-output",
   "system_dir": "sample_data/sysId-output/UW-sys1",
@@ -18,17 +18,22 @@
     ],
     "source": "config"
   },
-  "disaster_id": "blackout",
+  "subsection_alignment_method": "header_only",
+  "instance_id": "blackout/blackout.W1.k1",
+  "crisis_id": "blackout",
+  "cell_id": "blackout.W1.k1",
   "aggregation": {
     "level": "within_document",
     "method": "micro"
   },
   "results": [
     {
-      "file_id": "blackout",
+      "instance_id": "blackout/blackout.W1.k1",
+      "crisis_id": "blackout",
+      "cell_id": "blackout.W1.k1",
       "sys_id": "UW-sys1",
-      "gold_file": "sample_data/gold-output/blackout-gold.json",
-      "system_file": "sample_data/sysId-output/UW-sys1/blackout-sum.json",
+      "gold_file": "sample_data/gold-output/blackout/blackout.W1.k1.report.json",
+      "system_file": "sample_data/sysId-output/UW-sys1/blackout/blackout.W1.k1.report.json",
       "status": "scored",
       "summary": {
         "rouge": {
@@ -55,39 +60,40 @@
               ]
             }
           ],
+          "subsection_alignment_method": "header_only",
           "aggregation": "micro",
           "n_scored": 8,
           "n_skipped_both_empty": 0,
           "rouge1": {
-            "precision": 0.9247,
+            "precision": 1.0,
             "recall": 1.0,
-            "fmeasure": 0.9609
+            "fmeasure": 1.0
           },
           "rouge2": {
-            "precision": 0.9221,
+            "precision": 1.0,
             "recall": 1.0,
-            "fmeasure": 0.9595
+            "fmeasure": 1.0
           },
           "rougeL": {
-            "precision": 0.9247,
+            "precision": 1.0,
             "recall": 1.0,
-            "fmeasure": 0.9609
+            "fmeasure": 1.0
           },
           "micro": {
             "rouge1": {
-              "precision": 0.9247,
+              "precision": 1.0,
               "recall": 1.0,
-              "fmeasure": 0.9609
+              "fmeasure": 1.0
             },
             "rouge2": {
-              "precision": 0.9221,
+              "precision": 1.0,
               "recall": 1.0,
-              "fmeasure": 0.9595
+              "fmeasure": 1.0
             },
             "rougeL": {
-              "precision": 0.9247,
+              "precision": 1.0,
               "recall": 1.0,
-              "fmeasure": 0.9609
+              "fmeasure": 1.0
             },
             "denominator_policy": "whole_gold"
           }
@@ -116,16 +122,17 @@
               ]
             }
           ],
+          "subsection_alignment_method": "header_only",
           "aggregation": "micro",
           "n_scored": 8,
           "n_skipped_both_empty": 0,
-          "precision": 0.964637,
-          "recall": 0.995663,
-          "f1": 0.979905,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "micro": {
-            "precision": 0.964637,
-            "recall": 0.995663,
-            "f1": 0.979905,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
             "model_type": "microsoft/deberta-xlarge-mnli",
             "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
           }
@@ -154,12 +161,13 @@
               ]
             }
           ],
+          "subsection_alignment_method": "header_only",
           "aggregation": "micro",
           "n_scored": 8,
           "n_skipped_both_empty": 0,
-          "score": 0.962923,
+          "score": 0.982892,
           "micro": {
-            "score": 0.962923,
+            "score": 0.982892,
             "config_name": "BLEURT-20"
           }
         },
@@ -188,22 +196,23 @@
           ],
           "scope": "subsection",
           "metric": "rougeL",
+          "subsection_alignment_method": "header_only",
           "threshold": 0.1,
-          "micro_soft_precision": 0.7710389610389611,
-          "micro_soft_recall": 0.8303496503496504,
-          "micro_soft_f1": 0.7995959595959596,
+          "micro_soft_precision": 1.0,
+          "micro_soft_recall": 1.0,
+          "micro_soft_f1": 1.0,
           "structure_recall": 1.0,
           "structure_precision": 1.0,
           "matched_pairs": 13,
           "gold_units": 13,
-          "system_units": 14,
+          "system_units": 13,
           "warning_count": 2
         }
       },
       "evaluation": {
-        "generated_at_utc": "2026-08-17T11:39:39.286020+00:00",
-        "gold": "sample_data/gold-output/blackout-gold.json",
-        "system": "sample_data/sysId-output/UW-sys1/blackout-sum.json",
+        "generated_at_utc": "2026-09-07T21:41:00.697691+00:00",
+        "gold": "sample_data/gold-output/blackout/blackout.W1.k1.report.json",
+        "system": "sample_data/sysId-output/UW-sys1/blackout/blackout.W1.k1.report.json",
         "config": "config/evaluation.yaml",
         "view": "single",
         "evaluation_scope": {
@@ -246,34 +255,17 @@
             ],
             "aggregation": "micro",
             "n_scored": 8,
-            "n_compared": 8,
-            "n_zero_scored": 0,
             "n_skipped_both_empty": 0,
             "items": [
               {
-                "unit_id": "subsection:3/3d",
+                "unit_id": "subsection:3/header=rescued persons",
                 "status": "matched",
-                "scores": {
-                  "rouge1": {
-                    "precision": 0.4,
-                    "recall": 1.0,
-                    "fmeasure": 0.5714
-                  },
-                  "rouge2": {
-                    "precision": 0.3793,
-                    "recall": 1.0,
-                    "fmeasure": 0.55
-                  },
-                  "rougeL": {
-                    "precision": 0.4,
-                    "recall": 1.0,
-                    "fmeasure": 0.5714
-                  }
-                }
-              },
-              {
-                "unit_id": "subsection:3/3e",
-                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=rescued persons",
+                "candidate_subsection_id": "3e",
+                "reference_subsection_id": "3e",
+                "candidate_subsection_header": "Rescued persons",
+                "reference_subsection_header": "Rescued persons",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -293,8 +285,14 @@
                 }
               },
               {
-                "unit_id": "subsection:4/4c",
+                "unit_id": "subsection:3/header=trapped persons",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=trapped persons",
+                "candidate_subsection_id": "3d",
+                "reference_subsection_id": "3d",
+                "candidate_subsection_header": "Trapped persons",
+                "reference_subsection_header": "Trapped persons",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -314,8 +312,14 @@
                 }
               },
               {
-                "unit_id": "subsection:5/5a",
+                "unit_id": "subsection:4/header=service disruptions",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=service disruptions",
+                "candidate_subsection_id": "4c",
+                "reference_subsection_id": "4c",
+                "candidate_subsection_header": "Service disruptions",
+                "reference_subsection_header": "Service disruptions",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -335,8 +339,14 @@
                 }
               },
               {
-                "unit_id": "subsection:6/6a",
+                "unit_id": "subsection:5/header=evacuations",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=evacuations",
+                "candidate_subsection_id": "5a",
+                "reference_subsection_id": "5a",
+                "candidate_subsection_header": "Evacuations",
+                "reference_subsection_header": "Evacuations",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -356,8 +366,14 @@
                 }
               },
               {
-                "unit_id": "subsection:7/7a",
+                "unit_id": "subsection:6/header=hazard assessment",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=hazard assessment",
+                "candidate_subsection_id": "6a",
+                "reference_subsection_id": "6a",
+                "candidate_subsection_header": "Hazard assessment",
+                "reference_subsection_header": "Hazard assessment",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -377,8 +393,14 @@
                 }
               },
               {
-                "unit_id": "subsection:8/8a",
+                "unit_id": "subsection:7/header=operational response",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=operational response",
+                "candidate_subsection_id": "7a",
+                "reference_subsection_id": "7a",
+                "candidate_subsection_header": "Operational response",
+                "reference_subsection_header": "Operational response",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -398,8 +420,41 @@
                 }
               },
               {
-                "unit_id": "subsection:11/11b",
+                "unit_id": "subsection:8/header=warnings and alerts",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=warnings and alerts",
+                "candidate_subsection_id": "8a",
+                "reference_subsection_id": "8a",
+                "candidate_subsection_header": "Warnings and alerts",
+                "reference_subsection_header": "Warnings and alerts",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "fmeasure": 1.0
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:11/header=public sentiment",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=public sentiment",
+                "candidate_subsection_id": "11b",
+                "reference_subsection_id": "11b",
+                "candidate_subsection_header": "Public sentiment",
+                "reference_subsection_header": "Public sentiment",
                 "scores": {
                   "rouge1": {
                     "precision": 1.0,
@@ -422,38 +477,38 @@
             "aggregates": {
               "micro": {
                 "rouge1": {
-                  "precision": 0.9247,
+                  "precision": 1.0,
                   "recall": 1.0,
-                  "fmeasure": 0.9609
+                  "fmeasure": 1.0
                 },
                 "rouge2": {
-                  "precision": 0.9221,
+                  "precision": 1.0,
                   "recall": 1.0,
-                  "fmeasure": 0.9595
+                  "fmeasure": 1.0
                 },
                 "rougeL": {
-                  "precision": 0.9247,
+                  "precision": 1.0,
                   "recall": 1.0,
-                  "fmeasure": 0.9609
+                  "fmeasure": 1.0
                 },
                 "denominator_policy": "whole_gold"
               }
             },
             "overall": {
               "rouge1": {
-                "precision": 0.9247,
+                "precision": 1.0,
                 "recall": 1.0,
-                "fmeasure": 0.9609
+                "fmeasure": 1.0
               },
               "rouge2": {
-                "precision": 0.9221,
+                "precision": 1.0,
                 "recall": 1.0,
-                "fmeasure": 0.9595
+                "fmeasure": 1.0
               },
               "rougeL": {
-                "precision": 0.9247,
+                "precision": 1.0,
                 "recall": 1.0,
-                "fmeasure": 0.9609
+                "fmeasure": 1.0
               },
               "denominator_policy": "whole_gold"
             },
@@ -466,33 +521,28 @@
               "denominator": "whole_gold",
               "denominator_policy": "whole_gold",
               "rouge1": {
-                "gold_ngrams": 221,
-                "matched_gold_ngrams": 221,
-                "whole_gold_ngrams": 221,
-                "system_ngrams": 239,
-                "matched_system_ngrams": 239,
-                "whole_system_ngrams": 239,
-                "overlapping_ngrams": 221
+                "gold_ngrams": 230,
+                "matched_gold_ngrams": 230,
+                "whole_gold_ngrams": 230,
+                "system_ngrams": 230,
+                "overlapping_ngrams": 230
               },
               "rouge2": {
-                "gold_ngrams": 213,
-                "matched_gold_ngrams": 213,
-                "whole_gold_ngrams": 213,
-                "system_ngrams": 231,
-                "matched_system_ngrams": 231,
-                "whole_system_ngrams": 231,
-                "overlapping_ngrams": 213
+                "gold_ngrams": 222,
+                "matched_gold_ngrams": 222,
+                "whole_gold_ngrams": 222,
+                "system_ngrams": 222,
+                "overlapping_ngrams": 222
               },
               "rougeL": {
-                "gold_tokens": 221,
-                "matched_gold_tokens": 221,
-                "whole_gold_tokens": 221,
-                "system_tokens": 239,
-                "matched_system_tokens": 239,
-                "whole_system_tokens": 239,
-                "total_lcs_length": 221
+                "gold_tokens": 230,
+                "matched_gold_tokens": 230,
+                "whole_gold_tokens": 230,
+                "system_tokens": 230,
+                "total_lcs_length": 230
               }
-            }
+            },
+            "subsection_alignment_method": "header_only"
           },
           "bertscore": {
             "mode": "subsection",
@@ -519,22 +569,17 @@
             ],
             "aggregation": "micro",
             "n_scored": 8,
-            "n_compared": 8,
-            "n_zero_scored": 0,
             "n_skipped_both_empty": 0,
             "items": [
               {
-                "unit_id": "subsection:3/3d",
+                "unit_id": "subsection:3/header=rescued persons",
                 "status": "matched",
-                "scores": {
-                  "precision": 0.726525,
-                  "recall": 0.922662,
-                  "f1": 0.812931
-                }
-              },
-              {
-                "unit_id": "subsection:3/3e",
-                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=rescued persons",
+                "candidate_subsection_id": "3e",
+                "reference_subsection_id": "3e",
+                "candidate_subsection_header": "Rescued persons",
+                "reference_subsection_header": "Rescued persons",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -542,8 +587,14 @@
                 }
               },
               {
-                "unit_id": "subsection:4/4c",
+                "unit_id": "subsection:3/header=trapped persons",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=trapped persons",
+                "candidate_subsection_id": "3d",
+                "reference_subsection_id": "3d",
+                "candidate_subsection_header": "Trapped persons",
+                "reference_subsection_header": "Trapped persons",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -551,8 +602,14 @@
                 }
               },
               {
-                "unit_id": "subsection:5/5a",
+                "unit_id": "subsection:4/header=service disruptions",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=service disruptions",
+                "candidate_subsection_id": "4c",
+                "reference_subsection_id": "4c",
+                "candidate_subsection_header": "Service disruptions",
+                "reference_subsection_header": "Service disruptions",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -560,8 +617,14 @@
                 }
               },
               {
-                "unit_id": "subsection:6/6a",
+                "unit_id": "subsection:5/header=evacuations",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=evacuations",
+                "candidate_subsection_id": "5a",
+                "reference_subsection_id": "5a",
+                "candidate_subsection_header": "Evacuations",
+                "reference_subsection_header": "Evacuations",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -569,8 +632,14 @@
                 }
               },
               {
-                "unit_id": "subsection:7/7a",
+                "unit_id": "subsection:6/header=hazard assessment",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=hazard assessment",
+                "candidate_subsection_id": "6a",
+                "reference_subsection_id": "6a",
+                "candidate_subsection_header": "Hazard assessment",
+                "reference_subsection_header": "Hazard assessment",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -578,8 +647,14 @@
                 }
               },
               {
-                "unit_id": "subsection:8/8a",
+                "unit_id": "subsection:7/header=operational response",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=operational response",
+                "candidate_subsection_id": "7a",
+                "reference_subsection_id": "7a",
+                "candidate_subsection_header": "Operational response",
+                "reference_subsection_header": "Operational response",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -587,8 +662,29 @@
                 }
               },
               {
-                "unit_id": "subsection:11/11b",
+                "unit_id": "subsection:8/header=warnings and alerts",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=warnings and alerts",
+                "candidate_subsection_id": "8a",
+                "reference_subsection_id": "8a",
+                "candidate_subsection_header": "Warnings and alerts",
+                "reference_subsection_header": "Warnings and alerts",
+                "scores": {
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "f1": 1.0
+                }
+              },
+              {
+                "unit_id": "subsection:11/header=public sentiment",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=public sentiment",
+                "candidate_subsection_id": "11b",
+                "reference_subsection_id": "11b",
+                "candidate_subsection_header": "Public sentiment",
+                "reference_subsection_header": "Public sentiment",
                 "scores": {
                   "precision": 1.0,
                   "recall": 1.0,
@@ -598,20 +694,21 @@
             ],
             "aggregates": {
               "micro": {
-                "precision": 0.964637,
-                "recall": 0.995663,
-                "f1": 0.979905,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
                 "model_type": "microsoft/deberta-xlarge-mnli",
                 "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
               }
             },
             "overall": {
-              "precision": 0.964637,
-              "recall": 0.995663,
-              "f1": 0.979905,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
-            }
+            },
+            "subsection_alignment_method": "header_only"
           },
           "bleurt": {
             "mode": "subsection",
@@ -638,66 +735,113 @@
             ],
             "aggregation": "micro",
             "n_scored": 8,
-            "n_compared": 8,
-            "n_zero_scored": 0,
             "n_skipped_both_empty": 0,
             "items": [
               {
-                "unit_id": "subsection:3/3d",
+                "unit_id": "subsection:3/header=rescued persons",
                 "status": "matched",
-                "score": 0.619554
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=rescued persons",
+                "candidate_subsection_id": "3e",
+                "reference_subsection_id": "3e",
+                "candidate_subsection_header": "Rescued persons",
+                "reference_subsection_header": "Rescued persons",
+                "score": 0.97349
               },
               {
-                "unit_id": "subsection:3/3e",
+                "unit_id": "subsection:3/header=trapped persons",
                 "status": "matched",
-                "score": 0.990208
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=trapped persons",
+                "candidate_subsection_id": "3d",
+                "reference_subsection_id": "3d",
+                "candidate_subsection_header": "Trapped persons",
+                "reference_subsection_header": "Trapped persons",
+                "score": 0.990004
               },
               {
-                "unit_id": "subsection:4/4c",
+                "unit_id": "subsection:4/header=service disruptions",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=service disruptions",
+                "candidate_subsection_id": "4c",
+                "reference_subsection_id": "4c",
+                "candidate_subsection_header": "Service disruptions",
+                "reference_subsection_header": "Service disruptions",
                 "score": 0.984418
               },
               {
-                "unit_id": "subsection:5/5a",
+                "unit_id": "subsection:5/header=evacuations",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=evacuations",
+                "candidate_subsection_id": "5a",
+                "reference_subsection_id": "5a",
+                "candidate_subsection_header": "Evacuations",
+                "reference_subsection_header": "Evacuations",
                 "score": 0.974733
               },
               {
-                "unit_id": "subsection:6/6a",
+                "unit_id": "subsection:6/header=hazard assessment",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=hazard assessment",
+                "candidate_subsection_id": "6a",
+                "reference_subsection_id": "6a",
+                "candidate_subsection_header": "Hazard assessment",
+                "reference_subsection_header": "Hazard assessment",
                 "score": 0.989283
               },
               {
-                "unit_id": "subsection:7/7a",
+                "unit_id": "subsection:7/header=operational response",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=operational response",
+                "candidate_subsection_id": "7a",
+                "reference_subsection_id": "7a",
+                "candidate_subsection_header": "Operational response",
+                "reference_subsection_header": "Operational response",
                 "score": 0.987242
               },
               {
-                "unit_id": "subsection:8/8a",
+                "unit_id": "subsection:8/header=warnings and alerts",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=warnings and alerts",
+                "candidate_subsection_id": "8a",
+                "reference_subsection_id": "8a",
+                "candidate_subsection_header": "Warnings and alerts",
+                "reference_subsection_header": "Warnings and alerts",
                 "score": 0.981614
               },
               {
-                "unit_id": "subsection:11/11b",
+                "unit_id": "subsection:11/header=public sentiment",
                 "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=public sentiment",
+                "candidate_subsection_id": "11b",
+                "reference_subsection_id": "11b",
+                "candidate_subsection_header": "Public sentiment",
+                "reference_subsection_header": "Public sentiment",
                 "score": 0.960771
               }
             ],
             "aggregates": {
               "micro": {
-                "score": 0.962923,
+                "score": 0.982892,
                 "config_name": "BLEURT-20"
               }
             },
             "overall": {
-              "score": 0.962923,
+              "score": 0.982892,
               "config_name": "BLEURT-20"
-            }
+            },
+            "subsection_alignment_method": "header_only"
           }
         },
         "weighted_alignment": {
-          "gold": "sample_data/gold-output/blackout-gold.json",
-          "system": "sample_data/sysId-output/UW-sys1/blackout-sum.json",
+          "gold": "sample_data/gold-output/blackout/blackout.W1.k1.report.json",
+          "system": "sample_data/sysId-output/UW-sys1/blackout/blackout.W1.k1.report.json",
           "metric": "rougeL",
           "threshold": 0.1,
           "configuration": {
@@ -725,6 +869,7 @@
             "alignment_method": "bipartite",
             "alignment_algorithm": "hungarian",
             "on_missing_structure": "warn",
+            "subsection_alignment_method": "header_only",
             "config_path": "config/evaluation.yaml",
             "model": "microsoft/deberta-xlarge-mnli",
             "threshold": 0.1,
@@ -766,18 +911,18 @@
           ],
           "summary": {
             "gold_units": 13,
-            "system_units": 14,
+            "system_units": 13,
             "gold_source_bullets": 13,
-            "system_source_bullets": 14,
+            "system_source_bullets": 13,
             "matched_pairs": 13,
             "compared_groups": 8,
             "groups_with_accepted_pairs": 8,
             "unmatched_gold": 0,
-            "unmatched_system": 1,
-            "mean_positive_edge_weight": 0.8303496503496504,
-            "micro_soft_precision": 0.7710389610389611,
-            "micro_soft_recall": 0.8303496503496504,
-            "micro_soft_f1": 0.7995959595959596,
+            "unmatched_system": 0,
+            "mean_positive_edge_weight": 1.0,
+            "micro_soft_precision": 1.0,
+            "micro_soft_recall": 1.0,
+            "micro_soft_f1": 1.0,
             "gold_groups": 8,
             "system_groups": 8,
             "shared_groups": 8,
@@ -791,33 +936,45 @@
           "groups": [
             {
               "scope": "subsection",
-              "group_id": "11/11b",
+              "group_id": "11/header=public sentiment",
               "section_id": "11",
-              "subsection_id": "11b",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=public sentiment",
               "gold_count": 1,
               "system_count": 1,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.8666666666666667,
-              "soft_precision": 0.8666666666666667,
-              "soft_recall": 0.8666666666666667,
-              "soft_f1": 0.8666666666666667,
-              "total_weight": 0.8666666666666667,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 1.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8666666666666667,
+                  "weight": 1.0,
                   "gold_bullet_id": "11b.1",
                   "system_bullet_id": "11b.1",
+                  "gold_subsection_id": "11b",
+                  "system_subsection_id": "11b",
+                  "gold_subsection_header": "Public sentiment",
+                  "system_subsection_header": "Public sentiment",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.3333333333333333,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "10",
-                    "6",
-                    "62"
+                    "25",
+                    "4",
+                    "59",
+                    "7",
+                    "9"
                   ],
                   "system_tweet_ids": [
-                    "6"
+                    "25",
+                    "4",
+                    "59",
+                    "7",
+                    "9"
                   ],
                   "gold_text": "Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat.",
                   "system_text": "Early reactions mixed confusion and alarm at the scale of the outage with concern about the heat."
@@ -828,118 +985,50 @@
             },
             {
               "scope": "subsection",
-              "group_id": "3/3d",
+              "group_id": "3/header=rescued persons",
               "section_id": "3",
-              "subsection_id": "3d",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=rescued persons",
               "gold_count": 1,
-              "system_count": 2,
+              "system_count": 1,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.8,
-              "soft_precision": 0.4,
-              "soft_recall": 0.8,
-              "soft_f1": 0.5333333333333333,
-              "total_weight": 0.8,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 1.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8,
-                  "gold_bullet_id": "3d.1",
-                  "system_bullet_id": "3d.1",
-                  "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.0,
-                  "gold_tweet_ids": [
-                    "108",
-                    "119",
-                    "62",
-                    "77",
-                    "90"
-                  ],
-                  "system_tweet_ids": [
-                    "100",
-                    "43",
-                    "50",
-                    "76",
-                    "81",
-                    "99"
-                  ],
-                  "gold_text": "Three metro trains carrying 380 passengers were stranded in tunnels between stations.",
-                  "system_text": "Three metro trains carrying 380 passengers were stranded in tunnels between stations."
-                }
-              ],
-              "unmatched_gold": [],
-              "unmatched_system": [
-                {
-                  "section_id": "3",
-                  "subsection_id": "3d",
-                  "bullet_id": "3d.2",
-                  "text": "Dozens of people were trapped in elevators across the city center, prompting warnings not to force lift doors.",
-                  "tweet_ids": [
-                    53,
-                    95
-                  ],
-                  "confidence": "unconfirmed"
-                }
-              ]
-            },
-            {
-              "scope": "subsection",
-              "group_id": "3/3e",
-              "section_id": "3",
-              "subsection_id": "3e",
-              "gold_count": 2,
-              "system_count": 2,
-              "matched_count": 2,
-              "mean_positive_edge_weight": 0.8590909090909091,
-              "soft_precision": 0.8590909090909091,
-              "soft_recall": 0.8590909090909091,
-              "soft_f1": 0.8590909090909091,
-              "total_weight": 1.7181818181818183,
-              "pairs": [
-                {
-                  "gold_index": 0,
-                  "system_index": 0,
-                  "weight": 0.8181818181818182,
+                  "weight": 1.0,
                   "gold_bullet_id": "3e.1",
                   "system_bullet_id": "3e.1",
+                  "gold_subsection_id": "3e",
+                  "system_subsection_id": "3e",
+                  "gold_subsection_header": "Rescued persons",
+                  "system_subsection_header": "Rescued persons",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.09090909090909091,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
+                    "29",
+                    "33",
                     "39",
-                    "42",
-                    "45",
-                    "72",
-                    "83",
-                    "88"
+                    "55",
+                    "68",
+                    "75"
                   ],
                   "system_tweet_ids": [
-                    "38",
-                    "45",
-                    "47",
-                    "48",
-                    "71",
-                    "89"
+                    "29",
+                    "33",
+                    "39",
+                    "55",
+                    "68",
+                    "75"
                   ],
                   "gold_text": "All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations.",
                   "system_text": "All 380 stranded metro passengers were evacuated through the tunnels via controlled walkway evacuations."
-                },
-                {
-                  "gold_index": 1,
-                  "system_index": 1,
-                  "weight": 0.9,
-                  "gold_bullet_id": "3e.2",
-                  "system_bullet_id": "3e.2",
-                  "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.5,
-                  "gold_tweet_ids": [
-                    "36"
-                  ],
-                  "system_tweet_ids": [
-                    "36",
-                    "80"
-                  ],
-                  "gold_text": "Fire crews worked through dozens of elevator entrapment calls.",
-                  "system_text": "Fire crews worked through dozens of elevator entrapment calls."
                 }
               ],
               "unmatched_gold": [],
@@ -947,38 +1036,115 @@
             },
             {
               "scope": "subsection",
-              "group_id": "4/4c",
-              "section_id": "4",
-              "subsection_id": "4c",
-              "gold_count": 3,
-              "system_count": 3,
-              "matched_count": 3,
-              "mean_positive_edge_weight": 0.8133333333333335,
-              "soft_precision": 0.8133333333333335,
-              "soft_recall": 0.8133333333333335,
-              "soft_f1": 0.8133333333333334,
-              "total_weight": 2.4400000000000004,
+              "group_id": "3/header=trapped persons",
+              "section_id": "3",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=trapped persons",
+              "gold_count": 2,
+              "system_count": 2,
+              "matched_count": 2,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 2.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8,
-                  "gold_bullet_id": "4c.1",
-                  "system_bullet_id": "4c.1",
+                  "weight": 1.0,
+                  "gold_bullet_id": "3d.1",
+                  "system_bullet_id": "3d.1",
+                  "gold_subsection_id": "3d",
+                  "system_subsection_id": "3d",
+                  "gold_subsection_header": "Trapped persons",
+                  "system_subsection_header": "Trapped persons",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.0,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "103",
-                    "15",
-                    "24",
+                    "107",
+                    "48",
+                    "59",
+                    "72",
+                    "85",
+                    "99"
+                  ],
+                  "system_tweet_ids": [
+                    "107",
+                    "48",
+                    "59",
+                    "72",
+                    "85",
+                    "99"
+                  ],
+                  "gold_text": "Three metro trains carrying 380 passengers were stranded in tunnels between stations.",
+                  "system_text": "Three metro trains carrying 380 passengers were stranded in tunnels between stations."
+                },
+                {
+                  "gold_index": 1,
+                  "system_index": 1,
+                  "weight": 1.0,
+                  "gold_bullet_id": "3d.2",
+                  "system_bullet_id": "3d.2",
+                  "gold_subsection_id": "3d",
+                  "system_subsection_id": "3d",
+                  "gold_subsection_header": "Trapped persons",
+                  "system_subsection_header": "Trapped persons",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 1.0,
+                  "gold_tweet_ids": [
                     "74"
                   ],
                   "system_tweet_ids": [
-                    "10",
-                    "13",
+                    "74"
+                  ],
+                  "gold_text": "Dozens of people were trapped in elevators across the city center, prompting warnings not to force lift doors.",
+                  "system_text": "Dozens of people were trapped in elevators across the city center, prompting warnings not to force lift doors."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "4/header=service disruptions",
+              "section_id": "4",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=service disruptions",
+              "gold_count": 3,
+              "system_count": 3,
+              "matched_count": 3,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 3.0,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 1.0,
+                  "gold_bullet_id": "4c.1",
+                  "system_bullet_id": "4c.1",
+                  "gold_subsection_id": "4c",
+                  "system_subsection_id": "4c",
+                  "gold_subsection_header": "Service disruptions",
+                  "system_subsection_header": "Service disruptions",
+                  "text_similarity": 1.0,
+                  "tweet_id_similarity": 1.0,
+                  "gold_tweet_ids": [
+                    "101",
                     "14",
-                    "68",
-                    "8"
+                    "21",
+                    "70"
+                  ],
+                  "system_tweet_ids": [
+                    "101",
+                    "14",
+                    "21",
+                    "70"
                   ],
                   "gold_text": "An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout.",
                   "system_text": "An estimated 1.9 million customers lost power across the Grayford metro area, with the cascade taking minutes from first trip to metro-wide blackout."
@@ -986,23 +1152,28 @@
                 {
                   "gold_index": 1,
                   "system_index": 1,
-                  "weight": 0.8,
+                  "weight": 1.0,
                   "gold_bullet_id": "4c.2",
                   "system_bullet_id": "4c.2",
+                  "gold_subsection_id": "4c",
+                  "system_subsection_id": "4c",
+                  "gold_subsection_header": "Service disruptions",
+                  "system_subsection_header": "Service disruptions",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.0,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
                     "111",
-                    "48",
+                    "36",
+                    "58",
                     "64",
-                    "67",
-                    "99"
+                    "94"
                   ],
                   "system_tweet_ids": [
-                    "42",
-                    "51",
-                    "61",
-                    "66"
+                    "111",
+                    "36",
+                    "58",
+                    "64",
+                    "94"
                   ],
                   "gold_text": "The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays.",
                   "system_text": "The Grayford Metro suspended all lines; the airport halted departures for about 90 minutes and suffered evening-long delays."
@@ -1010,26 +1181,20 @@
                 {
                   "gold_index": 2,
                   "system_index": 2,
-                  "weight": 0.8400000000000001,
+                  "weight": 1.0,
                   "gold_bullet_id": "4c.3",
                   "system_bullet_id": "4c.3",
+                  "gold_subsection_id": "4c",
+                  "system_subsection_id": "4c",
+                  "gold_subsection_header": "Service disruptions",
+                  "system_subsection_header": "Service disruptions",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.2,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "11",
-                    "13",
-                    "30",
-                    "53",
-                    "7",
-                    "9"
+                    "10"
                   ],
                   "system_tweet_ids": [
-                    "24",
-                    "29",
-                    "5",
-                    "55",
-                    "7",
-                    "9"
+                    "10"
                   ],
                   "gold_text": "Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections.",
                   "system_text": "Traffic signals failed citywide, causing gridlock and requiring police control at 40 major intersections."
@@ -1040,41 +1205,47 @@
             },
             {
               "scope": "subsection",
-              "group_id": "5/5a",
+              "group_id": "5/header=evacuations",
               "section_id": "5",
-              "subsection_id": "5a",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=evacuations",
               "gold_count": 1,
               "system_count": 1,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.8181818181818182,
-              "soft_precision": 0.8181818181818182,
-              "soft_recall": 0.8181818181818182,
-              "soft_f1": 0.8181818181818182,
-              "total_weight": 0.8181818181818182,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 1.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8181818181818182,
+                  "weight": 1.0,
                   "gold_bullet_id": "5a.1",
                   "system_bullet_id": "5a.1",
+                  "gold_subsection_id": "5a",
+                  "system_subsection_id": "5a",
+                  "gold_subsection_header": "Evacuations",
+                  "system_subsection_header": "Evacuations",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.09090909090909091,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "32",
-                    "41",
-                    "47",
-                    "68",
-                    "69",
-                    "84"
+                    "27",
+                    "35",
+                    "40",
+                    "61",
+                    "65",
+                    "79"
                   ],
                   "system_tweet_ids": [
-                    "31",
-                    "41",
-                    "63",
-                    "67",
-                    "74",
-                    "90"
+                    "27",
+                    "35",
+                    "40",
+                    "61",
+                    "65",
+                    "79"
                   ],
                   "gold_text": "Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains.",
                   "system_text": "Controlled evacuations moved 380 passengers along tunnel walkways from three stranded metro trains."
@@ -1085,41 +1256,47 @@
             },
             {
               "scope": "subsection",
-              "group_id": "6/6a",
+              "group_id": "6/header=hazard assessment",
               "section_id": "6",
-              "subsection_id": "6a",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=hazard assessment",
               "gold_count": 2,
               "system_count": 2,
               "matched_count": 2,
-              "mean_positive_edge_weight": 0.8290909090909091,
-              "soft_precision": 0.8290909090909091,
-              "soft_recall": 0.8290909090909091,
-              "soft_f1": 0.8290909090909091,
-              "total_weight": 1.6581818181818182,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 2.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8400000000000001,
+                  "weight": 1.0,
                   "gold_bullet_id": "6a.1",
                   "system_bullet_id": "6a.1",
+                  "gold_subsection_id": "6a",
+                  "system_subsection_id": "6a",
+                  "gold_subsection_header": "Hazard assessment",
+                  "system_subsection_header": "Hazard assessment",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.2,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "17",
-                    "18",
-                    "19",
-                    "20",
-                    "22",
-                    "25"
-                  ],
-                  "system_tweet_ids": [
-                    "10",
-                    "12",
+                    "11",
+                    "13",
+                    "15",
                     "16",
                     "17",
-                    "18",
-                    "21"
+                    "22"
+                  ],
+                  "system_tweet_ids": [
+                    "11",
+                    "13",
+                    "15",
+                    "16",
+                    "17",
+                    "22"
                   ],
                   "gold_text": "The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life.",
                   "system_text": "The primary hazard was the loss of electricity for up to 54 hours during a record heat wave, making heat exposure the leading threat to life."
@@ -1127,26 +1304,30 @@
                 {
                   "gold_index": 1,
                   "system_index": 1,
-                  "weight": 0.8181818181818182,
+                  "weight": 1.0,
                   "gold_bullet_id": "6a.3",
                   "system_bullet_id": "6a.3",
+                  "gold_subsection_id": "6a",
+                  "system_subsection_id": "6a",
+                  "gold_subsection_header": "Hazard assessment",
+                  "system_subsection_header": "Hazard assessment",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.09090909090909091,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "29",
-                    "34",
-                    "35",
+                    "30",
+                    "32",
+                    "37",
                     "38",
-                    "43",
+                    "41",
                     "46"
                   ],
                   "system_tweet_ids": [
                     "30",
-                    "34",
-                    "44",
-                    "49",
-                    "55",
-                    "62"
+                    "32",
+                    "37",
+                    "38",
+                    "41",
+                    "46"
                   ],
                   "gold_text": "Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines.",
                   "system_text": "Secondary hazards included darkened intersections, elevator and tunnel entrapments, high-rise water loss, and cold-chain risk to medicines."
@@ -1157,40 +1338,47 @@
             },
             {
               "scope": "subsection",
-              "group_id": "7/7a",
+              "group_id": "7/header=operational response",
               "section_id": "7",
-              "subsection_id": "7a",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=operational response",
               "gold_count": 1,
               "system_count": 1,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.8200000000000001,
-              "soft_precision": 0.8200000000000001,
-              "soft_recall": 0.8200000000000001,
-              "soft_f1": 0.8200000000000001,
-              "total_weight": 0.8200000000000001,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 1.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8200000000000001,
+                  "weight": 1.0,
                   "gold_bullet_id": "7a.2",
                   "system_bullet_id": "7a.2",
+                  "gold_subsection_id": "7a",
+                  "system_subsection_id": "7a",
+                  "gold_subsection_header": "Operational response",
+                  "system_subsection_header": "Operational response",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.1,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "104",
-                    "59",
-                    "78",
-                    "86",
-                    "87"
+                    "42",
+                    "56",
+                    "73",
+                    "80",
+                    "81",
+                    "84"
                   ],
                   "system_tweet_ids": [
-                    "101",
-                    "59",
-                    "60",
-                    "70",
-                    "77",
-                    "79"
+                    "42",
+                    "56",
+                    "73",
+                    "80",
+                    "81",
+                    "84"
                   ],
                   "gold_text": "Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections.",
                   "system_text": "Fire crews extinguished the substation fire and cleared dozens of elevator entrapments; police controlled traffic at 40 major intersections."
@@ -1201,41 +1389,47 @@
             },
             {
               "scope": "subsection",
-              "group_id": "8/8a",
+              "group_id": "8/header=warnings and alerts",
               "section_id": "8",
-              "subsection_id": "8a",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=warnings and alerts",
               "gold_count": 2,
               "system_count": 2,
               "matched_count": 2,
-              "mean_positive_edge_weight": 0.8366666666666667,
-              "soft_precision": 0.8366666666666667,
-              "soft_recall": 0.8366666666666667,
-              "soft_f1": 0.8366666666666667,
-              "total_weight": 1.6733333333333333,
+              "mean_positive_edge_weight": 1.0,
+              "soft_precision": 1.0,
+              "soft_recall": 1.0,
+              "soft_f1": 1.0,
+              "total_weight": 2.0,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.8400000000000001,
+                  "weight": 1.0,
                   "gold_bullet_id": "8a.1",
                   "system_bullet_id": "8a.1",
+                  "gold_subsection_id": "8a",
+                  "system_subsection_id": "8a",
+                  "gold_subsection_header": "Warnings and alerts",
+                  "system_subsection_header": "Warnings and alerts",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.2,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
-                    "33",
-                    "37",
-                    "40",
-                    "51",
-                    "52",
-                    "57"
+                    "28",
+                    "31",
+                    "34",
+                    "44",
+                    "49",
+                    "52"
                   ],
                   "system_tweet_ids": [
-                    "32",
-                    "37",
-                    "39",
-                    "40",
-                    "54",
-                    "56"
+                    "28",
+                    "31",
+                    "34",
+                    "44",
+                    "49",
+                    "52"
                   ],
                   "gold_text": "Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors.",
                   "system_text": "Authorities told drivers to treat all dark signals as four-way stops and warned against forcing elevator doors."
@@ -1243,21 +1437,30 @@
                 {
                   "gold_index": 1,
                   "system_index": 1,
-                  "weight": 0.8333333333333334,
+                  "weight": 1.0,
                   "gold_bullet_id": "8a.2",
                   "system_bullet_id": "8a.2",
+                  "gold_subsection_id": "8a",
+                  "system_subsection_id": "8a",
+                  "gold_subsection_header": "Warnings and alerts",
+                  "system_subsection_header": "Warnings and alerts",
                   "text_similarity": 1.0,
-                  "tweet_id_similarity": 0.16666666666666666,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
                     "120",
-                    "123",
-                    "125"
+                    "122",
+                    "124",
+                    "126",
+                    "127",
+                    "128"
                   ],
                   "system_tweet_ids": [
-                    "113",
-                    "115",
-                    "119",
-                    "123"
+                    "120",
+                    "122",
+                    "124",
+                    "126",
+                    "127",
+                    "128"
                   ],
                   "gold_text": "Water customers were advised to fill containers pre-emptively and later to flush taps before drinking.",
                   "system_text": "Water customers were advised to fill containers pre-emptively and later to flush taps before drinking."
@@ -1293,39 +1496,40 @@
                 ]
               }
             ],
+            "subsection_alignment_method": "header_only",
             "aggregation": "micro",
             "n_scored": 8,
             "n_skipped_both_empty": 0,
             "rouge1": {
-              "precision": 0.9247,
+              "precision": 1.0,
               "recall": 1.0,
-              "fmeasure": 0.9609
+              "fmeasure": 1.0
             },
             "rouge2": {
-              "precision": 0.9221,
+              "precision": 1.0,
               "recall": 1.0,
-              "fmeasure": 0.9595
+              "fmeasure": 1.0
             },
             "rougeL": {
-              "precision": 0.9247,
+              "precision": 1.0,
               "recall": 1.0,
-              "fmeasure": 0.9609
+              "fmeasure": 1.0
             },
             "micro": {
               "rouge1": {
-                "precision": 0.9247,
+                "precision": 1.0,
                 "recall": 1.0,
-                "fmeasure": 0.9609
+                "fmeasure": 1.0
               },
               "rouge2": {
-                "precision": 0.9221,
+                "precision": 1.0,
                 "recall": 1.0,
-                "fmeasure": 0.9595
+                "fmeasure": 1.0
               },
               "rougeL": {
-                "precision": 0.9247,
+                "precision": 1.0,
                 "recall": 1.0,
-                "fmeasure": 0.9609
+                "fmeasure": 1.0
               },
               "denominator_policy": "whole_gold"
             }
@@ -1354,16 +1558,17 @@
                 ]
               }
             ],
+            "subsection_alignment_method": "header_only",
             "aggregation": "micro",
             "n_scored": 8,
             "n_skipped_both_empty": 0,
-            "precision": 0.964637,
-            "recall": 0.995663,
-            "f1": 0.979905,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
             "micro": {
-              "precision": 0.964637,
-              "recall": 0.995663,
-              "f1": 0.979905,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
             }
@@ -1392,12 +1597,13 @@
                 ]
               }
             ],
+            "subsection_alignment_method": "header_only",
             "aggregation": "micro",
             "n_scored": 8,
             "n_skipped_both_empty": 0,
-            "score": 0.962923,
+            "score": 0.982892,
             "micro": {
-              "score": 0.962923,
+              "score": 0.982892,
               "config_name": "BLEURT-20"
             }
           },
@@ -1426,15 +1632,16 @@
             ],
             "scope": "subsection",
             "metric": "rougeL",
+            "subsection_alignment_method": "header_only",
             "threshold": 0.1,
-            "micro_soft_precision": 0.7710389610389611,
-            "micro_soft_recall": 0.8303496503496504,
-            "micro_soft_f1": 0.7995959595959596,
+            "micro_soft_precision": 1.0,
+            "micro_soft_recall": 1.0,
+            "micro_soft_f1": 1.0,
             "structure_recall": 1.0,
             "structure_precision": 1.0,
             "matched_pairs": 13,
             "gold_units": 13,
-            "system_units": 14,
+            "system_units": 13,
             "warning_count": 2
           }
         }
@@ -1456,10 +1663,10 @@
         },
         "bullets": {
           "gold": 13,
-          "system": 14,
+          "system": 13,
           "matched": 13,
           "unmatched_gold": 0,
-          "unmatched_system": 1
+          "unmatched_system": 0
         }
       },
       "diagnostics": {
@@ -1480,10 +1687,10 @@
           },
           "bullets": {
             "gold": 13,
-            "system": 14,
+            "system": 13,
             "matched": 13,
             "unmatched_gold": 0,
-            "unmatched_system": 1
+            "unmatched_system": 0
           }
         }
       }

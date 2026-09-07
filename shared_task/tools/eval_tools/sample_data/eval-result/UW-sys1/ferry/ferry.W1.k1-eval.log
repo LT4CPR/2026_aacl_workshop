@@ -1,0 +1,139 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-07T21:43:07.280998+00:00
+Config           : config/evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : ferry/ferry.W1.k1
+Crisis ID           : ferry
+Cell ID             : ferry.W1.k1
+System ID           : UW-sys1
+
+Gold                : sample_data/gold-output/ferry/ferry.W1.k1.report.json
+System              : sample_data/sysId-output/UW-sys1/ferry/ferry.W1.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 1.0000
+  ROUGE-2 F1  : 1.0000
+  ROUGE-L F1  : 1.0000
+
+BERTScore (Subsection)
+  Precision   : 1.0000
+  Recall      : 1.0000
+  F1          : 1.0000
+
+BLEURT (Subsection)
+  Score       : 0.9810
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 1.0000
+Soft Recall         : 1.0000
+Soft F1             : 1.0000
+
+Matched pairs       : 7
+Unmatched gold      : 0
+Unmatched system    : 0
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys1           1.0000      1.0000      1.0000        1.0000   0.9810            1.0000
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+subsections: gold=5 system=5 matched=5 unmatched_gold=0 unmatched_system=0
+bullets: gold=7 system=7 matched=7 unmatched_gold=0 unmatched_system=0
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=5 matched_units=5 scored_units=5 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=97 system_ngrams=97 overlapping_ngrams=97
+  rouge2: gold_ngrams=92 system_ngrams=92 overlapping_ngrams=92
+  rougeL: gold_tokens=97 system_tokens=97 total_lcs_length=97
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=rescued persons
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=3c.1 system=3c.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=Ninety-six people were recovered from the water in the first phase of the response.
+    system_text=Ninety-six people were recovered from the water in the first phase of the response.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=treatment and admissions
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=3d.3 system=3d.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=The hospital activated its major incident plan and ambulances staged at the ferry terminal.
+    system_text=The hospital activated its major incident plan and ambulances staged at the ferry terminal.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=The MV Sable Crest capsized and sank in the Marnesh Straits.
+    system_text=The MV Sable Crest capsized and sank in the Marnesh Straits.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=1 system=1 matched=1 soft_f1=1.0000
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=Survivors were recovered from the water and brought ashore at Halvary by coastguard vessels, helicopters and fishing boats.
+    system_text=Survivors were recovered from the water and brought ashore at Halvary by coastguard vessels, helicopters and fishing boats.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=3 system=3 matched=3 soft_f1=1.0000
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=The Marnesh Coastguard tasked search and rescue assets in response to the distress call.
+    system_text=The Marnesh Coastguard tasked search and rescue assets in response to the distress call.
+  - gold=7a.2 system=7a.2
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=Multiple vessels and rescue helicopters from two stations operated on scene.
+    system_text=Multiple vessels and rescue helicopters from two stations operated on scene.
+  - gold=7a.3 system=7a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=1.0000
+    gold_text=Halvary General Hospital activated its major incident plan with ambulances staging at the terminal.
+    system_text=Halvary General Hospital activated its major incident plan with ambulances staging at the terminal.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

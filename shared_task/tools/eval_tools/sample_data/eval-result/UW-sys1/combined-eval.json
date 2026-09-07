@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-17T11:40:40.430800+00:00",
+  "generated_at_utc": "2026-09-07T21:43:07.280998+00:00",
   "config": "config/evaluation.yaml",
   "gold_dir": "sample_data/gold-output",
   "system_dir": "sample_data/sysId-output/UW-sys1",
@@ -18,49 +18,73 @@
     ],
     "source": "config"
   },
+  "subsection_alignment_method": "header_only",
   "aggregation": {
-    "level": "across_disasters",
+    "level": "across_instances",
     "method": "macro",
-    "note": "Overall macro results are the equal-weight mean of the selected overall result from each scored disaster."
+    "note": "Overall macro results are the equal-weight mean of the selected overall result from each scored test instance across all crises."
   },
-  "disaster_count": 4,
-  "scored_disaster_count": 4,
-  "disaster_ids": [
+  "instance_count": 16,
+  "scored_instance_count": 16,
+  "crisis_count": 8,
+  "crisis_ids": [
     "blackout",
     "conflict",
     "crowdcrush",
-    "epidemic"
+    "epidemic",
+    "ferry",
+    "flood",
+    "volcano",
+    "wildfire"
+  ],
+  "instance_ids": [
+    "blackout/blackout.W1.k1",
+    "blackout/blackout.W4.k1",
+    "conflict/conflict.W1.k1",
+    "conflict/conflict.W4.k1",
+    "crowdcrush/crowdcrush.W1.k1",
+    "crowdcrush/crowdcrush.W4.k1",
+    "epidemic/epidemic.W1.k1",
+    "epidemic/epidemic.W4.k1",
+    "ferry/ferry.W1.k1",
+    "ferry/ferry.W4.k1",
+    "flood/flood.W1.k1",
+    "flood/flood.W4.k1",
+    "volcano/volcano.W1.k1",
+    "volcano/volcano.W4.k1",
+    "wildfire/wildfire.W1.k1",
+    "wildfire/wildfire.W4.k1"
   ],
   "coverage_ratio": 1.0,
-  "failed_disasters": [],
+  "failed_instances": [],
   "overall_macro": {
     "rouge1": {
-      "precision": 0.9495,
-      "recall": 0.990025,
-      "fmeasure": 0.969225
+      "precision": 0.600131,
+      "recall": 0.665563,
+      "fmeasure": 0.622963
     },
     "rouge2": {
-      "precision": 0.94775,
-      "recall": 0.989475,
-      "fmeasure": 0.96805
+      "precision": 0.536175,
+      "recall": 0.560031,
+      "fmeasure": 0.544425
     },
     "rougeL": {
-      "precision": 0.9495,
-      "recall": 0.990025,
-      "fmeasure": 0.969225
+      "precision": 0.574188,
+      "recall": 0.62325,
+      "fmeasure": 0.591213
     },
     "bertscore": {
-      "precision": 0.973215,
-      "recall": 0.990401,
-      "f1": 0.981713
+      "precision": 0.784917,
+      "recall": 0.817583,
+      "f1": 0.800013
     },
     "bleurt": {
-      "score": 0.955491
+      "score": 0.703378
     },
     "weighted_alignment": {
-      "precision": 0.776449,
-      "recall": 0.811712,
-      "f1": 0.793606,
+      "precision": 0.535165,
+      "recall": 0.626659,
+      "f1": 0.554199,
       "scope": "subsection",
       "metric": "rougeL"
     }
@@ -68,9 +92,9 @@
   "primary_score": {
     "method": "mean_bertscore_f1_bleurt",
     "components": {
-      "bertscore_f1": 0.981713,
-      "bleurt": 0.955491
+      "bertscore_f1": 0.800013,
+      "bleurt": 0.703378
     },
-    "score": 0.968602
+    "score": 0.751696
   }
 }
