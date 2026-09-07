@@ -3,6 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from subsection_alignment import (
+    DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+    subsection_alignment_key,
+)
+
 
 SubsectionKey = tuple[str, str]
 BulletUnit = dict[str, Any]
@@ -103,11 +108,13 @@ def _section_direct_bullets(section: dict[str, Any]) -> list[dict[str, Any]]:
 def _bullet_unit(
     section_id: str,
     subsection_id: str,
+    subsection_title: str,
     bullet: dict[str, Any],
 ) -> BulletUnit:
     return {
         "section_id": section_id,
         "subsection_id": subsection_id,
+        "subsection_title": subsection_title,
         "bullet_id": bullet.get("id"),
         "text": bullet.get("text", ""),
         "tweet_ids": bullet.get("tweet_ids", []),
@@ -117,8 +124,9 @@ def _bullet_unit(
 
 def extract_bullets_by_subsection(
     sitrep_json: dict[str, Any],
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
 ) -> dict[SubsectionKey, list[BulletUnit]]:
-    """Extract bullets by subsection key."""
+    """Extract bullets by the configured dynamic subsection key."""
 
     bullets_by_subsection: dict[SubsectionKey, list[BulletUnit]] = {}
 
@@ -128,38 +136,6 @@ def extract_bullets_by_subsection(
                 f"section at index {section_index} must be an object",
                 code="invalid_section_type",
             )
-        raw_subsections = section.get("subsections", []) or []
-        if not isinstance(raw_subsections, list):
-            raise UnitExtractionError(
-                f"section at index {section_index} has non-list 'subsections'",
-                code="invalid_subsections_type",
-            )
-        scorable_subsections: list[tuple[int, dict[str, Any], list[Any]]] = []
-        for subsection_index, subsection in enumerate(raw_subsections):
-            if not isinstance(subsection, dict):
-                raise UnitExtractionError(
-                    f"subsection at section index {section_index}, index "
-                    f"{subsection_index} must be an object",
-                    code="invalid_subsection_type",
-                )
-            bullets = subsection.get("bullets", []) or []
-            if not isinstance(bullets, list):
-                raise UnitExtractionError(
-                    f"subsection at section index {section_index}, index "
-                    f"{subsection_index} has non-list 'bullets'",
-                    code="invalid_bullets_field",
-                )
-            if bullets:
-                scorable_subsections.append(
-                    (subsection_index, subsection, bullets)
-                )
-
-        direct_bullets = _section_direct_bullets(section)
-        if not direct_bullets and not scorable_subsections:
-            # Header-only containers have no scoring unit, so their IDs are
-            # irrelevant and they are equivalent to absent structure.
-            continue
-
         section_id = str(section.get("id", "")).strip()
         if not section_id:
             raise UnitExtractionError(
@@ -167,31 +143,55 @@ def extract_bullets_by_subsection(
                 code="missing_section_id",
             )
 
-        for subsection_index, subsection, raw_bullets in scorable_subsections:
-            subsection_id = str(subsection.get("id", "")).strip()
-            if not subsection_id:
+        for subsection_index, subsection in enumerate(
+            section.get("subsections", []) or []
+        ):
+            if not isinstance(subsection, dict):
                 raise UnitExtractionError(
                     f"subsection at section {section_id}, index "
-                    f"{subsection_index} has no id",
-                    code="missing_subsection_id",
+                    f"{subsection_index} must be an object",
+                    code="invalid_subsection_type",
                 )
+            subsection_id = str(subsection.get("id", "")).strip()
+            subsection_title = str(subsection.get("title", "")).strip()
+            try:
+                alignment_key = subsection_alignment_key(
+                    subsection_id,
+                    subsection_title,
+                    subsection_alignment_method,
+                )
+            except ValueError as exc:
+                missing_field = (
+                    "header" if "header" in str(exc) else "id"
+                )
+                raise UnitExtractionError(
+                    f"subsection at section {section_id}, index "
+                    f"{subsection_index}: {exc}",
+                    code=f"missing_subsection_{missing_field}",
+                ) from exc
 
-            key = (section_id, subsection_id)
+            key = (section_id, alignment_key)
             if key in bullets_by_subsection:
                 raise UnitExtractionError(
-                    f"duplicate subsection key: {key!r}",
+                    "duplicate subsection alignment key within section "
+                    f"{section_id!r}: {alignment_key!r}",
                     code="duplicate_subsection_key",
                 )
 
             bullets: list[BulletUnit] = []
 
-            for bullet in raw_bullets:
+            for bullet in subsection.get("bullets", []) or []:
                 if not isinstance(bullet, dict):
                     raise UnitExtractionError(
                         f"bullet in subsection {key!r} must be an object",
                         code="invalid_bullet_type",
                     )
-                bullets.append(_bullet_unit(section_id, subsection_id, bullet))
+                bullets.append(_bullet_unit(
+                    section_id,
+                    subsection_id,
+                    subsection_title,
+                    bullet,
+                ))
 
             bullets_by_subsection[key] = bullets
 
@@ -210,25 +210,24 @@ def _collect_section_level_bullets(
                 f"section at index {section_index} must be an object",
                 code="invalid_section_type",
             )
-        direct = _section_direct_bullets(section)
-        if not direct:
-            continue
         section_id = str(section.get("id", "")).strip()
         if not section_id:
             raise UnitExtractionError(
                 f"section at index {section_index} has no id",
                 code="missing_section_id",
             )
-        bullets: list[BulletUnit] = []
-        for bullet_index, bullet in enumerate(direct):
-            if not isinstance(bullet, dict):
-                raise UnitExtractionError(
-                    f"bullet at section {section_id}, index "
-                    f"{bullet_index} must be an object",
-                    code="invalid_bullet_type",
-                )
-            bullets.append(_bullet_unit(section_id, "_direct", bullet))
-        grouped[section_id] = bullets
+        direct = _section_direct_bullets(section)
+        if direct:
+            bullets: list[BulletUnit] = []
+            for bullet_index, bullet in enumerate(direct):
+                if not isinstance(bullet, dict):
+                    raise UnitExtractionError(
+                        f"bullet at section {section_id}, index "
+                        f"{bullet_index} must be an object",
+                        code="invalid_bullet_type",
+                    )
+                bullets.append(_bullet_unit(section_id, "_direct", "", bullet))
+            grouped[section_id] = bullets
     return grouped
 
 
@@ -237,6 +236,7 @@ def extract_units_by_group(
     mode: int,
     unit_mode: str,
     selected_sections: tuple[str, ...] | None = None,
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
 ) -> ExtractionResult:
     """Extract comparison units for the selected scope."""
     if mode not in MODE_SCOPE:
@@ -295,7 +295,13 @@ def extract_units_by_group(
             count=sum(len(bullets) for bullets in section_level.values()),
         ))
 
-    by_subsection = extract_bullets_by_subsection(working_document)
+    effective_subsection_alignment_method = (
+        subsection_alignment_method if mode == 3 else "id_only"
+    )
+    by_subsection = extract_bullets_by_subsection(
+        working_document,
+        effective_subsection_alignment_method,
+    )
     grouped: dict[SubsectionKey, list[BulletUnit]] = {}
 
     if mode == 1:
@@ -321,14 +327,6 @@ def extract_units_by_group(
     else:
         grouped = {key: list(bullets) for key, bullets in by_subsection.items()}
 
-    # A structural header with no content is equivalent to an absent group for
-    # scoring.  Keeping empty keys would change structure precision/recall even
-    # though there is no text or bullet to evaluate.
-    if mode in {2, 3}:
-        grouped = {
-            key: bullets for key, bullets in grouped.items() if bullets
-        }
-
     if unit_mode == "bullet":
         if not grouped and not any(
             warning["code"] == "missing_section_structure" for warning in warnings
@@ -353,7 +351,13 @@ def extract_units_by_group(
         )
         text_groups[key] = [] if not text else [{
             "section_id": key[0],
-            "subsection_id": key[1],
+            "subsection_id": (
+                bullets[0].get("subsection_id") if bullets else None
+            ),
+            "subsection_title": (
+                bullets[0].get("subsection_title") if bullets else None
+            ),
+            "subsection_alignment_key": key[1],
             "bullet_id": None,
             "text": text,
             "tweet_ids": [
