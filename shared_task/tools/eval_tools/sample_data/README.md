@@ -1,64 +1,73 @@
 # Sample Data Directory
 
-This directory shows the input and output layout expected by the evaluator.
-It documents directory placement and filename conventions rather than the
-internal SITREP JSON schema.
+This directory demonstrates the evaluation layout for the official shared-task
+test format. The evaluator reads only `gold-output/` and the selected system
+directory under `sysId-output/`; `train/` contains source examples and is not
+read during scoring.
 
 ## Directory structure
 
 ```text
 sample_data/
 ├── gold-output/
-│   └── <disaster-id>-gold.json
+│   ├── <crisis-1>/
+│   │   ├── <cell-1>.report.json
+│   │   └── <cell-2>.report.json
+│   └── <crisis-2>/
+│       └── <cell-3>.report.json
 ├── sysId-output/
 │   └── <system-id>/
-│       └── <disaster-id>-sum.json
+│       ├── <crisis-1>/
+│       │   ├── <cell-1>.report.json
+│       │   └── <cell-2>.report.json
+│       └── <crisis-2>/
+│           └── <cell-3>.report.json
 └── eval-result/
     └── <system-id>/
-        ├── <disaster-id>-eval.json
-        ├── <disaster-id>-eval.log
+        ├── <crisis-1>/
+        │   ├── <cell-1>-eval.json
+        │   ├── <cell-1>-eval.log
+        │   ├── <cell-2>-eval.json
+        │   └── <cell-2>-eval.log
+        ├── <crisis-2>/
+        │   ├── <cell-3>-eval.json
+        │   └── <cell-3>-eval.log
         ├── combined-eval.json
         └── combined-eval.log
 ```
 
-Each input directory may contain multiple disaster files. Each participating
-system must use a separate `<system-id>` directory under `sysId-output/`.
-Evaluation results for that system are written to the matching `<system-id>`
-directory under `eval-result/`.
-
-## Input filenames
-
-| Directory | Filename format | Contents |
-| --- | --- | --- |
-| `gold-output/` | `<disaster-id>-gold.json` | One Gold SITREP for a disaster. |
-| `sysId-output/<system-id>/` | `<disaster-id>-sum.json` | One System SITREP for the same disaster. |
-
-The evaluator pairs files by the exact `<disaster-id>` prefix. For example:
+One crisis can contain multiple independent test instances. For example, the
+Gold and System files below form one evaluation pair:
 
 ```text
-gold-output/blackout-gold.json
-sysId-output/UW-sys1/blackout-sum.json
+gold-output/tornado/tornado.W2.k3.report.json
+sysId-output/retrieval-llm/tornado/tornado.W2.k3.report.json
 ```
 
-Both files form the `blackout` evaluation pair. Input JSON files must be direct
-children of their respective directories and must use the required suffix.
-A missing Gold or System counterpart makes that disaster incomplete.
+Pairing uses the complete relative identity `tornado/tornado.W2.k3`. Matching
+only a filename or only a crisis name is insufficient. A missing Gold or
+System counterpart makes that specific instance incomplete.
 
-## Evaluation-result filenames
+The crisis directories must be direct children of `gold-output/` and each
+`sysId-output/<system-id>/` directory. Do not insert an additional `test/`
+layer. Input filenames must end in `.report.json`.
 
-For every discovered disaster pair, the evaluator writes:
+## Evaluation results
 
-| Filename | Contents |
-| --- | --- |
-| `<disaster-id>-eval.json` | Machine-readable metrics, scores, warnings, and diagnostics for one Gold/System pair. |
-| `<disaster-id>-eval.log` | Human-readable evaluation report for the same pair. |
+For every discovered instance, the evaluator mirrors the crisis directory and
+writes `<cell>-eval.json` plus `<cell>-eval.log`. It does not create a
+crisis-level combined file.
 
-After all disaster pairs have been processed, the evaluator also writes:
+At the system result root, `combined-eval.json` and `combined-eval.log` combine
+all cells from all crises. The combined metrics are equal-weight macro averages
+over successfully scored test instances. Consequently, every cell has equal
+weight; a crisis with more cells contributes more cells to the final average.
 
-| Filename | Contents |
-| --- | --- |
-| `combined-eval.json` | Machine-readable coverage, failed-disaster information, across-disaster macro results, and the primary score. |
-| `combined-eval.log` | Human-readable summary of the combined evaluation. |
+`combined-eval.json` records `crisis_ids`, `instance_ids`, instance coverage,
+failed instances, the overall macro metrics, and the primary score. A complete
+official run must have `coverage_ratio: 1.0` and an empty `failed_instances`
+list.
 
-The evaluator creates the `eval-result/<system-id>/` directory when needed and
-replaces evaluator output files from an earlier run in that directory.
+The evaluator creates `eval-result/<system-id>/` when needed and replaces
+evaluator-generated result files from an earlier run. Every result records the
+evaluation scope and subsection-alignment method for auditing.
