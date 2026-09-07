@@ -8,9 +8,6 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-OFFICIAL_SCORED_SECTION_IDS = tuple(str(section_id) for section_id in range(3, 12))
-
-
 @dataclass(frozen=True)
 class EvaluationScope:
     """Resolved section selection and where it came from."""
@@ -26,9 +23,9 @@ class EvaluationScope:
 
 
 def _normalize_section_values(value: Any, *, location: str) -> tuple[str, ...] | None:
-    """Normalize explicit section IDs or the all-available-sections sentinel."""
+    """Normalize ``all`` or a sequence/comma-list of section IDs."""
     if value is None:
-        return OFFICIAL_SCORED_SECTION_IDS
+        return None
     if isinstance(value, str):
         stripped = value.strip()
         if stripped.lower() == "all":
@@ -52,10 +49,6 @@ def _normalize_section_values(value: Any, *, location: str) -> tuple[str, ...] |
             normalized.append(section_id)
     if not normalized:
         raise ValueError(f"{location} must contain at least one section ID or 'all'")
-    if any(section_id.lower() == "all" for section_id in normalized):
-        if len(normalized) != 1:
-            raise ValueError(f"{location} must use 'all' by itself")
-        return None
     return tuple(normalized)
 
 
@@ -72,11 +65,11 @@ def load_configured_scope(config_path: Path) -> EvaluationScope:
     raw = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
     scope = raw.get("evaluation_scope")
     if scope is None:
-        return EvaluationScope(OFFICIAL_SCORED_SECTION_IDS, "default")
+        return EvaluationScope(None, "default")
     if not isinstance(scope, dict):
         raise ValueError("evaluation_scope must be a mapping")
     section_ids = _normalize_section_values(
-        scope.get("sections", OFFICIAL_SCORED_SECTION_IDS),
+        scope.get("sections", "all"),
         location="evaluation_scope.sections",
     )
     return EvaluationScope(section_ids, "config")

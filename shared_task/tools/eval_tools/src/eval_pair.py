@@ -338,6 +338,9 @@ def _metric_overall_summary(name: str, block: dict[str, Any]) -> dict[str, Any]:
         "status": block.get("status", "scored"),
         "reason": block.get("reason"),
         "warnings": block.get("warnings", []),
+        "subsection_alignment_method": block.get(
+            "subsection_alignment_method"
+        ),
         "aggregation": block.get("aggregation"),
         "n_scored": block.get("n_scored"),
         "n_skipped_both_empty": block.get("n_skipped_both_empty", 0),
@@ -384,6 +387,9 @@ def build_flat_summary(payload: dict[str, Any]) -> dict[str, Any]:
             "warnings": weighted.get("warnings", []),
             "scope": scope,
             "metric": weighted.get("metric"),
+            "subsection_alignment_method": (
+                weighted.get("configuration") or {}
+            ).get("subsection_alignment_method"),
             "threshold": weighted.get("threshold"),
             "micro_soft_precision": wa_summary.get("micro_soft_precision"),
             "micro_soft_recall": wa_summary.get("micro_soft_recall"),
@@ -423,6 +429,9 @@ def build_all_modes_summary(payload: dict[str, Any]) -> dict[str, Any]:
                 "error": block.get("error"),
                 "warnings": block.get("warnings", []),
                 "metric": block.get("metric"),
+                "subsection_alignment_method": (
+                    block.get("configuration") or {}
+                ).get("subsection_alignment_method"),
                 "threshold": block.get("threshold"),
                 "micro_soft_f1": wa_summary.get("micro_soft_f1"),
                 "micro_soft_precision": wa_summary.get("micro_soft_precision"),
@@ -458,6 +467,9 @@ def _weighted_block_summary(block: dict[str, Any]) -> dict[str, Any]:
         "reason": block.get("reason"),
         "warnings": block.get("warnings", []),
         "metric": block.get("metric"),
+        "subsection_alignment_method": (
+            block.get("configuration") or {}
+        ).get("subsection_alignment_method"),
         "unit_mode": (block.get("configuration") or {}).get("unit_mode"),
         "tweet_overlap": tweet_overlap,
         "text_weight": tweet_overlap_config.get("text_weight"),
@@ -551,6 +563,10 @@ def write_all_modes_csv(payload: dict[str, Any], csv_path: Path) -> None:
             "system": Path(payload["system"]).name,
         }
         rouge = (flat.get("rouge") or {}).get(level) or {}
+        if rouge.get("subsection_alignment_method"):
+            row["subsection_alignment_method"] = rouge.get(
+                "subsection_alignment_method"
+            )
         row.update({
             "rouge_status": rouge.get("status"),
             "rouge_reason": rouge.get("reason"),
@@ -589,6 +605,9 @@ def write_all_modes_csv(payload: dict[str, Any], csv_path: Path) -> None:
                 "weighted_status": wa.get("status"),
                 "weighted_reason": wa.get("reason"),
                 "weighted_metric": wa.get("metric"),
+                "subsection_alignment_method": wa.get(
+                    "subsection_alignment_method"
+                ),
                 "weighted_micro_soft_f1": wa.get("micro_soft_f1"),
                 "weighted_micro_soft_precision": wa.get("micro_soft_precision"),
                 "weighted_micro_soft_recall": wa.get("micro_soft_recall"),
@@ -607,6 +626,9 @@ def write_all_config_csv(payload: dict[str, Any], csv_path: Path) -> None:
             "path": row.get("path"),
             "metric": row.get("metric"),
             "level": row.get("level"),
+            "subsection_alignment_method": row.get(
+                "subsection_alignment_method"
+            ),
             "gold": Path(payload["gold"]).name,
             "system": Path(payload["system"]).name,
             "error": row.get("error"),
@@ -651,6 +673,13 @@ def write_all_config_csv(payload: dict[str, Any], csv_path: Path) -> None:
 
 def _single_mode_csv_fields(flat: dict[str, Any]) -> dict[str, Any]:
     row: dict[str, Any] = {}
+    for metric_name in ("rouge", "bertscore", "bleurt"):
+        method = (flat.get(metric_name) or {}).get(
+            "subsection_alignment_method"
+        )
+        if method:
+            row["subsection_alignment_method"] = method
+            break
     rouge = flat.get("rouge") or {}
     if rouge.get("mode") != "disabled":
         row["rouge_mode"] = rouge.get("mode")
@@ -687,6 +716,9 @@ def _single_mode_csv_fields(flat: dict[str, Any]) -> dict[str, Any]:
             "weighted_reason": weighted.get("reason"),
             "weighted_scope": weighted.get("scope"),
             "weighted_metric": weighted.get("metric"),
+            "subsection_alignment_method": weighted.get(
+                "subsection_alignment_method"
+            ),
             "weighted_threshold": weighted.get("threshold"),
             "weighted_micro_soft_f1": weighted.get("micro_soft_f1"),
             "weighted_micro_soft_precision": weighted.get("micro_soft_precision"),
@@ -752,7 +784,7 @@ def _write_csv_rows(csv_path: Path, rows: list[dict[str, Any]]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Standalone evaluation of one Gold/System SITREP pair."
+        description="Unified gold vs system evaluation (configured metrics + weighted alignment)."
     )
     parser.add_argument("--gold", type=Path, required=True, help="Gold SITREP JSON.")
     parser.add_argument("--system", type=Path, required=True, help="System SITREP JSON.")
@@ -766,7 +798,7 @@ def parse_args() -> argparse.Namespace:
         "--out",
         type=Path,
         default=None,
-        help="Write the pair-evaluation JSON here (default: print to stdout).",
+        help="Write combined JSON here (default: print to stdout).",
     )
     parser.add_argument(
         "--csv",
@@ -779,7 +811,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Run ROUGE/BERTScore/BLEURT and weighted alignment at document, "
-            "section, and subsection levels within the resolved section scope."
+            "section, and subsection levels."
         ),
     )
     parser.add_argument(
@@ -788,17 +820,13 @@ def parse_args() -> argparse.Namespace:
         help=(
             "Sweep all config combinations: text-level ROUGE/BERTScore/BLEURT at all "
             "levels, and bullet-level Hungarian alignment at all level × unit_mode × "
-            "similarity_metric × tweet_overlap combinations, within the resolved "
-            "section scope."
+            "similarity_metric × tweet_overlap combinations."
         ),
     )
     parser.add_argument(
         "--sections",
         default=None,
-        help=(
-            "Comma-separated section IDs to evaluate, or 'all' for every "
-            "available section (overrides config)."
-        ),
+        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
     )
     parser.add_argument(
         "--full",

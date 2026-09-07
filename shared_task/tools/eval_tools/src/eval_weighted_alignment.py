@@ -1,4 +1,4 @@
-"""Bullet-level Hungarian alignment for structured SITREP JSON."""
+"""Hungarian alignment for structured SITREP JSON."""
 
 from __future__ import annotations
 
@@ -46,11 +46,16 @@ from sitrep_units import (
     UnitExtractionError,
     extract_units_by_group,
 )
+from subsection_alignment import (
+    DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+    display_subsection_alignment_key,
+    resolve_subsection_alignment_method,
+)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Align System and Gold SITREP bullets with Hungarian matching."
+        description="Evaluate system SITREPs against a JSON gold with Hungarian matching."
     )
     parser.add_argument("--gold", type=Path, required=True)
     parser.add_argument("--system", type=Path, action="append", required=True)
@@ -78,10 +83,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--sections",
         default=None,
-        help=(
-            "Comma-separated section IDs to evaluate, or 'all' for every "
-            "available section (overrides config)."
-        ),
+        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
     )
     parser.add_argument("--device", default=None)
     parser.add_argument(
@@ -112,7 +114,7 @@ def load_hungarian_config(
     if spec is None:
         raise SystemExit(
             f"Missing metrics.bullet_level in config: {path} "
-            "(the compatibility key metrics.weighted_alignment is also accepted)"
+            "(legacy metrics.weighted_alignment is also accepted)"
         )
 
     mode = int(spec.get("mode", 3))
@@ -211,6 +213,11 @@ def load_hungarian_config(
             f"got {on_missing_structure}"
         )
 
+    try:
+        subsection_alignment_method = resolve_subsection_alignment_method(raw)
+    except ValueError as exc:
+        raise SystemExit(f"Invalid evaluation config: {exc}") from exc
+
     return {
         "mode": mode,
         "unit_mode": unit_mode,
@@ -224,6 +231,7 @@ def load_hungarian_config(
         "alignment_method": "bipartite",
         "alignment_algorithm": "hungarian",
         "on_missing_structure": on_missing_structure,
+        "subsection_alignment_method": subsection_alignment_method,
     }
 
 
@@ -232,6 +240,7 @@ def load_units(
     mode: int,
     unit_mode: str,
     selected_sections: tuple[str, ...] | None = None,
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
 ) -> ExtractionResult:
     try:
         raw = path.read_text(encoding="utf-8")
@@ -247,6 +256,7 @@ def load_units(
             mode=mode,
             unit_mode=unit_mode,
             selected_sections=selected_sections,
+            subsection_alignment_method=subsection_alignment_method,
         )
     except UnitExtractionError as exc:
         raise SystemExit(
@@ -527,14 +537,17 @@ def evaluate_one(
     effective_config: Optional[dict[str, Any]] = None,
     tweet_id_overlap: Optional[dict[str, Any]] = None,
     selected_sections: tuple[str, ...] | None = None,
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
 ) -> dict:
     gold_extraction = load_units(
         gold_path, mode=mode, unit_mode=unit_mode,
         selected_sections=selected_sections,
+        subsection_alignment_method=subsection_alignment_method,
     )
     system_extraction = load_units(
         system_path, mode=mode, unit_mode=unit_mode,
         selected_sections=selected_sections,
+        subsection_alignment_method=subsection_alignment_method,
     )
     gold = gold_extraction.units
     system = system_extraction.units
@@ -623,6 +636,10 @@ def evaluate_one(
                 **pair,
                 "gold_bullet_id": gold_units[gi].get("bullet_id"),
                 "system_bullet_id": system_units[si].get("bullet_id"),
+                "gold_subsection_id": gold_units[gi].get("subsection_id"),
+                "system_subsection_id": system_units[si].get("subsection_id"),
+                "gold_subsection_header": gold_units[gi].get("subsection_title"),
+                "system_subsection_header": system_units[si].get("subsection_title"),
                 "text_similarity": float(text_matrices[key][gi, si]),
                 "tweet_id_similarity": (
                     float(tweet_id_matrices[key][gi, si])
@@ -640,12 +657,32 @@ def evaluate_one(
         weight = aligned.total_weight
         soft_precision = weight / len(system_units) if system_units else 0.0
         soft_recall = weight / len(gold_units) if gold_units else 0.0
-        group_id = "document" if mode == 1 else key[0] if mode == 2 else f"{key[0]}/{key[1]}"
+        displayed_key = (
+            display_subsection_alignment_key(
+                key[1], subsection_alignment_method,
+            )
+            if mode == 3 else None
+        )
+        group_id = (
+            "document"
+            if mode == 1
+            else key[0]
+            if mode == 2
+            else f"{key[0]}/{displayed_key}"
+        )
         group_results.append({
             "scope": scope,
             "group_id": group_id,
             "section_id": key[0] if mode >= 2 else None,
-            "subsection_id": key[1] if mode == 3 else None,
+            "subsection_id": (
+                key[1]
+                if mode == 3 and subsection_alignment_method == "id_only"
+                else None
+            ),
+            "subsection_alignment_method": (
+                subsection_alignment_method if mode == 3 else None
+            ),
+            "subsection_alignment_key": displayed_key,
             "gold_count": len(gold_units),
             "system_count": len(system_units),
             "matched_count": len(pairs),
@@ -738,8 +775,11 @@ def write_outputs(result: dict, out_dir: Path) -> None:
         writer = csv.writer(handle, lineterminator="\n")
         writer.writerow([
             "scope", "group_id", "section_id", "subsection_id",
+            "subsection_alignment_method", "subsection_alignment_key",
             "gold_index", "system_index", "weight", "gold_bullet_id",
-            "system_bullet_id", "text_similarity", "tweet_id_similarity",
+            "system_bullet_id", "gold_subsection_id", "system_subsection_id",
+            "gold_subsection_header", "system_subsection_header",
+            "text_similarity", "tweet_id_similarity",
             "gold_tweet_ids", "system_tweet_ids", "gold_text", "system_text",
         ])
         for group in result["groups"]:
@@ -747,8 +787,14 @@ def write_outputs(result: dict, out_dir: Path) -> None:
                 writer.writerow([
                     group["scope"], group["group_id"],
                     group["section_id"], group["subsection_id"],
+                    group.get("subsection_alignment_method"),
+                    group.get("subsection_alignment_key"),
                     pair["gold_index"], pair["system_index"], pair["weight"],
                     pair["gold_bullet_id"], pair["system_bullet_id"],
+                    pair.get("gold_subsection_id"),
+                    pair.get("system_subsection_id"),
+                    pair.get("gold_subsection_header"),
+                    pair.get("system_subsection_header"),
                     pair.get("text_similarity"), pair.get("tweet_id_similarity"),
                     ";".join(pair.get("gold_tweet_ids") or []),
                     ";".join(pair.get("system_tweet_ids") or []),
@@ -974,6 +1020,7 @@ def evaluate_weighted_alignment_pair(
         effective_config=effective_config,
         tweet_id_overlap=configured["tweet_id_overlap"],
         selected_sections=scope.section_ids,
+        subsection_alignment_method=configured["subsection_alignment_method"],
     )
     if enforce_structure:
         enforce_missing_structure_policy(
@@ -1070,6 +1117,9 @@ def main() -> None:
                 effective_config=effective_config,
                 tweet_id_overlap=configured["tweet_id_overlap"],
                 selected_sections=evaluation_scope.section_ids,
+                subsection_alignment_method=(
+                    configured["subsection_alignment_method"]
+                ),
             )
             enforce_missing_structure_policy(
                 result,

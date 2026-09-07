@@ -13,6 +13,12 @@ from pathlib import Path
 
 from evaluation_scope import EvaluationScope, resolve_evaluation_scope
 from runtime_env import apply_safe_hf_env, ensure_safe_hf_env_for_main
+from subsection_alignment import (
+    DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+    display_subsection_alignment_key,
+    resolve_subsection_alignment_method,
+    subsection_alignment_key,
+)
 
 ensure_safe_hf_env_for_main(__name__)
 apply_safe_hf_env()
@@ -28,14 +34,13 @@ RELEASE_ROOT = SCRIPT_DIR.parent
 
 GOLD_DIR = RELEASE_ROOT / "data" / "gold-output"
 
-# Dataset aliases for standalone Markdown compatibility helpers.
-# The release runner uses structured JSON inputs and does not use this mapping.
+# Dataset aliases used by legacy Markdown gold helpers.
 GOLD_FILES = {
     "LA_shootings": "2013_LA_airport_shooting_consolidated_cluster_output_sitrep.md",
     "Manila_floods": "2013_Manila_floods_consolidated_cluster_output_sitrep.md",
 }
 
-# Section aliases for standalone Markdown-to-JSON section alignment.
+# Section aliases for Markdown gold alignment.
 SECTION_MAP = {
     "1": ["overview"],
     "2": ["timeline"],
@@ -47,7 +52,7 @@ SECTION_MAP = {
     "11": ["public reaction"],
     "14": ["anticipated and unconfirmed reports"],
 }
-# Section IDs excluded only by the standalone Markdown compatibility path.
+# Sections ignored when aligning Markdown gold files.
 SUPPLEMENTARY = {"6", "12", "13", "15"}
 
 ROUGE_TYPES = ["rouge1", "rouge2", "rougeL"]
@@ -65,7 +70,7 @@ def _clean(text: str) -> str:
 
 
 def parse_gold(md_path: Path) -> dict[str, dict]:
-    """Parse a Markdown reference for standalone compatibility commands."""
+    """Parse Markdown gold into normalized section text."""
     lines = md_path.read_text(encoding="utf-8").splitlines()
     sections: dict[str, dict] = {}
     cur_header: str | None = None
@@ -199,6 +204,10 @@ def load_evaluation_config(path: Path) -> dict:
         sys.exit(f"[evaluate] invalid config: {path} must contain a 'metrics' mapping")
 
     text_level = resolve_text_level_block(metrics)
+    try:
+        subsection_alignment_method = resolve_subsection_alignment_method(raw)
+    except ValueError as exc:
+        sys.exit(f"[evaluate] invalid config: {exc}")
     result = {}
     for name in METRIC_NAMES:
         spec = text_level.get(name, {}) or {}
@@ -224,16 +233,14 @@ def load_evaluation_config(path: Path) -> dict:
                 f"[evaluate] invalid config: metrics.text_level.{name}."
                 "denominator_policy must be matched_only or whole_gold"
             )
-        if spec.get("include_section_headers") or spec.get("include_subsection_headers"):
-            sys.exit(
-                f"[evaluate] invalid config: metrics.text_level.{name} headers "
-                "are structural keys and cannot be included in scoring"
-            )
         result[name] = {
             **spec,
             "mode": mode,
             "aggregation": aggregation,
             "denominator_policy": denominator_policy,
+            "include_section_headers": bool(spec.get("include_section_headers", False)),
+            "include_subsection_headers": bool(spec.get("include_subsection_headers", False)),
+            "subsection_alignment_method": subsection_alignment_method,
         }
     return result
 
@@ -262,24 +269,24 @@ def _lcs_length(left: list[str], right: list[str]) -> int:
 
 
 def _rouge_diagnostics(pairs: list[dict], denominator_policy: str = "matched_only") -> dict:
-    active_rows = [
-        row for row in pairs
+    matched_rows = [row for row in pairs if row["status"] == "matched"]
+    scored_rows = [
+        row for row in matched_rows
         if row["candidate"].strip() or row["reference"].strip()
     ]
-    matched_rows = [
-        row for row in active_rows if row["status"] == "matched"
+    gold_rows = [
+        row for row in pairs
+        if row["status"] in {"matched", "reference_only"} and row["reference"].strip()
     ]
-    whole_gold_rows = [row for row in active_rows if row["reference"].strip()]
-    whole_system_rows = [row for row in active_rows if row["candidate"].strip()]
     skipped_both_empty = sum(
-        1 for row in pairs
+        1 for row in matched_rows
         if not row["candidate"].strip() and not row["reference"].strip()
     )
     diagnostics = {
-        "gold_units": len(whole_gold_rows),
-        "system_units": len(whole_system_rows),
+        "gold_units": sum(1 for row in pairs if row["status"] in {"matched", "reference_only"}),
+        "system_units": sum(1 for row in pairs if row["status"] in {"matched", "candidate_only"}),
         "matched_units": len(matched_rows),
-        "scored_units": len(active_rows),
+        "scored_units": len(scored_rows),
         "skipped_both_empty_units": skipped_both_empty,
         "denominator": denominator_policy,
         "denominator_policy": denominator_policy,
@@ -288,8 +295,6 @@ def _rouge_diagnostics(pairs: list[dict], denominator_policy: str = "matched_onl
             "matched_gold_ngrams": 0,
             "whole_gold_ngrams": 0,
             "system_ngrams": 0,
-            "matched_system_ngrams": 0,
-            "whole_system_ngrams": 0,
             "overlapping_ngrams": 0,
         },
         "rouge2": {
@@ -297,8 +302,6 @@ def _rouge_diagnostics(pairs: list[dict], denominator_policy: str = "matched_onl
             "matched_gold_ngrams": 0,
             "whole_gold_ngrams": 0,
             "system_ngrams": 0,
-            "matched_system_ngrams": 0,
-            "whole_system_ngrams": 0,
             "overlapping_ngrams": 0,
         },
         "rougeL": {
@@ -306,62 +309,41 @@ def _rouge_diagnostics(pairs: list[dict], denominator_policy: str = "matched_onl
             "matched_gold_tokens": 0,
             "whole_gold_tokens": 0,
             "system_tokens": 0,
-            "matched_system_tokens": 0,
-            "whole_system_tokens": 0,
             "total_lcs_length": 0,
         },
     }
-    for row in whole_gold_rows:
+    for row in gold_rows:
         gold_tokens = _tokenize_for_rouge(row["reference"])
         for n, key in ((1, "rouge1"), (2, "rouge2")):
             diagnostics[key]["whole_gold_ngrams"] += sum(
                 _ngram_counter(gold_tokens, n).values()
             )
         diagnostics["rougeL"]["whole_gold_tokens"] += len(gold_tokens)
-    for row in whole_system_rows:
-        system_tokens = _tokenize_for_rouge(row["candidate"])
-        for n, key in ((1, "rouge1"), (2, "rouge2")):
-            diagnostics[key]["whole_system_ngrams"] += sum(
-                _ngram_counter(system_tokens, n).values()
-            )
-        diagnostics["rougeL"]["whole_system_tokens"] += len(system_tokens)
-    for row in matched_rows:
+    for row in scored_rows:
         system_tokens = _tokenize_for_rouge(row["candidate"])
         gold_tokens = _tokenize_for_rouge(row["reference"])
         for n, key in ((1, "rouge1"), (2, "rouge2")):
             gold_ngrams = _ngram_counter(gold_tokens, n)
             system_ngrams = _ngram_counter(system_tokens, n)
             diagnostics[key]["matched_gold_ngrams"] += sum(gold_ngrams.values())
-            diagnostics[key]["matched_system_ngrams"] += sum(system_ngrams.values())
+            diagnostics[key]["system_ngrams"] += sum(system_ngrams.values())
             diagnostics[key]["overlapping_ngrams"] += sum(
                 (gold_ngrams & system_ngrams).values()
             )
         diagnostics["rougeL"]["matched_gold_tokens"] += len(gold_tokens)
-        diagnostics["rougeL"]["matched_system_tokens"] += len(system_tokens)
+        diagnostics["rougeL"]["system_tokens"] += len(system_tokens)
         diagnostics["rougeL"]["total_lcs_length"] += _lcs_length(gold_tokens, system_tokens)
     for key in ("rouge1", "rouge2"):
-        gold_denominator_key = (
+        denominator_key = (
             "whole_gold_ngrams" if denominator_policy == "whole_gold"
             else "matched_gold_ngrams"
         )
-        system_denominator_key = (
-            "whole_system_ngrams" if denominator_policy == "whole_gold"
-            else "matched_system_ngrams"
-        )
-        diagnostics[key]["gold_ngrams"] = diagnostics[key][gold_denominator_key]
-        diagnostics[key]["system_ngrams"] = diagnostics[key][system_denominator_key]
+        diagnostics[key]["gold_ngrams"] = diagnostics[key][denominator_key]
     rouge_l_denominator_key = (
         "whole_gold_tokens" if denominator_policy == "whole_gold"
         else "matched_gold_tokens"
     )
-    rouge_l_system_denominator_key = (
-        "whole_system_tokens" if denominator_policy == "whole_gold"
-        else "matched_system_tokens"
-    )
     diagnostics["rougeL"]["gold_tokens"] = diagnostics["rougeL"][rouge_l_denominator_key]
-    diagnostics["rougeL"]["system_tokens"] = diagnostics["rougeL"][
-        rouge_l_system_denominator_key
-    ]
     return diagnostics
 
 
@@ -377,8 +359,11 @@ def _container_bullet_text(container: dict) -> list[str]:
     return texts
 
 
-def _metric_hierarchy(path: Path) -> dict[str, object]:
-    """Load an evaluation hierarchy and report its available scoring levels."""
+def _metric_hierarchy(
+    path: Path,
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+) -> dict[str, object]:
+    """Load text and report available evaluation levels."""
     suffix = path.suffix.lower()
     is_json = suffix in (".json", ".jsn")
     if suffix not in (".json", ".jsn", ".md", ".markdown", ".txt"):
@@ -454,17 +439,36 @@ def _metric_hierarchy(path: Path) -> dict[str, object]:
                 })
                 continue
             subid = str(sub.get("id", "")).strip()
+            subtitle = str(sub.get("title", "")).strip()
             texts = _container_bullet_text(sub)
             all_section_text.extend(texts)
-            if sid and subid and texts:
-                subsections[subid] = {
-                    "title": sub.get("title", ""), "text": " ".join(texts).strip()
+            if sid:
+                try:
+                    alignment_key = subsection_alignment_key(
+                        subid,
+                        subtitle,
+                        subsection_alignment_method,
+                    )
+                except ValueError as exc:
+                    raise ValueError(
+                        f"subsection at section {sid}, index {sub_index}: {exc}"
+                    ) from exc
+                if alignment_key in subsections:
+                    raise ValueError(
+                        "duplicate subsection alignment key within section "
+                        f"{sid!r}: {alignment_key!r}"
+                    )
+                subsections[alignment_key] = {
+                    "id": subid,
+                    "title": subtitle,
+                    "alignment_key": alignment_key,
+                    "text": " ".join(texts).strip(),
                 }
             elif texts:
                 section_only_text.extend(texts)
                 warnings.append({
-                    "code": "missing_subsection_id",
-                    "message": "subsection text is usable only at document/section level because its id is missing",
+                    "code": "missing_section_id",
+                    "message": "subsection text is usable only at document level because its section id is missing",
                 })
         if not sid:
             orphan_text.extend(all_section_text)
@@ -474,12 +478,9 @@ def _metric_hierarchy(path: Path) -> dict[str, object]:
                     "message": "section text is usable only at document level because its id is missing",
                 })
             continue
-        own_text = " ".join(section_only_text).strip()
-        if not own_text and not subsections:
-            continue
         out[sid] = {
             "title": sec.get("title", ""),
-            "own_text": own_text,
+            "own_text": " ".join(section_only_text).strip(),
             "subsections": subsections, "kind": "json",
         }
 
@@ -501,9 +502,11 @@ def _metric_hierarchy(path: Path) -> dict[str, object]:
     }
 
 
-def _render_section(sec: dict) -> str:
+def _render_section(sec: dict, include_subsection_headers: bool) -> str:
     parts = [sec.get("own_text", "")]
     for sub in sec.get("subsections", {}).values():
+        if include_subsection_headers and sub.get("title"):
+            parts.append(sub["title"])
         parts.append(sub.get("text", ""))
     return " ".join(p for p in parts if p).strip()
 
@@ -540,15 +543,28 @@ def _configured_pairs(
     selected_sections: tuple[str, ...] | None = None,
 ) -> list[dict]:
     """Build text pairs at the configured granularity."""
+    mode = spec["mode"]
+    subsection_alignment_method = str(
+        spec.get(
+            "subsection_alignment_method",
+            DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+        )
+    )
+    hierarchy_alignment_method = (
+        subsection_alignment_method if mode == 3 else "id_only"
+    )
     cand_doc = _filter_metric_hierarchy(
-        _metric_hierarchy(candidate), selected_sections,
+        _metric_hierarchy(candidate, hierarchy_alignment_method),
+        selected_sections,
     )
     ref_doc = _filter_metric_hierarchy(
-        _metric_hierarchy(reference), selected_sections,
+        _metric_hierarchy(reference, hierarchy_alignment_method),
+        selected_sections,
     )
     cand = cand_doc["sections"]
     ref = ref_doc["sections"]
-    mode = spec["mode"]
+    sec_headers = spec["include_section_headers"]
+    sub_headers = spec["include_subsection_headers"]
     input_warnings = [
         {"side": side, **warning}
         for side, loaded in (("system", cand_doc), ("reference", ref_doc))
@@ -559,7 +575,9 @@ def _configured_pairs(
             doc = loaded["sections"]
             parts = []
             for sec in doc.values():
-                parts.append(_render_section(sec))
+                if sec_headers and sec.get("title"):
+                    parts.append(sec["title"])
+                parts.append(_render_section(sec, sub_headers))
             parts.extend(loaded["orphan_text"])
             return " ".join(p for p in parts if p).strip()
         return [{"unit_id": "document", "status": "matched",
@@ -594,8 +612,11 @@ def _configured_pairs(
         for sid in sorted(set(cand) | set(ref), key=lambda x: (len(x), x)):
             csec, rsec = cand.get(sid), ref.get(sid)
             status = "matched" if csec and rsec else ("candidate_only" if csec else "reference_only")
-            ctext = _render_section(csec) if csec else ""
-            rtext = _render_section(rsec) if rsec else ""
+            ctext = _render_section(csec, sub_headers) if csec else ""
+            rtext = _render_section(rsec, sub_headers) if rsec else ""
+            if sec_headers:
+                ctext = " ".join(p for p in ((csec or {}).get("title", ""), ctext) if p)
+                rtext = " ".join(p for p in ((rsec or {}).get("title", ""), rtext) if p)
             rows.append({"unit_id": f"section:{sid}", "status": status,
                          "candidate": ctext, "reference": rtext})
         if rows:
@@ -609,19 +630,39 @@ def _configured_pairs(
     for sid in sorted(set(cand) | set(ref), key=lambda x: (len(x), x)):
         csubs = (cand.get(sid) or {}).get("subsections", {})
         rsubs = (ref.get(sid) or {}).get("subsections", {})
-        for subid in sorted(set(csubs) | set(rsubs)):
-            csub, rsub = csubs.get(subid), rsubs.get(subid)
+        for alignment_key in sorted(set(csubs) | set(rsubs)):
+            csub, rsub = csubs.get(alignment_key), rsubs.get(alignment_key)
             status = "matched" if csub and rsub else ("candidate_only" if csub else "reference_only")
             ctext, rtext = (csub or {}).get("text", ""), (rsub or {}).get("text", "")
-            rows.append({"unit_id": f"subsection:{sid}/{subid}", "status": status,
-                         "candidate": ctext, "reference": rtext})
+            if sub_headers:
+                ctext = " ".join(p for p in ((csub or {}).get("title", ""), ctext) if p)
+                rtext = " ".join(p for p in ((rsub or {}).get("title", ""), rtext) if p)
+            if sec_headers:
+                ctext = " ".join(p for p in ((cand.get(sid) or {}).get("title", ""), ctext) if p)
+                rtext = " ".join(p for p in ((ref.get(sid) or {}).get("title", ""), rtext) if p)
+            displayed_key = display_subsection_alignment_key(
+                alignment_key,
+                subsection_alignment_method,
+            )
+            rows.append({
+                "unit_id": f"subsection:{sid}/{displayed_key}",
+                "status": status,
+                "candidate": ctext,
+                "reference": rtext,
+                "subsection_alignment_method": subsection_alignment_method,
+                "subsection_alignment_key": displayed_key,
+                "candidate_subsection_id": (csub or {}).get("id"),
+                "reference_subsection_id": (rsub or {}).get("id"),
+                "candidate_subsection_header": (csub or {}).get("title"),
+                "reference_subsection_header": (rsub or {}).get("title"),
+            })
     if rows:
         rows[0]["input_warnings"] = input_warnings
     return rows
 
 
 def _load_hf_evaluate_library():
-    """Import Hugging Face Evaluate without local-module shadowing."""
+    """Import HuggingFace evaluate without local-module shadowing."""
 
     existing = sys.modules.get("evaluate")
     if existing is not None and hasattr(existing, "load"):
@@ -657,7 +698,7 @@ def _load_hf_evaluate_library():
 
 
 def _apply_bertscore_tokenizer_compat() -> None:
-    """Cap tokenizer lengths that exceed BERTScore model limits."""
+    """Cap tokenizer lengths that break bert-score."""
 
     try:
         utils_module = importlib.import_module("bert_score.utils")
@@ -710,7 +751,7 @@ def _apply_bertscore_tokenizer_compat() -> None:
 
 
 def _find_cached_bleurt_checkpoint(config_name: str) -> Path | None:
-    """Return an extracted BLEURT checkpoint from the Hugging Face metric cache."""
+    """Return an extracted BLEURT checkpoint from the HuggingFace metric cache."""
 
     cache_root = (
         Path.home()
@@ -797,37 +838,45 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
             "overall": None,
             **({"diagnostics": diagnostics} if diagnostics is not None else {}),
         }
-    items: list[dict] = []
-    active_entries: list[tuple[dict, dict, str]] = []
-    compared_rows: list[dict] = []
-    zero_items: list[dict] = []
+    matched = [
+        row for row in pairs
+        if row["status"] == "matched"
+        and (row["candidate"].strip() or row["reference"].strip())
+    ]
+    refs = [row["reference"] for row in matched]
+    preds = [row["candidate"] for row in matched]
+    items = []
+    score_items = []
     skipped_both_empty = 0
     for row in pairs:
         item = {"unit_id": row["unit_id"], "status": row["status"]}
-        candidate_present = bool(row["candidate"].strip())
-        reference_present = bool(row["reference"].strip())
-        both_empty = not candidate_present and not reference_present
+        for field in (
+            "subsection_alignment_method",
+            "subsection_alignment_key",
+            "candidate_subsection_id",
+            "reference_subsection_id",
+            "candidate_subsection_header",
+            "reference_subsection_header",
+        ):
+            if field in row:
+                item[field] = row[field]
+        both_empty = (
+            row["status"] == "matched"
+            and not row["candidate"].strip()
+            and not row["reference"].strip()
+        )
         if both_empty:
             item["excluded_from_aggregates"] = "both_empty"
             skipped_both_empty += 1
-        elif row["status"] == "matched" and candidate_present and reference_present:
-            active_entries.append((row, item, "compared"))
-            compared_rows.append(row)
-        else:
-            if row["status"] == "reference_only":
-                zero_reason = "missing_system_unit"
-            elif row["status"] == "candidate_only":
-                zero_reason = "system_only_unit"
-            elif not candidate_present:
-                zero_reason = "empty_system_text"
-            else:
-                zero_reason = "empty_reference_text"
-            item["zero_score_reason"] = zero_reason
-            active_entries.append((row, item, "zero"))
-            zero_items.append(item)
+        elif row["status"] == "matched":
+            score_items.append(item)
         items.append(item)
-    if not active_entries:
-        reason = "no_scorable_text"
+    if not matched:
+        reason = (
+            "no_scorable_text"
+            if any(row.get("status") == "matched" for row in pairs)
+            else f"no_shared_{MODE_NAMES[spec['mode']]}_groups"
+        )
         warnings = [*input_warnings, {
             "code": reason,
             "message": f"{MODE_NAMES[spec['mode']]}-level evaluation produced no scorable pairs",
@@ -846,9 +895,6 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
             **({"diagnostics": diagnostics} if diagnostics is not None else {}),
         }
 
-    refs = [row["reference"] for row in compared_rows]
-    preds = [row["candidate"] for row in compared_rows]
-
     def token_count(text: str) -> int:
         return len(WS_RE.findall(text.strip())) + 1 if text.strip() else 0
 
@@ -861,16 +907,16 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
         return (2 * precision * recall / (precision + recall)
                 if precision + recall else 0.0)
 
-    candidate_token_counts = [
-        token_count(row["candidate"]) for row, _, _ in active_entries
-    ]
-    reference_token_counts = [
-        token_count(row["reference"]) for row, _, _ in active_entries
-    ]
+    candidate_token_counts = [token_count(text) for text in preds]
+    reference_token_counts = [token_count(text) for text in refs]
 
     if name == "rouge":
         raw_results = [_SCORER.score(ref, pred) for pred, ref in zip(preds, refs)]
-        compared_scores = [{
+        rouge_candidate_counts = [len(_SCORER._tokenizer.tokenize(text))
+                                  for text in preds]
+        rouge_reference_counts = [len(_SCORER._tokenizer.tokenize(text))
+                                  for text in refs]
+        scores = [{
             rt: {
                 "precision": round(result[rt].precision, 4),
                 "recall": round(result[rt].recall, 4),
@@ -878,19 +924,11 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
             }
             for rt in ROUGE_TYPES
         } for result in raw_results]
-        zero_score = {
-            rt: {"precision": 0.0, "recall": 0.0, "fmeasure": 0.0}
-            for rt in ROUGE_TYPES
-        }
-        compared_score_iter = iter(compared_scores)
-        all_scores = []
-        for _, item, score_kind in active_entries:
-            score = next(compared_score_iter) if score_kind == "compared" else zero_score
+        for item, score in zip(score_items, scores):
             item["scores"] = score
-            all_scores.append(score)
         macro = {
-            rt: {flav: round(statistics.mean(score[rt][flav]
-                                             for score in all_scores), 4)
+            rt: {flav: round(statistics.mean(getattr(result[rt], flav)
+                                             for result in raw_results), 4)
                  for flav in ("precision", "recall", "fmeasure")}
             for rt in ROUGE_TYPES
         }
@@ -916,36 +954,24 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
             aggregate["denominator_policy"] = denominator_policy
     elif name == "bertscore":
         model_type = spec.get("model_type", "microsoft/deberta-xlarge-mnli")
-        if compared_rows:
-            kwargs = {
-                "references": refs,
-                "predictions": preds,
-                "model_type": model_type,
-                "batch_size": int(spec.get("batch_size", 1)),
-            }
-            _apply_bertscore_tokenizer_compat()
-            result = _load_hf_metric("bertscore").compute(**kwargs)
-        else:
-            result = {"precision": [], "recall": [], "f1": []}
-        compared_scores = [
-            {k: round(float(result[k][i]), 6) for k in ("precision", "recall", "f1")}
-            for i in range(len(compared_rows))
-        ]
-        zero_score = {"precision": 0.0, "recall": 0.0, "f1": 0.0}
-        compared_score_iter = iter(compared_scores)
-        all_scores = []
-        for _, item, score_kind in active_entries:
-            score = next(compared_score_iter) if score_kind == "compared" else zero_score
-            item["scores"] = score
-            all_scores.append(score)
-        macro = {
-            k: round(statistics.mean(score[k] for score in all_scores), 6)
-            for k in ("precision", "recall", "f1")
+        kwargs = {
+            "references": refs,
+            "predictions": preds,
+            "model_type": model_type,
+            "batch_size": int(spec.get("batch_size", 1)),
         }
+        _apply_bertscore_tokenizer_compat()
+        result = _load_hf_metric("bertscore").compute(**kwargs)
+        scores = [{k: round(float(result[k][i]), 6) for k in ("precision", "recall", "f1")}
+                  for i in range(len(matched))]
+        for item, score in zip(score_items, scores):
+            item["scores"] = score
+        macro = {k: round(statistics.mean(float(value) for value in result[k]), 6)
+                 for k in ("precision", "recall", "f1")}
         precision = weighted_mean(
-            [score["precision"] for score in all_scores], candidate_token_counts)
+            [float(value) for value in result["precision"]], candidate_token_counts)
         recall = weighted_mean(
-            [score["recall"] for score in all_scores], reference_token_counts)
+            [float(value) for value in result["recall"]], reference_token_counts)
         micro = {
             "precision": round(precision, 6),
             "recall": round(recall, 6),
@@ -958,19 +984,15 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
             micro["hashcode"] = result["hashcode"]
     else:
         config_name = spec.get("config_name", "BLEURT-20")
-        raw_scores = _score_bleurt(refs, preds, config_name) if compared_rows else []
-        compared_scores = [round(value, 6) for value in raw_scores]
-        compared_score_iter = iter(compared_scores)
-        all_scores = []
-        for _, item, score_kind in active_entries:
-            score = next(compared_score_iter) if score_kind == "compared" else 0.0
+        raw_scores = _score_bleurt(refs, preds, config_name)
+        scores = [round(value, 6) for value in raw_scores]
+        for item, score in zip(score_items, scores):
             item["score"] = score
-            all_scores.append(score)
-        macro = {"score": round(statistics.mean(all_scores), 6),
+        macro = {"score": round(statistics.mean(raw_scores), 6),
                  "config_name": config_name}
         scalar_weights = [reference or candidate for reference, candidate
                           in zip(reference_token_counts, candidate_token_counts)]
-        micro = {"score": round(weighted_mean(all_scores, scalar_weights), 6),
+        micro = {"score": round(weighted_mean(raw_scores, scalar_weights), 6),
                  "config_name": config_name}
 
     aggregates = {"macro": macro, "micro": micro}
@@ -979,9 +1001,7 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
         "status": "scored",
         "warnings": input_warnings,
         "aggregation": aggregation,
-        "n_scored": len(active_entries),
-        "n_compared": len(compared_rows),
-        "n_zero_scored": len(zero_items),
+        "n_scored": len(matched),
         "n_skipped_both_empty": skipped_both_empty,
         "items": items,
         "aggregates": aggregates,
@@ -1006,7 +1026,17 @@ def evaluate_configured_pair(
                 candidate, reference, spec, scope.section_ids,
             )
             results[name] = _score_configured_metric(name, pairs, spec)
-        except (OSError, json.JSONDecodeError, TypeError, AttributeError) as exc:
+            if spec["mode"] == 3:
+                results[name]["subsection_alignment_method"] = spec[
+                    "subsection_alignment_method"
+                ]
+        except (
+            OSError,
+            json.JSONDecodeError,
+            TypeError,
+            AttributeError,
+            ValueError,
+        ) as exc:
             results[name] = {
                 "mode": MODE_NAMES[spec["mode"]],
                 "status": "skipped",
@@ -1039,7 +1069,13 @@ def evaluate_metric_pair(
     if spec["mode"] == 0:
         return {"mode": "disabled"}
     pairs = _configured_pairs(candidate, reference, spec, selected_sections)
-    return _score_configured_metric(metric_name, pairs, spec)
+    result = _score_configured_metric(metric_name, pairs, spec)
+    if spec["mode"] == 3:
+        result["subsection_alignment_method"] = spec.get(
+            "subsection_alignment_method",
+            DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+        )
+    return result
 
 
 METRICS_SUMMARY_HEADER = [
@@ -1110,7 +1146,7 @@ def _configured_summary_row(result: dict, name: dict) -> list:
 
 
 def configured_metrics_tree(run_dir: Path, config_path: Path, quiet: bool = False) -> int:
-    """Evaluate the standalone compatibility tree layout and write summaries."""
+    """Evaluate a run tree and write metric summaries."""
     if not run_dir.is_dir():
         sys.exit(f"[evaluate] tree directory not found: {run_dir}")
     rows = []
@@ -1151,7 +1187,7 @@ def configured_metrics_tree(run_dir: Path, config_path: Path, quiet: bool = Fals
 
 
 def load_as_sections(path: Path) -> tuple[dict[str, dict], str]:
-    """Load section text for standalone JSON or Markdown comparison."""
+    """Load JSON or Markdown as section text."""
     suffix = path.suffix.lower()
     if suffix in (".json", ".jsn"):
         kind = "json"
@@ -1178,7 +1214,7 @@ def load_as_sections(path: Path) -> tuple[dict[str, dict], str]:
 
 
 def compare_pair(cand: dict[str, dict], ref: dict[str, dict]) -> dict:
-    """Align sections by ID for standalone ROUGE reporting."""
+    """Align by section id and score matched sections."""
     sections = []
     for sid in sorted(set(cand) | set(ref), key=lambda x: (len(x), x)):
         c = cand.get(sid)
@@ -1323,7 +1359,7 @@ def align(doc: dict, gold: dict[str, dict], meta_extra: dict) -> dict:
 
 
 def alignment_to_markdown(alignment: dict) -> str:
-    """Render a standalone section-alignment report as Markdown."""
+    """Render section alignment as Markdown."""
     m = alignment["meta"]
     lines = [
         f"# Alignment: {m.get('our_file', '')}",
@@ -1347,7 +1383,7 @@ def alignment_to_markdown(alignment: dict) -> str:
 
 
 def score_alignment(alignment: dict) -> dict:
-    """Score matched pairs from a standalone section alignment with ROUGE."""
+    """Score matched alignment pairs with ROUGE."""
     sections = []
     for p in alignment["pairs"]:
         row = {
@@ -1380,7 +1416,7 @@ def score_alignment(alignment: dict) -> dict:
 
 
 def parse_name(json_path: Path) -> dict:
-    """Parse metadata from a standalone compatibility-tree filename."""
+    """Parse level, model, and dataset from a SITREP filename."""
     m = re.match(r"^([A-E])__(.+?)__(.+?)__sitrep\.json$", json_path.name)
     if m:
         return {"level": m.group(1), "model": m.group(2), "dataset": m.group(3)}
@@ -1399,7 +1435,7 @@ def detect_dataset(doc: dict, json_path: Path) -> str | None:
 
 def align_and_score_one(json_path: Path, align_json: Path, align_md: Path,
                         rouge_json: Path) -> dict:
-    """Run standalone Markdown-reference alignment and write ROUGE outputs."""
+    """Align one SITREP to gold and write ROUGE outputs."""
     doc = json.loads(json_path.read_text(encoding="utf-8"))
     name = parse_name(json_path)
     dataset = name["dataset"] or detect_dataset(doc, json_path)
@@ -1558,17 +1594,18 @@ def cmd_metrics(args: argparse.Namespace) -> int:
 
 def main() -> int:
     p = argparse.ArgumentParser(
-        description="Standalone text-level SITREP evaluation utilities.")
+        description="Stage-3 SITREP evaluation: ROUGE and configured metrics.")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     r = sub.add_parser("rouge", help="ROUGE-1/2/L word-overlap scoring.")
     r.add_argument("candidate", nargs="?", type=Path,
-                   help="System SITREP (.json or .md). Omit with --tree.")
+                   help="Summary being graded (.json or .md). Omit with --tree.")
     r.add_argument("reference", nargs="?", type=Path,
-                   help="Reference SITREP (.json or .md). Omit with --tree.")
+                   help="Summary to grade against - another summary or the gold.")
     r.add_argument("--tree", type=Path, default=None,
-                   help="Standalone compatibility-tree directory: align each "
-                        "*__sitrep.json file and write alignment and ROUGE reports.")
+                   help="Organized run dir (e.g. output/v6): align every sitrep to "
+                        "its gold and write align/, rouge/, rouge_scores.csv, "
+                        "rouge_summary.csv.")
     r.add_argument("--out", type=Path, default=None,
                    help="Single-pair mode: write the full per-section result JSON here.")
     r.add_argument("--csv", type=Path, default=None,
@@ -1580,12 +1617,11 @@ def main() -> int:
     m = sub.add_parser(
         "metrics", help="Run enabled ROUGE/BERTScore/BLEURT metrics from evaluation.yaml.")
     m.add_argument("candidate", nargs="?", type=Path,
-                   help="System SITREP (.json or .md). Omit with --tree.")
+                   help="Summary being graded (.json or .md). Omit with --tree.")
     m.add_argument("reference", nargs="?", type=Path,
-                   help="Gold or reference SITREP (.json or .md). Omit with --tree.")
+                   help="Reference summary (.json or .md). Omit with --tree.")
     m.add_argument("--tree", type=Path, default=None,
-                   help="Standalone compatibility-tree directory whose immediate "
-                        "children contain *__sitrep.json files.")
+                   help="Run directory whose immediate children contain *__sitrep.json files.")
     m.add_argument("--config", type=Path, default=DEFAULT_EVAL_CONFIG,
                    help=f"Metric policy (default: {DEFAULT_EVAL_CONFIG}).")
     m.add_argument("--out", type=Path, default=None,

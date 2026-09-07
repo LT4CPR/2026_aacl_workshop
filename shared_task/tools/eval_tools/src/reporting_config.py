@@ -36,7 +36,7 @@ def load_reporting_config(path: Path) -> dict[str, Any]:
     if across != "macro":
         raise ValueError(
             "reporting.aggregation.across_documents currently supports only macro; "
-            "cross-document micro requires pooled raw metric statistics"
+            "cross-instance micro requires pooled raw metric statistics"
         )
     configured_primary = reporting.get("primary_score") or {}
     enabled = configured_primary.get("enabled", DEFAULT_PRIMARY_SCORE["enabled"])
@@ -65,5 +65,5 @@ def load_reporting_config(path: Path) -> dict[str, Any]:
 
 
 def load_reporting_aggregation(path: Path) -> dict[str, Any]:
-    """Return aggregation settings without the primary-score configuration."""
+    """Return aggregation settings for callers using the legacy helper."""
     return load_reporting_config(path)["aggregation"]

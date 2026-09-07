@@ -16,8 +16,13 @@ from runtime_env import ensure_safe_hf_env_for_main
 ensure_safe_hf_env_for_main(__name__)
 
 from eval_pair import evaluate_pair
+from eval_sitrep import load_evaluation_config
 from evaluation_scope import resolve_evaluation_scope
 from reporting_config import load_reporting_config
+from subsection_alignment import (
+    DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
+    subsection_alignment_key,
+)
 
 
 RELEASE_ROOT = Path(__file__).resolve().parents[1]
@@ -25,8 +30,7 @@ DEFAULT_CONFIG = RELEASE_ROOT / "config" / "evaluation.yaml"
 DEFAULT_DATA_DIR = RELEASE_ROOT / "data"
 SECTION_RULE = "=" * 60
 SUBSECTION_RULE = "-" * 60
-GOLD_INPUT_SUFFIX = "-gold.json"
-SYSTEM_INPUT_SUFFIX = "-sum.json"
+REPORT_INPUT_SUFFIX = ".report.json"
 EVAL_OUTPUT_SUFFIX = "-eval"
 
 
@@ -88,6 +92,7 @@ def append_field(lines: list[str], label: str, value: Any) -> None:
 def load_structure(
     path: Path,
     selected_sections: tuple[str, ...] | None = None,
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
 ) -> dict[str, Any]:
     try:
         document = json.loads(path.read_text(encoding="utf-8"))
@@ -116,8 +121,14 @@ def load_structure(
             if not isinstance(subsection, dict):
                 continue
             subsection_id = str(subsection.get("id", "")).strip()
-            if section_id and subsection_id:
-                subsections.add((section_id, subsection_id))
+            subsection_title = str(subsection.get("title", "")).strip()
+            if section_id:
+                alignment_key = subsection_alignment_key(
+                    subsection_id,
+                    subsection_title,
+                    subsection_alignment_method,
+                )
+                subsections.add((section_id, alignment_key))
             for bullet in subsection.get("bullets", []) or []:
                 if isinstance(bullet, dict):
                     bullet_count += 1
@@ -133,9 +144,18 @@ def build_structure_summary(
     system_path: Path,
     evaluation: dict[str, Any] | None = None,
     selected_sections: tuple[str, ...] | None = None,
+    subsection_alignment_method: str = DEFAULT_SUBSECTION_ALIGNMENT_METHOD,
 ) -> dict[str, dict[str, int]]:
-    gold = load_structure(gold_path, selected_sections)
-    system = load_structure(system_path, selected_sections)
+    gold = load_structure(
+        gold_path,
+        selected_sections,
+        subsection_alignment_method,
+    )
+    system = load_structure(
+        system_path,
+        selected_sections,
+        subsection_alignment_method,
+    )
     gold_sections = gold["sections"]
     system_sections = system["sections"]
     gold_subsections = gold["subsections"]
@@ -171,48 +191,80 @@ def build_structure_summary(
     }
 
 
-def parse_disaster_filename(path: Path, expected_suffix: str | None = None) -> str:
-    """Return the disaster ID prefix before a role-specific suffix."""
-    suffixes = (expected_suffix,) if expected_suffix else (
-        GOLD_INPUT_SUFFIX,
-        SYSTEM_INPUT_SUFFIX,
-    )
-    matching_suffix = next(
-        (suffix for suffix in suffixes if path.name.endswith(suffix)),
-        None,
-    )
-    if matching_suffix is None:
-        expected = " or ".join(suffixes)
+def parse_report_filename(path: Path) -> str:
+    """Return the cell ID from an official ``<cell>.report.json`` filename."""
+    if not path.name.endswith(REPORT_INPUT_SUFFIX):
         raise ValueError(
-            f"evaluation input filename must end with {expected}: {path.name}"
+            "evaluation input filename must end with "
+            f"{REPORT_INPUT_SUFFIX}: {path.name}"
         )
-    disaster_id = path.name[:-len(matching_suffix)].strip()
-    if not disaster_id:
-        raise ValueError(f"empty disaster ID in filename: {path.name}")
-    return disaster_id
+    cell_id = path.name[:-len(REPORT_INPUT_SUFFIX)].strip()
+    if not cell_id:
+        raise ValueError(f"empty cell ID in filename: {path.name}")
+    return cell_id
 
 
-def index_disaster_files(directory: Path, expected_suffix: str) -> dict[str, Path]:
-    """Index direct JSON files after validating their role-specific suffix."""
-    return {
-        parse_disaster_filename(path, expected_suffix): path
-        for path in sorted(directory.glob("*.json"))
-    }
+def index_instance_files(directory: Path) -> dict[str, dict[str, Any]]:
+    """Index reports using the official ``<crisis>/<cell>.report.json`` layout."""
+    json_paths = sorted(directory.rglob("*.json"))
+    invalid_paths = [
+        path.relative_to(directory)
+        for path in json_paths
+        if not path.name.endswith(REPORT_INPUT_SUFFIX)
+    ]
+    if invalid_paths:
+        examples = ", ".join(str(path) for path in invalid_paths[:3])
+        remainder = len(invalid_paths) - 3
+        if remainder > 0:
+            examples += f", ... ({remainder} more)"
+        raise ValueError(
+            f"unexpected JSON filename(s) under {directory}; every evaluation "
+            f"input must end with {REPORT_INPUT_SUFFIX}: {examples}"
+        )
+    report_paths = json_paths
+    index: dict[str, dict[str, Any]] = {}
+    for path in report_paths:
+        relative = path.relative_to(directory)
+        if len(relative.parts) != 2:
+            raise ValueError(
+                "evaluation reports must be direct children of one crisis "
+                f"directory (<crisis>/<cell>.report.json): {relative}"
+            )
+        crisis_id = relative.parent.name.strip()
+        if not crisis_id:
+            raise ValueError(f"empty crisis ID in report path: {relative}")
+        cell_id = parse_report_filename(path)
+        instance_id = f"{crisis_id}/{cell_id}"
+        index[instance_id] = {
+            "instance_id": instance_id,
+            "crisis_id": crisis_id,
+            "cell_id": cell_id,
+            "relative_path": relative,
+            "path": path,
+        }
+    return index
 
 
 def discover_pairs(sys_dir: Path, gold_dir: Path) -> list[dict[str, Any]]:
-    """Match Gold and System files by their shared disaster ID prefix."""
-    gold_files = index_disaster_files(gold_dir, GOLD_INPUT_SUFFIX)
-    system_files = index_disaster_files(sys_dir, SYSTEM_INPUT_SUFFIX)
-    disaster_ids = sorted(set(gold_files) | set(system_files))
-    return [
-        {
-            "file_id": disaster_id,
-            "gold_path": gold_files.get(disaster_id),
-            "system_path": system_files.get(disaster_id),
-        }
-        for disaster_id in disaster_ids
-    ]
+    """Match Gold and System reports by exact crisis directory and cell ID."""
+    gold_files = index_instance_files(gold_dir)
+    system_files = index_instance_files(sys_dir)
+    instance_ids = sorted(set(gold_files) | set(system_files))
+    pairs: list[dict[str, Any]] = []
+    for instance_id in instance_ids:
+        gold = gold_files.get(instance_id)
+        system = system_files.get(instance_id)
+        identity = gold or system
+        assert identity is not None
+        pairs.append({
+            "instance_id": instance_id,
+            "crisis_id": identity["crisis_id"],
+            "cell_id": identity["cell_id"],
+            "relative_path": identity["relative_path"],
+            "gold_path": gold["path"] if gold else None,
+            "system_path": system["path"] if system else None,
+        })
+    return pairs
 
 
 def compact_summary(result: dict[str, Any]) -> dict[str, Any]:
@@ -262,12 +314,14 @@ def metric_view(item: dict[str, Any], aggregation: str) -> dict[str, Any]:
     }
 
 
-def build_disaster_summary(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Build one compact summary row per disaster for a single system."""
+def build_instance_summary(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Build one compact summary row per test instance for a single system."""
     rows: list[dict[str, Any]] = []
     for item in results:
         row: dict[str, Any] = {
-            "disaster_id": item.get("file_id"),
+            "instance_id": item.get("instance_id"),
+            "crisis_id": item.get("crisis_id"),
+            "cell_id": item.get("cell_id"),
             "system_id": item.get("sys_id"),
             "gold_file": item.get("gold_file"),
             "system_file": item.get("system_file"),
@@ -285,7 +339,7 @@ def build_disaster_summary(results: list[dict[str, Any]]) -> list[dict[str, Any]
 
 
 def mean_views(values: list[Any]) -> Any:
-    """Recursively average numeric metric leaves across scored disasters."""
+    """Recursively average numeric metric leaves across scored instances."""
     present = [value for value in values if value is not None]
     if not present:
         return None
@@ -343,7 +397,7 @@ def append_system_summary_table(
 
 
 def build_combined_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    """Build one system's overall macro result with equal disaster weight."""
+    """Build one system's overall macro result with equal test-instance weight."""
     results = payload.get("results") or []
     scored_results = [item for item in results if item.get("status") == "scored"]
     primary_within = str(
@@ -378,11 +432,16 @@ def build_combined_payload(payload: dict[str, Any]) -> dict[str, Any]:
         )
     total_count = len(results)
     scored_count = len(scored_results)
-    disaster_ids = [
-        str(item.get("file_id"))
+    instance_ids = [
+        str(item.get("instance_id"))
         for item in results
-        if item.get("file_id") is not None
+        if item.get("instance_id") is not None
     ]
+    crisis_ids = sorted({
+        str(item.get("crisis_id"))
+        for item in results
+        if item.get("crisis_id") is not None
+    })
     combined = {
         "generated_at_utc": payload["generated_at_utc"],
         "config": payload["config"],
@@ -390,21 +449,28 @@ def build_combined_payload(payload: dict[str, Any]) -> dict[str, Any]:
         "system_dir": payload["system_dir"],
         "system_id": payload["system_id"],
         "evaluation_scope": payload.get("evaluation_scope", {"sections": "all"}),
+        "subsection_alignment_method": payload.get(
+            "subsection_alignment_method", "header_only"
+        ),
         "aggregation": {
-            "level": "across_disasters",
+            "level": "across_instances",
             "method": "macro",
             "note": (
                 "Overall macro results are the equal-weight mean of the selected "
-                "overall result from each scored disaster."
+                "overall result from each scored test instance across all crises."
             ),
         },
-        "disaster_count": total_count,
-        "scored_disaster_count": scored_count,
-        "disaster_ids": disaster_ids,
+        "instance_count": total_count,
+        "scored_instance_count": scored_count,
+        "crisis_count": len(crisis_ids),
+        "crisis_ids": crisis_ids,
+        "instance_ids": instance_ids,
         "coverage_ratio": round(scored_count / total_count, 6) if total_count else None,
-        "failed_disasters": [
+        "failed_instances": [
             {
-                "disaster_id": item.get("file_id"),
+                "instance_id": item.get("instance_id"),
+                "crisis_id": item.get("crisis_id"),
+                "cell_id": item.get("cell_id"),
                 "status": item.get("status"),
                 "error": item.get("error"),
             }
@@ -436,9 +502,9 @@ def primary_score_is_required(payload: dict[str, Any]) -> bool:
         if item.get("status") == "scored"
         and isinstance((evaluation := item.get("evaluation")), dict)
     }
-    # Sweep runs expose multiple configurations and therefore do not define one
-    # release primary score. Callers without an explicit view are treated as a
-    # normal single-configuration run.
+    # Sweep runs expose many equally valid configurations and therefore do not
+    # define one release primary score. Summary-only callers have no view and
+    # retain the historical single-run behavior.
     return not views or views == {"single"}
 
 
@@ -472,24 +538,6 @@ def _active_metric_failures(value: Any, path: str) -> list[str]:
     return failures
 
 
-def evaluation_metric_failures(
-    evaluation: Any,
-    disaster_id: str,
-) -> list[str]:
-    """Return active metric failures for one disaster evaluation."""
-    if not isinstance(evaluation, dict):
-        return [f"{disaster_id}: missing evaluation result"]
-    failures = _active_metric_failures(
-        evaluation.get("configured_metrics"),
-        f"{disaster_id}.configured_metrics",
-    )
-    failures.extend(_active_metric_failures(
-        evaluation.get("weighted_alignment"),
-        f"{disaster_id}.weighted_alignment",
-    ))
-    return failures
-
-
 def collect_evaluation_failures(
     payload: dict[str, Any],
     combined: dict[str, Any],
@@ -497,17 +545,26 @@ def collect_evaluation_failures(
     """Return reasons that make a completed evaluator run operationally incomplete."""
     failures: list[str] = []
     for item in payload.get("results") or []:
-        disaster_id = str(item.get("file_id", "unknown"))
+        instance_id = str(item.get("instance_id", "unknown"))
         status = item.get("status")
         if status != "scored":
-            detail = f"{disaster_id}: status={status or 'missing'}"
+            detail = f"{instance_id}: status={status or 'missing'}"
             if item.get("error"):
                 detail += f", error={item['error']}"
             failures.append(detail)
             continue
 
-        failures.extend(evaluation_metric_failures(
-            item.get("evaluation"), disaster_id,
+        evaluation = item.get("evaluation")
+        if not isinstance(evaluation, dict):
+            failures.append(f"{instance_id}: missing evaluation result")
+            continue
+        failures.extend(_active_metric_failures(
+            evaluation.get("configured_metrics"),
+            f"{instance_id}.configured_metrics",
+        ))
+        failures.extend(_active_metric_failures(
+            evaluation.get("weighted_alignment"),
+            f"{instance_id}.weighted_alignment",
         ))
 
     if primary_score_is_required(payload):
@@ -524,14 +581,14 @@ def collect_evaluation_failures(
 
 
 def build_combined_log(payload: dict[str, Any]) -> str:
-    """Build one system's overall across-disaster macro report."""
+    """Build one system's overall across-instance macro report."""
     aggregation = payload.get("aggregation") or {}
-    disaster_ids = ", ".join(
-        str(value) for value in payload.get("disaster_ids") or []
+    crisis_ids = ", ".join(
+        str(value) for value in payload.get("crisis_ids") or []
     ) or "none"
     lines = [
         SECTION_RULE,
-        "Combined Multi-disaster Evaluation Log",
+        "Combined Multi-instance Evaluation Log",
         SECTION_RULE,
         "",
         f"System ID       : {payload.get('system_id')}",
@@ -539,13 +596,18 @@ def build_combined_log(payload: dict[str, Any]) -> str:
         f"System directory: {payload.get('system_dir')}",
         f"Sections        : {_format_scope_sections(payload.get('evaluation_scope'))}",
         (
-            f"Coverage        : {payload.get('scored_disaster_count', 0)}/"
-            f"{payload.get('disaster_count', 0)} scored disasters"
+            "Subsection align: "
+            f"{payload.get('subsection_alignment_method', 'header_only')}"
         ),
-        f"Disaster IDs    : {disaster_ids}",
+        (
+            f"Coverage        : {payload.get('scored_instance_count', 0)}/"
+            f"{payload.get('instance_count', 0)} scored instances"
+        ),
+        f"Crisis count    : {payload.get('crisis_count', 0)}",
+        f"Crisis IDs      : {crisis_ids}",
         "",
         "Aggregation:",
-        f"  level : {aggregation.get('level', 'across_disasters')}",
+        f"  level : {aggregation.get('level', 'across_instances')}",
         f"  method: {aggregation.get('method', 'macro')}",
         f"  note  : {aggregation.get('note', '')}",
         "",
@@ -577,17 +639,17 @@ def build_combined_log(payload: dict[str, Any]) -> str:
             f"{'BLEURT':<16}: {fmt_six_decimals(components.get('bleurt'))}",
             f"{'Score':<16}: {fmt_six_decimals(primary_score.get('score'))}",
         ])
-    if payload.get("failed_disasters"):
+    if payload.get("failed_instances"):
         lines.extend(["", "Coverage Warnings:"])
         lines.extend(
-            f"- {item.get('disaster_id')}: {item.get('status')} ({item.get('error')})"
-            for item in payload["failed_disasters"]
+            f"- {item.get('instance_id')}: {item.get('status')} ({item.get('error')})"
+            for item in payload["failed_instances"]
         )
     return "\n".join(lines).rstrip() + "\n"
 
 
 def _strip_unselected_pair_aggregates(value: Any, selected: str) -> Any:
-    """Remove the unselected within-document aggregate from pair output."""
+    """Remove the non-primary within-document aggregate from pair output."""
     excluded = "macro" if selected == "micro" else "micro"
     if isinstance(value, dict):
         return {
@@ -603,8 +665,11 @@ def _strip_unselected_pair_aggregates(value: Any, selected: str) -> Any:
     return value
 
 
-def build_pair_output_payload(payload: dict[str, Any], item: dict[str, Any]) -> dict[str, Any]:
-    """Build one disaster payload containing only its selected aggregation."""
+def build_pair_output_payload(
+    payload: dict[str, Any],
+    item: dict[str, Any],
+) -> dict[str, Any]:
+    """Build one test-instance payload containing only its primary aggregation."""
     selected = str((payload.get("aggregation") or {}).get("within_document", "micro"))
     return {
         "generated_at_utc": payload["generated_at_utc"],
@@ -613,7 +678,12 @@ def build_pair_output_payload(payload: dict[str, Any], item: dict[str, Any]) -> 
         "system_dir": payload["system_dir"],
         "system_id": payload["system_id"],
         "evaluation_scope": payload.get("evaluation_scope", {"sections": "all"}),
-        "disaster_id": item.get("file_id"),
+        "subsection_alignment_method": payload.get(
+            "subsection_alignment_method", "header_only"
+        ),
+        "instance_id": item.get("instance_id"),
+        "crisis_id": item.get("crisis_id"),
+        "cell_id": item.get("cell_id"),
         "aggregation": {
             "level": "within_document",
             "method": selected,
@@ -623,7 +693,7 @@ def build_pair_output_payload(payload: dict[str, Any], item: dict[str, Any]) -> 
 
 
 def write_system_outputs(payload: dict[str, Any], out_dir: Path) -> dict[str, Any]:
-    """Write one JSON/log pair per disaster plus one combined pair."""
+    """Write one JSON/log pair per instance plus one root-level combined pair."""
     out_dir.mkdir(parents=True, exist_ok=True)
     for pattern in (
         f"*{EVAL_OUTPUT_SUFFIX}.json",
@@ -633,17 +703,22 @@ def write_system_outputs(payload: dict[str, Any], out_dir: Path) -> dict[str, An
         "combined.json",
         "combined.log",
     ):
-        for stale_path in out_dir.glob(pattern):
+        for stale_path in out_dir.rglob(pattern):
             stale_path.unlink()
     for item in payload.get("results") or []:
-        disaster_payload = build_pair_output_payload(payload, item)
-        stem = str(item.get("file_id"))
-        (out_dir / f"{stem}{EVAL_OUTPUT_SUFFIX}.json").write_text(
-            json.dumps(disaster_payload, ensure_ascii=False, indent=2) + "\n",
+        instance_payload = build_pair_output_payload(payload, item)
+        crisis_id = str(item.get("crisis_id", "")).strip()
+        cell_id = str(item.get("cell_id", "")).strip()
+        if not crisis_id or not cell_id:
+            raise ValueError("each result must include non-empty crisis_id and cell_id")
+        crisis_out_dir = out_dir / crisis_id
+        crisis_out_dir.mkdir(parents=True, exist_ok=True)
+        (crisis_out_dir / f"{cell_id}{EVAL_OUTPUT_SUFFIX}.json").write_text(
+            json.dumps(instance_payload, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        (out_dir / f"{stem}{EVAL_OUTPUT_SUFFIX}.log").write_text(
-            build_log(disaster_payload),
+        (crisis_out_dir / f"{cell_id}{EVAL_OUTPUT_SUFFIX}.log").write_text(
+            build_log(instance_payload),
             encoding="utf-8",
         )
     combined = build_combined_payload(payload)
@@ -723,7 +798,7 @@ def append_metric_summary(
     lines.append("")
     selected = primary_aggregation if primary_aggregation in {"micro", "macro"} else "micro"
     lines.append(f"Within-document {selected.title()} (Primary)")
-    append_system_summary_table(lines, build_disaster_summary([item]), selected)
+    append_system_summary_table(lines, build_instance_summary([item]), selected)
     lines.append("")
 
 
@@ -765,7 +840,7 @@ def append_rouge_diagnostics(lines: list[str], evaluation: dict[str, Any]) -> No
         scope = block.get("mode") or label.replace("rouge.", "").strip(".") or "unknown"
         matched_units = int(diagnostics.get("matched_units", 0))
         skipped_both_empty = int(diagnostics.get("skipped_both_empty_units", 0))
-        scored_units = int(diagnostics.get("scored_units", 0))
+        scored_units = max(matched_units - skipped_both_empty, 0)
         lines.append(
             f"{scope}: "
             f"gold_units={diagnostics.get('gold_units', 0)} "
@@ -989,12 +1064,22 @@ def build_log(payload: dict[str, Any]) -> str:
         f"Generated at UTC : {payload['generated_at_utc']}",
         f"Config           : {payload['config']}",
         f"Sections         : {_format_scope_sections(payload.get('evaluation_scope'))}",
+        (
+            "Subsection align: "
+            f"{payload.get('subsection_alignment_method', 'header_only')}"
+        ),
         "",
     ]
     for index, item in enumerate(payload["results"]):
         if index:
             lines.append("")
-        append_field(lines, "Disaster ID", item["file_id"])
+        append_field(
+            lines,
+            "Instance ID",
+            item.get("instance_id", "unknown"),
+        )
+        append_field(lines, "Crisis ID", item.get("crisis_id", "unknown"))
+        append_field(lines, "Cell ID", item.get("cell_id", "unknown"))
         append_field(lines, "System ID", item["sys_id"])
         lines.append("")
         append_field(lines, "Gold", item["gold_file"])
@@ -1023,7 +1108,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Evaluate one system directory against a gold directory across all "
-            "disaster files, then write per-disaster and combined reports."
+            "crisis/cell reports, then write per-instance and combined reports."
         )
     )
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
@@ -1031,13 +1116,16 @@ def parse_args() -> argparse.Namespace:
         "--sys-dir",
         type=Path,
         default=None,
-        help="One system's directory containing one JSON file per disaster.",
+        help=(
+            "One system's directory containing "
+            "<crisis>/<cell>.report.json files."
+        ),
     )
     parser.add_argument(
         "--gold-dir",
         type=Path,
         default=None,
-        help="Gold directory containing one JSON file per disaster.",
+        help="Gold directory containing <crisis>/<cell>.report.json files.",
     )
     parser.add_argument(
         "--out-dir",
@@ -1049,10 +1137,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--sections",
         default=None,
-        help=(
-            "Comma-separated section IDs to evaluate, or 'all' for every "
-            "available section (overrides config)."
-        ),
+        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
     )
     parser.add_argument(
         "--system-id",
@@ -1065,18 +1150,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--all-modes",
         action="store_true",
-        help=(
-            "Evaluate document, section, and subsection levels within the "
-            "resolved section scope."
-        ),
+        help="Evaluate document, section, and subsection levels.",
     )
     parser.add_argument(
         "--all-config",
         action="store_true",
-        help=(
-            "Sweep all supported metric/level/unit combinations within the "
-            "resolved section scope."
-        ),
+        help="Sweep all supported metric/level/unit combinations.",
     )
     parser.add_argument(
         "--no-full",
@@ -1110,6 +1189,10 @@ def main() -> int:
         evaluation_scope = resolve_evaluation_scope(args.config, args.sections)
     except ValueError as exc:
         raise SystemExit(f"invalid evaluation scope: {exc}") from exc
+    evaluation_config = load_evaluation_config(args.config)
+    subsection_alignment_method = evaluation_config[
+        "rouge"
+    ]["subsection_alignment_method"]
 
     try:
         pairs = discover_pairs(sys_dir, gold_dir)
@@ -1117,7 +1200,8 @@ def main() -> int:
         raise SystemExit(str(exc)) from exc
     if not pairs:
         raise SystemExit(
-            f"no disaster JSON files found in {gold_dir} or {sys_dir}"
+            "no <crisis>/<cell>.report.json files found in "
+            f"{gold_dir} or {sys_dir}"
         )
 
     results: list[dict[str, Any]] = []
@@ -1125,7 +1209,9 @@ def main() -> int:
         gold_path = pair["gold_path"]
         system_path = pair["system_path"]
         item: dict[str, Any] = {
-            "file_id": pair["file_id"],
+            "instance_id": pair["instance_id"],
+            "crisis_id": pair["crisis_id"],
+            "cell_id": pair["cell_id"],
             "sys_id": system_id,
             "gold_file": display_path(gold_path) if gold_path else None,
             "system_file": display_path(system_path) if system_path else None,
@@ -1133,14 +1219,14 @@ def main() -> int:
         if gold_path is None:
             item.update({
                 "status": "missing_gold",
-                "error": f"missing gold file for disaster: {pair['file_id']}",
+                "error": f"missing gold file for instance: {pair['instance_id']}",
             })
             results.append(item)
             continue
         if system_path is None:
             item.update({
                 "status": "missing_system",
-                "error": f"missing system file for disaster: {pair['file_id']}",
+                "error": f"missing system file for instance: {pair['instance_id']}",
             })
             results.append(item)
             continue
@@ -1158,25 +1244,28 @@ def main() -> int:
             item.update({"status": "error", "error": str(exc)})
         else:
             evaluation = relativize_paths(evaluation)
-            metric_failures = evaluation_metric_failures(
-                evaluation, str(pair["file_id"]),
-            )
-            structure_summary = build_structure_summary(
-                gold_path,
-                system_path,
-                evaluation,
-                selected_sections=evaluation_scope.section_ids,
-            )
-            item.update({
-                "status": "scored" if not metric_failures else "incomplete",
-                "summary": compact_summary(evaluation),
-                "evaluation": evaluation,
-                "structure_summary": structure_summary,
-                "diagnostics": {"structure_summary": structure_summary},
-            })
-            if metric_failures:
-                item["metric_failures"] = metric_failures
-                item["error"] = "; ".join(metric_failures)
+            try:
+                structure_summary = build_structure_summary(
+                    gold_path,
+                    system_path,
+                    evaluation,
+                    selected_sections=evaluation_scope.section_ids,
+                    subsection_alignment_method=subsection_alignment_method,
+                )
+            except (OSError, ValueError, TypeError, AttributeError) as exc:
+                item.update({
+                    "status": "error",
+                    "error": f"structure summary failed: {exc}",
+                    "evaluation": evaluation,
+                })
+            else:
+                item.update({
+                    "status": "scored",
+                    "summary": compact_summary(evaluation),
+                    "evaluation": evaluation,
+                    "structure_summary": structure_summary,
+                    "diagnostics": {"structure_summary": structure_summary},
+                })
         results.append(item)
 
     reporting = load_reporting_config(args.config)
@@ -1188,13 +1277,14 @@ def main() -> int:
         "system_dir": display_path(sys_dir),
         "system_id": system_id,
         "evaluation_scope": evaluation_scope.as_dict(),
+        "subsection_alignment_method": subsection_alignment_method,
         "aggregation": reporting["aggregation"],
         "primary_score_config": reporting["primary_score"],
         "results": results,
     }
     combined = write_system_outputs(payload, out_dir)
     print(
-        f"[run_eval] wrote {len(results)} per-disaster JSON/log pairs and "
+        f"[run_eval] wrote {len(results)} per-instance JSON/log pairs and "
         f"combined{EVAL_OUTPUT_SUFFIX}.json/log under {out_dir}"
     )
     failures = collect_evaluation_failures(payload, combined)
