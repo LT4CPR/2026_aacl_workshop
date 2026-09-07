@@ -310,7 +310,7 @@ test/tornado/tornado.W2.k3.tweets.jsonl
 a system with ID `retrieval-llm` should place its output at:
 
 ```text
-<team_id>/systems/retrieval-llm/test/tornado/tornado.W2.k3.report.json
+<team_id>/systems/retrieval-llm/tornado/tornado.W2.k3.report.json
 ```
 
 Keep the crisis directory and cell stem unchanged. Do **not** add the team name or system name to individual report filenames; team and system identity are represented by the enclosing directories and the submission manifest.
@@ -426,26 +426,26 @@ The required archive structure is:
     ├── submission.json
     └── systems/
         ├── <system_id_1>/
-        │       ├── collapse/
-        │       │   └── *.report.json
-        │       ├── damsafety/
-        │       │   └── *.report.json
-        │       ├── heatwave/
-        │       │   └── *.report.json
-        │       ├── indfire/
-        │       │   └── *.report.json
-        │       ├── landslide/
-        │       │   └── *.report.json
-        │       └── tornado/
-        │           └── *.report.json
+        │   ├── collapse/
+        │   │   └── *.report.json
+        │   ├── damsafety/
+        │   │   └── *.report.json
+        │   ├── heatwave/
+        │   │   └── *.report.json
+        │   ├── indfire/
+        │   │   └── *.report.json
+        │   ├── landslide/
+        │   │   └── *.report.json
+        │   └── tornado/
+        │       └── *.report.json
         │
         └── <system_id_2>/
-                ├── collapse/
-                ├── damsafety/
-                ├── heatwave/
-                ├── indfire/
-                ├── landslide/
-                └── tornado/
+            ├── collapse/
+            ├── damsafety/
+            ├── heatwave/
+            ├── indfire/
+            ├── landslide/
+            └── tornado/
 ```
 
 For example:
@@ -456,22 +456,32 @@ uw-crisisnlp.zip
     ├── submission.json
     └── systems/
         ├── retrieval-llm/
-        │       ├── collapse/
-        │       ├── damsafety/
-        │       ├── heatwave/
-        │       ├── indfire/
-        │       ├── landslide/
-        │       └── tornado/
+        │   ├── collapse/
+        │   ├── damsafety/
+        │   ├── heatwave/
+        │   ├── indfire/
+        │   ├── landslide/
+        │   └── tornado/
         └── zero-shot-llm/
-                ├── collapse/
-                ├── damsafety/
-                ├── heatwave/
-                ├── indfire/
-                ├── landslide/
-                └── tornado/
+            ├── collapse/
+            ├── damsafety/
+            ├── heatwave/
+            ├── indfire/
+            ├── landslide/
+            └── tornado/
 ```
 
 Each submitted system is a **complete run** and must contain exactly one report for each of the **117 public test inputs**.
+
+The crisis directories must appear **directly under the system directory**. Do not add an extra `test/` layer inside a system. For example:
+
+```text
+correct:
+<team_id>/systems/<system_id>/tornado/<cell>.report.json
+
+incorrect:
+<team_id>/systems/<system_id>/test/tornado/<cell>.report.json
+```
 
 Therefore:
 
@@ -584,7 +594,7 @@ Before uploading, run `tools/other_tools/validate_submission.py` and verify that
 15. every `confidence` value is either `confirmed` or `unconfirmed`;
 16. every `tweet_ids` value is a JSON array of integer IDs from the corresponding input file;
 17. no internal identifiers or organizer metadata appear in the output;
-18. every system preserves the required `test/<crisis>/<cell>.report.json` structure;
+18. every system preserves the required `<crisis>/<cell>.report.json` structure directly under its system directory;
 19. no undeclared system directories or extra report files are present.
 
 Use the official submission validator when it is released. A locally valid JSON file is not necessarily a schema-valid shared-task submission.
