@@ -759,9 +759,21 @@ def validate_submission(submission_zip: Path, test_source: Path) -> Result:
 
         for sid in sorted(declared_system_dirs):
             sys_prefix = f"{top_team_dir}/systems/{sid}/"
+
+            legacy_test_prefix = f"{sys_prefix}test/"
+            legacy_test_files = sorted(
+                name for name in files if name.startswith(legacy_test_prefix)
+            )
+            if legacy_test_files:
+                result.error(
+                    f"system {sid!r}: obsolete 'test/' directory is not allowed; "
+                    f"place crisis directories directly under the system directory "
+                    f"(for example {sys_prefix}tornado/...)."
+                )
+
             expected_report_paths: Dict[str, Tuple[str, str]] = {}
             for crisis, stem in sorted(expected_cell_keys):
-                rel = f"test/{crisis}/{stem}.report.json"
+                rel = f"{crisis}/{stem}.report.json"
                 expected_report_paths[sys_prefix + rel] = (crisis, stem)
 
             actual_report_paths = {
