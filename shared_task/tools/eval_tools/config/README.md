@@ -8,12 +8,27 @@
 | --- | --- | --- |
 | `evaluation_scope.sections` | `"all"`, a comma-separated string, or a list of section IDs | Selects the sections to evaluate. The release policy lists Sections 3–11. `all` evaluates every section available in each input file, including Sections 1–2 when present. Explicit selections may also include IDs such as `1` and `2`. |
 
+## Subsection alignment
+
+Sections are always aligned by exact section ID. The following global option
+controls subsection correspondence inside each aligned section and is used by
+every subsection-level text and bullet metric.
+
+| Option | Values | Meaning |
+| --- | --- | --- |
+| `subsection_alignment_method` | `id_only`, `header_only`, `both_id_and_header` | Aligns subsections by exact ID, normalized header, or both. The release default is `header_only`. |
+
+Header-only alignment applies Unicode NFKC normalization, trims and collapses
+whitespace, and ignores letter case. It does not use fuzzy matching or a
+hard-coded header inventory. Missing required fields and duplicate alignment
+keys within one section are reported instead of being silently matched.
+
 ## Reporting
 
 | Option | Values | Meaning |
 | --- | --- | --- |
-| `reporting.aggregation.within_document` | `micro`, `macro` | `micro` pools statistics across units within a disaster. `macro` averages the unit-level scores. |
-| `reporting.aggregation.across_documents` | `macro` | Averages successfully scored disasters with equal weight. Cross-document `micro` is not supported. |
+| `reporting.aggregation.within_document` | `micro`, `macro` | `micro` pools statistics across units within one test instance. `macro` averages the unit-level scores. |
+| `reporting.aggregation.across_documents` | `macro` | Averages successfully scored test instances with equal weight across all crises. Cross-document `micro` is not supported. |
 | `reporting.primary_score.enabled` | `true`, `false` | Enables or disables generation of the primary score. |
 | `reporting.primary_score.method` | `mean_bertscore_f1_bleurt` | Defines the primary score as `(BERTScore F1 + BLEURT) / 2`. |
 
@@ -27,6 +42,8 @@ The following common options are available under
 | --- | --- | --- |
 | `mode` | `0`, `1`, `2`, `3` | Selects the evaluation level: `0` disables the metric, `1` evaluates the document, `2` evaluates sections, and `3` evaluates subsections. |
 | `aggregation` | `micro`, `macro` | Selects pooled statistics (`micro`) or the arithmetic mean of unit scores (`macro`) as the metric's overall result. |
+| `include_section_headers` | `true`, `false` | Includes section titles in the text supplied to the metric. |
+| `include_subsection_headers` | `true`, `false` | Includes subsection titles in subsection-level metric text. |
 
 ### ROUGE options
 

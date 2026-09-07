@@ -1,13 +1,19 @@
 evaluation_scope:
-  # The official release policy scores Sections 3--11.
-  # Use "all" to evaluate every section available in the input files.
+  # Use "all", or list IDs such as ["1", "3", "7"].
+  # The CLI flag --sections overrides this value.
   sections: ["3", "4", "5", "6", "7", "8", "9", "10", "11"]
+
+# Subsections are always compared within the same section. Their correspondence
+# can be determined by ID, normalized header text, or both. Header matching is
+# dynamic and does not rely on a hard-coded subsection inventory.
+subsection_alignment_method: header_only
+# id_only | header_only | both_id_and_header
 
 reporting:
   aggregation:
     # Pool subsection/item statistics within each document.
     within_document: micro
-    # Give each disaster/document equal weight so large disasters do not dominate.
+    # Give each independent crisis-window/sample test instance equal weight.
     across_documents: macro
 
   primary_score:
@@ -23,18 +29,23 @@ metrics:
     # mode: 3, subsection
     rouge:
       mode: 3
+      include_section_headers: false # true | false
+      include_subsection_headers: false # true | false
       aggregation: micro # micro | macro
       # matched_only: score only aligned units.
-      # whole_gold: use all gold and system units in ROUGE micro denominators,
-      # so missing and unnecessary structural units are both penalized.
+      # whole_gold: use all gold n-grams/tokens as the ROUGE micro recall denominator.
       denominator_policy: whole_gold # matched_only | whole_gold
 
     bertscore:
       mode: 3
+      include_section_headers: false # true | false
+      include_subsection_headers: false # true | false
       aggregation: micro # micro | macro
 
     bleurt:
       mode: 3
+      include_section_headers: false # true | false
+      include_subsection_headers: false # true | false
       aggregation: micro # micro | macro
 
   bullet_level:
