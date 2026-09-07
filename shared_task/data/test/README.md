@@ -426,7 +426,6 @@ The required archive structure is:
     ├── submission.json
     └── systems/
         ├── <system_id_1>/
-        │   └── test/
         │       ├── collapse/
         │       │   └── *.report.json
         │       ├── damsafety/
@@ -441,7 +440,6 @@ The required archive structure is:
         │           └── *.report.json
         │
         └── <system_id_2>/
-            └── test/
                 ├── collapse/
                 ├── damsafety/
                 ├── heatwave/
@@ -458,7 +456,6 @@ uw-crisisnlp.zip
     ├── submission.json
     └── systems/
         ├── retrieval-llm/
-        │   └── test/
         │       ├── collapse/
         │       ├── damsafety/
         │       ├── heatwave/
@@ -466,7 +463,6 @@ uw-crisisnlp.zip
         │       ├── landslide/
         │       └── tornado/
         └── zero-shot-llm/
-            └── test/
                 ├── collapse/
                 ├── damsafety/
                 ├── heatwave/
