@@ -1,17 +1,18 @@
 # LT4CPR Evaluation
 
 This directory contains the final release evaluator for structured LT4CPR
-situation reports (SITREPs). One run evaluates one system against all
-discovered Gold disasters and produces per-disaster and combined reports.
+situation reports (SITREPs). One run evaluates one system against every
+discovered Gold test instance across all crises and produces per-instance and
+combined reports.
 
 ## Documentation
 
 | Document | Contents |
 | --- | --- |
-| [`sample_data/README.md`](sample_data/README.md) | Input/output directories, filename conventions, disaster pairing, and generated result files. |
+| [`sample_data/README.md`](sample_data/README.md) | Input/output directories, filename conventions, crisis/cell pairing, and generated result files. |
 | [`config/README.md`](config/README.md) | Available `evaluation.yaml` options and the meaning of each value. |
 | [`src/README.md`](src/README.md) | Responsibility of each Python source file. |
-| [`../../data/DATA_FORMAT.md`](../../data/DATA_FORMAT.md) | Structured SITREP JSON format. |
+| [`tests/`](tests/) | Release tests for pairing, aggregation, scope, output, and subsection alignment. |
 
 ## Installation
 
@@ -25,7 +26,53 @@ python -m pip install -r requirements.txt
 ```
 
 Git is required because BLEURT is installed from a fixed source commit. The
-first run may download the configured BERTScore and BLEURT model files.
+first run may download the configured BERTScore and BLEURT model files. The
+optional cosine bullet-similarity mode may also download its configured
+Sentence Transformers model.
+
+## Input format
+
+Each input is a schema-1.2 JSON object with `meta` and `sections`. Sections
+contain subsections, and subsections contain bullets. A minimal example is:
+
+```json
+{
+  "meta": {"schema_version": "1.2"},
+  "sections": [
+    {
+      "id": "3",
+      "title": "Casualties and human impact",
+      "subsections": [
+        {
+          "id": "3a",
+          "title": "Fatalities",
+          "bullets": [
+            {
+              "id": "3a.1",
+              "text": "One fatality was confirmed.",
+              "confidence": "confirmed",
+              "tweet_ids": [1234567890]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Gold and System directories use the same official two-level layout:
+
+```text
+<root>/
+└── <crisis>/
+    └── <cell>.report.json
+```
+
+The evaluator pairs reports by the exact relative identity
+`<crisis>/<cell>`. A crisis may contain any number of independent cells. The
+crisis directory must be directly under the Gold or System root; an extra
+`test/` directory is not accepted.
 
 ## Evaluation flow
 
@@ -33,7 +80,7 @@ first run may download the configured BERTScore and BLEURT model files.
 Gold directory + one System directory
                  │
                  ▼
-       Pair files by disaster ID
+      Pair files by crisis + cell ID
                  │
         ┌────────┴────────┐
         ▼                 ▼
@@ -43,7 +90,7 @@ Gold directory + one System directory
   BLEURT             Soft precision/recall/F1
         └────────┬────────┘
                  ▼
-     Per-disaster JSON and log
+     Per-instance JSON and log
                  │
                  ▼
        Combined system result
@@ -52,6 +99,11 @@ Gold directory + one System directory
 Use the provided `config/evaluation.yaml` unchanged for official shared-task
 scoring. Detailed metric and aggregation options are documented in
 [`config/README.md`](config/README.md).
+
+Sections are aligned by exact section ID. Within an aligned section,
+subsections can be aligned by subsection ID, normalized header, or both. The
+release default is `header_only`; it does not require a hard-coded subsection
+inventory.
 
 ## Run the evaluator
 
@@ -90,11 +142,24 @@ A valid release evaluation must satisfy all of the following:
 
 - the command exits with status `0`;
 - `combined-eval.json` reports `coverage_ratio: 1.0`;
-- `failed_disasters` is empty;
+- `failed_instances` is empty;
 - every active metric has `status: scored`; and
 - the combined primary score is available.
+
+The evaluator writes each cell's result under its crisis directory and writes
+only one `combined-eval.json`/`.log` pair at the result root. The combined
+score is the equal-weight macro average over all scored test instances; no
+per-crisis combined files are generated.
 
 The evaluator still writes diagnostic JSON/log files when possible after an
 incomplete run, but exits with status `1`. Do not use a partial combined score
 as an official result. Result locations and file contents are described in
 [`sample_data/README.md`](sample_data/README.md).
+
+## Tests
+
+Run the release tests from this directory:
+
+```bash
+python -m pytest tests -q
+```
