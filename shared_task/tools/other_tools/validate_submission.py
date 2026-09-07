@@ -10,8 +10,8 @@ Expected submission structure:
     └── <team_id>/
         ├── submission.json
         └── systems/
-            ├── <system_id_1>/test/<crisis>/<cell>.report.json
-            └── <system_id_2>/test/<crisis>/<cell>.report.json
+            ├── <system_id_1>/<crisis>/<cell>.report.json
+            └── <system_id_2>/<crisis>/<cell>.report.json
 
 Each system must provide exactly one report for every released
 *.tweets.jsonl test input.
