@@ -1,9 +1,16 @@
 # Sample Data Directory
 
 This directory demonstrates the evaluation layout for the official shared-task
-test format. The evaluator reads only `gold-output/` and the selected system
-directory under `sysId-output/`; `train/` contains source examples and is not
-read during scoring.
+test format using examples derived from the released training data. There is no
+separate `train/` directory under `sample_data/`; its three data directories are
+`gold-output/`, `sysId-output/`, and `eval-result/`.
+
+`sysId-output/<system-id>/` demonstrates the per-system portion of a participant
+submission after the team ZIP has been validated and extracted. It is an example
+of the directory and filename layout accepted by the evaluator, rather than a
+complete participant ZIP with `submission.json`. The evaluator reads only
+`gold-output/` and the selected directory under `sysId-output/`; it never reads
+the original training inputs during scoring.
 
 ## Directory structure
 
