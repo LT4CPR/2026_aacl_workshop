@@ -1,4 +1,4 @@
-"""Reporting-level evaluation configuration."""
+"""Load and validate reporting-level evaluation configuration."""
 
 from __future__ import annotations
 

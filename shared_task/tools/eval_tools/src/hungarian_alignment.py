@@ -1,3 +1,5 @@
+"""Provide maximum-weight bipartite alignment for evaluation units."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

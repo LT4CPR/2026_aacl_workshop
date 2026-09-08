@@ -1,4 +1,4 @@
-"""Evaluation section-scope configuration shared by all evaluator paths."""
+"""Resolve section-scope configuration shared by all evaluator paths."""
 
 from __future__ import annotations
 

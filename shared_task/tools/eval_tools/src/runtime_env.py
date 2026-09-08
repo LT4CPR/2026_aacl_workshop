@@ -1,4 +1,4 @@
-"""Runtime environment guards for model-based metrics."""
+"""Configure a stable runtime environment for model-based metrics."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Hungarian alignment for structured SITREP JSON."""
+"""Compute weighted Hungarian alignment for structured SITREP JSON."""
 
 from __future__ import annotations
 

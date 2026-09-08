@@ -1,4 +1,4 @@
-"""Run evaluation with the release directory layout."""
+"""Run batch evaluation using the public release directory layout."""
 
 from __future__ import annotations
 

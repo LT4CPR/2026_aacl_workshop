@@ -1,3 +1,5 @@
+"""Extract comparable evaluation units from structured SITREP reports."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

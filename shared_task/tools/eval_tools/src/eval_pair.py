@@ -1,4 +1,4 @@
-"""Evaluate one gold/system SITREP pair."""
+"""Evaluate and report metrics for one gold/system SITREP pair."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Text-level SITREP evaluation utilities."""
+"""Compute configured text-level metrics for SITREP reports."""
 from __future__ import annotations
 
 import argparse
