@@ -118,7 +118,7 @@ The data is released in stages.
 | --- | --- | --- | --- | --- |
 | Train | 8 | 140 | August 7, 2026 | Tweets and reference reports |
 | Development | 2 | 23 | August 7, 2026 | Tweets and reference reports |
-| Test | New crises | -- | September 1, 2026 | Tweets only; reports published after the submission deadline |
+| Test | New crises | -- | September 7, 2026 | Tweets only; reports published after the submission deadline |
 
 Every document is a separate crisis. The two development documents are
 distinct crises from the eight training ones, and the test documents are
