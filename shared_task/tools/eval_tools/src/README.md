@@ -1,6 +1,7 @@
 # Source Modules
 
-For the final release, run `run_eval.py`. The other modules are imported by the evaluator.
+For batch evaluation with the final release layout, use `run_eval.py` as the
+public command-line entry point. The other modules provide its supporting logic.
 
 | File | Role |
 | --- | --- |
