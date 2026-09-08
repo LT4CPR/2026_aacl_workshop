@@ -1,4 +1,4 @@
-"""Shared subsection-correspondence configuration and key helpers."""
+"""Normalize subsection-correspondence configuration and matching keys."""
 
 from __future__ import annotations
 
