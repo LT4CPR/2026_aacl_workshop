@@ -49,7 +49,7 @@ The following common options are available under
 
 | Option | Values | Meaning |
 | --- | --- | --- |
-| `denominator_policy` | `whole_gold`, `matched_only` | For ROUGE micro aggregation, `whole_gold` uses all Gold content for recall and all System content for precision, penalizing missing and System-only units. `matched_only` uses only structurally matched units and is intended for diagnostics. |
+| `denominator_policy` | `whole_gold`, `matched_only` | For ROUGE micro aggregation, `whole_gold` uses all non-empty Gold units for the recall denominator, so unmatched Gold content lowers recall. Precision uses System content from structurally matched units only; System-only units remain diagnostic and do not lower precision. `matched_only` uses only structurally matched units for both denominators and is intended for diagnostics. |
 
 ### BERTScore options
 
