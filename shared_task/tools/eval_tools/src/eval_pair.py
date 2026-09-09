@@ -344,6 +344,7 @@ def _metric_overall_summary(name: str, block: dict[str, Any]) -> dict[str, Any]:
             "precision": overall.get("precision"),
             "recall": overall.get("recall"),
             "f1": overall.get("f1"),
+            "unmatched_penalty": block.get("unmatched_penalty"),
         })
     else:
         entry["score"] = overall.get("score")

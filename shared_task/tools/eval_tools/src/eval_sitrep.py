@@ -682,6 +682,14 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
         if row["status"] == "matched"
         and (row["candidate"].strip() or row["reference"].strip())
     ]
+    candidate_only = [
+        row for row in pairs
+        if row["status"] == "candidate_only" and row["candidate"].strip()
+    ]
+    reference_only = [
+        row for row in pairs
+        if row["status"] == "reference_only" and row["reference"].strip()
+    ]
     refs = [row["reference"] for row in matched]
     preds = [row["candidate"] for row in matched]
     items = []
@@ -710,7 +718,10 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
         elif row["status"] == "matched":
             score_items.append(item)
         items.append(item)
-    if not matched:
+    bertscore_has_unmatched_content = (
+        name == "bertscore" and bool(candidate_only or reference_only)
+    )
+    if not matched and not bertscore_has_unmatched_content:
         reason = (
             "no_scorable_text"
             if any(row.get("status") == "matched" for row in pairs)
@@ -793,24 +804,69 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
             aggregate["denominator_policy"] = denominator_policy
     elif name == "bertscore":
         model_type = spec.get("model_type", "microsoft/deberta-xlarge-mnli")
-        kwargs = {
-            "references": refs,
-            "predictions": preds,
-            "model_type": model_type,
-            "batch_size": int(spec.get("batch_size", 1)),
-        }
-        _apply_bertscore_tokenizer_compat()
-        result = _load_hf_metric("bertscore").compute(**kwargs)
+        if matched:
+            kwargs = {
+                "references": refs,
+                "predictions": preds,
+                "model_type": model_type,
+                "batch_size": int(spec.get("batch_size", 1)),
+            }
+            _apply_bertscore_tokenizer_compat()
+            result = _load_hf_metric("bertscore").compute(**kwargs)
+        else:
+            result = {"precision": [], "recall": [], "f1": []}
         scores = [{k: round(float(result[k][i]), 6) for k in ("precision", "recall", "f1")}
                   for i in range(len(matched))]
         for item, score in zip(score_items, scores):
             item["scores"] = score
-        macro = {k: round(statistics.mean(float(value) for value in result[k]), 6)
-                 for k in ("precision", "recall", "f1")}
-        precision = weighted_mean(
-            [float(value) for value in result["precision"]], candidate_token_counts)
-        recall = weighted_mean(
-            [float(value) for value in result["recall"]], reference_token_counts)
+
+        candidate_only_token_counts = [
+            token_count(row["candidate"]) for row in candidate_only
+        ]
+        reference_only_token_counts = [
+            token_count(row["reference"]) for row in reference_only
+        ]
+
+        macro_precision_denominator = len(matched) + len(candidate_only)
+        macro_recall_denominator = len(matched) + len(reference_only)
+        macro_precision = (
+            sum(float(value) for value in result["precision"])
+            / macro_precision_denominator
+            if macro_precision_denominator else 0.0
+        )
+        macro_recall = (
+            sum(float(value) for value in result["recall"])
+            / macro_recall_denominator
+            if macro_recall_denominator else 0.0
+        )
+        macro = {
+            "precision": round(macro_precision, 6),
+            "recall": round(macro_recall, 6),
+            "f1": round(harmonic_f1(macro_precision, macro_recall), 6),
+        }
+
+        precision_denominator = (
+            sum(candidate_token_counts) + sum(candidate_only_token_counts)
+        )
+        recall_denominator = (
+            sum(reference_token_counts) + sum(reference_only_token_counts)
+        )
+        precision_numerator = sum(
+            float(value) * weight
+            for value, weight in zip(result["precision"], candidate_token_counts)
+        )
+        recall_numerator = sum(
+            float(value) * weight
+            for value, weight in zip(result["recall"], reference_token_counts)
+        )
+        precision = (
+            precision_numerator / precision_denominator
+            if precision_denominator else 0.0
+        )
+        recall = (
+            recall_numerator / recall_denominator
+            if recall_denominator else 0.0
+        )
         micro = {
             "precision": round(precision, 6),
             "recall": round(recall, 6),
@@ -818,9 +874,21 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
         }
         for aggregate in (macro, micro):
             aggregate["model_type"] = model_type
+            aggregate["unmatched_policy"] = "side_specific_zero"
         if result.get("hashcode"):
             macro["hashcode"] = result["hashcode"]
             micro["hashcode"] = result["hashcode"]
+        bertscore_penalty = {
+            "policy": "side_specific_zero",
+            "matched_system_token_weight": sum(candidate_token_counts),
+            "system_only_units": len(candidate_only),
+            "system_only_token_weight": sum(candidate_only_token_counts),
+            "precision_denominator_token_weight": precision_denominator,
+            "matched_gold_token_weight": sum(reference_token_counts),
+            "gold_only_units": len(reference_only),
+            "gold_only_token_weight": sum(reference_only_token_counts),
+            "recall_denominator_token_weight": recall_denominator,
+        }
     else:
         config_name = spec.get("config_name", "BLEURT-20")
         raw_scores = _score_bleurt(refs, preds, config_name)
@@ -846,6 +914,7 @@ def _score_configured_metric(name: str, pairs: list[dict], spec: dict) -> dict:
         "aggregates": aggregates,
         "overall": aggregates[aggregation],
         **({"diagnostics": diagnostics} if diagnostics is not None else {}),
+        **({"unmatched_penalty": bertscore_penalty} if name == "bertscore" else {}),
     }
 def evaluate_configured_pair(
     candidate: Path,

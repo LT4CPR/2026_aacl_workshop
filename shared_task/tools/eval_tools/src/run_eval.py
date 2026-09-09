@@ -821,6 +821,32 @@ def append_metric_summary(
     lines.append(f"  {'Precision':<12}: {fmt_number(bertscore.get('precision'))}")
     lines.append(f"  {'Recall':<12}: {fmt_number(bertscore.get('recall'))}")
     lines.append(f"  {'F1':<12}: {fmt_number(bertscore.get('f1'))}")
+    bertscore_penalty = bertscore.get("unmatched_penalty") or {}
+    if bertscore_penalty:
+        lines.append(
+            "  Unmatched policy: "
+            f"{bertscore_penalty.get('policy', 'not_available')}"
+        )
+        lines.append(
+            "  Precision denominator: "
+            f"matched_system_tokens="
+            f"{bertscore_penalty.get('matched_system_token_weight', 0)} "
+            f"system_only_units={bertscore_penalty.get('system_only_units', 0)} "
+            f"system_only_tokens="
+            f"{bertscore_penalty.get('system_only_token_weight', 0)} "
+            f"total_tokens="
+            f"{bertscore_penalty.get('precision_denominator_token_weight', 0)}"
+        )
+        lines.append(
+            "  Recall denominator: "
+            f"matched_gold_tokens="
+            f"{bertscore_penalty.get('matched_gold_token_weight', 0)} "
+            f"gold_only_units={bertscore_penalty.get('gold_only_units', 0)} "
+            f"gold_only_tokens="
+            f"{bertscore_penalty.get('gold_only_token_weight', 0)} "
+            f"total_tokens="
+            f"{bertscore_penalty.get('recall_denominator_token_weight', 0)}"
+        )
     lines.append("")
 
     lines.append(f"BLEURT ({bleurt_mode})")
