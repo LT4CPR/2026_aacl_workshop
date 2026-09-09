@@ -2,28 +2,17 @@
 
 from __future__ import annotations
 
-import argparse
-import csv
-import hashlib
 import importlib
 import json
-import os
-import sys
-import tempfile
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Optional
 
 import numpy as np
 
-from runtime_env import apply_safe_hf_env, ensure_safe_hf_env_for_main
+from runtime_env import apply_safe_hf_env
 
-ensure_safe_hf_env_for_main(__name__)
 apply_safe_hf_env()
 
-EVAL_DIR = Path(__file__).resolve().parent
-RELEASE_ROOT = EVAL_DIR.parent
-DEFAULT_CONFIG = RELEASE_ROOT / "config" / "evaluation.yaml"
 DEFAULT_MODEL = "microsoft/deberta-xlarge-mnli"
 DEFAULT_MODELS = {
     "bertscore": DEFAULT_MODEL,
@@ -31,10 +20,8 @@ DEFAULT_MODELS = {
 }
 METRIC_ALIASES = {
     "bertscore": "bertscore",
-    "rouge": "rougeL",
     "rougeL": "rougeL",
     "cosine": "cosine",
-    "cosine-similarity": "cosine",
 }
 
 from eval_sitrep import _apply_bertscore_tokenizer_compat, resolve_bullet_level_spec
@@ -51,47 +38,6 @@ from subsection_alignment import (
     display_subsection_alignment_key,
     resolve_subsection_alignment_method,
 )
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Evaluate system SITREPs against a JSON gold with Hungarian matching."
-    )
-    parser.add_argument("--gold", type=Path, required=True)
-    parser.add_argument("--system", type=Path, action="append", required=True)
-    parser.add_argument("--out-dir", type=Path, required=True)
-    parser.add_argument(
-        "--config", type=Path, default=DEFAULT_CONFIG,
-        help="YAML containing metrics.bullet_level settings.",
-    )
-    parser.add_argument(
-        "--metric", choices=("bertscore", "rougeL", "cosine"), default=None,
-        help="Override similarity_metric from the YAML config.",
-    )
-    parser.add_argument(
-        "--model", default=None,
-        help="Override model_type for the selected metric (ignored for rougeL).",
-    )
-    parser.add_argument(
-        "--batch-size", type=int, default=None,
-        help="Override batch_size from the YAML config.",
-    )
-    parser.add_argument(
-        "--threshold", type=float, default=None,
-        help="Override alignment.threshold from the YAML config.",
-    )
-    parser.add_argument(
-        "--sections",
-        default=None,
-        help="Comma-separated section IDs to evaluate, or 'all' (overrides config).",
-    )
-    parser.add_argument("--device", default=None)
-    parser.add_argument(
-        "--overwrite", action="store_true",
-        help="Replace an existing run's files only after the new run completes.",
-    )
-    return parser.parse_args()
-
 
 def load_hungarian_config(
     path: Path, *, require_enabled: bool = True
@@ -113,8 +59,7 @@ def load_hungarian_config(
     spec = resolve_bullet_level_spec(metrics)
     if spec is None:
         raise SystemExit(
-            f"Missing metrics.bullet_level in config: {path} "
-            "(legacy metrics.weighted_alignment is also accepted)"
+            f"Missing metrics.bullet_level in config: {path}"
         )
 
     mode = int(spec.get("mode", 3))
@@ -124,7 +69,7 @@ def load_hungarian_config(
         mode = 3
     if mode not in MODE_SCOPE:
         raise SystemExit(f"bullet_level.mode must be 1, 2, or 3; got {mode}")
-    unit_mode = str(spec.get("unit_mode", spec.get("unit", "bullet")))
+    unit_mode = str(spec.get("unit_mode", "bullet"))
     if unit_mode not in {"bullet", "text"}:
         raise SystemExit(
             f"bullet_level.unit_mode must be text or bullet; got {unit_mode}"
@@ -149,13 +94,9 @@ def load_hungarian_config(
         raise SystemExit("bullet_level.tweet_id_overlap must be a mapping")
     tweet_id_overlap_enabled = bool(tweet_id_overlap_spec.get("enabled", False))
     default_text_weight = 0.8 if tweet_id_overlap_enabled else 1.0
-    text_weight = float(tweet_id_overlap_spec.get(
-        "text_weight",
-        tweet_id_overlap_spec.get(
-            "lambda",
-            tweet_id_overlap_spec.get("lambda_text", default_text_weight),
-        ),
-    ))
+    text_weight = float(
+        tweet_id_overlap_spec.get("text_weight", default_text_weight)
+    )
     if not np.isfinite(text_weight) or not 0.0 <= text_weight <= 1.0:
         raise SystemExit(
             "bullet_level.tweet_id_overlap.text_weight must be finite and in [0, 1]"
@@ -766,89 +707,6 @@ def evaluate_one(
     }
 
 
-def write_outputs(result: dict, out_dir: Path) -> None:
-    stem = Path(result["system"]).stem
-    json_path = out_dir / f"{stem}__hungarian.json"
-    pairs_path = out_dir / f"{stem}__pairs.csv"
-    json_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    with pairs_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle, lineterminator="\n")
-        writer.writerow([
-            "scope", "group_id", "section_id", "subsection_id",
-            "subsection_alignment_method", "subsection_alignment_key",
-            "gold_index", "system_index", "weight", "gold_bullet_id",
-            "system_bullet_id", "gold_subsection_id", "system_subsection_id",
-            "gold_subsection_header", "system_subsection_header",
-            "text_similarity", "tweet_id_similarity",
-            "gold_tweet_ids", "system_tweet_ids", "gold_text", "system_text",
-        ])
-        for group in result["groups"]:
-            for pair in group["pairs"]:
-                writer.writerow([
-                    group["scope"], group["group_id"],
-                    group["section_id"], group["subsection_id"],
-                    group.get("subsection_alignment_method"),
-                    group.get("subsection_alignment_key"),
-                    pair["gold_index"], pair["system_index"], pair["weight"],
-                    pair["gold_bullet_id"], pair["system_bullet_id"],
-                    pair.get("gold_subsection_id"),
-                    pair.get("system_subsection_id"),
-                    pair.get("gold_subsection_header"),
-                    pair.get("system_subsection_header"),
-                    pair.get("text_similarity"), pair.get("tweet_id_similarity"),
-                    ";".join(pair.get("gold_tweet_ids") or []),
-                    ";".join(pair.get("system_tweet_ids") or []),
-                    pair["gold_text"], pair["system_text"],
-                ])
-    return None
-
-
-def write_summary(results: list[dict], output_path: Path) -> None:
-    summary_fields = list(results[0]["summary"].keys()) if results else []
-    with output_path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(
-            handle,
-            fieldnames=["system", "metric", "threshold", *summary_fields],
-            lineterminator="\n",
-        )
-        writer.writeheader()
-        for result in results:
-            writer.writerow({
-                "system": Path(result["system"]).name,
-                "metric": result["metric"],
-                "threshold": result["threshold"],
-                **result["summary"],
-            })
-
-
-def planned_output_names(system_paths: list[Path]) -> list[str]:
-    names = ["summary.csv", "manifest.json"]
-    for system_path in system_paths:
-        names.extend([
-            f"{system_path.stem}__hungarian.json",
-            f"{system_path.stem}__pairs.csv",
-        ])
-    return names
-
-
-def publish_staged_run(
-    staging_dir: Path,
-    out_dir: Path,
-    output_names: list[str],
-    overwrite: bool,
-) -> None:
-    existing = [out_dir / name for name in output_names if (out_dir / name).exists()]
-    if existing and not overwrite:
-        preview = "\n  ".join(str(path) for path in existing[:5])
-        raise SystemExit(
-            "Refusing to overwrite existing evaluation output. "
-            "Choose a new --out-dir or pass --overwrite:\n  " + preview
-        )
-    out_dir.mkdir(parents=True, exist_ok=True)
-    for name in output_names:
-        os.replace(staging_dir / name, out_dir / name)
-
-
 def weighted_alignment_enabled(config_path: Path) -> bool:
     try:
         yaml = importlib.import_module("yaml")
@@ -1060,110 +918,3 @@ def slim_weighted_alignment_result(
             for group in result.get("groups", [])
         ]
     return slim
-
-
-def main() -> None:
-    args = parse_args()
-    try:
-        evaluation_scope = resolve_evaluation_scope(args.config, args.sections)
-    except ValueError as exc:
-        raise SystemExit(f"invalid evaluation scope: {exc}") from exc
-    (
-        configured,
-        metric,
-        threshold,
-        score_fn,
-        score_kwargs,
-        effective_config,
-    ) = resolve_weighted_run_options(
-        args.config,
-        metric=args.metric,
-        model=args.model,
-        batch_size=args.batch_size,
-        threshold=args.threshold,
-        device=args.device,
-    )
-    effective_config = {
-        **effective_config,
-        "evaluation_scope": evaluation_scope.as_dict(),
-    }
-    print(
-        "[hungarian] "
-        f"config={args.config} metric={metric} aggregation={configured['aggregation']} "
-        f"threshold={threshold:g}"
-    )
-    output_names = planned_output_names(args.system)
-    args.out_dir.parent.mkdir(parents=True, exist_ok=True)
-    existing = [
-        args.out_dir / name for name in output_names
-        if (args.out_dir / name).exists()
-    ]
-    if existing and not args.overwrite:
-        preview = "\n  ".join(str(path) for path in existing[:5])
-        raise SystemExit(
-            "Refusing to overwrite existing evaluation output. "
-            "Choose a new --out-dir or pass --overwrite:\n  " + preview
-        )
-
-    with tempfile.TemporaryDirectory(
-        prefix=".hungarian-staging-", dir=args.out_dir.parent
-    ) as temporary:
-        staging_dir = Path(temporary)
-        results = []
-        for system_path in args.system:
-            result = evaluate_one(
-                args.gold, system_path, metric, threshold, score_fn, score_kwargs,
-                mode=configured["mode"], unit_mode=configured["unit_mode"],
-                effective_config=effective_config,
-                tweet_id_overlap=configured["tweet_id_overlap"],
-                selected_sections=evaluation_scope.section_ids,
-                subsection_alignment_method=(
-                    configured["subsection_alignment_method"]
-                ),
-            )
-            enforce_missing_structure_policy(
-                result,
-                system_path,
-                configured["on_missing_structure"],
-            )
-            write_outputs(result, staging_dir)
-            results.append(result)
-            if result["warnings"]:
-                joined = ", ".join(
-                    f"{warning.get('code')}({warning.get('side', 'both')})"
-                    for warning in result["warnings"]
-                )
-                print(f"[hungarian] warnings for {system_path.name}: {joined}")
-
-        write_summary(results, staging_dir / "summary.csv")
-        manifest = {
-            "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-            "config_path": str(args.config),
-            "config_sha256": hashlib.sha256(args.config.read_bytes()).hexdigest(),
-            "gold": str(args.gold),
-            "systems": [str(path) for path in args.system],
-            "effective_config": effective_config,
-            "evaluation_scope": evaluation_scope.as_dict(),
-            "files": output_names,
-            "warnings": [
-                {
-                    "system": Path(result["system"]).name,
-                    "items": result["warnings"],
-                }
-                for result in results
-            ],
-        }
-        (staging_dir / "manifest.json").write_text(
-            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
-        publish_staged_run(
-            staging_dir, args.out_dir, output_names, overwrite=args.overwrite
-        )
-
-    for name in output_names:
-        print(f"wrote {args.out_dir / name}")
-
-
-if __name__ == "__main__":
-    main()

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 from datetime import datetime, timezone
 from decimal import Decimal, ROUND_HALF_UP
@@ -32,6 +33,9 @@ SECTION_RULE = "=" * 60
 SUBSECTION_RULE = "-" * 60
 REPORT_INPUT_SUFFIX = ".report.json"
 EVAL_OUTPUT_SUFFIX = "-eval"
+CELL_ID_RE = re.compile(
+    r"^(?P<document>.+)\.(?P<window>W\d+)\.(?P<replicate>k\d+)$"
+)
 
 
 def display_path(path: Path | str) -> str:
@@ -204,6 +208,22 @@ def parse_report_filename(path: Path) -> str:
     return cell_id
 
 
+def parse_cell_coordinates(crisis_id: str, cell_id: str) -> tuple[str, str]:
+    """Return the window and replicate IDs from an official cell ID."""
+    match = CELL_ID_RE.fullmatch(cell_id)
+    if match is None:
+        raise ValueError(
+            "evaluation cell ID must follow <crisis>.W<number>.k<number>: "
+            f"{cell_id}"
+        )
+    if match.group("document") != crisis_id:
+        raise ValueError(
+            "evaluation cell ID prefix must match its crisis directory: "
+            f"{crisis_id}/{cell_id}"
+        )
+    return match.group("window"), match.group("replicate")
+
+
 def index_instance_files(directory: Path) -> dict[str, dict[str, Any]]:
     """Index reports using the official ``<crisis>/<cell>.report.json`` layout."""
     json_paths = sorted(directory.rglob("*.json"))
@@ -234,11 +254,14 @@ def index_instance_files(directory: Path) -> dict[str, dict[str, Any]]:
         if not crisis_id:
             raise ValueError(f"empty crisis ID in report path: {relative}")
         cell_id = parse_report_filename(path)
+        window_id, replicate_id = parse_cell_coordinates(crisis_id, cell_id)
         instance_id = f"{crisis_id}/{cell_id}"
         index[instance_id] = {
             "instance_id": instance_id,
             "crisis_id": crisis_id,
             "cell_id": cell_id,
+            "window_id": window_id,
+            "replicate_id": replicate_id,
             "relative_path": relative,
             "path": path,
         }
@@ -260,6 +283,8 @@ def discover_pairs(sys_dir: Path, gold_dir: Path) -> list[dict[str, Any]]:
             "instance_id": instance_id,
             "crisis_id": identity["crisis_id"],
             "cell_id": identity["cell_id"],
+            "window_id": identity["window_id"],
+            "replicate_id": identity["replicate_id"],
             "relative_path": identity["relative_path"],
             "gold_path": gold["path"] if gold else None,
             "system_path": system["path"] if system else None,
@@ -363,6 +388,29 @@ def rounded_mean(values: list[float]) -> float:
     return float(mean_value.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP))
 
 
+def hierarchical_document_mean(
+    scored_results: list[dict[str, Any]],
+    aggregation: str,
+) -> Any:
+    """Average replicates within windows, windows within documents, then documents."""
+    document_windows: dict[str, dict[str, list[Any]]] = {}
+    for item in scored_results:
+        crisis_id = str(item.get("crisis_id", "")).strip()
+        cell_id = str(item.get("cell_id", "")).strip()
+        window_id = str(item.get("window_id", "")).strip()
+        if not window_id:
+            window_id, _ = parse_cell_coordinates(crisis_id, cell_id)
+        document_windows.setdefault(crisis_id, {}).setdefault(window_id, []).append(
+            metric_view(item, aggregation)
+        )
+
+    document_views = []
+    for windows in document_windows.values():
+        window_views = [mean_views(replicates) for replicates in windows.values()]
+        document_views.append(mean_views(window_views))
+    return mean_views(document_views)
+
+
 def summary_value(view: dict[str, Any] | None, *path: str) -> Any:
     value: Any = view or {}
     for key in path:
@@ -397,15 +445,13 @@ def append_system_summary_table(
 
 
 def build_combined_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    """Build one system's overall macro result with equal test-instance weight."""
+    """Build one system's hierarchical document-level macro result."""
     results = payload.get("results") or []
     scored_results = [item for item in results if item.get("status") == "scored"]
     primary_within = str(
         (payload.get("aggregation") or {}).get("within_document", "micro")
     )
-    overall_macro = mean_views([
-        metric_view(item, primary_within) for item in scored_results
-    ])
+    overall_macro = hierarchical_document_mean(scored_results, primary_within)
     bertscore_f1 = summary_value(overall_macro, "bertscore", "f1")
     bleurt_score = summary_value(overall_macro, "bleurt", "score")
     primary_components = [bertscore_f1, bleurt_score]
@@ -453,11 +499,17 @@ def build_combined_payload(payload: dict[str, Any]) -> dict[str, Any]:
             "subsection_alignment_method", "header_only"
         ),
         "aggregation": {
-            "level": "across_instances",
+            "level": "across_documents",
             "method": "macro",
+            "hierarchy": [
+                "replicates_within_window",
+                "windows_within_document",
+                "documents",
+            ],
             "note": (
-                "Overall macro results are the equal-weight mean of the selected "
-                "overall result from each scored test instance across all crises."
+                "Replicates are averaged within each window, windows are averaged "
+                "within each crisis/document, and crisis/documents receive equal "
+                "weight in the overall result."
             ),
         },
         "instance_count": total_count,
@@ -581,7 +633,7 @@ def collect_evaluation_failures(
 
 
 def build_combined_log(payload: dict[str, Any]) -> str:
-    """Build one system's overall across-instance macro report."""
+    """Build one system's hierarchical document-level macro report."""
     aggregation = payload.get("aggregation") or {}
     crisis_ids = ", ".join(
         str(value) for value in payload.get("crisis_ids") or []
@@ -607,8 +659,9 @@ def build_combined_log(payload: dict[str, Any]) -> str:
         f"Crisis IDs      : {crisis_ids}",
         "",
         "Aggregation:",
-        f"  level : {aggregation.get('level', 'across_instances')}",
+        f"  level : {aggregation.get('level', 'across_documents')}",
         f"  method: {aggregation.get('method', 'macro')}",
+        "  stages: " + " -> ".join(aggregation.get("hierarchy") or []),
         f"  note  : {aggregation.get('note', '')}",
         "",
         SECTION_RULE,
@@ -684,6 +737,8 @@ def build_pair_output_payload(
         "instance_id": item.get("instance_id"),
         "crisis_id": item.get("crisis_id"),
         "cell_id": item.get("cell_id"),
+        "window_id": item.get("window_id"),
+        "replicate_id": item.get("replicate_id"),
         "aggregation": {
             "level": "within_document",
             "method": selected,
@@ -1212,6 +1267,8 @@ def main() -> int:
             "instance_id": pair["instance_id"],
             "crisis_id": pair["crisis_id"],
             "cell_id": pair["cell_id"],
+            "window_id": pair["window_id"],
+            "replicate_id": pair["replicate_id"],
             "sys_id": system_id,
             "gold_file": display_path(gold_path) if gold_path else None,
             "system_file": display_path(system_path) if system_path else None,

@@ -12,6 +12,7 @@ from run_eval import (  # noqa: E402
     build_combined_log,
     build_combined_payload,
     discover_pairs,
+    parse_cell_coordinates,
     parse_report_filename,
     write_system_outputs,
 )
@@ -85,6 +86,22 @@ def test_parse_report_filename_strips_report_suffix() -> None:
     )
 
 
+def test_parse_cell_coordinates_extracts_window_and_replicate() -> None:
+    assert parse_cell_coordinates("earthquake", "earthquake.W2.k3") == (
+        "W2",
+        "k3",
+    )
+
+
+def test_parse_cell_coordinates_requires_matching_crisis_prefix() -> None:
+    try:
+        parse_cell_coordinates("flood", "earthquake.W2.k3")
+    except ValueError as exc:
+        assert "prefix must match" in str(exc)
+    else:
+        raise AssertionError("mismatched crisis prefix was accepted")
+
+
 def test_discover_pairs_rejects_legacy_json_filenames(tmp_path: Path) -> None:
     gold_dir = tmp_path / "gold-output"
     system_dir = tmp_path / "UW-sys1"
@@ -152,7 +169,7 @@ def test_discover_pairs_rejects_extra_directory_layer(tmp_path: Path) -> None:
         raise AssertionError("extra test directory layer was accepted")
 
 
-def test_combined_payload_macro_averages_one_system_across_all_instances() -> None:
+def test_combined_payload_gives_crisis_documents_equal_weight() -> None:
     payload = run_payload([
         scored_item("earthquake/earthquake.W1.k1", "UW-sys1", 0.3),
         scored_item("earthquake/earthquake.W1.k2", "UW-sys1", 0.5),
@@ -173,16 +190,22 @@ def test_combined_payload_macro_averages_one_system_across_all_instances() -> No
     ]
     assert combined["coverage_ratio"] == 1.0
     assert combined["aggregation"] == {
-        "level": "across_instances",
+        "level": "across_documents",
         "method": "macro",
+        "hierarchy": [
+            "replicates_within_window",
+            "windows_within_document",
+            "documents",
+        ],
         "note": (
-            "Overall macro results are the equal-weight mean of the selected "
-            "overall result from each scored test instance across all crises."
+            "Replicates are averaged within each window, windows are averaged "
+            "within each crisis/document, and crisis/documents receive equal "
+            "weight in the overall result."
         ),
     }
     overall_macro = combined["overall_macro"]
-    assert overall_macro["rouge1"]["fmeasure"] == 0.5
-    assert overall_macro["weighted_alignment"]["f1"] == 0.5
+    assert overall_macro["rouge1"]["fmeasure"] == 0.55
+    assert overall_macro["weighted_alignment"]["f1"] == 0.55
     assert list(overall_macro["rouge1"]) == ["precision", "recall", "fmeasure"]
     assert list(overall_macro["bertscore"]) == ["precision", "recall", "f1"]
     assert list(overall_macro["weighted_alignment"])[:3] == [
@@ -193,8 +216,8 @@ def test_combined_payload_macro_averages_one_system_across_all_instances() -> No
     assert "bullet_alignment" not in overall_macro
     assert combined["primary_score"] == {
         "method": "mean_bertscore_f1_bleurt",
-        "components": {"bertscore_f1": 0.5, "bleurt": 0.5},
-        "score": 0.5,
+        "components": {"bertscore_f1": 0.55, "bleurt": 0.55},
+        "score": 0.55,
     }
     assert "disasters" not in combined
     assert "macro_average" not in combined
@@ -205,18 +228,35 @@ def test_combined_payload_macro_averages_one_system_across_all_instances() -> No
     assert "Crisis IDs      : earthquake, flood" in log
     assert "Overall Macro Results" in log
     assert "BERTScore F1" in log
-    assert "level : across_instances" in log
+    assert "level : across_documents" in log
     assert "method: macro" in log
-    assert "within_document" not in log
-    assert "across_documents" not in log
+    assert (
+        "stages: replicates_within_window -> windows_within_document -> documents"
+        in log
+    )
     assert "Per-disaster Summary" not in log
     assert "Diagnostic" not in log
-    assert "0.5000" in log
+    assert "0.5500" in log
     assert "Primary Score" in log
     assert "mean_bertscore_f1_bleurt" in log
-    assert "BERTScore F1    : 0.500000" in log
-    assert "BLEURT          : 0.500000" in log
-    assert "Score           : 0.500000" in log
+    assert "BERTScore F1    : 0.550000" in log
+    assert "BLEURT          : 0.550000" in log
+    assert "Score           : 0.550000" in log
+
+
+def test_combined_payload_averages_replicates_then_windows_then_documents() -> None:
+    combined = build_combined_payload(run_payload([
+        scored_item("earthquake/earthquake.W1.k1", "UW-sys1", 0.0),
+        scored_item("earthquake/earthquake.W1.k2", "UW-sys1", 1.0),
+        scored_item("earthquake/earthquake.W2.k1", "UW-sys1", 1.0),
+        scored_item("flood/flood.W1.k1", "UW-sys1", 0.0),
+    ]))
+
+    # Earthquake: ((0 + 1) / 2 + 1) / 2 = 0.75.
+    # Flood: 0.0. Equal document weighting: (0.75 + 0.0) / 2 = 0.375.
+    assert combined["overall_macro"]["bertscore"]["f1"] == 0.375
+    assert combined["overall_macro"]["weighted_alignment"]["f1"] == 0.375
+    assert combined["primary_score"]["score"] == 0.375
 
 
 def test_combined_payload_reports_missing_system_instance() -> None:
