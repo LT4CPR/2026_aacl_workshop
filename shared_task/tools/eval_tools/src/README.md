@@ -8,7 +8,7 @@ supporting logic.
 | --- | --- |
 | `run_eval.py` | Main CLI. Pairs `<crisis>/<cell>.report.json` files, evaluates each test instance, aggregates replicates within windows and windows within equally weighted crisis/documents, and writes crisis-nested per-instance results plus one root combined result. |
 | `eval_pair.py` | Coordinates text-level and bullet-level evaluation for one gold/system file pair. |
-| `eval_sitrep.py` | Extracts text units, records unmatched units as diagnostics, and computes ROUGE, BERTScore, and BLEURT over structurally matched units. With ROUGE's `whole_gold` policy, unmatched Gold content is also included in the micro recall denominator. |
+| `eval_sitrep.py` | Extracts text units and computes ROUGE, BERTScore, and BLEURT. ROUGE `whole_gold` includes unmatched Gold content in its micro recall denominator. BERTScore assigns side-specific zero contributions: System-only text enters only the precision denominator and Gold-only text enters only the recall denominator. BLEURT remains matched-only. |
 | `eval_weighted_alignment.py` | Builds bullet similarity scores, combines text and Tweet-ID similarity, runs alignment, and computes soft precision, recall, and F1. |
 | `hungarian_alignment.py` | Performs thresholded maximum-weight one-to-one Hungarian matching and returns matched and unmatched units. |
 | `sitrep_units.py` | Validates SITREP JSON and extracts scorable units by document, section, or subsection. |
