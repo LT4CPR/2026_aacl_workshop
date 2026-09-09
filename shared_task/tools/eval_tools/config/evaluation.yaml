@@ -13,7 +13,8 @@ reporting:
   aggregation:
     # Pool subsection/item statistics within each document.
     within_document: micro
-    # Give each independent crisis-window/sample test instance equal weight.
+    # Average replicates within windows, windows within crisis/documents, and
+    # crisis/documents with equal weight.
     across_documents: macro
 
   primary_score:
@@ -41,12 +42,15 @@ metrics:
       include_section_headers: false # true | false
       include_subsection_headers: false # true | false
       aggregation: micro # micro | macro
+      # System-only text contributes zero on the precision side; Gold-only text
+      # contributes zero on the recall side. Micro denominators use token weights.
 
     bleurt:
       mode: 3
       include_section_headers: false # true | false
       include_subsection_headers: false # true | false
       aggregation: micro # micro | macro
+      # BLEURT remains matched-only because it has no precision/recall sides.
 
   bullet_level:
     # Hungarian weighted alignment (eval_weighted_alignment): bullet-to-bullet
