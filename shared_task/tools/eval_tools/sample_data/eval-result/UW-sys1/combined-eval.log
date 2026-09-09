@@ -12,9 +12,10 @@ Crisis count    : 8
 Crisis IDs      : blackout, conflict, crowdcrush, epidemic, ferry, flood, volcano, wildfire
 
 Aggregation:
-  level : across_instances
+  level : across_documents
   method: macro
-  note  : Overall macro results are the equal-weight mean of the selected overall result from each scored test instance across all crises.
+  stages: replicates_within_window -> windows_within_document -> documents
+  note  : Replicates are averaged within each window, windows are averaged within each crisis/document, and crisis/documents receive equal weight in the overall result.
 
 ============================================================
 Overall Macro Results
