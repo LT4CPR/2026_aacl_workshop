@@ -55,7 +55,9 @@ System counterpart makes that specific instance incomplete.
 
 The crisis directories must be direct children of `gold-output/` and each
 `sysId-output/<system-id>/` directory. Do not insert an additional `test/`
-layer. Input filenames must end in `.report.json`.
+layer. Input filenames must end in `.report.json`, and each cell stem must
+follow `<crisis>.W<number>.k<number>` with a crisis prefix matching its parent
+directory.
 
 ## Evaluation results
 
@@ -64,10 +66,14 @@ writes `<cell>-eval.json` plus `<cell>-eval.log`. It does not create a
 crisis-level combined file.
 
 At the system result root, `combined-eval.json` and `combined-eval.log` combine
-all cells from all crises. The combined metrics are equal-weight macro averages
-over successfully scored test instances. Consequently, every cell has equal
-weight; a crisis with more cells contributes more cells to the final average.
+all cells from all crises. The evaluator averages replicates within each window,
+then windows within each crisis/document, and finally crisis/documents with
+equal weight. Consequently, a crisis with more cells does not receive more
+weight in the final average.
 
+Per-instance JSON records BERTScore's side-specific unmatched-unit counts and
+token weights under `unmatched_penalty`; the corresponding log prints the same
+denominator details. This makes the precision and recall denominators auditable.
 `combined-eval.json` records `crisis_ids`, `instance_ids`, instance coverage,
 failed instances, the overall macro metrics, and the primary score. A complete
 official run must have `coverage_ratio: 1.0` and an empty `failed_instances`
