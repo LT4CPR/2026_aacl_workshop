@@ -74,6 +74,10 @@ The evaluator pairs reports by the exact relative identity
 crisis directory must be directly under the Gold or System root; an extra
 `test/` directory is not accepted.
 
+Each cell ID must follow `<crisis>.W<number>.k<number>`, where `W` identifies
+the window and `k` identifies its replicate. The `<crisis>` prefix must match
+the enclosing crisis directory so that hierarchical aggregation is unambiguous.
+
 ## Evaluation flow
 
 ```text
@@ -104,6 +108,13 @@ Sections are aligned by exact section ID. Within an aligned section,
 subsections can be aligned by subsection ID, normalized header, or both. The
 release default is `header_only`; it does not require a hard-coded subsection
 inventory.
+
+BERTScore applies side-specific penalties to structurally unmatched content.
+Gold-only subsection text contributes zero on the recall side while its Gold
+token count remains in the recall denominator. System-only subsection text
+contributes zero on the precision side while its System token count remains in
+the precision denominator. BLEURT remains matched-only because it produces one
+scalar score rather than separate precision and recall values.
 
 ## Run the evaluator
 
@@ -148,8 +159,10 @@ A valid release evaluation must satisfy all of the following:
 
 The evaluator writes each cell's result under its crisis directory and writes
 only one `combined-eval.json`/`.log` pair at the result root. The combined
-score is the equal-weight macro average over all scored test instances; no
-per-crisis combined files are generated.
+score first averages replicates within each window, then windows within each
+crisis/document, and finally crisis/documents with equal weight. A crisis with
+more cells therefore does not receive more final weight. No per-crisis combined
+files are generated.
 
 The evaluator still writes diagnostic JSON/log files when possible after an
 incomplete run, but exits with status `1`. Do not use a partial combined score
