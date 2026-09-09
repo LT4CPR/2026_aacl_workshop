@@ -28,7 +28,7 @@ keys within one section are reported instead of being silently matched.
 | Option | Values | Meaning |
 | --- | --- | --- |
 | `reporting.aggregation.within_document` | `micro`, `macro` | `micro` pools statistics across units within one test instance. `macro` averages the unit-level scores. |
-| `reporting.aggregation.across_documents` | `macro` | Averages successfully scored test instances with equal weight across all crises. Cross-document `micro` is not supported. |
+| `reporting.aggregation.across_documents` | `macro` | Averages replicates within each window, windows within each crisis/document, and then crisis/documents with equal final weight. Cross-document `micro` is not supported. |
 | `reporting.primary_score.enabled` | `true`, `false` | Enables or disables generation of the primary score. |
 | `reporting.primary_score.method` | `mean_bertscore_f1_bleurt` | Defines the primary score as `(BERTScore F1 + BLEURT) / 2`. |
 
@@ -41,7 +41,7 @@ The following common options are available under
 | Option | Values | Meaning |
 | --- | --- | --- |
 | `mode` | `0`, `1`, `2`, `3` | Selects the evaluation level: `0` disables the metric, `1` evaluates the document, `2` evaluates sections, and `3` evaluates subsections. |
-| `aggregation` | `micro`, `macro` | Selects pooled statistics (`micro`) or the arithmetic mean of unit scores (`macro`) as the metric's overall result. |
+| `aggregation` | `micro`, `macro` | Selects pooled statistics (`micro`) or metric-specific unit-level macro aggregation (`macro`) as the metric's overall result. |
 | `include_section_headers` | `true`, `false` | Includes section titles in the text supplied to the metric. |
 | `include_subsection_headers` | `true`, `false` | Includes subsection titles in subsection-level metric text. |
 
@@ -53,12 +53,34 @@ The following common options are available under
 
 ### BERTScore options
 
+BERTScore inference is performed on structurally matched, non-empty text units.
+Unmatched content is then included as a side-specific zero contribution during
+aggregation:
+
+- a non-empty System-only unit contributes zero to the precision numerator and
+  its System-side token weight is included in the precision denominator;
+- a non-empty Gold-only unit contributes zero to the recall numerator and its
+  Gold-side token weight is included in the recall denominator;
+- System-only units do not affect recall, and Gold-only units do not affect
+  precision; and
+- BERTScore F1 is the harmonic mean of the penalized aggregate precision and
+  recall.
+
+For `micro`, these contributions are weighted by text token count. For `macro`,
+each matched or applicable unmatched unit has equal weight on its corresponding
+side. If non-empty unmatched units exist without any matched unit, BERTScore is
+scored as zero without running model inference.
+
 | Option | Values | Meaning |
 | --- | --- | --- |
 | `model_type` | Hugging Face model name | Selects the model used by BERTScore. The default is `microsoft/deberta-xlarge-mnli`. |
 | `batch_size` | Positive integer | Sets the BERTScore inference batch size. |
 
 ### BLEURT options
+
+BLEURT is computed only over structurally matched, non-empty text units.
+System-only and Gold-only units remain diagnostics and do not receive an
+invented scalar BLEURT value.
 
 | Option | Values | Meaning |
 | --- | --- | --- |
