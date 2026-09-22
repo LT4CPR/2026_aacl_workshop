@@ -1,0 +1,251 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:29:18.960954+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : heatwave/heatwave.W1.k4
+Crisis ID           : heatwave
+Cell ID             : heatwave.W1.k4
+System ID           : UW-sys7
+
+Gold                : sample_data\gold-output\heatwave\heatwave.W1.k4.report.json
+System              : sample_data\sysId-output\UW-sys7\heatwave\heatwave.W1.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.4615
+  ROUGE-2 F1  : 0.3333
+  ROUGE-L F1  : 0.4615
+
+BERTScore (Subsection)
+  Precision   : 0.0779
+  Recall      : 0.7701
+  F1          : 0.1416
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=31 system_only_units=21 system_only_tokens=244 total_tokens=275
+  Recall denominator: matched_gold_tokens=21 gold_only_units=0 gold_only_tokens=0 total_tokens=21
+
+BLEURT (Subsection)
+  Score       : 0.5315
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.0330
+Soft Recall         : 0.3792
+Soft F1             : 0.0607
+
+Matched pairs       : 2
+Unmatched gold      : 0
+Unmatched system    : 21
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys7           0.4615      0.3333      0.4615        0.1416   0.5315            0.0607
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=2 system=7 matched=2 unmatched_gold=0 unmatched_system=5
+subsections: gold=2 system=23 matched=2 unmatched_gold=0 unmatched_system=21
+bullets: gold=2 system=23 matched=2 unmatched_gold=0 unmatched_system=21
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=2 system_units=23 matched_units=2 scored_units=2 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=21 system_ngrams=31 overlapping_ngrams=12
+  rouge2: gold_ngrams=19 system_ngrams=29 overlapping_ngrams=8
+  rougeL: gold_tokens=21 system_tokens=31 total_lcs_length=12
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=fatalities
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3a.1 text="No fatalities reported in Verlow during the heatwave."
+
+Group 3/header=found persons
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3f.1 text="No found persons reported in Verlow during the heatwave."
+
+Group 3/header=injuries
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3b.1 text="No injuries reported in Verlow during the heatwave."
+
+Group 3/header=missing persons
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3c.1 text="No missing persons reported in Verlow during the heatwave."
+
+Group 3/header=rescued persons
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3e.1 text="No rescued persons reported in Verlow during the heatwave."
+
+Group 3/header=trapped persons
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3d.1 text="No trapped persons reported in Verlow during the heatwave."
+
+Group 3/header=treatment and admissions
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3g.1 text="No treatment or hospital admissions recorded for heat-related conditions in Verlow."
+
+Group 4/header=damage
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.1 text="No structural damage reported to buildings in Verlow during the heatwave."
+
+Group 4/header=destruction
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.1 text="No destruction of infrastructure observed in Verlow during the heatwave."
+
+Group 4/header=restoration progress
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4d.1 text="No restoration progress reported for power services in Verlow after the heatwave."
+
+Group 4/header=service disruptions
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="Power outages due to grid strain were reported in Verlow during the heatwave."
+
+Group 5/header=access constraints
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5d.1 text="Limited access to certain areas due to power outages and high temperatures in Verlow during the heatwave."
+
+Group 5/header=displacement
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="No displacement of residents reported in Verlow during the heatwave."
+
+Group 5/header=evacuations
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.1 text="No evacuations conducted in Verlow during the heatwave."
+
+Group 5/header=returns
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5c.1 text="No returns of displaced persons recorded in Verlow after the heatwave."
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="The heatwave in Verlow has been assessed as a high-risk event with statistical mortality revised upward."
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.3333
+  matched_pairs:
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.4167 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3333
+    gold_text=Provincial Public Health Institute deployed as response operations continued.
+    system_text=The Provincial Public Health Institute deployed personnel and resources in Verlow to address the heatwave.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=information updates
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="A follow-up update confirmed the ongoing heatwave conditions and requested further assistance from regional authorities."
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.4250
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.1250 text_weight=0.8000 final_edge_score=0.4250
+    gold_text=Provincial Public Health Institute asked for assistance concerning Verlow during emergency communications.
+    system_text=The Provincial Public Health Institute repeatedly requested assistance concerning the Verlow heatwave on June 23, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="The Provincial Public Health Institute issued a heatwave warning for Verlow on June 23, 2026."
+
+Group 9/header=aid provided and distributed
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9a.1 text="No aid was reported as being provided or distributed in Verlow during the heatwave."
+
+Group 9/header=aid received and needs coverage
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9b.1 text="The Provincial Public Health Institute indicated that aid is needed to address heat-related health impacts in Verlow."
+
+Group 9/header=donations and financial transfers
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9c.1 text="No donations or financial transfers were reported for the Verlow heatwave response."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

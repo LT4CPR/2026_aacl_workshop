@@ -1,0 +1,2550 @@
+{
+  "generated_at_utc": "2026-09-12T00:35:31.934217+00:00",
+  "config": "config\\evaluation.yaml",
+  "gold_dir": "sample_data\\gold-output",
+  "system_dir": "sample_data\\sysId-output\\UW-sys8",
+  "system_id": "UW-sys8",
+  "evaluation_scope": {
+    "sections": [
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "source": "config"
+  },
+  "subsection_alignment_method": "header_only",
+  "instance_id": "tornado/tornado.W3.k5",
+  "crisis_id": "tornado",
+  "cell_id": "tornado.W3.k5",
+  "window_id": "W3",
+  "replicate_id": "k5",
+  "aggregation": {
+    "level": "within_document",
+    "method": "micro"
+  },
+  "results": [
+    {
+      "instance_id": "tornado/tornado.W3.k5",
+      "crisis_id": "tornado",
+      "cell_id": "tornado.W3.k5",
+      "window_id": "W3",
+      "replicate_id": "k5",
+      "sys_id": "UW-sys8",
+      "gold_file": "sample_data\\gold-output\\tornado\\tornado.W3.k5.report.json",
+      "system_file": "sample_data\\sysId-output\\UW-sys8\\tornado\\tornado.W3.k5.report.json",
+      "status": "scored",
+      "summary": {
+        "rouge": {
+          "mode": "subsection",
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "reference",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          ],
+          "subsection_alignment_method": "header_only",
+          "aggregation": "micro",
+          "n_scored": 13,
+          "n_skipped_both_empty": 0,
+          "score_policy": null,
+          "zero_score_reason": null,
+          "rouge1": {
+            "precision": 0.8205,
+            "recall": 0.338,
+            "fmeasure": 0.4788
+          },
+          "rouge2": {
+            "precision": 0.7308,
+            "recall": 0.2815,
+            "fmeasure": 0.4064
+          },
+          "rougeL": {
+            "precision": 0.7863,
+            "recall": 0.3239,
+            "fmeasure": 0.4589
+          },
+          "micro": {
+            "rouge1": {
+              "precision": 0.8205,
+              "recall": 0.338,
+              "fmeasure": 0.4788
+            },
+            "rouge2": {
+              "precision": 0.7308,
+              "recall": 0.2815,
+              "fmeasure": 0.4064
+            },
+            "rougeL": {
+              "precision": 0.7863,
+              "recall": 0.3239,
+              "fmeasure": 0.4589
+            },
+            "denominator_policy": "whole_gold"
+          }
+        },
+        "bertscore": {
+          "mode": "subsection",
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "reference",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          ],
+          "subsection_alignment_method": "header_only",
+          "aggregation": "micro",
+          "n_scored": 13,
+          "n_skipped_both_empty": 0,
+          "score_policy": null,
+          "zero_score_reason": null,
+          "precision": 0.583014,
+          "recall": 0.581166,
+          "f1": 0.582088,
+          "unmatched_penalty": {
+            "policy": "side_specific_zero",
+            "matched_system_token_weight": 117,
+            "system_only_units": 5,
+            "system_only_token_weight": 54,
+            "precision_denominator_token_weight": 171,
+            "matched_gold_token_weight": 244,
+            "gold_only_units": 1,
+            "gold_only_token_weight": 40,
+            "recall_denominator_token_weight": 284
+          },
+          "micro": {
+            "precision": 0.583014,
+            "recall": 0.581166,
+            "f1": 0.582088,
+            "model_type": "microsoft/deberta-xlarge-mnli",
+            "unmatched_policy": "side_specific_zero",
+            "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+          }
+        },
+        "bleurt": {
+          "mode": "subsection",
+          "status": "scored",
+          "reason": null,
+          "warnings": [
+            {
+              "side": "reference",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10",
+                "11"
+              ]
+            }
+          ],
+          "subsection_alignment_method": "header_only",
+          "aggregation": "micro",
+          "n_scored": 13,
+          "n_skipped_both_empty": 0,
+          "score_policy": null,
+          "zero_score_reason": null,
+          "score": 0.597549,
+          "micro": {
+            "score": 0.597549,
+            "config_name": "BLEURT-20"
+          }
+        },
+        "weighted_alignment": {
+          "status": "scored",
+          "reason": null,
+          "score_policy": null,
+          "zero_score_reason": null,
+          "warnings": [
+            {
+              "side": "gold",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10",
+                "11"
+              ]
+            },
+            {
+              "code": "gold_only_groups",
+              "message": "gold has groups with no matching system group key",
+              "count": 1,
+              "groups": [
+                "4/destruction"
+              ]
+            },
+            {
+              "code": "system_only_groups",
+              "message": "system has groups with no matching gold group key",
+              "count": 5,
+              "groups": [
+                "10/meetings and decisions",
+                "11/public sentiment",
+                "11/social support",
+                "9/aid provided and distributed",
+                "9/aid received and needs coverage"
+              ]
+            },
+            {
+              "code": "partial_key_overlap",
+              "message": "only some group keys overlap between gold and system",
+              "shared_groups": 13,
+              "gold_only_groups": 1,
+              "system_only_groups": 5
+            }
+          ],
+          "scope": "subsection",
+          "metric": "rougeL",
+          "subsection_alignment_method": "header_only",
+          "threshold": 0.1,
+          "micro_soft_precision": 0.4365763863606528,
+          "micro_soft_recall": 0.3456229725355168,
+          "micro_soft_f1": 0.3858116902722048,
+          "structure_recall": 0.9285714285714286,
+          "structure_precision": 0.7222222222222222,
+          "matched_pairs": 13,
+          "gold_units": 24,
+          "system_units": 19,
+          "warning_count": 4
+        }
+      },
+      "evaluation": {
+        "generated_at_utc": "2026-09-12T00:35:31.817152+00:00",
+        "gold": "sample_data\\gold-output\\tornado\\tornado.W3.k5.report.json",
+        "system": "sample_data\\sysId-output\\UW-sys8\\tornado\\tornado.W3.k5.report.json",
+        "config": "config\\evaluation.yaml",
+        "view": "single",
+        "evaluation_scope": {
+          "sections": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "source": "config"
+        },
+        "configured_metrics": {
+          "rouge": {
+            "mode": "subsection",
+            "status": "scored",
+            "warnings": [
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 13,
+            "n_skipped_both_empty": 0,
+            "items": [
+              {
+                "unit_id": "subsection:3/header=fatalities",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=fatalities",
+                "candidate_subsection_id": "3a",
+                "reference_subsection_id": "3a",
+                "candidate_subsection_header": "Fatalities",
+                "reference_subsection_header": "Fatalities",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.2917,
+                    "fmeasure": 0.4516
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.2609,
+                    "fmeasure": 0.4138
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.2917,
+                    "fmeasure": 0.4516
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:3/header=injuries",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=injuries",
+                "candidate_subsection_id": "3b",
+                "reference_subsection_id": "3b",
+                "candidate_subsection_header": "Injuries",
+                "reference_subsection_header": "Injuries",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.2727,
+                    "fmeasure": 0.4286
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.2381,
+                    "fmeasure": 0.3846
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.2727,
+                    "fmeasure": 0.4286
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:3/header=missing persons",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=missing persons",
+                "candidate_subsection_id": "3c",
+                "reference_subsection_id": "3c",
+                "candidate_subsection_header": "Missing persons",
+                "reference_subsection_header": "Missing persons",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.5833,
+                    "fmeasure": 0.7368
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.5455,
+                    "fmeasure": 0.7059
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.5833,
+                    "fmeasure": 0.7368
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:4/header=damage",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=damage",
+                "candidate_subsection_id": "4a",
+                "reference_subsection_id": "4a",
+                "candidate_subsection_header": "Damage",
+                "reference_subsection_header": "Damage",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.1,
+                    "recall": 0.0435,
+                    "fmeasure": 0.0606
+                  },
+                  "rouge2": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
+                  },
+                  "rougeL": {
+                    "precision": 0.1,
+                    "recall": 0.0435,
+                    "fmeasure": 0.0606
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:4/header=destruction",
+                "status": "reference_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=destruction",
+                "candidate_subsection_id": null,
+                "reference_subsection_id": "4b",
+                "candidate_subsection_header": null,
+                "reference_subsection_header": "Destruction"
+              },
+              {
+                "unit_id": "subsection:4/header=restoration progress",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=restoration progress",
+                "candidate_subsection_id": "4c",
+                "reference_subsection_id": "4d",
+                "candidate_subsection_header": "Restoration progress",
+                "reference_subsection_header": "Restoration progress",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.5833,
+                    "fmeasure": 0.7368
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.5455,
+                    "fmeasure": 0.7059
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.5833,
+                    "fmeasure": 0.7368
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:4/header=service disruptions",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=service disruptions",
+                "candidate_subsection_id": "4b",
+                "reference_subsection_id": "4c",
+                "candidate_subsection_header": "Service disruptions",
+                "reference_subsection_header": "Service disruptions",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.8889,
+                    "recall": 0.2857,
+                    "fmeasure": 0.4324
+                  },
+                  "rouge2": {
+                    "precision": 0.75,
+                    "recall": 0.2222,
+                    "fmeasure": 0.3429
+                  },
+                  "rougeL": {
+                    "precision": 0.8889,
+                    "recall": 0.2857,
+                    "fmeasure": 0.4324
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:5/header=displacement",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=displacement",
+                "candidate_subsection_id": "5b",
+                "reference_subsection_id": "5b",
+                "candidate_subsection_header": "Displacement",
+                "reference_subsection_header": "Displacement",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.6875,
+                    "fmeasure": 0.8148
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.6667,
+                    "fmeasure": 0.8
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.6875,
+                    "fmeasure": 0.8148
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:5/header=evacuations",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=evacuations",
+                "candidate_subsection_id": "5a",
+                "reference_subsection_id": "5a",
+                "candidate_subsection_header": "Evacuations",
+                "reference_subsection_header": "Evacuations",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.4615,
+                    "recall": 0.4615,
+                    "fmeasure": 0.4615
+                  },
+                  "rouge2": {
+                    "precision": 0.25,
+                    "recall": 0.25,
+                    "fmeasure": 0.25
+                  },
+                  "rougeL": {
+                    "precision": 0.4615,
+                    "recall": 0.4615,
+                    "fmeasure": 0.4615
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:6/header=hazard assessment",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=hazard assessment",
+                "candidate_subsection_id": "6a",
+                "reference_subsection_id": "6a",
+                "candidate_subsection_header": "Hazard assessment",
+                "reference_subsection_header": "Hazard assessment",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.9286,
+                    "recall": 0.52,
+                    "fmeasure": 0.6667
+                  },
+                  "rouge2": {
+                    "precision": 0.7692,
+                    "recall": 0.4167,
+                    "fmeasure": 0.5405
+                  },
+                  "rougeL": {
+                    "precision": 0.7143,
+                    "recall": 0.4,
+                    "fmeasure": 0.5128
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:7/header=operational response",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=operational response",
+                "candidate_subsection_id": "7a",
+                "reference_subsection_id": "7a",
+                "candidate_subsection_header": "Operational response",
+                "reference_subsection_header": "Operational response",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.75,
+                    "recall": 0.6,
+                    "fmeasure": 0.6667
+                  },
+                  "rouge2": {
+                    "precision": 0.4286,
+                    "recall": 0.3333,
+                    "fmeasure": 0.375
+                  },
+                  "rougeL": {
+                    "precision": 0.625,
+                    "recall": 0.5,
+                    "fmeasure": 0.5556
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:8/header=information updates",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=information updates",
+                "candidate_subsection_id": "8b",
+                "reference_subsection_id": "8b",
+                "candidate_subsection_header": "Information updates",
+                "reference_subsection_header": "Information updates",
+                "scores": {
+                  "rouge1": {
+                    "precision": 0.8,
+                    "recall": 0.1739,
+                    "fmeasure": 0.2857
+                  },
+                  "rouge2": {
+                    "precision": 0.75,
+                    "recall": 0.1364,
+                    "fmeasure": 0.2308
+                  },
+                  "rougeL": {
+                    "precision": 0.8,
+                    "recall": 0.1739,
+                    "fmeasure": 0.2857
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:8/header=requests for help",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=requests for help",
+                "candidate_subsection_id": "8c",
+                "reference_subsection_id": "8c",
+                "candidate_subsection_header": "Requests for help",
+                "reference_subsection_header": "Requests for help",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.4091,
+                    "fmeasure": 0.5806
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.381,
+                    "fmeasure": 0.5517
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.4091,
+                    "fmeasure": 0.5806
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:8/header=warnings and alerts",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=warnings and alerts",
+                "candidate_subsection_id": "8a",
+                "reference_subsection_id": "8a",
+                "candidate_subsection_header": "Warnings and alerts",
+                "reference_subsection_header": "Warnings and alerts",
+                "scores": {
+                  "rouge1": {
+                    "precision": 1.0,
+                    "recall": 0.7857,
+                    "fmeasure": 0.88
+                  },
+                  "rouge2": {
+                    "precision": 1.0,
+                    "recall": 0.7692,
+                    "fmeasure": 0.8696
+                  },
+                  "rougeL": {
+                    "precision": 1.0,
+                    "recall": 0.7857,
+                    "fmeasure": 0.88
+                  }
+                }
+              },
+              {
+                "unit_id": "subsection:9/header=aid provided and distributed",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=aid provided and distributed",
+                "candidate_subsection_id": "9a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Aid provided and distributed",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:9/header=aid received and needs coverage",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=aid received and needs coverage",
+                "candidate_subsection_id": "9b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Aid received and needs coverage",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:10/header=meetings and decisions",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=meetings and decisions",
+                "candidate_subsection_id": "10a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Meetings and decisions",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:11/header=public sentiment",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=public sentiment",
+                "candidate_subsection_id": "11b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Public sentiment",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:11/header=social support",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=social support",
+                "candidate_subsection_id": "11a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Social support",
+                "reference_subsection_header": null
+              }
+            ],
+            "aggregates": {
+              "micro": {
+                "rouge1": {
+                  "precision": 0.8205,
+                  "recall": 0.338,
+                  "fmeasure": 0.4788
+                },
+                "rouge2": {
+                  "precision": 0.7308,
+                  "recall": 0.2815,
+                  "fmeasure": 0.4064
+                },
+                "rougeL": {
+                  "precision": 0.7863,
+                  "recall": 0.3239,
+                  "fmeasure": 0.4589
+                },
+                "denominator_policy": "whole_gold"
+              }
+            },
+            "overall": {
+              "rouge1": {
+                "precision": 0.8205,
+                "recall": 0.338,
+                "fmeasure": 0.4788
+              },
+              "rouge2": {
+                "precision": 0.7308,
+                "recall": 0.2815,
+                "fmeasure": 0.4064
+              },
+              "rougeL": {
+                "precision": 0.7863,
+                "recall": 0.3239,
+                "fmeasure": 0.4589
+              },
+              "denominator_policy": "whole_gold"
+            },
+            "diagnostics": {
+              "gold_units": 14,
+              "system_units": 18,
+              "matched_units": 13,
+              "scored_units": 13,
+              "skipped_both_empty_units": 0,
+              "denominator": "whole_gold",
+              "denominator_policy": "whole_gold",
+              "rouge1": {
+                "gold_ngrams": 284,
+                "matched_gold_ngrams": 244,
+                "whole_gold_ngrams": 284,
+                "system_ngrams": 117,
+                "overlapping_ngrams": 96
+              },
+              "rouge2": {
+                "gold_ngrams": 270,
+                "matched_gold_ngrams": 231,
+                "whole_gold_ngrams": 270,
+                "system_ngrams": 104,
+                "overlapping_ngrams": 76
+              },
+              "rougeL": {
+                "gold_tokens": 284,
+                "matched_gold_tokens": 244,
+                "whole_gold_tokens": 284,
+                "system_tokens": 117,
+                "total_lcs_length": 92
+              }
+            },
+            "subsection_alignment_method": "header_only"
+          },
+          "bertscore": {
+            "mode": "subsection",
+            "status": "scored",
+            "warnings": [
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 13,
+            "n_skipped_both_empty": 0,
+            "items": [
+              {
+                "unit_id": "subsection:3/header=fatalities",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=fatalities",
+                "candidate_subsection_id": "3a",
+                "reference_subsection_id": "3a",
+                "candidate_subsection_header": "Fatalities",
+                "reference_subsection_header": "Fatalities",
+                "scores": {
+                  "precision": 0.813612,
+                  "recall": 0.594204,
+                  "f1": 0.686811
+                }
+              },
+              {
+                "unit_id": "subsection:3/header=injuries",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=injuries",
+                "candidate_subsection_id": "3b",
+                "reference_subsection_id": "3b",
+                "candidate_subsection_header": "Injuries",
+                "reference_subsection_header": "Injuries",
+                "scores": {
+                  "precision": 0.817305,
+                  "recall": 0.569686,
+                  "f1": 0.671392
+                }
+              },
+              {
+                "unit_id": "subsection:3/header=missing persons",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=missing persons",
+                "candidate_subsection_id": "3c",
+                "reference_subsection_id": "3c",
+                "candidate_subsection_header": "Missing persons",
+                "reference_subsection_header": "Missing persons",
+                "scores": {
+                  "precision": 0.948827,
+                  "recall": 0.845814,
+                  "f1": 0.894364
+                }
+              },
+              {
+                "unit_id": "subsection:4/header=damage",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=damage",
+                "candidate_subsection_id": "4a",
+                "reference_subsection_id": "4a",
+                "candidate_subsection_header": "Damage",
+                "reference_subsection_header": "Damage",
+                "scores": {
+                  "precision": 0.618613,
+                  "recall": 0.495113,
+                  "f1": 0.550016
+                }
+              },
+              {
+                "unit_id": "subsection:4/header=destruction",
+                "status": "reference_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=destruction",
+                "candidate_subsection_id": null,
+                "reference_subsection_id": "4b",
+                "candidate_subsection_header": null,
+                "reference_subsection_header": "Destruction"
+              },
+              {
+                "unit_id": "subsection:4/header=restoration progress",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=restoration progress",
+                "candidate_subsection_id": "4c",
+                "reference_subsection_id": "4d",
+                "candidate_subsection_header": "Restoration progress",
+                "reference_subsection_header": "Restoration progress",
+                "scores": {
+                  "precision": 0.93555,
+                  "recall": 0.779954,
+                  "f1": 0.850696
+                }
+              },
+              {
+                "unit_id": "subsection:4/header=service disruptions",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=service disruptions",
+                "candidate_subsection_id": "4b",
+                "reference_subsection_id": "4c",
+                "candidate_subsection_header": "Service disruptions",
+                "reference_subsection_header": "Service disruptions",
+                "scores": {
+                  "precision": 0.869024,
+                  "recall": 0.680462,
+                  "f1": 0.763269
+                }
+              },
+              {
+                "unit_id": "subsection:5/header=displacement",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=displacement",
+                "candidate_subsection_id": "5b",
+                "reference_subsection_id": "5b",
+                "candidate_subsection_header": "Displacement",
+                "reference_subsection_header": "Displacement",
+                "scores": {
+                  "precision": 0.960626,
+                  "recall": 0.857516,
+                  "f1": 0.906147
+                }
+              },
+              {
+                "unit_id": "subsection:5/header=evacuations",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=evacuations",
+                "candidate_subsection_id": "5a",
+                "reference_subsection_id": "5a",
+                "candidate_subsection_header": "Evacuations",
+                "reference_subsection_header": "Evacuations",
+                "scores": {
+                  "precision": 0.876041,
+                  "recall": 0.819026,
+                  "f1": 0.846574
+                }
+              },
+              {
+                "unit_id": "subsection:6/header=hazard assessment",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=hazard assessment",
+                "candidate_subsection_id": "6a",
+                "reference_subsection_id": "6a",
+                "candidate_subsection_header": "Hazard assessment",
+                "reference_subsection_header": "Hazard assessment",
+                "scores": {
+                  "precision": 0.849291,
+                  "recall": 0.709166,
+                  "f1": 0.772929
+                }
+              },
+              {
+                "unit_id": "subsection:7/header=operational response",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=operational response",
+                "candidate_subsection_id": "7a",
+                "reference_subsection_id": "7a",
+                "candidate_subsection_header": "Operational response",
+                "reference_subsection_header": "Operational response",
+                "scores": {
+                  "precision": 0.806042,
+                  "recall": 0.744306,
+                  "f1": 0.773945
+                }
+              },
+              {
+                "unit_id": "subsection:8/header=information updates",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=information updates",
+                "candidate_subsection_id": "8b",
+                "reference_subsection_id": "8b",
+                "candidate_subsection_header": "Information updates",
+                "reference_subsection_header": "Information updates",
+                "scores": {
+                  "precision": 0.731641,
+                  "recall": 0.518173,
+                  "f1": 0.606677
+                }
+              },
+              {
+                "unit_id": "subsection:8/header=requests for help",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=requests for help",
+                "candidate_subsection_id": "8c",
+                "reference_subsection_id": "8c",
+                "candidate_subsection_header": "Requests for help",
+                "reference_subsection_header": "Requests for help",
+                "scores": {
+                  "precision": 0.805936,
+                  "recall": 0.652422,
+                  "f1": 0.721099
+                }
+              },
+              {
+                "unit_id": "subsection:8/header=warnings and alerts",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=warnings and alerts",
+                "candidate_subsection_id": "8a",
+                "reference_subsection_id": "8a",
+                "candidate_subsection_header": "Warnings and alerts",
+                "reference_subsection_header": "Warnings and alerts",
+                "scores": {
+                  "precision": 0.972068,
+                  "recall": 0.8926,
+                  "f1": 0.93064
+                }
+              },
+              {
+                "unit_id": "subsection:9/header=aid provided and distributed",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=aid provided and distributed",
+                "candidate_subsection_id": "9a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Aid provided and distributed",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:9/header=aid received and needs coverage",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=aid received and needs coverage",
+                "candidate_subsection_id": "9b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Aid received and needs coverage",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:10/header=meetings and decisions",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=meetings and decisions",
+                "candidate_subsection_id": "10a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Meetings and decisions",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:11/header=public sentiment",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=public sentiment",
+                "candidate_subsection_id": "11b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Public sentiment",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:11/header=social support",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=social support",
+                "candidate_subsection_id": "11a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Social support",
+                "reference_subsection_header": null
+              }
+            ],
+            "aggregates": {
+              "micro": {
+                "precision": 0.583014,
+                "recall": 0.581166,
+                "f1": 0.582088,
+                "model_type": "microsoft/deberta-xlarge-mnli",
+                "unmatched_policy": "side_specific_zero",
+                "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+              }
+            },
+            "overall": {
+              "precision": 0.583014,
+              "recall": 0.581166,
+              "f1": 0.582088,
+              "model_type": "microsoft/deberta-xlarge-mnli",
+              "unmatched_policy": "side_specific_zero",
+              "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+            },
+            "unmatched_penalty": {
+              "policy": "side_specific_zero",
+              "matched_system_token_weight": 117,
+              "system_only_units": 5,
+              "system_only_token_weight": 54,
+              "precision_denominator_token_weight": 171,
+              "matched_gold_token_weight": 244,
+              "gold_only_units": 1,
+              "gold_only_token_weight": 40,
+              "recall_denominator_token_weight": 284
+            },
+            "subsection_alignment_method": "header_only"
+          },
+          "bleurt": {
+            "mode": "subsection",
+            "status": "scored",
+            "warnings": [
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              }
+            ],
+            "aggregation": "micro",
+            "n_scored": 13,
+            "n_skipped_both_empty": 0,
+            "items": [
+              {
+                "unit_id": "subsection:3/header=fatalities",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=fatalities",
+                "candidate_subsection_id": "3a",
+                "reference_subsection_id": "3a",
+                "candidate_subsection_header": "Fatalities",
+                "reference_subsection_header": "Fatalities",
+                "score": 0.637001
+              },
+              {
+                "unit_id": "subsection:3/header=injuries",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=injuries",
+                "candidate_subsection_id": "3b",
+                "reference_subsection_id": "3b",
+                "candidate_subsection_header": "Injuries",
+                "reference_subsection_header": "Injuries",
+                "score": 0.55761
+              },
+              {
+                "unit_id": "subsection:3/header=missing persons",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=missing persons",
+                "candidate_subsection_id": "3c",
+                "reference_subsection_id": "3c",
+                "candidate_subsection_header": "Missing persons",
+                "reference_subsection_header": "Missing persons",
+                "score": 0.64068
+              },
+              {
+                "unit_id": "subsection:4/header=damage",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=damage",
+                "candidate_subsection_id": "4a",
+                "reference_subsection_id": "4a",
+                "candidate_subsection_header": "Damage",
+                "reference_subsection_header": "Damage",
+                "score": 0.300397
+              },
+              {
+                "unit_id": "subsection:4/header=destruction",
+                "status": "reference_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=destruction",
+                "candidate_subsection_id": null,
+                "reference_subsection_id": "4b",
+                "candidate_subsection_header": null,
+                "reference_subsection_header": "Destruction"
+              },
+              {
+                "unit_id": "subsection:4/header=restoration progress",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=restoration progress",
+                "candidate_subsection_id": "4c",
+                "reference_subsection_id": "4d",
+                "candidate_subsection_header": "Restoration progress",
+                "reference_subsection_header": "Restoration progress",
+                "score": 0.602068
+              },
+              {
+                "unit_id": "subsection:4/header=service disruptions",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=service disruptions",
+                "candidate_subsection_id": "4b",
+                "reference_subsection_id": "4c",
+                "candidate_subsection_header": "Service disruptions",
+                "reference_subsection_header": "Service disruptions",
+                "score": 0.602362
+              },
+              {
+                "unit_id": "subsection:5/header=displacement",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=displacement",
+                "candidate_subsection_id": "5b",
+                "reference_subsection_id": "5b",
+                "candidate_subsection_header": "Displacement",
+                "reference_subsection_header": "Displacement",
+                "score": 0.771793
+              },
+              {
+                "unit_id": "subsection:5/header=evacuations",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=evacuations",
+                "candidate_subsection_id": "5a",
+                "reference_subsection_id": "5a",
+                "candidate_subsection_header": "Evacuations",
+                "reference_subsection_header": "Evacuations",
+                "score": 0.676801
+              },
+              {
+                "unit_id": "subsection:6/header=hazard assessment",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=hazard assessment",
+                "candidate_subsection_id": "6a",
+                "reference_subsection_id": "6a",
+                "candidate_subsection_header": "Hazard assessment",
+                "reference_subsection_header": "Hazard assessment",
+                "score": 0.709229
+              },
+              {
+                "unit_id": "subsection:7/header=operational response",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=operational response",
+                "candidate_subsection_id": "7a",
+                "reference_subsection_id": "7a",
+                "candidate_subsection_header": "Operational response",
+                "reference_subsection_header": "Operational response",
+                "score": 0.622961
+              },
+              {
+                "unit_id": "subsection:8/header=information updates",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=information updates",
+                "candidate_subsection_id": "8b",
+                "reference_subsection_id": "8b",
+                "candidate_subsection_header": "Information updates",
+                "reference_subsection_header": "Information updates",
+                "score": 0.522452
+              },
+              {
+                "unit_id": "subsection:8/header=requests for help",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=requests for help",
+                "candidate_subsection_id": "8c",
+                "reference_subsection_id": "8c",
+                "candidate_subsection_header": "Requests for help",
+                "reference_subsection_header": "Requests for help",
+                "score": 0.544308
+              },
+              {
+                "unit_id": "subsection:8/header=warnings and alerts",
+                "status": "matched",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=warnings and alerts",
+                "candidate_subsection_id": "8a",
+                "reference_subsection_id": "8a",
+                "candidate_subsection_header": "Warnings and alerts",
+                "reference_subsection_header": "Warnings and alerts",
+                "score": 0.747111
+              },
+              {
+                "unit_id": "subsection:9/header=aid provided and distributed",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=aid provided and distributed",
+                "candidate_subsection_id": "9a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Aid provided and distributed",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:9/header=aid received and needs coverage",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=aid received and needs coverage",
+                "candidate_subsection_id": "9b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Aid received and needs coverage",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:10/header=meetings and decisions",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=meetings and decisions",
+                "candidate_subsection_id": "10a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Meetings and decisions",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:11/header=public sentiment",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=public sentiment",
+                "candidate_subsection_id": "11b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Public sentiment",
+                "reference_subsection_header": null
+              },
+              {
+                "unit_id": "subsection:11/header=social support",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=social support",
+                "candidate_subsection_id": "11a",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Social support",
+                "reference_subsection_header": null
+              }
+            ],
+            "aggregates": {
+              "micro": {
+                "score": 0.597549,
+                "config_name": "BLEURT-20"
+              }
+            },
+            "overall": {
+              "score": 0.597549,
+              "config_name": "BLEURT-20"
+            },
+            "subsection_alignment_method": "header_only"
+          }
+        },
+        "weighted_alignment": {
+          "gold": "sample_data\\gold-output\\tornado\\tornado.W3.k5.report.json",
+          "system": "sample_data\\sysId-output\\UW-sys8\\tornado\\tornado.W3.k5.report.json",
+          "metric": "rougeL",
+          "threshold": 0.1,
+          "configuration": {
+            "mode": 3,
+            "unit_mode": "bullet",
+            "scope": "subsection",
+            "aggregation": "micro",
+            "metric": "rougeL",
+            "models": {
+              "bertscore": "microsoft/deberta-xlarge-mnli",
+              "cosine": "sentence-transformers/all-mpnet-base-v2"
+            },
+            "batch_size": 16,
+            "thresholds": {
+              "rougeL": 0.1,
+              "bertscore": 0.5,
+              "cosine": 0.3
+            },
+            "tweet_id_overlap": {
+              "enabled": true,
+              "metric": "jaccard",
+              "text_weight": 0.8,
+              "tweet_id_weight": 0.19999999999999996
+            },
+            "alignment_method": "bipartite",
+            "alignment_algorithm": "hungarian",
+            "on_missing_structure": "warn",
+            "subsection_alignment_method": "header_only",
+            "config_path": "config\\evaluation.yaml",
+            "model": "microsoft/deberta-xlarge-mnli",
+            "threshold": 0.1,
+            "evaluation_scope": {
+              "sections": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11"
+              ],
+              "source": "config"
+            }
+          },
+          "status": "scored",
+          "warnings": [
+            {
+              "side": "gold",
+              "code": "selected_sections_not_found",
+              "message": "requested section IDs were not found in the document",
+              "sections": [
+                "9",
+                "10",
+                "11"
+              ]
+            },
+            {
+              "code": "gold_only_groups",
+              "message": "gold has groups with no matching system group key",
+              "count": 1,
+              "groups": [
+                "4/destruction"
+              ]
+            },
+            {
+              "code": "system_only_groups",
+              "message": "system has groups with no matching gold group key",
+              "count": 5,
+              "groups": [
+                "10/meetings and decisions",
+                "11/public sentiment",
+                "11/social support",
+                "9/aid provided and distributed",
+                "9/aid received and needs coverage"
+              ]
+            },
+            {
+              "code": "partial_key_overlap",
+              "message": "only some group keys overlap between gold and system",
+              "shared_groups": 13,
+              "gold_only_groups": 1,
+              "system_only_groups": 5
+            }
+          ],
+          "summary": {
+            "gold_units": 24,
+            "system_units": 19,
+            "gold_source_bullets": 24,
+            "system_source_bullets": 19,
+            "matched_pairs": 13,
+            "compared_groups": 13,
+            "groups_with_accepted_pairs": 12,
+            "unmatched_gold": 11,
+            "unmatched_system": 6,
+            "mean_positive_edge_weight": 0.6380731800655695,
+            "micro_soft_precision": 0.4365763863606528,
+            "micro_soft_recall": 0.3456229725355168,
+            "micro_soft_f1": 0.3858116902722048,
+            "gold_groups": 14,
+            "system_groups": 18,
+            "shared_groups": 13,
+            "structure_recall": 0.9285714285714286,
+            "structure_precision": 0.7222222222222222,
+            "warning_count": 4,
+            "warning_codes": "gold_only_groups;partial_key_overlap;selected_sections_not_found;system_only_groups",
+            "gold_only_groups": 1,
+            "system_only_groups": 5
+          },
+          "groups": [
+            {
+              "scope": "subsection",
+              "group_id": "10/header=meetings and decisions",
+              "section_id": "10",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=meetings and decisions",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "10",
+                  "subsection_id": "10a",
+                  "subsection_title": "Meetings and decisions",
+                  "bullet_id": "10a.1",
+                  "text": "Ostley County Emergency Management asked for assistance concerning Dray Corners.",
+                  "tweet_ids": [
+                    211
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "11/header=public sentiment",
+              "section_id": "11",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=public sentiment",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "11",
+                  "subsection_id": "11b",
+                  "subsection_title": "Public sentiment",
+                  "bullet_id": "11b.1",
+                  "text": "People moved out of the town as part of an evacuation.",
+                  "tweet_ids": [
+                    17,
+                    20,
+                    21,
+                    23
+                  ],
+                  "confidence": "unconfirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "11/header=social support",
+              "section_id": "11",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=social support",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "11",
+                  "subsection_id": "11a",
+                  "subsection_title": "Social support",
+                  "bullet_id": "11a.1",
+                  "text": "Grandpa's old grain truck is running again after forty years. Took it down Main Street for ice cream.",
+                  "tweet_ids": [
+                    59,
+                    93,
+                    139,
+                    170
+                  ],
+                  "confidence": "unconfirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "3/header=fatalities",
+              "section_id": "3",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=fatalities",
+              "gold_count": 2,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.6561403508771929,
+              "soft_precision": 0.6561403508771929,
+              "soft_recall": 0.32807017543859646,
+              "soft_f1": 0.4374269005847952,
+              "total_weight": 0.6561403508771929,
+              "pairs": [
+                {
+                  "gold_index": 1,
+                  "system_index": 0,
+                  "weight": 0.6561403508771929,
+                  "gold_bullet_id": "3a.3",
+                  "system_bullet_id": "3a.1",
+                  "gold_subsection_id": "3a",
+                  "system_subsection_id": "3a",
+                  "gold_subsection_header": "Fatalities",
+                  "system_subsection_header": "Fatalities",
+                  "text_similarity": 0.7368421052631579,
+                  "tweet_id_similarity": 0.3333333333333333,
+                  "gold_tweet_ids": [
+                    "86"
+                  ],
+                  "system_tweet_ids": [
+                    "80",
+                    "84",
+                    "86"
+                  ],
+                  "gold_text": "There were 9 deaths in Ostley County during the Estenwick tornado outbreak.",
+                  "system_text": "There were 9 deaths in Ostley County."
+                }
+              ],
+              "unmatched_gold": [
+                {
+                  "section_id": "3",
+                  "subsection_id": "3a",
+                  "subsection_title": "Fatalities",
+                  "bullet_id": "3a.1",
+                  "text": "There were 3 fatalities in Millrow district during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    56
+                  ],
+                  "confidence": "confirmed"
+                }
+              ],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "3/header=injuries",
+              "section_id": "3",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=injuries",
+              "gold_count": 2,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.7647058823529411,
+              "soft_precision": 0.7647058823529411,
+              "soft_recall": 0.38235294117647056,
+              "soft_f1": 0.5098039215686274,
+              "total_weight": 0.7647058823529411,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.7647058823529411,
+                  "gold_bullet_id": "3b.1",
+                  "system_bullet_id": "3b.1",
+                  "gold_subsection_id": "3b",
+                  "system_subsection_id": "3b",
+                  "gold_subsection_header": "Injuries",
+                  "system_subsection_header": "Injuries",
+                  "text_similarity": 0.7058823529411764,
+                  "tweet_id_similarity": 1.0,
+                  "gold_tweet_ids": [
+                    "63"
+                  ],
+                  "system_tweet_ids": [
+                    "63"
+                  ],
+                  "gold_text": "38 people were injured in Estenwick during the Estenwick tornado outbreak.",
+                  "system_text": "38 people were injured in Estenwick."
+                }
+              ],
+              "unmatched_gold": [
+                {
+                  "section_id": "3",
+                  "subsection_id": "3b",
+                  "subsection_title": "Injuries",
+                  "bullet_id": "3b.3",
+                  "text": "No injuries were reported in Palfrey during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    141
+                  ],
+                  "confidence": "unconfirmed"
+                }
+              ],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "3/header=missing persons",
+              "section_id": "3",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=missing persons",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.7894736842105262,
+              "soft_precision": 0.7894736842105262,
+              "soft_recall": 0.7894736842105262,
+              "soft_f1": 0.7894736842105262,
+              "total_weight": 0.7894736842105262,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.7894736842105262,
+                  "gold_bullet_id": "3c.1",
+                  "system_bullet_id": "3c.1",
+                  "gold_subsection_id": "3c",
+                  "system_subsection_id": "3c",
+                  "gold_subsection_header": "Missing persons",
+                  "system_subsection_header": "Missing persons",
+                  "text_similarity": 0.7368421052631579,
+                  "tweet_id_similarity": 1.0,
+                  "gold_tweet_ids": [
+                    "123"
+                  ],
+                  "system_tweet_ids": [
+                    "123"
+                  ],
+                  "gold_text": "People were unaccounted for in Millrow district during the Estenwick tornado outbreak.",
+                  "system_text": "People were unaccounted for in Millrow district."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "4/header=damage",
+              "section_id": "4",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=damage",
+              "gold_count": 2,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [
+                {
+                  "section_id": "4",
+                  "subsection_id": "4a",
+                  "subsection_title": "Damage",
+                  "bullet_id": "4a.1",
+                  "text": "Damage was reported in Millrow district during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    19
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "4",
+                  "subsection_id": "4a",
+                  "subsection_title": "Damage",
+                  "bullet_id": "4a.2",
+                  "text": "Damage was reported in the farm belt during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    31
+                  ],
+                  "confidence": "confirmed"
+                }
+              ],
+              "unmatched_system": [
+                {
+                  "section_id": "4",
+                  "subsection_id": "4a",
+                  "subsection_title": "Damage",
+                  "bullet_id": "4a.1",
+                  "text": "Route 12 and grain elevator were destroyed in Dray Corners.",
+                  "tweet_ids": [
+                    24,
+                    25,
+                    26,
+                    30,
+                    36,
+                    40,
+                    41,
+                    45
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "4/header=destruction",
+              "section_id": "4",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=destruction",
+              "gold_count": 3,
+              "system_count": 0,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [
+                {
+                  "section_id": "4",
+                  "subsection_id": "4b",
+                  "subsection_title": "Destruction",
+                  "bullet_id": "4b.1",
+                  "text": "Route 12 and grain elevator were destroyed in Dray Corners during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    38
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "4",
+                  "subsection_id": "4b",
+                  "subsection_title": "Destruction",
+                  "bullet_id": "4b.2",
+                  "text": "Estenwick Consolidated School was destroyed in Estenwick during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    164
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "4",
+                  "subsection_id": "4b",
+                  "subsection_title": "Destruction",
+                  "bullet_id": "4b.3",
+                  "text": "Estenwick General Hospital was not damaged in Estenwick during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    68
+                  ],
+                  "confidence": "unconfirmed"
+                }
+              ],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "4/header=restoration progress",
+              "section_id": "4",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=restoration progress",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.7894736842105262,
+              "soft_precision": 0.7894736842105262,
+              "soft_recall": 0.7894736842105262,
+              "soft_f1": 0.7894736842105262,
+              "total_weight": 0.7894736842105262,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.7894736842105262,
+                  "gold_bullet_id": "4d.2",
+                  "system_bullet_id": "4c.1",
+                  "gold_subsection_id": "4d",
+                  "system_subsection_id": "4c",
+                  "gold_subsection_header": "Restoration progress",
+                  "system_subsection_header": "Restoration progress",
+                  "text_similarity": 0.7368421052631579,
+                  "tweet_id_similarity": 1.0,
+                  "gold_tweet_ids": [
+                    "186"
+                  ],
+                  "system_tweet_ids": [
+                    "186"
+                  ],
+                  "gold_text": "Route 12 and grain elevator were restored during the Estenwick tornado outbreak.",
+                  "system_text": "Route 12 and grain elevator were restored."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "4/header=service disruptions",
+              "section_id": "4",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=service disruptions",
+              "gold_count": 2,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.6231884057971014,
+              "soft_precision": 0.6231884057971014,
+              "soft_recall": 0.3115942028985507,
+              "soft_f1": 0.4154589371980677,
+              "total_weight": 0.6231884057971014,
+              "pairs": [
+                {
+                  "gold_index": 1,
+                  "system_index": 0,
+                  "weight": 0.6231884057971014,
+                  "gold_bullet_id": "4c.3",
+                  "system_bullet_id": "4b.1",
+                  "gold_subsection_id": "4c",
+                  "system_subsection_id": "4b",
+                  "gold_subsection_header": "Service disruptions",
+                  "system_subsection_header": "Service disruptions",
+                  "text_similarity": 0.6956521739130435,
+                  "tweet_id_similarity": 0.3333333333333333,
+                  "gold_tweet_ids": [
+                    "204"
+                  ],
+                  "system_tweet_ids": [
+                    "191",
+                    "204",
+                    "213"
+                  ],
+                  "gold_text": "Service at Estenwick Consolidated School was disrupted in Estenwick during the Estenwick tornado outbreak.",
+                  "system_text": "Service at Estenwick Consolidated School is disrupted in Estenwick."
+                }
+              ],
+              "unmatched_gold": [
+                {
+                  "section_id": "4",
+                  "subsection_id": "4c",
+                  "subsection_title": "Service disruptions",
+                  "bullet_id": "4c.2",
+                  "text": "Route 12 was closed in Estenwick and Dray Corners during the Estenwick tornado outbreak.",
+                  "tweet_ids": [
+                    210
+                  ],
+                  "confidence": "confirmed"
+                }
+              ],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "5/header=displacement",
+              "section_id": "5",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=displacement",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.7185185185185186,
+              "soft_precision": 0.7185185185185186,
+              "soft_recall": 0.7185185185185186,
+              "soft_f1": 0.7185185185185186,
+              "total_weight": 0.7185185185185186,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.7185185185185186,
+                  "gold_bullet_id": "5b.1",
+                  "system_bullet_id": "5b.1",
+                  "gold_subsection_id": "5b",
+                  "system_subsection_id": "5b",
+                  "gold_subsection_header": "Displacement",
+                  "system_subsection_header": "Displacement",
+                  "text_similarity": 0.8148148148148148,
+                  "tweet_id_similarity": 0.3333333333333333,
+                  "gold_tweet_ids": [
+                    "205"
+                  ],
+                  "system_tweet_ids": [
+                    "193",
+                    "205",
+                    "214"
+                  ],
+                  "gold_text": "About 240 people were displaced from Millrow district and Ostley County during evacuation and displacement operations.",
+                  "system_text": "About 240 people were displaced from Millrow district and Ostley County."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "5/header=evacuations",
+              "section_id": "5",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=evacuations",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.40923076923076923,
+              "soft_precision": 0.40923076923076923,
+              "soft_recall": 0.40923076923076923,
+              "soft_f1": 0.4092307692307692,
+              "total_weight": 0.40923076923076923,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.40923076923076923,
+                  "gold_bullet_id": "5a.1",
+                  "system_bullet_id": "5a.1",
+                  "gold_subsection_id": "5a",
+                  "system_subsection_id": "5a",
+                  "gold_subsection_header": "Evacuations",
+                  "system_subsection_header": "Evacuations",
+                  "text_similarity": 0.46153846153846156,
+                  "tweet_id_similarity": 0.2,
+                  "gold_tweet_ids": [
+                    "20"
+                  ],
+                  "system_tweet_ids": [
+                    "17",
+                    "18",
+                    "20",
+                    "21",
+                    "23"
+                  ],
+                  "gold_text": "People were evacuated from Estenwick and Dray Corners during evacuation and displacement operations.",
+                  "system_text": "People moved out of Estenwick and Dray Corners as part of an evacuation."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "6/header=hazard assessment",
+              "section_id": "6",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=hazard assessment",
+              "gold_count": 2,
+              "system_count": 2,
+              "matched_count": 2,
+              "mean_positive_edge_weight": 0.5297101449275363,
+              "soft_precision": 0.5297101449275363,
+              "soft_recall": 0.5297101449275363,
+              "soft_f1": 0.5297101449275363,
+              "total_weight": 1.0594202898550726,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 1,
+                  "weight": 0.43333333333333346,
+                  "gold_bullet_id": "6a.1",
+                  "system_bullet_id": "6a.2",
+                  "gold_subsection_id": "6a",
+                  "system_subsection_id": "6a",
+                  "gold_subsection_header": "Hazard assessment",
+                  "system_subsection_header": "Hazard assessment",
+                  "text_similarity": 0.5000000000000001,
+                  "tweet_id_similarity": 0.16666666666666666,
+                  "gold_tweet_ids": [
+                    "136"
+                  ],
+                  "system_tweet_ids": [
+                    "119",
+                    "129",
+                    "133",
+                    "136",
+                    "154",
+                    "180"
+                  ],
+                  "gold_text": "Dangerous conditions were present at Estenwick during the Estenwick tornado outbreak.",
+                  "system_text": "Dangerous conditions developed at Estenwick."
+                },
+                {
+                  "gold_index": 1,
+                  "system_index": 0,
+                  "weight": 0.6260869565217392,
+                  "gold_bullet_id": "6a.2",
+                  "system_bullet_id": "6a.1",
+                  "gold_subsection_id": "6a",
+                  "system_subsection_id": "6a",
+                  "gold_subsection_header": "Hazard assessment",
+                  "system_subsection_header": "Hazard assessment",
+                  "text_similarity": 0.782608695652174,
+                  "tweet_id_similarity": 0.0,
+                  "gold_tweet_ids": [
+                    "127"
+                  ],
+                  "system_tweet_ids": [
+                    "112",
+                    "125",
+                    "137"
+                  ],
+                  "gold_text": "Dangerous conditions were present at Dray Corners and Palfrey during the Estenwick tornado outbreak.",
+                  "system_text": "Dangerous conditions were present at Dray Corners and Palfrey."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "7/header=operational response",
+              "section_id": "7",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=operational response",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.5444444444444445,
+              "soft_precision": 0.5444444444444445,
+              "soft_recall": 0.5444444444444445,
+              "soft_f1": 0.5444444444444445,
+              "total_weight": 0.5444444444444445,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.5444444444444445,
+                  "gold_bullet_id": "7a.1",
+                  "system_bullet_id": "7a.1",
+                  "gold_subsection_id": "7a",
+                  "system_subsection_id": "7a",
+                  "gold_subsection_header": "Operational response",
+                  "system_subsection_header": "Operational response",
+                  "text_similarity": 0.5555555555555556,
+                  "tweet_id_similarity": 0.5,
+                  "gold_tweet_ids": [
+                    "58"
+                  ],
+                  "system_tweet_ids": [
+                    "57",
+                    "58"
+                  ],
+                  "gold_text": "Estenwick Police deployed to Millrow district as response operations continued.",
+                  "system_text": "The police deployed to Estenwick and Millrow district."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "8/header=information updates",
+              "section_id": "8",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=information updates",
+              "gold_count": 3,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.5173076923076924,
+              "soft_precision": 0.5173076923076924,
+              "soft_recall": 0.17243589743589746,
+              "soft_f1": 0.2586538461538462,
+              "total_weight": 0.5173076923076924,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.5173076923076924,
+                  "gold_bullet_id": "8b.1",
+                  "system_bullet_id": "8b.1",
+                  "gold_subsection_id": "8b",
+                  "system_subsection_id": "8b",
+                  "gold_subsection_header": "Information updates",
+                  "system_subsection_header": "Information updates",
+                  "text_similarity": 0.6153846153846154,
+                  "tweet_id_similarity": 0.125,
+                  "gold_tweet_ids": [
+                    "50"
+                  ],
+                  "system_tweet_ids": [
+                    "50",
+                    "52",
+                    "53",
+                    "77",
+                    "78",
+                    "89",
+                    "90",
+                    "91"
+                  ],
+                  "gold_text": "Ostley County coroner provided information during emergency communications.",
+                  "system_text": "The county coroner provided information."
+                }
+              ],
+              "unmatched_gold": [
+                {
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.3",
+                  "text": "Provincial Severe Weather Centre provided information during emergency communications.",
+                  "tweet_ids": [
+                    113
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.4",
+                  "text": "OCEM provided information during emergency communications.",
+                  "tweet_ids": [
+                    197
+                  ],
+                  "confidence": "confirmed"
+                }
+              ],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "8/header=requests for help",
+              "section_id": "8",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=requests for help",
+              "gold_count": 2,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.6857142857142857,
+              "soft_precision": 0.6857142857142857,
+              "soft_recall": 0.34285714285714286,
+              "soft_f1": 0.45714285714285724,
+              "total_weight": 0.6857142857142857,
+              "pairs": [
+                {
+                  "gold_index": 1,
+                  "system_index": 0,
+                  "weight": 0.6857142857142857,
+                  "gold_bullet_id": "8c.2",
+                  "system_bullet_id": "8c.1",
+                  "gold_subsection_id": "8c",
+                  "system_subsection_id": "8c",
+                  "gold_subsection_header": "Requests for help",
+                  "system_subsection_header": "Requests for help",
+                  "text_similarity": 0.8571428571428571,
+                  "tweet_id_similarity": 0.0,
+                  "gold_tweet_ids": [
+                    "133"
+                  ],
+                  "system_tweet_ids": [
+                    "114",
+                    "118",
+                    "124",
+                    "134",
+                    "154",
+                    "160"
+                  ],
+                  "gold_text": "Assistance was requested in Millrow district and Ostley County during emergency communications.",
+                  "system_text": "Assistance was requested in Millrow district and Ostley County."
+                }
+              ],
+              "unmatched_gold": [
+                {
+                  "section_id": "8",
+                  "subsection_id": "8c",
+                  "subsection_title": "Requests for help",
+                  "bullet_id": "8c.1",
+                  "text": "Ostley County Emergency Management asked for assistance concerning Dray Corners.",
+                  "tweet_ids": [
+                    211
+                  ],
+                  "confidence": "confirmed"
+                }
+              ],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "8/header=warnings and alerts",
+              "section_id": "8",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=warnings and alerts",
+              "gold_count": 1,
+              "system_count": 1,
+              "matched_count": 1,
+              "mean_positive_edge_weight": 0.7373333333333334,
+              "soft_precision": 0.7373333333333334,
+              "soft_recall": 0.7373333333333334,
+              "soft_f1": 0.7373333333333334,
+              "total_weight": 0.7373333333333334,
+              "pairs": [
+                {
+                  "gold_index": 0,
+                  "system_index": 0,
+                  "weight": 0.7373333333333334,
+                  "gold_bullet_id": "8a.1",
+                  "system_bullet_id": "8a.1",
+                  "gold_subsection_id": "8a",
+                  "system_subsection_id": "8a",
+                  "gold_subsection_header": "Warnings and alerts",
+                  "system_subsection_header": "Warnings and alerts",
+                  "text_similarity": 0.88,
+                  "tweet_id_similarity": 0.16666666666666666,
+                  "gold_tweet_ids": [
+                    "3"
+                  ],
+                  "system_tweet_ids": [
+                    "10",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                  ],
+                  "gold_text": "A warning was issued for Estenwick, Dray Corners, and Ostley County during emergency communications.",
+                  "system_text": "A warning was issued for Estenwick, Dray Corners, and Ostley County."
+                }
+              ],
+              "unmatched_gold": [],
+              "unmatched_system": []
+            },
+            {
+              "scope": "subsection",
+              "group_id": "9/header=aid provided and distributed",
+              "section_id": "9",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=aid provided and distributed",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "9",
+                  "subsection_id": "9a",
+                  "subsection_title": "Aid provided and distributed",
+                  "bullet_id": "9a.1",
+                  "text": "No injuries were reported in Palfrey.",
+                  "tweet_ids": [
+                    140,
+                    141
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "9/header=aid received and needs coverage",
+              "section_id": "9",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=aid received and needs coverage",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "9",
+                  "subsection_id": "9b",
+                  "subsection_title": "Aid received and needs coverage",
+                  "bullet_id": "9b.1",
+                  "text": "Assistance was requested in Millrow district and Ostley County.",
+                  "tweet_ids": [
+                    114,
+                    124,
+                    134,
+                    154,
+                    160
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
+            }
+          ]
+        },
+        "summary": {
+          "rouge": {
+            "mode": "subsection",
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              }
+            ],
+            "subsection_alignment_method": "header_only",
+            "aggregation": "micro",
+            "n_scored": 13,
+            "n_skipped_both_empty": 0,
+            "score_policy": null,
+            "zero_score_reason": null,
+            "rouge1": {
+              "precision": 0.8205,
+              "recall": 0.338,
+              "fmeasure": 0.4788
+            },
+            "rouge2": {
+              "precision": 0.7308,
+              "recall": 0.2815,
+              "fmeasure": 0.4064
+            },
+            "rougeL": {
+              "precision": 0.7863,
+              "recall": 0.3239,
+              "fmeasure": 0.4589
+            },
+            "micro": {
+              "rouge1": {
+                "precision": 0.8205,
+                "recall": 0.338,
+                "fmeasure": 0.4788
+              },
+              "rouge2": {
+                "precision": 0.7308,
+                "recall": 0.2815,
+                "fmeasure": 0.4064
+              },
+              "rougeL": {
+                "precision": 0.7863,
+                "recall": 0.3239,
+                "fmeasure": 0.4589
+              },
+              "denominator_policy": "whole_gold"
+            }
+          },
+          "bertscore": {
+            "mode": "subsection",
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              }
+            ],
+            "subsection_alignment_method": "header_only",
+            "aggregation": "micro",
+            "n_scored": 13,
+            "n_skipped_both_empty": 0,
+            "score_policy": null,
+            "zero_score_reason": null,
+            "precision": 0.583014,
+            "recall": 0.581166,
+            "f1": 0.582088,
+            "unmatched_penalty": {
+              "policy": "side_specific_zero",
+              "matched_system_token_weight": 117,
+              "system_only_units": 5,
+              "system_only_token_weight": 54,
+              "precision_denominator_token_weight": 171,
+              "matched_gold_token_weight": 244,
+              "gold_only_units": 1,
+              "gold_only_token_weight": 40,
+              "recall_denominator_token_weight": 284
+            },
+            "micro": {
+              "precision": 0.583014,
+              "recall": 0.581166,
+              "f1": 0.582088,
+              "model_type": "microsoft/deberta-xlarge-mnli",
+              "unmatched_policy": "side_specific_zero",
+              "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
+            }
+          },
+          "bleurt": {
+            "mode": "subsection",
+            "status": "scored",
+            "reason": null,
+            "warnings": [
+              {
+                "side": "reference",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              }
+            ],
+            "subsection_alignment_method": "header_only",
+            "aggregation": "micro",
+            "n_scored": 13,
+            "n_skipped_both_empty": 0,
+            "score_policy": null,
+            "zero_score_reason": null,
+            "score": 0.597549,
+            "micro": {
+              "score": 0.597549,
+              "config_name": "BLEURT-20"
+            }
+          },
+          "weighted_alignment": {
+            "status": "scored",
+            "reason": null,
+            "score_policy": null,
+            "zero_score_reason": null,
+            "warnings": [
+              {
+                "side": "gold",
+                "code": "selected_sections_not_found",
+                "message": "requested section IDs were not found in the document",
+                "sections": [
+                  "9",
+                  "10",
+                  "11"
+                ]
+              },
+              {
+                "code": "gold_only_groups",
+                "message": "gold has groups with no matching system group key",
+                "count": 1,
+                "groups": [
+                  "4/destruction"
+                ]
+              },
+              {
+                "code": "system_only_groups",
+                "message": "system has groups with no matching gold group key",
+                "count": 5,
+                "groups": [
+                  "10/meetings and decisions",
+                  "11/public sentiment",
+                  "11/social support",
+                  "9/aid provided and distributed",
+                  "9/aid received and needs coverage"
+                ]
+              },
+              {
+                "code": "partial_key_overlap",
+                "message": "only some group keys overlap between gold and system",
+                "shared_groups": 13,
+                "gold_only_groups": 1,
+                "system_only_groups": 5
+              }
+            ],
+            "scope": "subsection",
+            "metric": "rougeL",
+            "subsection_alignment_method": "header_only",
+            "threshold": 0.1,
+            "micro_soft_precision": 0.4365763863606528,
+            "micro_soft_recall": 0.3456229725355168,
+            "micro_soft_f1": 0.3858116902722048,
+            "structure_recall": 0.9285714285714286,
+            "structure_precision": 0.7222222222222222,
+            "matched_pairs": 13,
+            "gold_units": 24,
+            "system_units": 19,
+            "warning_count": 4
+          }
+        }
+      },
+      "structure_summary": {
+        "sections": {
+          "gold": 6,
+          "system": 9,
+          "matched": 6,
+          "unmatched_gold": 0,
+          "unmatched_system": 3
+        },
+        "subsections": {
+          "gold": 14,
+          "system": 18,
+          "matched": 13,
+          "unmatched_gold": 1,
+          "unmatched_system": 5
+        },
+        "bullets": {
+          "gold": 24,
+          "system": 19,
+          "matched": 13,
+          "unmatched_gold": 11,
+          "unmatched_system": 6
+        }
+      },
+      "diagnostics": {
+        "structure_summary": {
+          "sections": {
+            "gold": 6,
+            "system": 9,
+            "matched": 6,
+            "unmatched_gold": 0,
+            "unmatched_system": 3
+          },
+          "subsections": {
+            "gold": 14,
+            "system": 18,
+            "matched": 13,
+            "unmatched_gold": 1,
+            "unmatched_system": 5
+          },
+          "bullets": {
+            "gold": 24,
+            "system": 19,
+            "matched": 13,
+            "unmatched_gold": 11,
+            "unmatched_system": 6
+          }
+        }
+      }
+    }
+  ]
+}

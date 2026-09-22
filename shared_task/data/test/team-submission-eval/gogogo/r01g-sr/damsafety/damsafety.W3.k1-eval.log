@@ -1,0 +1,155 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:35:31.934217+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : damsafety/damsafety.W3.k1
+Crisis ID           : damsafety
+Cell ID             : damsafety.W3.k1
+System ID           : UW-sys8
+
+Gold                : sample_data\gold-output\damsafety\damsafety.W3.k1.report.json
+System              : sample_data\sysId-output\UW-sys8\damsafety\damsafety.W3.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2059
+  ROUGE-2 F1  : 0.1102
+  ROUGE-L F1  : 0.1618
+
+BERTScore (Subsection)
+  Precision   : 0.3227
+  Recall      : 0.2583
+  F1          : 0.2869
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=53 system_only_units=3 system_only_tokens=50 total_tokens=103
+  Recall denominator: matched_gold_tokens=27 gold_only_units=3 gold_only_tokens=52 total_tokens=79
+
+BLEURT (Subsection)
+  Score       : 0.5077
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.1219
+Soft Recall         : 0.1045
+Soft F1             : 0.1126
+
+Matched pairs       : 2
+Unmatched gold      : 5
+Unmatched system    : 4
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys8           0.2059      0.1102      0.1618        0.2869   0.5077            0.1126
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=5 matched=3 unmatched_gold=1 unmatched_system=2
+subsections: gold=6 system=6 matched=3 unmatched_gold=3 unmatched_system=3
+bullets: gold=7 system=6 matched=2 unmatched_gold=5 unmatched_system=4
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=6 system_units=6 matched_units=3 scored_units=3 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=80 system_ngrams=56 overlapping_ngrams=14
+  rouge2: gold_ngrams=74 system_ngrams=53 overlapping_ngrams=7
+  rougeL: gold_tokens=80 system_tokens=56 total_lcs_length=11
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=10a.1 text="A mandatory evacuation was ordered for Brindlemark and Ferris Hollow, with the alert level raised from Yellow to Orange."
+
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=0.4649
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.1429 text_weight=0.8000 final_edge_score=0.4649
+    gold_text=Halvern Dam and the right abutment were damaged.
+    system_text=The Halvern Dam and its right abutment sustained structural damage, confirmed by multiple sources.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.2667
+  matched_pairs:
+  - gold=5b.1 system=5a.1
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2667
+    gold_text=People were displaced from Quennard during evacuation and displacement operations.
+    system_text=Approximately 12,400 people were evacuated from Brindlemark and additional residents were displaced from Quennard due to the dam emergency.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5a.1 text="Roughly 11,800 residents were evacuated from Brindlemark, and people were evacuated from Ferris Hollow and the alert level was raised from Yellow to Orange."
+  - id=5a.2 text="People were evacuated from Brindlemark during evacuation and displacement operations."
+  unmatched_system: none
+
+Group 7/header=aid delivery
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7b.1 text="Assistance was provided in Quennard as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7a.4 text="Brindlemark Police deployed to Brindlemark as response operations continued."
+  unmatched_system: none
+
+Group 8/header=information updates
+  gold=1 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=8b.3 text="Sorrel Basin Water Authority provided information during emergency communications."
+  unmatched_system:
+  - id=8b.1 text="The number of evacuated residents was updated from approximately 11,800 to 12,400 on September 10 with confirmation across multiple sources."
+
+Group 8/header=warnings and alerts
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="The alert level was raised from Yellow to Orange on September 10 due to the dam damage."
+
+Group 9/header=aid provided and distributed
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9a.1 text="The Sorrel Basin Water Authority provided information about the dam situation to affected communities."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

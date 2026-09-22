@@ -1,0 +1,275 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T17:46:49.860056+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : tornado/tornado.W3.k4
+Crisis ID           : tornado
+Cell ID             : tornado.W3.k4
+System ID           : UW-sys37
+
+Gold                : sample_data\gold-output\tornado\tornado.W3.k4.report.json
+System              : sample_data\sysId-output\UW-sys37\tornado\tornado.W3.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.6398
+  ROUGE-2 F1  : 0.4819
+  ROUGE-L F1  : 0.5795
+
+BERTScore (Subsection)
+  Precision   : 0.7646
+  Recall      : 0.7364
+  F1          : 0.7503
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=202 system_only_units=2 system_only_tokens=16 total_tokens=218
+  Recall denominator: matched_gold_tokens=294 gold_only_units=0 gold_only_tokens=0 total_tokens=294
+
+BLEURT (Subsection)
+  Score       : 0.6458
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.5044
+Soft Recall         : 0.5675
+Soft F1             : 0.5341
+
+Matched pairs       : 22
+Unmatched gold      : 2
+Unmatched system    : 5
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys37          0.6398      0.4819      0.5795        0.7503   0.6458            0.5341
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=6 system=6 matched=6 unmatched_gold=0 unmatched_system=0
+subsections: gold=14 system=16 matched=14 unmatched_gold=0 unmatched_system=2
+bullets: gold=24 system=27 matched=22 unmatched_gold=2 unmatched_system=5
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=14 system_units=16 matched_units=14 scored_units=14 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=294 system_ngrams=203 overlapping_ngrams=159
+  rouge2: gold_ngrams=280 system_ngrams=189 overlapping_ngrams=113
+  rougeL: gold_tokens=294 system_tokens=203 total_lcs_length=144
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=fatalities
+  gold=2 system=2 matched=2 soft_f1=0.3868
+  matched_pairs:
+  - gold=3a.1 system=3a.1
+    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3368
+    gold_text=There were 3 fatalities in Millrow district during the Estenwick tornado outbreak.
+    system_text=Three fatalities were reported in Millrow district.
+  - gold=3a.3 system=3a.2
+    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4368
+    gold_text=There were 9 deaths in the county during the Estenwick tornado outbreak.
+    system_text=Nine deaths were reported in the county.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=injuries
+  gold=2 system=2 matched=2 soft_f1=0.5575
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=0.5556 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5444
+    gold_text=38 people were injured in Estenwick during the Estenwick tornado outbreak.
+    system_text=Thirty-eight people were injured in Estenwick.
+  - gold=3b.3 system=3b.2
+    text_metric=rougeL text_similarity=0.5882 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5706
+    gold_text=No injuries were reported in Palfrey during the Estenwick tornado outbreak.
+    system_text=No injuries were reported in <PERSON>.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=missing persons
+  gold=1 system=1 matched=1 soft_f1=0.7091
+  matched_pairs:
+  - gold=3c.1 system=3d.1
+    text_metric=rougeL text_similarity=0.6364 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7091
+    gold_text=6 residents were unaccounted for in Millrow district during the Estenwick tornado outbreak.
+    system_text=Six residents were reported unaccounted for in Millrow district.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=rescued persons
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3f.1 text="People may have been rescued in Millrow district."
+
+Group 4/header=damage
+  gold=2 system=1 matched=1 soft_f1=0.5098
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.7059 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7647
+    gold_text=Damage was reported in Millrow district during the Estenwick tornado outbreak.
+    system_text=Damage was reported in Millrow district.
+  unmatched_gold:
+  - id=4a.2 text="Damage was reported in the farm belt during the Estenwick tornado outbreak."
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=3 system=3 matched=3 soft_f1=0.5192
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=0.7692 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.6154
+    gold_text=Route 12 and grain elevator were destroyed in Dray Corners during the Estenwick tornado outbreak.
+    system_text=Route 12 and a grain elevator were destroyed in Dray Corners.
+  - gold=4b.2 system=4b.2
+    text_metric=rougeL text_similarity=0.7368 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6895
+    gold_text=Estenwick Consolidated School was destroyed in Estenwick during the Estenwick tornado outbreak.
+    system_text=Estenwick Consolidated School was destroyed in Estenwick.
+  - gold=4b.3 system=4b.3
+    text_metric=rougeL text_similarity=0.3158 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2526
+    gold_text=Estenwick General Hospital was not damaged in Estenwick during the Estenwick tornado outbreak.
+    system_text=The gymnasium was destroyed in Estenwick.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=restoration progress
+  gold=1 system=1 matched=1 soft_f1=0.6333
+  matched_pairs:
+  - gold=4d.2 system=4d.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6333
+    gold_text=Route 12 and grain elevator were restored during the Estenwick tornado outbreak.
+    system_text=Route 12 and the grain elevator were reported restored.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=2 system=2 matched=2 soft_f1=0.6592
+  matched_pairs:
+  - gold=4c.2 system=4c.1
+    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5923
+    gold_text=Route 12 was closed in Estenwick, Dray Corners, and Palfrey during the Estenwick tornado outbreak.
+    system_text=Route 12 was closed in areas including Estenwick and Dray Corners.
+  - gold=4c.3 system=4c.2
+    text_metric=rougeL text_similarity=0.7826 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7261
+    gold_text=Service at Estenwick Consolidated School was disrupted in Estenwick during the Estenwick tornado outbreak.
+    system_text=Service at Estenwick Consolidated School was disrupted in Estenwick.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=access constraints
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5d.1 text="Route 12 was closed in multiple affected areas."
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.8519
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=0.8148 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.8519
+    gold_text=About 240 people were displaced from Millrow district and Ostley County during evacuation and displacement operations.
+    system_text=About 240 people were displaced from Millrow district and Ostley County.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=1 system=2 matched=1 soft_f1=0.4730
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7095
+    gold_text=People were evacuated from Estenwick and Dray Corners during evacuation and displacement operations.
+    system_text=People were evacuated from Estenwick and Dray Corners.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="People were evacuated from the town."
+
+Group 6/header=hazard assessment
+  gold=2 system=3 matched=2 soft_f1=0.3848
+  matched_pairs:
+  - gold=6a.1 system=6a.1
+    text_metric=rougeL text_similarity=0.3810 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4048
+    gold_text=Dangerous conditions were present at Estenwick during the Estenwick tornado outbreak.
+    system_text=A tornado hazard and dangerous conditions were reported in Estenwick.
+  - gold=6a.2 system=6a.2
+    text_metric=rougeL text_similarity=0.5714 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5571
+    gold_text=Dangerous conditions were present at Dray Corners and Palfrey during the Estenwick tornado outbreak.
+    system_text=Dangerous conditions were reported at Dray Corners.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.3 text="Dangerous conditions were reported in the town."
+
+Group 7/header=operational response
+  gold=1 system=2 matched=1 soft_f1=0.4400
+  matched_pairs:
+  - gold=7a.1 system=7a.2
+    text_metric=rougeL text_similarity=0.7000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6600
+    gold_text=Estenwick Police deployed to Estenwick and Millrow district as response operations continued.
+    system_text=Estenwick Police deployed to <PERSON> and Millrow district.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Police deployed to the affected town."
+
+Group 8/header=information updates
+  gold=3 system=2 matched=2 soft_f1=0.5507
+  matched_pairs:
+  - gold=8b.1 system=8b.2
+    text_metric=rougeL text_similarity=0.7143 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6714
+    gold_text=Ostley County coroner provided information during emergency communications.
+    system_text=The Ostley County coroner provided information.
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7053
+    gold_text=Provincial Severe Weather Centre provided information during emergency communications.
+    system_text=The Provincial Severe Weather Centre provided information about the tornado.
+  unmatched_gold:
+  - id=8b.4 text="Dangerous conditions were present at Estenwick. Ostley County Emergency Management provided information."
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=2 system=2 matched=2 soft_f1=0.6916
+  matched_pairs:
+  - gold=8c.1 system=8c.2
+    text_metric=rougeL text_similarity=0.8421 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7737
+    gold_text=Ostley County Emergency Management asked for assistance concerning Dray Corners.
+    system_text=Ostley County Emergency Management requested assistance concerning Dray Corners.
+  - gold=8c.2 system=8c.1
+    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.6095
+    gold_text=Assistance was requested in Millrow district and Ostley County during emergency communications.
+    system_text=Assistance was requested for Millrow district and Ostley County.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.8040
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.8800 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.8040
+    gold_text=A warning was issued for Estenwick, Dray Corners, and Ostley County during emergency communications.
+    system_text=A warning was issued for Estenwick, Dray Corners, and Ostley County.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

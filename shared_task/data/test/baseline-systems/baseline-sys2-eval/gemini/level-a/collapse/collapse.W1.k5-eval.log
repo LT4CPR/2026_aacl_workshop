@@ -1,0 +1,144 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T15:58:08.173772+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : collapse/collapse.W1.k5
+Crisis ID           : collapse
+Cell ID             : collapse.W1.k5
+System ID           : UW-sys27
+
+Gold                : sample_data\gold-output\collapse\collapse.W1.k5.report.json
+System              : sample_data\sysId-output\UW-sys27\collapse\collapse.W1.k5.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.7049
+  ROUGE-2 F1  : 0.5636
+  ROUGE-L F1  : 0.6721
+
+BERTScore (Subsection)
+  Precision   : 0.8588
+  Recall      : 0.8422
+  F1          : 0.8504
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=55 system_only_units=0 system_only_tokens=0 total_tokens=55
+  Recall denominator: matched_gold_tokens=67 gold_only_units=0 gold_only_tokens=0 total_tokens=67
+
+BLEURT (Subsection)
+  Score       : 0.6480
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.6596
+Soft Recall         : 0.6596
+Soft F1             : 0.6596
+
+Matched pairs       : 6
+Unmatched gold      : 0
+Unmatched system    : 0
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys27          0.7049      0.5636      0.6721        0.8504   0.6480            0.6596
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+subsections: gold=6 system=6 matched=6 unmatched_gold=0 unmatched_system=0
+bullets: gold=6 system=6 matched=6 unmatched_gold=0 unmatched_system=0
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=6 system_units=6 matched_units=6 scored_units=6 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=67 system_ngrams=55 overlapping_ngrams=43
+  rouge2: gold_ngrams=61 system_ngrams=49 overlapping_ngrams=31
+  rougeL: gold_tokens=67 system_tokens=55 total_lcs_length=41
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=injuries
+  gold=1 system=1 matched=1 soft_f1=0.7333
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=0.7500 tweet_id_jaccard=0.6667 text_weight=0.8000 final_edge_score=0.7333
+    gold_text=Injuries were confirmed and documented in Nerridge during the collapse response.
+    system_text=Injuries were confirmed and documented in Nerridge following the collapse at Aldan House.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=rescued persons
+  gold=1 system=1 matched=1 soft_f1=0.6364
+  matched_pairs:
+  - gold=3e.1 system=3f.1
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6364
+    gold_text=Nerridge fire service reported rescuing nine people during the initial response to the Aldan House collapse.
+    system_text=Nerridge fire service rescued nine people.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=1 system=1 matched=1 soft_f1=0.8222
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.1111 text_weight=0.8000 final_edge_score=0.8222
+    gold_text=The collapse destroyed Aldan House and its east wing.
+    system_text=The collapse destroyed Aldan House and its east wing.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.6923
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6923
+    gold_text=Service at Aldan House was reported disrupted.
+    system_text=Service was disrupted at Aldan House.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.4400
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.4400
+    gold_text=Provincial Urban Search and Rescue deployed during the collapse response.
+    system_text=Provincial Urban Search and Rescue (PUSAR) deployed to Nerridge, including <PERSON> and Cobbett Row.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.6333
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6333
+    gold_text=A warning was issued for Cobbett Row during the initial response to the collapse.
+    system_text=A warning was issued for Cobbett Row.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

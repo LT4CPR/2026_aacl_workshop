@@ -1,0 +1,131 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-11T23:48:10.663159+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : heatwave/heatwave.W2.k2
+Crisis ID           : heatwave
+Cell ID             : heatwave.W2.k2
+System ID           : UW-sys3
+
+Gold                : sample_data\gold-output\heatwave\heatwave.W2.k2.report.json
+System              : sample_data\sysId-output\UW-sys3\heatwave\heatwave.W2.k2.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2667
+  ROUGE-2 F1  : 0.1633
+  ROUGE-L F1  : 0.2286
+
+BERTScore (Subsection)
+  Precision   : 0.5315
+  Recall      : 0.4821
+  F1          : 0.5056
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=57 system_only_units=0 system_only_tokens=0 total_tokens=57
+  Recall denominator: matched_gold_tokens=37 gold_only_units=1 gold_only_tokens=11 total_tokens=48
+
+BLEURT (Subsection)
+  Score       : 0.3987
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.1503
+Soft Recall         : 0.3006
+Soft F1             : 0.2004
+
+Matched pairs       : 4
+Unmatched gold      : 1
+Unmatched system    : 6
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys3           0.2667      0.1633      0.2286        0.5056   0.3987            0.2004
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=2 matched=2 unmatched_gold=1 unmatched_system=0
+subsections: gold=4 system=3 matched=3 unmatched_gold=1 unmatched_system=0
+bullets: gold=5 system=10 matched=4 unmatched_gold=1 unmatched_system=6
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=4 system_units=3 matched_units=3 scored_units=3 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=48 system_ngrams=57 overlapping_ngrams=14
+  rouge2: gold_ngrams=44 system_ngrams=54 overlapping_ngrams=8
+  rougeL: gold_tokens=48 system_tokens=57 total_lcs_length=12
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=service disruptions
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4c.1 text="Service at Verlow General Hospital was disrupted during the Verlow heatwave."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=2 system=4 matched=2 soft_f1=0.3455
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.1429 text_weight=0.8000 final_edge_score=0.4649
+    gold_text=Grennet Power deployed as response operations continued.
+    system_text=Grennet Power deployed #Verlow.
+  - gold=7a.2 system=7a.4
+    text_metric=rougeL text_similarity=0.7143 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5714
+    gold_text=Provincial Public Health Institute deployed as response operations continued.
+    system_text=Provincial Public Health Institute deployed.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.2 text="PPHI has deployed for #heatwave #VerlowHeatwave."
+  - id=7a.3 text="Provincial Public Health Institute asked for assistance concerning Verlow."
+
+Group 8/header=requests for help
+  gold=1 system=3 matched=1 soft_f1=0.0733
+  matched_pairs:
+  - gold=8c.1 system=8a.2
+    text_metric=rougeL text_similarity=0.1333 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.1467
+    gold_text=Provincial Public Health Institute asked for assistance concerning Verlow during emergency communications.
+    system_text=PPHI requested assistance.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Service at Verlow General Hospital was disrupted."
+  - id=8a.3 text="Grennet Power deployed for #heatwave #HettonRise."
+
+Group 8/header=warnings and alerts
+  gold=1 system=3 matched=1 soft_f1=0.1600
+  matched_pairs:
+  - gold=8a.2 system=8b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3200
+    gold_text=The network operator issued a warning during emergency communications.
+    system_text=PPHI issued a warning for Verlow.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.2 text="Provincial Public Health Institute issued a warning."
+  - id=8b.3 text="A warning was issued."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; partial_key_overlap

@@ -1,0 +1,237 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-11T23:37:33.836781+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : collapse/collapse.W3.k6
+Crisis ID           : collapse
+Cell ID             : collapse.W3.k6
+System ID           : UW-sys2
+
+Gold                : sample_data\gold-output\collapse\collapse.W3.k6.report.json
+System              : sample_data\sysId-output\UW-sys2\collapse\collapse.W3.k6.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.3986
+  ROUGE-2 F1  : 0.2312
+  ROUGE-L F1  : 0.3601
+
+BERTScore (Subsection)
+  Precision   : 0.5867
+  Recall      : 0.6940
+  F1          : 0.6359
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=332 system_only_units=2 system_only_tokens=41 total_tokens=373
+  Recall denominator: matched_gold_tokens=225 gold_only_units=1 gold_only_tokens=13 total_tokens=238
+
+BLEURT (Subsection)
+  Score       : 0.4875
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3113
+Soft Recall         : 0.2594
+Soft F1             : 0.2830
+
+Matched pairs       : 12
+Unmatched gold      : 6
+Unmatched system    : 3
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys2           0.3986      0.2312      0.3601        0.6359   0.4875            0.2830
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=8 system=9 matched=8 unmatched_gold=0 unmatched_system=1
+subsections: gold=14 system=15 matched=13 unmatched_gold=1 unmatched_system=2
+bullets: gold=18 system=15 matched=12 unmatched_gold=6 unmatched_system=3
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=14 system_units=15 matched_units=13 scored_units=13 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=238 system_ngrams=334 overlapping_ngrams=114
+  rouge2: gold_ngrams=224 system_ngrams=321 overlapping_ngrams=63
+  rougeL: gold_tokens=238 system_tokens=334 total_lcs_length=103
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=meetings and decisions
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=10a.1 text="Community support was organized in Imber Street following the Aldan House collapse, as reported by government sources on November 8, 2025."
+
+Group 11/header=social support
+  gold=1 system=1 matched=1 soft_f1=0.6267
+  matched_pairs:
+  - gold=11a.1 system=11a.1
+    text_metric=rougeL text_similarity=0.5333 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6267
+    gold_text=Community support was organized in Imber Street during the later response.
+    system_text=Community support was organized in Imber Street following the Aldan House collapse, reflecting local solidarity and mutual aid efforts.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=fatalities
+  gold=1 system=1 matched=1 soft_f1=0.2273
+  matched_pairs:
+  - gold=3a.1 system=3a.1
+    text_metric=rougeL text_similarity=0.2424 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.2273
+    gold_text=Deaths were reported in connection with the Aldan House collapse by November 8.
+    system_text=The Aldan House collapse caused deaths, with multiple sources confirming fatalities resulting from the east wing and overall building collapse.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=injuries
+  gold=1 system=1 matched=1 soft_f1=0.4680
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=0.5294 tweet_id_jaccard=0.2222 text_weight=0.8000 final_edge_score=0.4680
+    gold_text=Injuries were confirmed and documented in Nerridge during the collapse response.
+    system_text=Injuries were confirmed and documented in Nerridge and the city following the Aldan House collapse, with reports from media, government, and eyewitness sources.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=rescued persons
+  gold=2 system=1 matched=1 soft_f1=0.2281
+  matched_pairs:
+  - gold=3e.1 system=3c.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.1111 text_weight=0.8000 final_edge_score=0.3422
+    gold_text=Nerridge fire service reported rescuing nine people during the initial response to the Aldan House collapse.
+    system_text=Nerridge fire service rescued 9 people from the Aldan House collapse site, and Provincial Urban Search and Rescue (PUSAR) rescued people in multiple operations across November 3-6, 2025.
+  unmatched_gold:
+  - id=3e.2 text="PUSAR reported rescuing people on November 4 and again on November 6."
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=2 system=1 matched=1 soft_f1=0.3012
+  matched_pairs:
+  - gold=4b.1 system=4a.1
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.0769 text_weight=0.8000 final_edge_score=0.4517
+    gold_text=The collapse destroyed Aldan House and its east wing.
+    system_text=The Aldan House collapse destroyed Aldan House and its east wing on Cobbett Row, Nerridge, with repeated confirmation from government, media, and outsider sources.
+  unmatched_gold:
+  - id=4b.2 text="Later safety updates stated that the west wing had not collapsed."
+  unmatched_system: none
+
+Group 4/header=restoration progress
+  gold=1 system=1 matched=1 soft_f1=0.4762
+  matched_pairs:
+  - gold=4d.1 system=4c.1
+    text_metric=rougeL text_similarity=0.4286 tweet_id_jaccard=0.6667 text_weight=0.8000 final_edge_score=0.4762
+    gold_text=Later updates reported restoration of the tower crane in Imber Street and restoration of Aldan House.
+    system_text=The tower crane was restored in Imber Street, and Aldan House and tower crane have been restored, as reported by government sources on November 8, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.3867
+  matched_pairs:
+  - gold=4c.1 system=4b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.3867
+    gold_text=Service at Aldan House was disrupted; later, services were reported closed along Imber Street and Cobbett Row.
+    system_text=Service at Aldan House was disrupted following the collapse, as reported by media and outsider sources on November 3 and November 4, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=access constraints
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="Dangerous conditions were present at Cobbett Row following the collapse, restricting access and necessitating police deployment for safety and security."
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.3949
+  matched_pairs:
+  - gold=5b.1 system=5a.1
+    text_metric=rougeL text_similarity=0.4103 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.3949
+    gold_text=About 85 people were reported displaced from Cobbett Row during the later phase of the response.
+    system_text=About 85 people moved away from Cobbett Row due to displacement caused by the Aldan House collapse and dangerous conditions at the site.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=1 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=6a.1 text="Dangerous conditions were reported at Cobbett Row while local services remained closed."
+  unmatched_system:
+  - id=6a.1 text="The west wing of Aldan House did not collapse, as confirmed by eyewitness and outsider reports, indicating partial structural failure limited to the main building and east wing."
+
+Group 7/header=aid delivery
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7b.1 text="Assistance was provided in Cobbett Row, alongside community support organized in Imber Street."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=2 system=1 matched=1 soft_f1=0.2031
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.3600 tweet_id_jaccard=0.0833 text_weight=0.8000 final_edge_score=0.3047
+    gold_text=Provincial Urban Search and Rescue deployed during the response and later reported rescuing people.
+    system_text=Provincial Urban Search and Rescue (PUSAR) deployed to the Aldan House collapse site on Cobbett Row, conducting rescue operations that saved lives, while Nerridge Police deployed to maintain security, manage access, and report no looting incidents.
+  unmatched_gold:
+  - id=7a.2 text="Nerridge Police deployed in the city during the later phase of the response."
+  unmatched_system: none
+
+Group 8/header=information updates
+  gold=2 system=1 matched=1 soft_f1=0.2475
+  matched_pairs:
+  - gold=8b.1 system=8b.1
+    text_metric=rougeL text_similarity=0.4390 tweet_id_jaccard=0.1000 text_weight=0.8000 final_edge_score=0.3712
+    gold_text=Nerridge Emergency Management provided information about the east wing during the response.
+    system_text=Nerridge Emergency Management provided information about the east wing and collapsed wing of Aldan House, with updates shared by government, media, and outsider sources throughout November 3-6, 2025.
+  unmatched_gold:
+  - id=8b.2 text="Nerridge Police reported that no looting had been reported during the later response."
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.2571
+  matched_pairs:
+  - gold=8c.1 system=8a.1
+    text_metric=rougeL text_similarity=0.2381 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.2571
+    gold_text=Requests for assistance were reported from Imber Street during the early phase of the emergency.
+    system_text=Assistance was requested in Imber Street and the street in Nerridge following the Aldan House collapse, as reported by media and government sources on November 3, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/header=aid provided and distributed
+  gold=1 system=1 matched=1 soft_f1=0.3622
+  matched_pairs:
+  - gold=9a.1 system=9a.1
+    text_metric=rougeL text_similarity=0.3902 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.3622
+    gold_text=Assistance was provided in Cobbett Row, while community support was organized in Imber Street.
+    system_text=Assistance was provided in Cobbett Row by NGOs, and a transfer was completed in Cobbett Row, as reported by NGO and government sources on November 8, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

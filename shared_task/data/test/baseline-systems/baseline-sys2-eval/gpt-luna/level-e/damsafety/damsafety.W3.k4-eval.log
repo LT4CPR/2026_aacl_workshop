@@ -1,0 +1,183 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-19T17:24:34.737288+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : damsafety/damsafety.W3.k4
+Crisis ID           : damsafety
+Cell ID             : damsafety.W3.k4
+System ID           : UW-sys25
+
+Gold                : sample_data\gold-output\damsafety\damsafety.W3.k4.report.json
+System              : sample_data\sysId-output\UW-sys25\damsafety\damsafety.W3.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.3322
+  ROUGE-2 F1  : 0.2418
+  ROUGE-L F1  : 0.2968
+
+BERTScore (Subsection)
+  Precision   : 0.3026
+  Recall      : 0.5055
+  F1          : 0.3786
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=197 system_only_units=3 system_only_tokens=158 total_tokens=355
+  Recall denominator: matched_gold_tokens=63 gold_only_units=2 gold_only_tokens=18 total_tokens=81
+
+BLEURT (Subsection)
+  Score       : 0.6028
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.1193
+Soft Recall         : 0.4771
+Soft F1             : 0.1909
+
+Matched pairs       : 5
+Unmatched gold      : 2
+Unmatched system    : 23
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys25          0.3322      0.2418      0.2968        0.3786   0.6028            0.1909
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=5 matched=3 unmatched_gold=1 unmatched_system=2
+subsections: gold=6 system=7 matched=4 unmatched_gold=2 unmatched_system=3
+bullets: gold=7 system=28 matched=5 unmatched_gold=2 unmatched_system=23
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=6 system_units=7 matched_units=4 scored_units=4 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=82 system_ngrams=201 overlapping_ngrams=47
+  rouge2: gold_ngrams=76 system_ngrams=197 overlapping_ngrams=33
+  rougeL: gold_tokens=82 system_tokens=201 total_lcs_length=42
+
+============================================================
+Alignment Details
+============================================================
+Group 11/header=social support
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="Assistance was provided in Quennard."
+
+Group 4/header=damage
+  gold=1 system=3 matched=1 soft_f1=0.4765
+  matched_pairs:
+  - gold=4a.1 system=4a.3
+    text_metric=rougeL text_similarity=0.9412 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.9529
+    gold_text=Halvern Dam and the right abutment were damaged.
+    system_text=Halvern Dam and the right abutment were reported damaged.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.1 text="The right abutment was damaged."
+  - id=4a.2 text="Halvern Dam was damaged."
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.4195
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=0.4828 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.4195
+    gold_text=People were displaced from Quennard during evacuation and displacement operations.
+    system_text=People were displaced from Quennard and the city, and others moved away from an unspecified location because of displacement.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=13 matched=2 soft_f1=0.1557
+  matched_pairs:
+  - gold=5a.1 system=5a.4
+    text_metric=rougeL text_similarity=0.5778 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6622
+    gold_text=A mandatory evacuation moved roughly 11,800 residents from Brindlemark, and people were evacuated from Ferris Hollow and the alert level was raised from Yellow to Orange.
+    system_text=A mandatory evacuation moved roughly 11,800 residents from Brindlemark, with additional people evacuated from an unspecified area.
+  - gold=5a.2 system=5a.7
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5053
+    gold_text=People were evacuated from Brindlemark during evacuation and displacement operations.
+    system_text=People were evacuated from Brindlemark and an unspecified area.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.1 text="Roughly 11,800 residents were moved from the town in a mandatory evacuation."
+  - id=5a.2 text="People moved out of an unspecified area as part of an evacuation, and a mandatory evacuation was ordered for <PERSON>."
+  - id=5a.3 text="People were evacuated from an unspecified area in addition to the evacuation of roughly 11,800 residents from Brindlemark."
+  - id=5a.5 text="A mandatory evacuation involved people being evacuated from an unspecified area."
+  - id=5a.6 text="A mandatory evacuation was ordered for two unspecified areas."
+  - id=5a.8 text="People were evacuated from an unspecified area."
+  - id=5a.9 text="People moved out of an unspecified area as part of an evacuation."
+  - id=5a.10 text="A mandatory evacuation moved roughly 11,800 residents from Brindlemark."
+  - id=5a.11 text="People moved out of the town as part of an evacuation."
+  - id=5a.12 text="People were evacuated from the town."
+  - id=5a.13 text="People moved out of two unspecified areas as part of an evacuation."
+
+Group 7/header=aid delivery
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7b.1 text="Assistance was provided in Quennard as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7a.4 text="The police deployed to Brindlemark as response operations continued."
+  unmatched_system: none
+
+Group 8/header=information updates
+  gold=1 system=1 matched=1 soft_f1=0.8000
+  matched_pairs:
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.7500 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.8000
+    gold_text=Sorrel Basin Water Authority provided information during emergency communications.
+    system_text=The Sorrel Basin Water Authority provided information.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=0 system=8 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="The alert level was raised from Yellow to Orange alongside a mandatory evacuation."
+  - id=8a.2 text="The alert level was raised from Yellow to Orange alongside the evacuation of roughly 11,800 residents."
+  - id=8a.3 text="The alert level was raised from Yellow to Orange during an evacuation involving <PERSON> and an unspecified area."
+  - id=8a.4 text="The alert level was raised from Yellow to Orange while a mandatory evacuation was ordered for two unspecified areas."
+  - id=8a.5 text="The alert level was raised from Yellow to Orange alongside the evacuation of roughly 11,800 residents and additional people from an unspecified area."
+  - id=8a.6 text="The alert level was raised from Yellow to Orange as people were evacuated from Brindlemark and an unspecified area."
+  - id=8a.7 text="The alert level was raised from Yellow to Orange as people moved out of an unspecified area as part of an evacuation."
+  - id=8a.8 text="The alert level was raised from Yellow to Orange as roughly 11,800 residents were evacuated from the town."
+
+Group 9/header=aid provided and distributed
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9a.1 text="Assistance was provided in Quennard."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

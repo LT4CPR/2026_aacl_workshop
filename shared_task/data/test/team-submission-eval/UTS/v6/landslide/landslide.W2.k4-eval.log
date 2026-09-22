@@ -1,0 +1,195 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:59:13.273063+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : landslide/landslide.W2.k4
+Crisis ID           : landslide
+Cell ID             : landslide.W2.k4
+System ID           : UW-sys14
+
+Gold                : sample_data\gold-output\landslide\landslide.W2.k4.report.json
+System              : sample_data\sysId-output\UW-sys14\landslide\landslide.W2.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5616
+  ROUGE-2 F1  : 0.4058
+  ROUGE-L F1  : 0.5205
+
+BERTScore (Subsection)
+  Precision   : 0.5794
+  Recall      : 0.7863
+  F1          : 0.6672
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=178 system_only_units=2 system_only_tokens=46 total_tokens=224
+  Recall denominator: matched_gold_tokens=114 gold_only_units=0 gold_only_tokens=0 total_tokens=114
+
+BLEURT (Subsection)
+  Score       : 0.5572
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3464
+Soft Recall         : 0.5668
+Soft F1             : 0.4300
+
+Matched pairs       : 11
+Unmatched gold      : 0
+Unmatched system    : 7
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys14          0.5616      0.4058      0.5205        0.6672   0.5572            0.4300
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=5 matched=4 unmatched_gold=0 unmatched_system=1
+subsections: gold=8 system=10 matched=8 unmatched_gold=0 unmatched_system=2
+bullets: gold=11 system=18 matched=11 unmatched_gold=0 unmatched_system=7
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=8 system_units=10 matched_units=8 scored_units=8 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=114 system_ngrams=178 overlapping_ngrams=82
+  rouge2: gold_ngrams=106 system_ngrams=170 overlapping_ngrams=56
+  rougeL: gold_tokens=114 system_tokens=178 total_lcs_length=76
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=1 system=1 matched=1 soft_f1=0.6000
+  matched_pairs:
+  - gold=10b.1 system=10b.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6000
+    gold_text=The operator revised its policy during the later response.
+    system_text=The mine operator revised its policy following the slide.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 10/header=meetings and decisions
+  gold=1 system=1 matched=1 soft_f1=0.9200
+  matched_pairs:
+  - gold=10a.2 system=10a.1
+    text_metric=rougeL text_similarity=0.9000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.9200
+    gold_text=Yelverton Minerals and mines inspectorate met during the later response.
+    system_text=Yelverton Minerals and the mines inspectorate met during the response.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=2 system=2 matched=2 soft_f1=0.5083
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.4333
+    gold_text=Ashfell slide damaged the lower road.
+    system_text=A bench failure at the Ashfell site damaged the lower road below Withel terraces.
+  - gold=4a.2 system=4a.2
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.5833
+    gold_text=Damage was reported in Dreth and the Pellan during the Ashfell slide.
+    system_text=Damage was reported in the town of Dreth and in the Pellan.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=restoration progress
+  gold=1 system=1 matched=1 soft_f1=0.5238
+  matched_pairs:
+  - gold=4d.2 system=4c.1
+    text_metric=rougeL text_similarity=0.5714 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5238
+    gold_text=The lower road was restored during the Ashfell slide.
+    system_text=The lower road was restored at the end of the operational window.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=2 system=3 matched=2 soft_f1=0.4752
+  matched_pairs:
+  - gold=4c.1 system=4b.3
+    text_metric=rougeL text_similarity=0.5600 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5147
+    gold_text=Service at the lower road was disrupted during the Ashfell slide.
+    system_text=Service on the lower road was disrupted in the closing hours of the window.
+  - gold=4c.2 system=4b.2
+    text_metric=rougeL text_similarity=0.8000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.6733
+    gold_text=Service at Corvane mine was disrupted during the Ashfell slide.
+    system_text=Service at the Corvane mine was disrupted following the slide.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.1 text="Service was disrupted in the upper bench at the Ashfell workings."
+
+Group 5/header=displacement
+  gold=1 system=2 matched=1 soft_f1=0.2586
+  matched_pairs:
+  - gold=5b.1 system=5b.2
+    text_metric=rougeL text_similarity=0.4348 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.3878
+    gold_text=60 households were displaced from Cranmoor during evacuation and displacement operations.
+    system_text=Sixty households were displaced from Cranmoor by the end of the window.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="Residents moved away from Cranmoor as displacement continued late in the window."
+
+Group 5/header=evacuations
+  gold=2 system=3 matched=2 soft_f1=0.3929
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.5423
+    gold_text=About 60 households were evacuated from Withel terraces during evacuation and displacement operations.
+    system_text=About 60 households were evacuated from Withel terraces after the warning was issued.
+  - gold=5a.2 system=5a.3
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.4400
+    gold_text=People were evacuated from the bench during evacuation and displacement operations.
+    system_text=People were evacuated from the upper bench at Ashfell on the third day.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="Residents were also evacuated from Cranmoor under the same order."
+
+Group 6/header=hazard assessment
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="The primary hazard was failure of the bench above Withel, which sent material onto the lower road."
+  - id=6a.2 text="The Corvane tailings dam and its associated pond were identified as a further hazard at the site."
+
+Group 8/header=information updates
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Information was provided about the Corvane tailings dam and the tailings pond."
+
+Group 8/header=warnings and alerts
+  gold=1 system=2 matched=1 soft_f1=0.4107
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.7200 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.6160
+    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
+    system_text=A warning was issued for Withel terraces and Cranmoor on the first day.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.2 text="Successive evacuation orders covered Withel terraces, Cranmoor and the upper bench at Ashfell."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

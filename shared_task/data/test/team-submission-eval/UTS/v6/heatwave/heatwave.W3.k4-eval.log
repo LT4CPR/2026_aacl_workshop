@@ -1,0 +1,213 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:59:13.273063+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : heatwave/heatwave.W3.k4
+Crisis ID           : heatwave
+Cell ID             : heatwave.W3.k4
+System ID           : UW-sys14
+
+Gold                : sample_data\gold-output\heatwave\heatwave.W3.k4.report.json
+System              : sample_data\sysId-output\UW-sys14\heatwave\heatwave.W3.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5145
+  ROUGE-2 F1  : 0.3292
+  ROUGE-L F1  : 0.4335
+
+BERTScore (Subsection)
+  Precision   : 0.6998
+  Recall      : 0.7761
+  F1          : 0.7360
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=210 system_only_units=0 system_only_tokens=0 total_tokens=210
+  Recall denominator: matched_gold_tokens=135 gold_only_units=0 gold_only_tokens=0 total_tokens=135
+
+BLEURT (Subsection)
+  Score       : 0.5706
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3593
+Soft Recall         : 0.4364
+Soft F1             : 0.3941
+
+Matched pairs       : 13
+Unmatched gold      : 1
+Unmatched system    : 4
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys14          0.5145      0.3292      0.4335        0.7360   0.5706            0.3941
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=7 matched=7 unmatched_gold=0 unmatched_system=0
+subsections: gold=12 system=12 matched=12 unmatched_gold=0 unmatched_system=0
+bullets: gold=14 system=17 matched=13 unmatched_gold=1 unmatched_system=4
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=12 system_units=12 matched_units=12 scored_units=12 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=135 system_ngrams=211 overlapping_ngrams=89
+  rouge2: gold_ngrams=123 system_ngrams=199 overlapping_ngrams=53
+  rougeL: gold_tokens=135 system_tokens=211 total_lcs_length=75
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=1 system=1 matched=1 soft_f1=0.6053
+  matched_pairs:
+  - gold=10b.2 system=10b.1
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6053
+    gold_text=Grennet Power revised its policy during the later response.
+    system_text=Grennet Power revised its policy following the heatwave grid strain.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 10/header=meetings and decisions
+  gold=2 system=1 matched=1 soft_f1=0.2496
+  matched_pairs:
+  - gold=10a.2 system=10a.1
+    text_metric=rougeL text_similarity=0.3846 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.3744
+    gold_text=Provincial Public Health Institute met during the later response.
+    system_text=The Provincial Public Health Institute held a meeting in Verlow at the end of the reporting window.
+  unmatched_gold:
+  - id=10a.1 text="A meeting was held in Verlow during the later response."
+  unmatched_system: none
+
+Group 3/header=fatalities
+  gold=1 system=2 matched=1 soft_f1=0.3131
+  matched_pairs:
+  - gold=3a.2 system=3a.2
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.4697
+    gold_text=The warning period caused deaths during the Verlow heatwave.
+    system_text=Authorities stated that the warning period itself had caused deaths in the town.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3a.1 text="Deaths were attributed to the Verlow heatwave by the sixth day of the event."
+
+Group 3/header=injuries
+  gold=1 system=1 matched=1 soft_f1=0.4000
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4000
+    gold_text=Injuries were documented in Verlow during the Verlow heatwave.
+    system_text=Injuries were confirmed and documented in Verlow on the day the Marnest substation was destroyed.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=0.3183
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.3478 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.3183
+    gold_text=Damage associated with Verlow Tramways was reported during the Verlow heatwave.
+    system_text=Verlow Tramways caused damage in the town during the load-shedding period.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=1 system=1 matched=1 soft_f1=0.4706
+  matched_pairs:
+  - gold=4b.2 system=4b.1
+    text_metric=rougeL text_similarity=0.5882 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4706
+    gold_text=Marnest substation was destroyed during the Verlow heatwave.
+    system_text=The Marnest substation was destroyed under heatwave grid strain.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.7952
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.9524 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.7952
+    gold_text=Service at Verlow General Hospital was disrupted during the Verlow heatwave.
+    system_text=Service at Verlow General Hospital was disrupted during the heatwave.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.4182
+  matched_pairs:
+  - gold=5b.1 system=5a.1
+    text_metric=rougeL text_similarity=0.2727 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4182
+    gold_text=People were displaced from Verlow during evacuation and displacement operations.
+    system_text=Some people moved away from Verlow as a result of the heatwave.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=1 system=1 matched=1 soft_f1=0.5133
+  matched_pairs:
+  - gold=6a.3 system=6a.1
+    text_metric=rougeL text_similarity=0.6000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.5133
+    gold_text=Dangerous conditions were present at Hetton Rise and Camber Green during the Verlow heatwave.
+    system_text=Dangerous conditions developed at Hetton Rise and Camber Green at the end of the reporting window.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=2 system=3 matched=2 soft_f1=0.2681
+  matched_pairs:
+  - gold=7a.1 system=7a.2
+    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3368
+    gold_text=Grennet Power deployed as response operations continued.
+    system_text=Grennet Power, the network operator, deployed crews as hospital service was disrupted.
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.4167 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3333
+    gold_text=Provincial Public Health Institute deployed as response operations continued.
+    system_text=The Provincial Public Health Institute deployed to Verlow on the second day of the heatwave.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.3 text="The network operator deployed again as dangerous conditions developed at Hetton Rise."
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.6429
+  matched_pairs:
+  - gold=8c.1 system=8b.1
+    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.6429
+    gold_text=Provincial Public Health Institute asked for assistance concerning during emergency communications.
+    system_text=The Provincial Public Health Institute asked for assistance concerning Verlow.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=3 matched=1 soft_f1=0.2155
+  matched_pairs:
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=0.4762 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.4310
+    gold_text=Grennet Power issued a warning during emergency communications.
+    system_text=Grennet Power issued a warning to customers as the grid came under strain.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="The Provincial Public Health Institute issued a heat warning for Verlow."
+  - id=8a.3 text="The institute issued a further warning after deaths were reported."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

@@ -1,0 +1,273 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T16:07:52.561544+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : indfire/indfire.W3.k1
+Crisis ID           : indfire
+Cell ID             : indfire.W3.k1
+System ID           : UW-sys28
+
+Gold                : sample_data\gold-output\indfire\indfire.W3.k1.report.json
+System              : sample_data\sysId-output\UW-sys28\indfire\indfire.W3.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5497
+  ROUGE-2 F1  : 0.4020
+  ROUGE-L F1  : 0.4711
+
+BERTScore (Subsection)
+  Precision   : 0.6459
+  Recall      : 0.6370
+  F1          : 0.6414
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=216 system_only_units=4 system_only_tokens=24 total_tokens=240
+  Recall denominator: matched_gold_tokens=183 gold_only_units=3 gold_only_tokens=32 total_tokens=215
+
+BLEURT (Subsection)
+  Score       : 0.5909
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3111
+Soft Recall         : 0.4913
+Soft F1             : 0.3810
+
+Matched pairs       : 16
+Unmatched gold      : 3
+Unmatched system    : 14
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys28          0.5497      0.4020      0.4711        0.6414   0.5909            0.3810
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=7 matched=6 unmatched_gold=1 unmatched_system=1
+subsections: gold=14 system=15 matched=11 unmatched_gold=3 unmatched_system=4
+bullets: gold=19 system=30 matched=16 unmatched_gold=3 unmatched_system=14
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=14 system_units=15 matched_units=11 scored_units=11 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=216 system_ngrams=217 overlapping_ngrams=119
+  rouge2: gold_ngrams=202 system_ngrams=206 overlapping_ngrams=82
+  rougeL: gold_tokens=216 system_tokens=217 total_lcs_length=102
+
+============================================================
+Alignment Details
+============================================================
+Group 11/header=social support
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=11a.1 text="Community support was organized in Brayle during community recovery."
+  unmatched_system: none
+
+Group 3/header=fatalities
+  gold=1 system=1 matched=1 soft_f1=0.9619
+  matched_pairs:
+  - gold=3a.1 system=3a.1
+    text_metric=rougeL text_similarity=0.9524 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.9619
+    gold_text=No deaths were reported in connection with Kellet Point fire.
+    system_text=No deaths were reported in connection with the Kellet Point fire.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=injuries
+  gold=1 system=2 matched=1 soft_f1=0.2578
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.3867
+    gold_text=Injuries were reported during the Kellet Point fire.
+    system_text=Injuries were documented in the affected town.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3b.2 text="Injuries were confirmed in <PERSON>."
+
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=0.6333
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6333
+    gold_text=Damage was reported in Brayle during the Kellet Point fire.
+    system_text=Damage was reported in Brayle.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4b.2 text="Reports stated that the Fallon Coatings warehouse was not involved in the reported damage."
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=3 system=4 matched=3 soft_f1=0.5330
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.8000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.7067
+    gold_text=Kellet Road was closed in Kellet Point industrial estate and Merrin Canal.
+    system_text=Kellet Road was reported closed in the Kellet Point industrial estate and <PERSON>.
+  - gold=4c.2 system=4c.4
+    text_metric=rougeL text_similarity=0.6250 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6000
+    gold_text=Services were closed in Brayle during the Kellet Point fire.
+    system_text=Services were reported closed in Brayle.
+  - gold=4c.3 system=4c.3
+    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5590
+    gold_text=Service was disrupted in Kellet Point industrial estate and Merrin Canal during the Kellet Point fire.
+    system_text=Service was reported disrupted in the Kellet Point industrial estate.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.2 text="Kellet Road was reported closed in or near the canal."
+
+Group 5/header=access constraints
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5d.1 text="Kellet Road was reported closed."
+
+Group 5/header=displacement
+  gold=1 system=2 matched=1 soft_f1=0.2869
+  matched_pairs:
+  - gold=5b.1 system=5b.2
+    text_metric=rougeL text_similarity=0.4545 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4303
+    gold_text=About 300 people were displaced from Osmery during evacuation and displacement operations.
+    system_text=Approximately 300 people were reported displaced from a redacted location.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="Approximately 300 people were reported displaced from <PERSON>."
+
+Group 5/header=evacuations
+  gold=3 system=5 matched=3 soft_f1=0.3507
+  matched_pairs:
+  - gold=5a.1 system=5a.2
+    text_metric=rougeL text_similarity=0.4348 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3478
+    gold_text=A mandatory evacuation moved about 2,300 residents from Brayle during evacuation and displacement operations.
+    system_text=Approximately 2,300 residents were evacuated from Brayle.
+  - gold=5a.2 system=5a.3
+    text_metric=rougeL text_similarity=0.4706 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4431
+    gold_text=48 residents were evacuated from Brayle, and people were evacuated from Osmery.
+    system_text=People were evacuated from <PERSON>.
+  - gold=5a.3 system=5a.5
+    text_metric=rougeL text_similarity=0.6400 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6120
+    gold_text=Sunder Flats was never subject to an evacuation during evacuation and displacement operations.
+    system_text=Sunder Flats was reported never to have been subject to an evacuation.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.1 text="A mandatory evacuation was ordered for Brayle."
+  - id=5a.4 text="A report stated that 48 residents were evacuated from Brayle."
+
+Group 6/header=hazard assessment
+  gold=1 system=2 matched=1 soft_f1=0.3000
+  matched_pairs:
+  - gold=6a.4 system=6a.1
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.4500
+    gold_text=No contamination was recorded in Merrin Canal during the Kellet Point fire.
+    system_text=No contamination was recorded in a redacted location.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.2 text="The Fallon Coatings warehouse was reported not to have been involved."
+
+Group 7/header=aid receipt
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7c.1 text="Assistance was received in Brayle as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=3 matched=1 soft_f1=0.2439
+  matched_pairs:
+  - gold=7a.3 system=7a.3
+    text_metric=rougeL text_similarity=0.5263 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4877
+    gold_text=Provincial Environmental Protection Agency deployed as response operations continued.
+    system_text=The Provincial Environmental Protection Agency was reported to have deployed.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="<PERSON> was reported to have deployed."
+  - id=7a.2 text="The operator was reported to have deployed."
+
+Group 8/header=information updates
+  gold=2 system=2 matched=2 soft_f1=0.5950
+  matched_pairs:
+  - gold=8b.1 system=8b.2
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.4500
+    gold_text=It is possible that Provincial Environmental Protection Agency provided information during emergency communications.
+    system_text=The Provincial Environmental Protection Agency was reported to have provided information.
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.8000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7400
+    gold_text=Information was provided about Kellet Road during emergency communications.
+    system_text=Information was provided about Kellet Road.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.8400
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.8000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.8400
+    gold_text=Assistance was requested in Kellet Point industrial estate during emergency communications.
+    system_text=Assistance was requested in the Kellet Point industrial estate.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=3 matched=1 soft_f1=0.3429
+  matched_pairs:
+  - gold=8a.1 system=8a.2
+    text_metric=rougeL text_similarity=0.8571 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.6857
+    gold_text=A warning was issued for Brayle and Sunder Flats during emergency communications.
+    system_text=A warning was issued for Brayle and Sunder Flats.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="A warning was issued for Brayle."
+  - id=8a.3 text="A warning was issued for the canal."
+
+Group 9/header=aid provided and distributed
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9a.1 text="Community support was organized in Brayle."
+
+Group 9/header=aid received and needs coverage
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9b.1 text="Assistance was reported received in Brayle."
+
+Group 9/header=donations and financial transfers
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9c.1 text="A transfer was reported completed in Brayle."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

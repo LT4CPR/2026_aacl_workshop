@@ -1,0 +1,232 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:35:31.934217+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : landslide/landslide.W3.k8
+Crisis ID           : landslide
+Cell ID             : landslide.W3.k8
+System ID           : UW-sys8
+
+Gold                : sample_data\gold-output\landslide\landslide.W3.k8.report.json
+System              : sample_data\sysId-output\UW-sys8\landslide\landslide.W3.k8.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.4795
+  ROUGE-2 F1  : 0.3243
+  ROUGE-L F1  : 0.4101
+
+BERTScore (Subsection)
+  Precision   : 0.4053
+  Recall      : 0.6785
+  F1          : 0.5075
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=155 system_only_units=5 system_only_tokens=121 total_tokens=276
+  Recall denominator: matched_gold_tokens=153 gold_only_units=1 gold_only_tokens=9 total_tokens=162
+
+BLEURT (Subsection)
+  Score       : 0.5091
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2506
+Soft Recall         : 0.2840
+Soft F1             : 0.2663
+
+Matched pairs       : 10
+Unmatched gold      : 5
+Unmatched system    : 7
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys8           0.4795      0.3243      0.4101        0.5075   0.5091            0.2663
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=8 matched=7 unmatched_gold=0 unmatched_system=1
+subsections: gold=11 system=15 matched=10 unmatched_gold=1 unmatched_system=5
+bullets: gold=15 system=17 matched=10 unmatched_gold=5 unmatched_system=7
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=11 system_units=15 matched_units=10 scored_units=10 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=162 system_ngrams=155 overlapping_ngrams=76
+  rouge2: gold_ngrams=151 system_ngrams=145 overlapping_ngrams=48
+  rougeL: gold_tokens=162 system_tokens=155 total_lcs_length=65
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=1 system=1 matched=1 soft_f1=0.3929
+  matched_pairs:
+  - gold=10b.1 system=10b.1
+    text_metric=rougeL text_similarity=0.4286 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.3929
+    gold_text=Yelverton Minerals and the independent panel revised its policy during the later response.
+    system_text=Yelverton Minerals revised its policy on March 19, 2026 in response to the Ashfell Slide.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 10/header=meetings and decisions
+  gold=1 system=1 matched=1 soft_f1=0.7161
+  matched_pairs:
+  - gold=10a.1 system=10a.1
+    text_metric=rougeL text_similarity=0.6452 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7161
+    gold_text=The independent panel and mines inspectorate met in Dreth during the later response.
+    system_text=The independent panel and mines inspectorate met in Dreth on March 19, 2026 to assess the landslide impact.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 11/header=social support
+  gold=1 system=1 matched=1 soft_f1=0.4980
+  matched_pairs:
+  - gold=11a.1 system=11a.1
+    text_metric=rougeL text_similarity=0.5600 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.4980
+    gold_text=Community support was organized in Withel terraces during community recovery.
+    system_text=Community support was organized in Withel terraces on March 19, 2026 to assist displaced residents.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=2 system=1 matched=1 soft_f1=0.1658
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.2609 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.2487
+    gold_text=Ashfell slide damaged the lower road.
+    system_text=The lower road was damaged as a result of the bench failure and landslide in Withel terraces.
+  unmatched_gold:
+  - id=4a.2 text="Damage was reported in Dreth and the Pellan during the Ashfell slide."
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4d.1 text="Structural damage occurred to the lower road and bench areas due to the Ashfell Slide."
+
+Group 4/header=restoration progress
+  gold=2 system=1 matched=1 soft_f1=0.1899
+  matched_pairs:
+  - gold=4d.2 system=4c.1
+    text_metric=rougeL text_similarity=0.2727 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.2848
+    gold_text=Yelverton Minerals restored the lower road during the Ashfell slide.
+    system_text=The lower road was restored by Yelverton Minerals on March 19, 2026.
+  unmatched_gold:
+  - id=4d.1 text="Service was restored in Dreth and the Pellan during the Ashfell slide."
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=2 system=1 matched=1 soft_f1=0.3556
+  matched_pairs:
+  - gold=4c.2 system=4b.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
+    gold_text=Service at Corvane mine was disrupted during the Ashfell slide.
+    system_text=Service at Corvane mine and the upper bench was disrupted during the crisis period.
+  unmatched_gold:
+  - id=4c.1 text="Service at the lower road was disrupted during the Ashfell slide."
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.1437
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=0.1379 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.1437
+    gold_text=60 households were displaced from Cranmoor during evacuation and displacement operations.
+    system_text=Residents of Cranmoor were displaced due to the landslide, with approximately 60 households affected by March 19, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=1 matched=1 soft_f1=0.3383
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.5926 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.5074
+    gold_text=About 60 households were evacuated from Withel terraces during evacuation and displacement operations.
+    system_text=Approximately 60 households were evacuated from Withel terraces and Cranmoor on March 14, 2026.
+  unmatched_gold:
+  - id=5a.2 text="People were evacuated from Ashfell bench during evacuation and displacement operations."
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="The hazard is a mining-region landslide with contested attribution involving the Ashfell Slide in Dreth, affecting Withel terraces and Cranmoor."
+
+Group 7/header=aid receipt
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7c.1 text="Assistance was received in Cranmoor as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=0 system=3 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="The government issued warnings for Withel terraces and Cranmoor, initiating evacuation procedures on March 14, 2026."
+  - id=7a.2 text="Yelverton Minerals and the independent panel revised their policy on March 19, 2026, in response to the landslide."
+  - id=7a.3 text="The independent panel and mines inspectorate met in Dreth on March 19, 2026 to assess the situation."
+
+Group 8/header=information updates
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Multiple information updates were issued on March 17–19, 2026 about the Corvane tailings dam and service disruptions at the mine."
+
+Group 8/header=requests for help
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8c.1 text="Community support was organized in Withel terraces on March 19, 2026 to assist displaced residents."
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.4786
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.5625 tweet_id_jaccard=0.1429 text_weight=0.8000 final_edge_score=0.4786
+    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
+    system_text=A warning was issued on March 14, 2026, for Withel terraces and Cranmoor due to bench failure and landslide risk.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/header=aid provided and distributed
+  gold=1 system=1 matched=1 soft_f1=0.4571
+  matched_pairs:
+  - gold=9a.1 system=9a.1
+    text_metric=rougeL text_similarity=0.5714 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4571
+    gold_text=Assistance was provided in Withel terraces during relief operations.
+    system_text=Assistance was provided in Cranmoor and Withel terraces on March 19, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

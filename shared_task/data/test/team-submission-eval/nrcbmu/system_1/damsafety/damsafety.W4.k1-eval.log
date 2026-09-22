@@ -1,0 +1,314 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T01:11:08.612995+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : damsafety/damsafety.W4.k1
+Crisis ID           : damsafety
+Cell ID             : damsafety.W4.k1
+System ID           : UW-sys16
+
+Gold                : sample_data\gold-output\damsafety\damsafety.W4.k1.report.json
+System              : sample_data\sysId-output\UW-sys16\damsafety\damsafety.W4.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.3855
+  ROUGE-2 F1  : 0.2622
+  ROUGE-L F1  : 0.2982
+
+BERTScore (Subsection)
+  Precision   : 0.6074
+  Recall      : 0.5710
+  F1          : 0.5887
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=357 system_only_units=2 system_only_tokens=21 total_tokens=378
+  Recall denominator: matched_gold_tokens=257 gold_only_units=5 gold_only_tokens=48 total_tokens=305
+
+BLEURT (Subsection)
+  Score       : 0.4962
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2022
+Soft Recall         : 0.2997
+Soft F1             : 0.2415
+
+Matched pairs       : 19
+Unmatched gold      : 10
+Unmatched system    : 24
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys16          0.3855      0.2622      0.2982        0.5887   0.4962            0.2415
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=8 system=7 matched=7 unmatched_gold=1 unmatched_system=0
+subsections: gold=18 system=15 matched=13 unmatched_gold=5 unmatched_system=2
+bullets: gold=29 system=43 matched=19 unmatched_gold=10 unmatched_system=24
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=18 system_units=15 matched_units=13 scored_units=13 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=306 system_ngrams=358 overlapping_ngrams=128
+  rouge2: gold_ngrams=288 system_ngrams=345 overlapping_ngrams=83
+  rougeL: gold_tokens=306 system_tokens=358 total_lcs_length=99
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=1 system=1 matched=1 soft_f1=0.3700
+  matched_pairs:
+  - gold=10b.1 system=10b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.3700
+    gold_text=Sorrel Basin Water Authority revised its policy during the later response.
+    system_text=SBWA revised its policy.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 10/header=meetings and decisions
+  gold=3 system=2 matched=1 soft_f1=0.2889
+  matched_pairs:
+  - gold=10a.1 system=10a.2
+    text_metric=rougeL text_similarity=0.7778 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7222
+    gold_text=A meeting was held in Assek Valley during the later response.
+    system_text=A meeting was held in Assek Valley.
+  unmatched_gold:
+  - id=10a.2 text="A meeting was held in Quennard during the later response."
+  - id=10a.3 text="Sorrel Basin Water Authority and Assek Valley Emergency Management met in Assek Valley."
+  unmatched_system:
+  - id=10a.1 text="Provincial engineering corps has deployed to assist with restoration efforts following the Halvern Dam safety emergency."
+
+Group 11/header=social support
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=11a.1 text="Community support was organized in Ferris Hollow during community recovery."
+  unmatched_system: none
+
+Group 3/header=cases
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3b.1 text="No cases related to the Halvern Dam safety emergency were reported."
+
+Group 3/header=injuries
+  gold=1 system=4 matched=1 soft_f1=0.2133
+  matched_pairs:
+  - gold=3b.1 system=3a.4
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
+    gold_text=Injuries were documented in Brindlemark during the Halvern Dam emergency.
+    system_text=Injuries were documented in Brindlemark!!
+  unmatched_gold: none
+  unmatched_system:
+  - id=3a.1 text="Injuries were confirmed in Brindlemark."
+  - id=3a.2 text="Injuries were confirmed in the town."
+  - id=3a.3 text="Injuries were documented in the town."
+
+Group 4/header=damage
+  gold=2 system=3 matched=2 soft_f1=0.1004
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.1538 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1231
+    gold_text=Halvern Dam and the right abutment were damaged.
+    system_text=Services were closed in Brindlemark.
+  - gold=4a.2 system=4a.2
+    text_metric=rougeL text_similarity=0.1600 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1280
+    gold_text=Possible damage to the right abutment was reported during the Halvern Dam emergency.
+    system_text=Services were closed in Brindlemark due to dangerous conditions at Halvern Reservoir.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.3 text="Highway 6 was closed at Sorrel River."
+
+Group 4/header=destruction
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4b.1 text="Halvern Dam and the auxiliary spillway did not fail."
+  unmatched_system: none
+
+Group 4/header=restoration progress
+  gold=1 system=1 matched=1 soft_f1=0.3829
+  matched_pairs:
+  - gold=4d.1 system=4c.1
+    text_metric=rougeL text_similarity=0.4286 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.3829
+    gold_text=Highway 6 was restored during the Halvern Dam emergency.
+    system_text=Highway 6 has been restored.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=3 system=2 matched=2 soft_f1=0.3480
+  matched_pairs:
+  - gold=4c.2 system=4b.2
+    text_metric=rougeL text_similarity=0.6250 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.5500
+    gold_text=Service was disrupted in Brindlemark during the Halvern Dam emergency.
+    system_text=Service was disrupted in the town.
+  - gold=4c.3 system=4b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3200
+    gold_text=Services were closed in Brindlemark during the Halvern Dam emergency.
+    system_text=Service was disrupted in Brindlemark.
+  unmatched_gold:
+  - id=4c.1 text="Highway 6 was closed at Sorrel River during the Halvern Dam emergency."
+  unmatched_system: none
+
+Group 5/header=access constraints
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5d.1 text="Dangerous conditions were present at Halvern Reservoir, potentially affecting access."
+
+Group 5/header=displacement
+  gold=1 system=2 matched=1 soft_f1=0.1855
+  matched_pairs:
+  - gold=5b.1 system=5b.2
+    text_metric=rougeL text_similarity=0.3478 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2783
+    gold_text=People were displaced from Quennard during evacuation and displacement operations.
+    system_text=People were displaced from their homes due to the Halvern Dam safety emergency.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="People moved away from the city because of displacement."
+
+Group 5/header=evacuations
+  gold=2 system=7 matched=2 soft_f1=0.2370
+  matched_pairs:
+  - gold=5a.1 system=5a.2
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
+    gold_text=A mandatory evacuation moved roughly 11,800 residents from Brindlemark, and people were evacuated from Ferris Hollow and the alert level was raised from Yellow to Orange.
+    system_text=People were evacuated from Brindlemark and the alert level was raised from Yellow to Orange.
+  - gold=5a.2 system=5a.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
+    gold_text=People were evacuated from Brindlemark during evacuation and displacement operations.
+    system_text=People were evacuated from Brindlemark and Ferris Hollow.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.3 text="People were evacuated from Brindlemark and Quennard as part of an evacuation."
+  - id=5a.4 text="People moved out of the town as part of an evacuation due to the Halvern Dam safety emergency."
+  - id=5a.5 text="A mandatory evacuation was ordered for Brindlemark."
+  - id=5a.6 text="A phased return began from Brindlemark and Ferris Hollow."
+  - id=5a.7 text="Roughly 11,800 residents were evacuated from Brindlemark, and people were evacuated from Ferris Hollow."
+
+Group 5/header=returns
+  gold=1 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5c.1 text="A phased return began from Brindlemark and Ferris Hollow during evacuation and displacement operations."
+  unmatched_system:
+  - id=5c.1 text="No returns were reported regarding the Halvern Dam safety emergency."
+
+Group 6/header=hazard assessment
+  gold=1 system=4 matched=1 soft_f1=0.1600
+  matched_pairs:
+  - gold=6a.1 system=6a.4
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4000
+    gold_text=Dangerous conditions were present at Halvern Reservoir during the Halvern Dam emergency.
+    system_text=Dangerous conditions were present at the reservoir and the Sorrel Basin Water Authority revised its policy.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="The auxiliary spillway of Halvern Dam did not fail during the safety emergency."
+  - id=6a.2 text="Dangerous conditions developed at the reservoir #HalvernDam."
+  - id=6a.3 text="It is possible that the right abutment was damaged."
+
+Group 7/header=aid delivery
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7b.1 text="Assistance was provided in the city as response operations continued."
+  unmatched_system: none
+
+Group 7/header=aid receipt
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7c.1 text="Assistance was received in Brindlemark as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=4 system=7 matched=4 soft_f1=0.4049
+  matched_pairs:
+  - gold=7a.1 system=7a.7
+    text_metric=rougeL text_similarity=0.3478 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2783
+    gold_text=Sorrel Basin Water Authority deployed as response operations continued.
+    system_text=Meetings were held between the Sorrel Basin Water Authority and Assek Valley Emergency Management.
+  - gold=7a.2 system=7a.3
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
+    gold_text=Provincial engineering corps deployed as response operations continued.
+    system_text=Provincial engineering corps deployed.
+  - gold=7a.3 system=7a.6
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0769 text_weight=0.8000 final_edge_score=0.8154
+    gold_text=Provincial Dam Safety Office deployed.
+    system_text=Provincial Dam Safety Office deployed.
+  - gold=7a.4 system=7a.1
+    text_metric=rougeL text_similarity=0.7143 tweet_id_jaccard=0.1429 text_weight=0.8000 final_edge_score=0.6000
+    gold_text=Brindlemark Police deployed to Brindlemark as response operations continued.
+    system_text=Brindlemark Police deployed to Brindlemark.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.2 text="SBWA deployed."
+  - id=7a.4 text="The operator provided information about Halvern Dam during the safety emergency."
+  - id=7a.5 text="SBWA deployed and provided information about the dam."
+
+Group 8/header=information updates
+  gold=3 system=5 matched=2 soft_f1=0.3711
+  matched_pairs:
+  - gold=8b.1 system=8a.2
+    text_metric=rougeL text_similarity=0.8182 tweet_id_jaccard=0.0833 text_weight=0.8000 final_edge_score=0.6712
+    gold_text=Sorrel Basin Water Authority provided information about Halvern Dam.
+    system_text=Sorrel Basin Water Authority provided information about Halvern Dam during the safety emergency.
+  - gold=8b.4 system=8a.3
+    text_metric=rougeL text_similarity=1.0000 tweet_id_jaccard=0.0667 text_weight=0.8000 final_edge_score=0.8133
+    gold_text=Provincial Dam Safety Office provided information about Halvern Dam.
+    system_text=Provincial Dam Safety Office provided information about Halvern Dam.
+  unmatched_gold:
+  - id=8b.3 text="Sorrel Basin Water Authority provided information during emergency communications."
+  unmatched_system:
+  - id=8a.1 text="Assistance was provided in the city and Quennard."
+  - id=8a.4 text="Assistance was received in Brindlemark... #HalvernDam #SorrelRiver #Brindlemark."
+  - id=8a.5 text="Community support was organized in Ferris Hollow."
+
+Group 8/header=requests for help
+  gold=1 system=2 matched=1 soft_f1=0.0711
+  matched_pairs:
+  - gold=8c.1 system=8b.1
+    text_metric=rougeL text_similarity=0.1333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1067
+    gold_text=Assek Valley Emergency Management asked for assistance concerning Ferris Hollow.
+    system_text=Assistance was provided in Quennard.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.2 text="Assistance was received in the town #HalvernDam #damsafety #Brindlemark."
+
+Group 8/header=warnings and alerts
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=8a.2 text="A warning was issued for Sorrel River during emergency communications."
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

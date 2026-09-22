@@ -1,0 +1,138 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T16:38:34.122604+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : heatwave/heatwave.W2.k2
+Crisis ID           : heatwave
+Cell ID             : heatwave.W2.k2
+System ID           : UW-sys31
+
+Gold                : sample_data\gold-output\heatwave\heatwave.W2.k2.report.json
+System              : sample_data\sysId-output\UW-sys31\heatwave\heatwave.W2.k2.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5283
+  ROUGE-2 F1  : 0.4286
+  ROUGE-L F1  : 0.4717
+
+BERTScore (Subsection)
+  Precision   : 0.4793
+  Recall      : 0.7284
+  F1          : 0.5781
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=58 system_only_units=1 system_only_tokens=27 total_tokens=85
+  Recall denominator: matched_gold_tokens=48 gold_only_units=0 gold_only_tokens=0 total_tokens=48
+
+BLEURT (Subsection)
+  Score       : 0.5637
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3212
+Soft Recall         : 0.5782
+Soft F1             : 0.4130
+
+Matched pairs       : 5
+Unmatched gold      : 0
+Unmatched system    : 4
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys31          0.5283      0.4286      0.4717        0.5781   0.5637            0.4130
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=4 matched=3 unmatched_gold=0 unmatched_system=1
+subsections: gold=4 system=5 matched=4 unmatched_gold=0 unmatched_system=1
+bullets: gold=5 system=9 matched=5 unmatched_gold=0 unmatched_system=4
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=4 system_units=5 matched_units=4 scored_units=4 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=48 system_ngrams=58 overlapping_ngrams=28
+  rouge2: gold_ngrams=44 system_ngrams=54 overlapping_ngrams=21
+  rougeL: gold_tokens=48 system_tokens=58 total_lcs_length=25
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=service disruptions
+  gold=1 system=2 matched=1 soft_f1=0.4815
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.7778 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7222
+    gold_text=Service at Verlow General Hospital was disrupted during the Verlow heatwave.
+    system_text=Service at Verlow General Hospital was disrupted.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.2 text="Service at a hospital was reported as disrupted."
+
+Group 6/header=hazard assessment
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A possible heatwave was associated with Verlow in hashtags accompanying warnings and deployment reports."
+  - id=6a.2 text="A possible loadshedding or power-outage condition was referenced in connection with a warning."
+
+Group 7/header=operational response
+  gold=2 system=2 matched=2 soft_f1=0.4212
+  matched_pairs:
+  - gold=7a.1 system=7a.2
+    text_metric=rougeL text_similarity=0.4286 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4095
+    gold_text=Grennet Power deployed as response operations continued.
+    system_text=Grennet Power reported that it had deployed.
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.5263 tweet_id_jaccard=0.0588 text_weight=0.8000 final_edge_score=0.4328
+    gold_text=Provincial Public Health Institute deployed as response operations continued.
+    system_text=The Provincial Public Health Institute reported that it had deployed.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.5933
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.7000 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.5933
+    gold_text=Provincial Public Health Institute asked for assistance concerning Verlow during emergency communications.
+    system_text=The Provincial Public Health Institute asked for assistance.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=2 matched=1 soft_f1=0.4889
+  matched_pairs:
+  - gold=8a.2 system=8a.2
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7333
+    gold_text=The network operator issued a warning during emergency communications.
+    system_text=The network operator issued a warning associated with loadshedding.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="PPHI issued warnings for the town and for <PERSON>."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

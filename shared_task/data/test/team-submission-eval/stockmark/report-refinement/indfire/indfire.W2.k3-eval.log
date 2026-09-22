@@ -1,0 +1,148 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T01:19:28.675474+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : indfire/indfire.W2.k3
+Crisis ID           : indfire
+Cell ID             : indfire.W2.k3
+System ID           : UW-sys17
+
+Gold                : sample_data\gold-output\indfire\indfire.W2.k3.report.json
+System              : sample_data\sysId-output\UW-sys17\indfire\indfire.W2.k3.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.6296
+  ROUGE-2 F1  : 0.4737
+  ROUGE-L F1  : 0.5556
+
+BERTScore (Subsection)
+  Precision   : 0.6790
+  Recall      : 0.8014
+  F1          : 0.7351
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=88 system_only_units=1 system_only_tokens=10 total_tokens=98
+  Recall denominator: matched_gold_tokens=71 gold_only_units=0 gold_only_tokens=0 total_tokens=71
+
+BLEURT (Subsection)
+  Score       : 0.7049
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3630
+Soft Recall         : 0.6051
+Soft F1             : 0.4538
+
+Matched pairs       : 6
+Unmatched gold      : 0
+Unmatched system    : 4
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys17          0.6296      0.4737      0.5556        0.7351   0.7049            0.4538
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=4 matched=3 unmatched_gold=0 unmatched_system=1
+subsections: gold=5 system=6 matched=5 unmatched_gold=0 unmatched_system=1
+bullets: gold=6 system=10 matched=6 unmatched_gold=0 unmatched_system=4
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=6 matched_units=5 scored_units=5 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=72 system_ngrams=90 overlapping_ngrams=51
+  rouge2: gold_ngrams=67 system_ngrams=85 overlapping_ngrams=36
+  rougeL: gold_tokens=72 system_tokens=90 total_lcs_length=45
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.8080
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.9600 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.8080
+    gold_text=Kellet Road was closed in Kellet Point industrial estate and Merrin Canal.
+    system_text=Kellet Road was closed in the Kellet Point industrial estate and Merrin Canal.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=1 system=2 matched=1 soft_f1=0.4702
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7053
+    gold_text=About 300 people were displaced from Osmery during evacuation and displacement operations.
+    system_text=Approximately 300 people were displaced from Osmery.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.2 text="Residents were displaced from the town due to the industrial fire."
+
+Group 5/header=evacuations
+  gold=2 system=3 matched=2 soft_f1=0.3151
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.3750 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3000
+    gold_text=A mandatory evacuation moved about 2,300 residents from Brayle during evacuation and displacement operations.
+    system_text=A mandatory evacuation of Brayle was ordered, with early reports stating approximately 2,300 residents were moved.
+  - gold=5a.2 system=5a.3
+    text_metric=rougeL text_similarity=0.5263 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4877
+    gold_text=48 residents were evacuated from Brayle, and people were evacuated from Osmery.
+    system_text=Forty-eight residents were evacuated from Brayle.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.2 text="Evacuations were carried out for residents of both Brayle and Osmery."
+
+Group 7/header=operational response
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Fallon Coatings was deployed to the Kellet Point industrial fire."
+
+Group 8/header=information updates
+  gold=1 system=1 matched=1 soft_f1=0.7400
+  matched_pairs:
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.8000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7400
+    gold_text=Information was provided about Kellet Road during emergency communications.
+    system_text=Information was provided about Kellet Road.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=2 matched=1 soft_f1=0.3930
+  matched_pairs:
+  - gold=8a.1 system=8a.2
+    text_metric=rougeL text_similarity=0.7368 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5895
+    gold_text=A warning was issued for Brayle and Sunder Flats during emergency communications.
+    system_text=A warning was issued for Sunder Flats.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Authorities issued a warning for the Brayle and Sunder Flats areas."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

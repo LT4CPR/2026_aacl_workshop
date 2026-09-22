@@ -1,0 +1,186 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:35:31.934217+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : collapse/collapse.W2.k4
+Crisis ID           : collapse
+Cell ID             : collapse.W2.k4
+System ID           : UW-sys8
+
+Gold                : sample_data\gold-output\collapse\collapse.W2.k4.report.json
+System              : sample_data\sysId-output\UW-sys8\collapse\collapse.W2.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.3781
+  ROUGE-2 F1  : 0.2021
+  ROUGE-L F1  : 0.3483
+
+BERTScore (Subsection)
+  Precision   : 0.3627
+  Recall      : 0.6685
+  F1          : 0.4702
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=124 system_only_units=5 system_only_tokens=101 total_tokens=225
+  Recall denominator: matched_gold_tokens=66 gold_only_units=1 gold_only_tokens=9 total_tokens=75
+
+BLEURT (Subsection)
+  Score       : 0.4726
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2170
+Soft Recall         : 0.3411
+Soft F1             : 0.2653
+
+Matched pairs       : 6
+Unmatched gold      : 1
+Unmatched system    : 5
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys8           0.3781      0.2021      0.3483        0.4702   0.4726            0.2653
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=6 matched=4 unmatched_gold=0 unmatched_system=2
+subsections: gold=7 system=11 matched=6 unmatched_gold=1 unmatched_system=5
+bullets: gold=7 system=11 matched=6 unmatched_gold=1 unmatched_system=5
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=7 system_units=11 matched_units=6 scored_units=6 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=75 system_ngrams=126 overlapping_ngrams=38
+  rouge2: gold_ngrams=68 system_ngrams=120 overlapping_ngrams=19
+  rougeL: gold_tokens=75 system_tokens=126 total_lcs_length=35
+
+============================================================
+Alignment Details
+============================================================
+Group 11/header=public sentiment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11b.1 text="Public sentiment was reflected in social media posts such as 'stay strong' and community activities like knitting circles, suggesting resilience and solidarity."
+
+Group 11/header=social support
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=11a.1 text="The knitting circle started making blankets for a winter shelter, indicating community-led social support efforts following the collapse."
+
+Group 3/header=injuries
+  gold=1 system=1 matched=1 soft_f1=0.3897
+  matched_pairs:
+  - gold=3b.1 system=3a.1
+    text_metric=rougeL text_similarity=0.3871 tweet_id_jaccard=0.4000 text_weight=0.8000 final_edge_score=0.3897
+    gold_text=Injuries were confirmed and documented in Nerridge during the collapse response.
+    system_text=Injuries were documented in the city following the collapse of Aldan House and its east wing on November 3, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=treatment and admissions
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3c.1 text="Injuries were documented in the city following the collapse of Aldan House on November 3, 2025."
+
+Group 4/header=damage
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.1 text="Aldan House and its east wing were destroyed as a result of the residential building collapse in Cobbett Row, Nerridge on November 3, 2025."
+
+Group 4/header=destruction
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4b.1 text="The collapse destroyed Aldan House and its east wing."
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.5556
+  matched_pairs:
+  - gold=4c.1 system=4a.1
+    text_metric=rougeL text_similarity=0.4444 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.5556
+    gold_text=Service at Aldan House was reported disrupted.
+    system_text=Service at Aldan House was disrupted following the collapse of the building and its east wing on November 3, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A warning was issued for Cobbett Row following the collapse of Aldan House and its east wing on November 3, 2025."
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.4222
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.4444 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4222
+    gold_text=Provincial Urban Search and Rescue deployed during the collapse response.
+    system_text=Provincial Urban Search and Rescue (PUSAR) was deployed to the site of the Aldan House collapse on November 3, 2025, at approximately 8:36 a.m.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=information updates
+  gold=1 system=1 matched=1 soft_f1=0.1371
+  matched_pairs:
+  - gold=8b.1 system=8b.1
+    text_metric=rougeL text_similarity=0.1714 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1371
+    gold_text=Nerridge Emergency Management provided information about the east wing during the response.
+    system_text=Multiple reports confirmed injuries were documented in the city following the collapse of Aldan House and its east wing on November 3, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.3714
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.2143 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.3714
+    gold_text=Requests for assistance were reported during the early phase of the emergency.
+    system_text=Assistance was requested in the street near Aldan House after the collapse on November 3, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.5114
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.5143 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5114
+    gold_text=A warning was issued for Cobbett Row during the initial response to the collapse.
+    system_text=A warning was issued for Cobbett Row following the collapse of Aldan House and its east wing on November 3, 2025.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

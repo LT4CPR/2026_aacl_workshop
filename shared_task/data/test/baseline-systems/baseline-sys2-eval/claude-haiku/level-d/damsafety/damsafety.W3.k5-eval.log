@@ -1,0 +1,167 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T17:59:08.695225+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : damsafety/damsafety.W3.k5
+Crisis ID           : damsafety
+Cell ID             : damsafety.W3.k5
+System ID           : UW-sys38
+
+Gold                : sample_data\gold-output\damsafety\damsafety.W3.k5.report.json
+System              : sample_data\sysId-output\UW-sys38\damsafety\damsafety.W3.k5.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.4186
+  ROUGE-2 F1  : 0.2222
+  ROUGE-L F1  : 0.3605
+
+BERTScore (Subsection)
+  Precision   : 0.4562
+  Recall      : 0.5374
+  F1          : 0.4935
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=88 system_only_units=3 system_only_tokens=40 total_tokens=128
+  Recall denominator: matched_gold_tokens=62 gold_only_units=2 gold_only_tokens=19 total_tokens=81
+
+BLEURT (Subsection)
+  Score       : 0.5625
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.1860
+Soft Recall         : 0.3188
+Soft F1             : 0.2349
+
+Matched pairs       : 5
+Unmatched gold      : 2
+Unmatched system    : 7
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys38          0.4186      0.2222      0.3605        0.4935   0.5625            0.2349
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=6 matched=4 unmatched_gold=0 unmatched_system=2
+subsections: gold=6 system=7 matched=4 unmatched_gold=2 unmatched_system=3
+bullets: gold=7 system=12 matched=5 unmatched_gold=2 unmatched_system=7
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=6 system_units=7 matched_units=4 scored_units=4 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=82 system_ngrams=90 overlapping_ngrams=36
+  rouge2: gold_ngrams=76 system_ngrams=86 overlapping_ngrams=18
+  rougeL: gold_tokens=82 system_tokens=90 total_lcs_length=31
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=damage
+  gold=1 system=2 matched=1 soft_f1=0.3000
+  matched_pairs:
+  - gold=4a.1 system=4a.2
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.4500
+    gold_text=Halvern Dam and the right abutment were damaged.
+    system_text=The right abutment of Halvern Dam was damaged.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.1 text="Halvern Dam sustained damage affecting structural integrity."
+
+Group 5/header=displacement
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5b.1 text="People were displaced from Quennard during evacuation and displacement operations."
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=4 matched=2 soft_f1=0.2083
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.3810 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3048
+    gold_text=A mandatory evacuation moved roughly 11,800 residents from Brindlemark, and people were evacuated from Ferris Hollow and the alert level was raised from Yellow to Orange.
+    system_text=Approximately 11,800 residents were evacuated from Brindlemark and surrounding towns due to dam damage.
+  - gold=5a.2 system=5a.2
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3200
+    gold_text=People were evacuated from Brindlemark during evacuation and displacement operations.
+    system_text=Revised evacuation count indicates 12,400 people evacuated from Brindlemark.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.3 text="Evacuations also affected <PERSON> and other named localities in the evacuation zone."
+  - id=5a.4 text="Mandatory evacuation orders were issued for named towns including <PERSON>."
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="Alert level was raised from Yellow to Orange across affected areas in response to Halvern Dam damage."
+
+Group 7/header=aid delivery
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7b.1 text="Assistance was provided in Quennard as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=2 matched=1 soft_f1=0.3333
+  matched_pairs:
+  - gold=7a.4 system=7a.1
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5000
+    gold_text=Brindlemark Police deployed to Brindlemark as response operations continued.
+    system_text=Brindlemark Police were deployed to affected areas.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.2 text="Police forces were deployed in response to the emergency."
+
+Group 8/header=information updates
+  gold=1 system=1 matched=1 soft_f1=0.6571
+  matched_pairs:
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.5714 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6571
+    gold_text=Sorrel Basin Water Authority provided information during emergency communications.
+    system_text=Sorrel Basin Water Authority provided official information regarding the dam damage situation.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Alert level was raised from Yellow to Orange, signaling increased risk in the region."
+
+Group 9/header=aid provided and distributed
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9a.1 text="Assistance was provided in Quennard and affected evacuation zones."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

@@ -1,0 +1,118 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T17:59:08.695225+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : heatwave/heatwave.W1.k4
+Crisis ID           : heatwave
+Cell ID             : heatwave.W1.k4
+System ID           : UW-sys38
+
+Gold                : sample_data\gold-output\heatwave\heatwave.W1.k4.report.json
+System              : sample_data\sysId-output\UW-sys38\heatwave\heatwave.W1.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5714
+  ROUGE-2 F1  : 0.4211
+  ROUGE-L F1  : 0.5714
+
+BERTScore (Subsection)
+  Precision   : 0.3411
+  Recall      : 0.7738
+  F1          : 0.4735
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=21 system_only_units=2 system_only_tokens=27 total_tokens=48
+  Recall denominator: matched_gold_tokens=21 gold_only_units=0 gold_only_tokens=0 total_tokens=21
+
+BLEURT (Subsection)
+  Score       : 0.4742
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2624
+Soft Recall         : 0.5248
+Soft F1             : 0.3499
+
+Matched pairs       : 2
+Unmatched gold      : 0
+Unmatched system    : 2
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys38          0.5714      0.4211      0.5714        0.4735   0.4742            0.3499
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=2 system=3 matched=2 unmatched_gold=0 unmatched_system=1
+subsections: gold=2 system=4 matched=2 unmatched_gold=0 unmatched_system=2
+bullets: gold=2 system=4 matched=2 unmatched_gold=0 unmatched_system=2
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=2 system_units=4 matched_units=2 scored_units=2 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=21 system_ngrams=21 overlapping_ngrams=12
+  rouge2: gold_ngrams=19 system_ngrams=19 overlapping_ngrams=8
+  rougeL: gold_tokens=21 system_tokens=21 total_lcs_length=12
+
+============================================================
+Alignment Details
+============================================================
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A heatwave hazard affecting Verlow prompted warnings and assistance requests from provincial health authorities."
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.5030
+  matched_pairs:
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5030
+    gold_text=Provincial Public Health Institute deployed as response operations continued.
+    system_text=Provincial Public Health Institute deployed resources in response to assistance requests for Verlow.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.5467
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.6000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5467
+    gold_text=Provincial Public Health Institute asked for assistance concerning Verlow during emergency communications.
+    system_text=Provincial Public Health Institute requested assistance concerning <PERSON>.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Provincial Public Health Institute issued a warning for <PERSON> related to heatwave conditions."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

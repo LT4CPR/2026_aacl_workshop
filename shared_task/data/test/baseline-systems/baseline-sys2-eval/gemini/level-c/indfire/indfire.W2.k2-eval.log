@@ -1,0 +1,151 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T17:03:04.875613+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : indfire/indfire.W2.k2
+Crisis ID           : indfire
+Cell ID             : indfire.W2.k2
+System ID           : UW-sys33
+
+Gold                : sample_data\gold-output\indfire\indfire.W2.k2.report.json
+System              : sample_data\sysId-output\UW-sys33\indfire\indfire.W2.k2.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5576
+  ROUGE-2 F1  : 0.3742
+  ROUGE-L F1  : 0.5212
+
+BERTScore (Subsection)
+  Precision   : 0.5991
+  Recall      : 0.7627
+  F1          : 0.6710
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=92 system_only_units=1 system_only_tokens=18 total_tokens=110
+  Recall denominator: matched_gold_tokens=71 gold_only_units=0 gold_only_tokens=0 total_tokens=71
+
+BLEURT (Subsection)
+  Score       : 0.5919
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2326
+Soft Recall         : 0.5040
+Soft F1             : 0.3183
+
+Matched pairs       : 6
+Unmatched gold      : 0
+Unmatched system    : 7
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys33          0.5576      0.3742      0.5212        0.6710   0.5919            0.3183
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=4 matched=3 unmatched_gold=0 unmatched_system=1
+subsections: gold=5 system=6 matched=5 unmatched_gold=0 unmatched_system=1
+bullets: gold=6 system=13 matched=6 unmatched_gold=0 unmatched_system=7
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=6 matched_units=5 scored_units=5 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=72 system_ngrams=93 overlapping_ngrams=46
+  rouge2: gold_ngrams=67 system_ngrams=88 overlapping_ngrams=29
+  rougeL: gold_tokens=72 system_tokens=93 total_lcs_length=43
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.6394
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.7826 tweet_id_jaccard=0.0667 text_weight=0.8000 final_edge_score=0.6394
+    gold_text=Kellet Road was closed in Kellet Point industrial estate and Merrin Canal.
+    system_text=Kellet Road was closed between Kellet Point industrial estate and <PERSON>.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=1 system=3 matched=1 soft_f1=0.3400
+  matched_pairs:
+  - gold=5b.1 system=5b.2
+    text_metric=rougeL text_similarity=0.6000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6800
+    gold_text=About 300 people were displaced from Osmery during evacuation and displacement operations.
+    system_text=About 300 people were reported displaced from <PERSON>.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="People were displaced from Osmery due to the incident."
+  - id=5b.3 text="Residents were displaced from the local town."
+
+Group 5/header=evacuations
+  gold=2 system=4 matched=2 soft_f1=0.2995
+  matched_pairs:
+  - gold=5a.1 system=5a.2
+    text_metric=rougeL text_similarity=0.4348 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.3812
+    gold_text=A mandatory evacuation moved about 2,300 residents from Brayle during evacuation and displacement operations.
+    system_text=Approximately 2,300 residents were evacuated from Brayle.
+  - gold=5a.2 system=5a.3
+    text_metric=rougeL text_similarity=0.5217 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5174
+    gold_text=48 residents were evacuated from Brayle, and people were evacuated from Osmery.
+    system_text=A conflicting report stated that 48 residents were evacuated from Brayle.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.1 text="A mandatory evacuation was ordered for the town of Brayle."
+  - id=5a.4 text="Residents were evacuated from <PERSON>."
+
+Group 7/header=operational response
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Fallon Coatings deployed response personnel to Kellet Point."
+  - id=7a.2 text="The facility operator deployed personnel in response to the fire."
+
+Group 8/header=information updates
+  gold=1 system=1 matched=1 soft_f1=0.3600
+  matched_pairs:
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.3600
+    gold_text=Information was provided about Kellet Road during emergency communications.
+    system_text=Information updates were officially provided regarding road conditions on Kellet Road.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=2 matched=1 soft_f1=0.2974
+  matched_pairs:
+  - gold=8a.1 system=8a.2
+    text_metric=rougeL text_similarity=0.5263 tweet_id_jaccard=0.1250 text_weight=0.8000 final_edge_score=0.4461
+    gold_text=A warning was issued for Brayle and Sunder Flats during emergency communications.
+    system_text=Emergency warnings were issued for Sunder Flats.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Emergency warnings were issued for Brayle."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

@@ -1,0 +1,111 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T01:19:28.675474+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : heatwave/heatwave.W1.k1
+Crisis ID           : heatwave
+Cell ID             : heatwave.W1.k1
+System ID           : UW-sys17
+
+Gold                : sample_data\gold-output\heatwave\heatwave.W1.k1.report.json
+System              : sample_data\sysId-output\UW-sys17\heatwave\heatwave.W1.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.4490
+  ROUGE-2 F1  : 0.3111
+  ROUGE-L F1  : 0.4490
+
+BERTScore (Subsection)
+  Precision   : 0.5306
+  Recall      : 0.7974
+  F1          : 0.6372
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=29 system_only_units=1 system_only_tokens=11 total_tokens=40
+  Recall denominator: matched_gold_tokens=20 gold_only_units=0 gold_only_tokens=0 total_tokens=20
+
+BLEURT (Subsection)
+  Score       : 0.5054
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2750
+Soft Recall         : 0.4125
+Soft F1             : 0.3300
+
+Matched pairs       : 2
+Unmatched gold      : 0
+Unmatched system    : 1
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys17          0.4490      0.3111      0.4490        0.6372   0.5054            0.3300
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=2 system=2 matched=2 unmatched_gold=0 unmatched_system=0
+subsections: gold=2 system=3 matched=2 unmatched_gold=0 unmatched_system=1
+bullets: gold=2 system=3 matched=2 unmatched_gold=0 unmatched_system=1
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=2 system_units=3 matched_units=2 scored_units=2 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=20 system_ngrams=29 overlapping_ngrams=11
+  rouge2: gold_ngrams=18 system_ngrams=27 overlapping_ngrams=7
+  rougeL: gold_tokens=20 system_tokens=29 total_lcs_length=11
+
+============================================================
+Alignment Details
+============================================================
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.4174
+  matched_pairs:
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.5217 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4174
+    gold_text=Provincial Public Health Institute deployed as response operations continued.
+    system_text=The Provincial Public Health Institute deployed resources in response to the heatwave in Verlow.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.4077
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.3846 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4077
+    gold_text=Provincial Public Health Institute asked for assistance concerning during emergency communications.
+    system_text=The Provincial Public Health Institute requested assistance regarding the heatwave and load shedding in Verlow.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="The Provincial Public Health Institute issued a heatwave warning for Verlow."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

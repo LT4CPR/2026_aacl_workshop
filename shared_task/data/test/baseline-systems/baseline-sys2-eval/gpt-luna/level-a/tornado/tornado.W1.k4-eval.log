@@ -1,0 +1,122 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T16:07:52.561544+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : tornado/tornado.W1.k4
+Crisis ID           : tornado
+Cell ID             : tornado.W1.k4
+System ID           : UW-sys28
+
+Gold                : sample_data\gold-output\tornado\tornado.W1.k4.report.json
+System              : sample_data\sysId-output\UW-sys28\tornado\tornado.W1.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.6667
+  ROUGE-2 F1  : 0.5507
+  ROUGE-L F1  : 0.6667
+
+BERTScore (Subsection)
+  Precision   : 0.5639
+  Recall      : 0.8056
+  F1          : 0.6634
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=33 system_only_units=1 system_only_tokens=17 total_tokens=50
+  Recall denominator: matched_gold_tokens=42 gold_only_units=0 gold_only_tokens=0 total_tokens=42
+
+BLEURT (Subsection)
+  Score       : 0.6937
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3658
+Soft Recall         : 0.6097
+Soft F1             : 0.4573
+
+Matched pairs       : 3
+Unmatched gold      : 0
+Unmatched system    : 2
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys28          0.6667      0.5507      0.6667        0.6634   0.6937            0.4573
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=4 matched=3 unmatched_gold=0 unmatched_system=1
+subsections: gold=3 system=4 matched=3 unmatched_gold=0 unmatched_system=1
+bullets: gold=3 system=5 matched=3 unmatched_gold=0 unmatched_system=2
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=3 system_units=4 matched_units=3 scored_units=3 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=42 system_ngrams=33 overlapping_ngrams=25
+  rouge2: gold_ngrams=39 system_ngrams=30 overlapping_ngrams=19
+  rougeL: gold_tokens=42 system_tokens=33 total_lcs_length=25
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=destruction
+  gold=1 system=2 matched=1 soft_f1=0.3354
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5030
+    gold_text=Route 12 and grain elevator were destroyed in Dray Corners during the Estenwick tornado outbreak.
+    system_text=Route 12 was destroyed in Dray Corners.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.2 text="A grain elevator was destroyed in Dray Corners."
+
+Group 5/header=evacuations
+  gold=1 system=1 matched=1 soft_f1=0.6762
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6762
+    gold_text=People were evacuated from Estenwick and Dray Corners during evacuation and displacement operations.
+    system_text=People were evacuated from Estenwick and Dray Corners.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="The warnings and reported impacts are associated with a tornado affecting the Estenwick and Dray Corners area."
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.6500
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.7500 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.6500
+    gold_text=A warning was issued for Estenwick, Dray Corners, and Ostley County during emergency communications.
+    system_text=Warnings were issued for Estenwick, Dray Corners, and Ostley County.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

@@ -1,0 +1,182 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:59:13.273063+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : landslide/landslide.W2.k6
+Crisis ID           : landslide
+Cell ID             : landslide.W2.k6
+System ID           : UW-sys14
+
+Gold                : sample_data\gold-output\landslide\landslide.W2.k6.report.json
+System              : sample_data\sysId-output\UW-sys14\landslide\landslide.W2.k6.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.6091
+  ROUGE-2 F1  : 0.4211
+  ROUGE-L F1  : 0.5514
+
+BERTScore (Subsection)
+  Precision   : 0.7310
+  Recall      : 0.7354
+  F1          : 0.7332
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=122 system_only_units=1 system_only_tokens=12 total_tokens=134
+  Recall denominator: matched_gold_tokens=110 gold_only_units=1 gold_only_tokens=10 total_tokens=120
+
+BLEURT (Subsection)
+  Score       : 0.6182
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.4338
+Soft Recall         : 0.5127
+Soft F1             : 0.4700
+
+Matched pairs       : 10
+Unmatched gold      : 1
+Unmatched system    : 3
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys14          0.6091      0.4211      0.5514        0.7332   0.6182            0.4700
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+subsections: gold=8 system=8 matched=7 unmatched_gold=1 unmatched_system=1
+bullets: gold=11 system=13 matched=10 unmatched_gold=1 unmatched_system=3
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=8 system_units=8 matched_units=7 scored_units=7 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=120 system_ngrams=123 overlapping_ngrams=74
+  rouge2: gold_ngrams=112 system_ngrams=116 overlapping_ngrams=48
+  rougeL: gold_tokens=120 system_tokens=123 total_lcs_length=67
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=1 system=1 matched=1 soft_f1=0.5667
+  matched_pairs:
+  - gold=10b.1 system=10a.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.5667
+    gold_text=Yelverton Minerals and the independent panel revised its policy during the later response.
+    system_text=Yelverton Minerals and the independent panel revised the operator's policy.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 10/header=meetings and decisions
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=10a.2 text="Yelverton Minerals and mines inspectorate met during the later response."
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=2 system=2 matched=2 soft_f1=0.5282
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.5556 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.4778
+    gold_text=Ashfell slide damaged the lower road.
+    system_text=The failure of the Ashfell bench damaged the lower road below Dreth.
+  - gold=4a.2 system=4a.2
+    text_metric=rougeL text_similarity=0.6400 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5787
+    gold_text=Damage was reported in Dreth and the Pellan during the Ashfell slide.
+    system_text=Damage was recorded in Dreth and in the Pellan, following the bench failure.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=restoration progress
+  gold=1 system=1 matched=1 soft_f1=0.6667
+  matched_pairs:
+  - gold=4d.2 system=4c.1
+    text_metric=rougeL text_similarity=0.7500 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6667
+    gold_text=The operator restored the lower road during the Ashfell slide.
+    system_text=The operator restored the lower road.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=2 system=3 matched=2 soft_f1=0.4451
+  matched_pairs:
+  - gold=4c.1 system=4b.3
+    text_metric=rougeL text_similarity=0.5600 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5147
+    gold_text=Service at the lower road was disrupted during the Ashfell slide.
+    system_text=Service on the lower road was disrupted at the end of the operational window.
+  - gold=4c.2 system=4b.2
+    text_metric=rougeL text_similarity=0.7059 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.5980
+    gold_text=Service at Corvane mine was disrupted during the Ashfell slide.
+    system_text=Service at the Corvane mine was disrupted.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.1 text="Service was disrupted in the upper Ashfell bench."
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.3116
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=0.3478 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.3116
+    gold_text=60 households were displaced from Cranmoor during evacuation and displacement operations.
+    system_text=Sixty households moved away from Cranmoor, recorded as displaced by the slide.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=3 matched=2 soft_f1=0.4885
+  matched_pairs:
+  - gold=5a.1 system=5a.2
+    text_metric=rougeL text_similarity=0.7273 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5818
+    gold_text=About 60 households were evacuated from Withel terraces during evacuation and displacement operations.
+    system_text=About 60 households were evacuated from the Withel terraces.
+  - gold=5a.2 system=5a.3
+    text_metric=rougeL text_similarity=0.7368 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.6395
+    gold_text=People were evacuated from the upper bench during evacuation and displacement operations.
+    system_text=People were evacuated from the upper bench.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5a.1 text="Residents were evacuated from the Withel terraces and Cranmoor after the warning was issued."
+
+Group 8/header=information updates
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Information was provided about the Corvane tailings dam, including the tailings pond."
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.7045
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.8182 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.7045
+    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
+    system_text=A warning was issued for the Withel terraces and Cranmoor.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

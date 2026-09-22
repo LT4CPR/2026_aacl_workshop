@@ -1,0 +1,154 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T16:50:17.044336+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : collapse/collapse.W2.k4
+Crisis ID           : collapse
+Cell ID             : collapse.W2.k4
+System ID           : UW-sys32
+
+Gold                : sample_data\gold-output\collapse\collapse.W2.k4.report.json
+System              : sample_data\sysId-output\UW-sys32\collapse\collapse.W2.k4.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.6242
+  ROUGE-2 F1  : 0.3916
+  ROUGE-L F1  : 0.5605
+
+BERTScore (Subsection)
+  Precision   : 0.7737
+  Recall      : 0.8205
+  F1          : 0.7964
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=82 system_only_units=0 system_only_tokens=0 total_tokens=82
+  Recall denominator: matched_gold_tokens=75 gold_only_units=0 gold_only_tokens=0 total_tokens=75
+
+BLEURT (Subsection)
+  Score       : 0.5734
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.5451
+Soft Recall         : 0.5451
+Soft F1             : 0.5451
+
+Matched pairs       : 7
+Unmatched gold      : 0
+Unmatched system    : 0
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys32          0.6242      0.3916      0.5605        0.7964   0.5734            0.5451
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+subsections: gold=7 system=7 matched=7 unmatched_gold=0 unmatched_system=0
+bullets: gold=7 system=7 matched=7 unmatched_gold=0 unmatched_system=0
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=7 system_units=7 matched_units=7 scored_units=7 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=75 system_ngrams=82 overlapping_ngrams=49
+  rouge2: gold_ngrams=68 system_ngrams=75 overlapping_ngrams=28
+  rougeL: gold_tokens=75 system_tokens=82 total_lcs_length=44
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=injuries
+  gold=1 system=1 matched=1 soft_f1=0.5853
+  matched_pairs:
+  - gold=3b.1 system=3b.1
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=0.4000 text_weight=0.8000 final_edge_score=0.5853
+    gold_text=Injuries were confirmed and documented in Nerridge during the collapse response.
+    system_text=Injuries were documented in Nerridge following the incident.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=1 system=1 matched=1 soft_f1=0.3568
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=0.1000 text_weight=0.8000 final_edge_score=0.3568
+    gold_text=The collapse destroyed Aldan House and its east wing.
+    system_text=<PERSON> and its east wing were destroyed in the collapse.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.7053
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.7053
+    gold_text=Service at Aldan House was reported disrupted.
+    system_text=Service at Aldan House was disrupted as a result of the incident.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.5080
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.5517 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5080
+    gold_text=Provincial Urban Search and Rescue deployed during the collapse response.
+    system_text=Provincial Urban Search and Rescue (PUSAR) was deployed to Nerridge in response to the building collapse at Cobbett Row.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=information updates
+  gold=1 system=1 matched=1 soft_f1=0.6667
+  matched_pairs:
+  - gold=8b.1 system=8b.1
+    text_metric=rougeL text_similarity=0.7500 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6667
+    gold_text=Nerridge Emergency Management provided information about the east wing during the response.
+    system_text=Nerridge Emergency Management provided information about the collapsed east wing and <PERSON>.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=1 system=1 matched=1 soft_f1=0.3600
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.2000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.3600
+    gold_text=Requests for assistance were reported during the early phase of the emergency.
+    system_text=Assistance was requested in the street in Nerridge.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.6333
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6333
+    gold_text=A warning was issued for Cobbett Row during the initial response to the collapse.
+    system_text=A warning was issued for Cobbett Row in Nerridge regarding the building collapse.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found

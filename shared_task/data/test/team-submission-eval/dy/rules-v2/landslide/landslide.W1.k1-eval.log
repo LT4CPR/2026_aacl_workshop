@@ -1,0 +1,128 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:20:22.254758+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : landslide/landslide.W1.k1
+Crisis ID           : landslide
+Cell ID             : landslide.W1.k1
+System ID           : UW-sys6
+
+Gold                : sample_data\gold-output\landslide\landslide.W1.k1.report.json
+System              : sample_data\sysId-output\UW-sys6\landslide\landslide.W1.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.6667
+  ROUGE-2 F1  : 0.4127
+  ROUGE-L F1  : 0.5217
+
+BERTScore (Subsection)
+  Precision   : 0.5494
+  Recall      : 0.8137
+  F1          : 0.6560
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=38 system_only_units=2 system_only_tokens=17 total_tokens=55
+  Recall denominator: matched_gold_tokens=31 gold_only_units=0 gold_only_tokens=0 total_tokens=31
+
+BLEURT (Subsection)
+  Score       : 0.5943
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2971
+Soft Recall         : 0.4952
+Soft F1             : 0.3714
+
+Matched pairs       : 3
+Unmatched gold      : 0
+Unmatched system    : 2
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys6           0.6667      0.4127      0.5217        0.6560   0.5943            0.3714
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=4 matched=3 unmatched_gold=0 unmatched_system=1
+subsections: gold=3 system=5 matched=3 unmatched_gold=0 unmatched_system=2
+bullets: gold=3 system=5 matched=3 unmatched_gold=0 unmatched_system=2
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=3 system_units=5 matched_units=3 scored_units=3 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=31 system_ngrams=38 overlapping_ngrams=23
+  rouge2: gold_ngrams=28 system_ngrams=35 overlapping_ngrams=13
+  rougeL: gold_tokens=31 system_tokens=38 total_lcs_length=18
+
+============================================================
+Alignment Details
+============================================================
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=0.3526
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.3158 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.3526
+    gold_text=Ashfell slide damaged the lower road.
+    system_text=The lower road sustained damage from a bench failure and the Ashfell slide.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="About 60 households were displaced from Withel terraces."
+
+Group 5/header=evacuations
+  gold=1 system=1 matched=1 soft_f1=0.5571
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.5714 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5571
+    gold_text=About 60 households were evacuated from Withel terraces during evacuation and displacement operations.
+    system_text=Approximately 60 households were evacuated from Withel terraces and additional residents were evacuated from Cranmoor.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A landslide was identified affecting Withel terraces and Cranmoor."
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.5758
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.6364 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5758
+    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
+    system_text=Authorities issued a landslide warning for Withel terraces and Cranmoor.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap

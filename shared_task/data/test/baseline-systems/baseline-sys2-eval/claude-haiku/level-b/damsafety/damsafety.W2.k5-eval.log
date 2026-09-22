@@ -1,0 +1,127 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-21T16:50:17.044336+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : damsafety/damsafety.W2.k5
+Crisis ID           : damsafety
+Cell ID             : damsafety.W2.k5
+System ID           : UW-sys32
+
+Gold                : sample_data\gold-output\damsafety\damsafety.W2.k5.report.json
+System              : sample_data\sysId-output\UW-sys32\damsafety\damsafety.W2.k5.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.4054
+  ROUGE-2 F1  : 0.2609
+  ROUGE-L F1  : 0.3514
+
+BERTScore (Subsection)
+  Precision   : 0.3138
+  Recall      : 0.5928
+  F1          : 0.4103
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=23 system_only_units=2 system_only_tokens=37 total_tokens=60
+  Recall denominator: matched_gold_tokens=42 gold_only_units=1 gold_only_tokens=7 total_tokens=49
+
+BLEURT (Subsection)
+  Score       : 0.5475
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.1918
+Soft Recall         : 0.2397
+Soft F1             : 0.2131
+
+Matched pairs       : 2
+Unmatched gold      : 2
+Unmatched system    : 3
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys32          0.4054      0.2609      0.3514        0.4103   0.5475            0.2131
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=3 system=4 matched=2 unmatched_gold=1 unmatched_system=2
+subsections: gold=3 system=4 matched=2 unmatched_gold=1 unmatched_system=2
+bullets: gold=4 system=5 matched=2 unmatched_gold=2 unmatched_system=3
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=3 system_units=4 matched_units=2 scored_units=2 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=50 system_ngrams=24 overlapping_ngrams=15
+  rouge2: gold_ngrams=47 system_ngrams=22 overlapping_ngrams=9
+  rougeL: gold_tokens=50 system_tokens=24 total_lcs_length=13
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=rescued persons
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=3h.1 text="Roughly 11,800 residents were evacuated from Brindlemark in a mandatory evacuation."
+  - id=3h.2 text="People were evacuated from additional locations beyond <PERSON> as part of the evacuation response."
+
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=0.6988
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.8235 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.6988
+    gold_text=Halvern Dam and the right abutment were damaged.
+    system_text=Halvern Dam and the right abutment have been damaged.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=1 matched=1 soft_f1=0.1733
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.3000 tweet_id_jaccard=0.1000 text_weight=0.8000 final_edge_score=0.2600
+    gold_text=Roughly 11,800 residents were evacuated from Brindlemark, and people were evacuated from Ferris Hollow and the alert level was raised from Yellow to Orange.
+    system_text=A mandatory evacuation was ordered moving approximately 11,800 residents from Brindlemark and nearby areas.
+  unmatched_gold:
+  - id=5a.2 text="People were evacuated from Brindlemark during evacuation and displacement operations."
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="Alert level was raised from Yellow to Orange, indicating increased hazard severity."
+
+Group 8/header=information updates
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=8b.3 text="The operator provided information during emergency communications."
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

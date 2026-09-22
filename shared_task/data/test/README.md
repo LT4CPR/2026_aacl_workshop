@@ -2,13 +2,17 @@
 
 ## Overview
 
-This package contains the **test inputs** for the LT4CPR shared task on generating structured situation reports from crisis-related social media.
+This directory contains the **test inputs** and the post-evaluation release
+artifacts for the LT4CPR shared task on generating structured situation reports
+from crisis-related social media. The release artifacts include the reference
+reports, organizer baseline outputs, participant submissions, and the
+corresponding evaluation results.
 
 For each test instance, participants receive a time-bounded and, in some cases, subsampled collection of synthetic social-media messages. The goal is to produce a structured situation report containing the information that can be supported by the messages in that instance.
 
 **Important:** all crises, locations, people, organizations, and social-media messages in this dataset are fictional and synthetically generated for research purposes. The data do not describe real emergencies.
 
-Reference reports for the test set are withheld and will be used by the organizers for evaluation.
+Reference reports for the test set are released under `reference/`.
 
 ---
 
@@ -32,23 +36,33 @@ Each test instance must be processed independently. In particular, information f
 
 ## Package Structure
 
-The test package is organized as:
+The test release is organized as:
 
 ```text
 test/
-├── collapse/
-│   └── *.tweets.jsonl
-├── damsafety/
-│   └── *.tweets.jsonl
-├── heatwave/
-│   └── *.tweets.jsonl
-├── indfire/
-│   └── *.tweets.jsonl
-├── landslide/
-│   └── *.tweets.jsonl
-└── tornado/
-    └── *.tweets.jsonl
+├── README.md
+├── test.zip
+├── reference/
+│   └── <crisis>/*.report.json
+├── baseline-systems/
+│   ├── baseline-sys1/
+│   ├── baseline-sys2/<model>/<level>/
+│   ├── baseline-sys1-eval/
+│   └── baseline-sys2-eval/<model>/<level>/
+├── team-submissions/
+│   └── <team-id>/<system-id>/<crisis>/*.report.json
+└── team-submission-eval/
+    └── <team-id>/<system-id>/
 ```
+
+`test.zip` contains the participant-facing `.tweets.jsonl` inputs. Each system
+output directory contains one report for every test instance. Evaluation
+directories contain the per-instance evaluation artifacts and the combined
+system-level result.
+
+The `baseline-sys1/w-stage2/` output and evaluation directories are retained as
+reserved release locations. No corresponding system row or result artifact was
+available in the final results table at the time of this release.
 
 The current release contains **117 public test instances**:
 
@@ -613,7 +627,8 @@ Training/development instances contain paired reference reports that demonstrate
 - binary confidence labels;
 - evidence citation with integer message IDs.
 
-Test reference reports are withheld.
+Test reference reports are included in this post-evaluation release under
+`reference/`.
 
 Participants should use the released training/development reports and official template as the authoritative examples for output structure.
 
@@ -630,7 +645,10 @@ Systems are expected to generate reports that are:
 - appropriate in their handling of **uncertainty and negation**;
 - grounded in the supplied evidence.
 
-The organizers will evaluate submissions against withheld reference reports. Exact metric definitions, ranking rules, and the treatment of evidence citations are provided separately in the official evaluation documentation.
+The organizers evaluated submissions against the reference reports now released
+under `reference/`. Exact metric definitions, ranking rules, and the treatment
+of evidence citations are provided separately in the official evaluation
+documentation.
 
 Do not assume that two test cells from the same crisis have the same target report. Windows and sampled message subsets differ, so the supportable report can differ across cells.
 

@@ -1,0 +1,220 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T00:29:18.960954+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : landslide/landslide.W3.k9
+Crisis ID           : landslide
+Cell ID             : landslide.W3.k9
+System ID           : UW-sys7
+
+Gold                : sample_data\gold-output\landslide\landslide.W3.k9.report.json
+System              : sample_data\sysId-output\UW-sys7\landslide\landslide.W3.k9.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.4157
+  ROUGE-2 F1  : 0.2869
+  ROUGE-L F1  : 0.4078
+
+BERTScore (Subsection)
+  Precision   : 0.4234
+  Recall      : 0.6003
+  F1          : 0.4965
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=107 system_only_units=5 system_only_tokens=72 total_tokens=179
+  Recall denominator: matched_gold_tokens=126 gold_only_units=2 gold_only_tokens=22 total_tokens=148
+
+BLEURT (Subsection)
+  Score       : 0.4778
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2759
+Soft Recall         : 0.2759
+Soft F1             : 0.2759
+
+Matched pairs       : 9
+Unmatched gold      : 5
+Unmatched system    : 5
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys7           0.4157      0.2869      0.4078        0.4965   0.4778            0.2759
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=7 matched=6 unmatched_gold=1 unmatched_system=1
+subsections: gold=10 system=13 matched=8 unmatched_gold=2 unmatched_system=5
+bullets: gold=14 system=14 matched=9 unmatched_gold=5 unmatched_system=5
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=10 system_units=13 matched_units=8 scored_units=8 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=148 system_ngrams=107 overlapping_ngrams=53
+  rouge2: gold_ngrams=138 system_ngrams=99 overlapping_ngrams=34
+  rougeL: gold_tokens=148 system_tokens=107 total_lcs_length=52
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=administrative and economic measures
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=10b.1 text="Yelverton Minerals and the independent panel revised its policy during the later response."
+  unmatched_system: none
+
+Group 11/header=social support
+  gold=1 system=1 matched=1 soft_f1=0.5833
+  matched_pairs:
+  - gold=11a.1 system=11a.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.5833
+    gold_text=Community support was organized in Withel terraces during community recovery.
+    system_text=Community support was organized in Withel terraces on March 19, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=2 system=1 matched=1 soft_f1=0.2351
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.3158 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.3526
+    gold_text=Ashfell slide damaged the lower road.
+    system_text=The lower road was damaged by the Ashfell Slide on March 14, 2026.
+  unmatched_gold:
+  - id=4a.2 text="Damage was reported in Dreth and the Pellan during the Ashfell slide."
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.1 text="Damage occurred in Dreth and the Pellan due to the landslide on March 17, 2026."
+
+Group 4/header=restoration progress
+  gold=2 system=2 matched=2 soft_f1=0.5405
+  matched_pairs:
+  - gold=4d.1 system=4d.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6000
+    gold_text=Service was restored in Dreth and the Pellan during the Ashfell slide.
+    system_text=Service was restored in Dreth and the Pellan on March 19, 2026.
+  - gold=4d.2 system=4d.2
+    text_metric=rougeL text_similarity=0.4762 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4810
+    gold_text=The lower road was restored during the Ashfell slide.
+    system_text=The lower road was reported restored by outsiders on March 19, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=2 system=1 matched=1 soft_f1=0.1855
+  matched_pairs:
+  - gold=4c.2 system=4c.1
+    text_metric=rougeL text_similarity=0.3478 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2783
+    gold_text=Service at Corvane mine was disrupted during the Ashfell slide.
+    system_text=Service was disrupted in Ashfell bench and upper bench on March 16, 2026.
+  unmatched_gold:
+  - id=4c.1 text="Service at the lower road was disrupted during the Ashfell slide."
+  unmatched_system: none
+
+Group 5/header=displacement
+  gold=1 system=1 matched=1 soft_f1=0.2337
+  matched_pairs:
+  - gold=5b.1 system=5b.1
+    text_metric=rougeL text_similarity=0.2609 tweet_id_jaccard=0.1250 text_weight=0.8000 final_edge_score=0.2337
+    gold_text=60 households were displaced from Cranmoor during evacuation and displacement operations.
+    system_text=People moved away from Cranmoor due to displacement on March 19, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 5/header=evacuations
+  gold=2 system=1 matched=1 soft_f1=0.3427
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.5926 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.5141
+    gold_text=About 60 households were evacuated from the terraces during evacuation and displacement operations.
+    system_text=About 60 households were evacuated from Withel terraces and Cranmoor on March 14, 2026.
+  unmatched_gold:
+  - id=5a.2 text="People were evacuated from Ashfell bench during evacuation and displacement operations."
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="A warning was issued for Withel terraces on March 14, 2026, indicating a landslide hazard."
+
+Group 7/header=aid receipt
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7c.1 text="Assistance was received in Cranmoor as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Information was provided about the tailings pond and dam in Withel on March 17, 2026."
+
+Group 8/header=information updates
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="The company revised its policy regarding tailings dam safety on March 19, 2026, following the landslide."
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.5536
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.6087 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5536
+    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
+    system_text=A warning was issued for Withel terraces on March 14, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/header=aid provided and distributed
+  gold=1 system=1 matched=1 soft_f1=0.2667
+  matched_pairs:
+  - gold=9a.1 system=9a.1
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2667
+    gold_text=Assistance was provided in Withel terraces during relief operations.
+    system_text=Assistance was received in Cranmoor on March 19, 2026.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/header=aid received and needs coverage
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9b.1 text="Community support was organized in Withel terraces on March 19, 2026."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

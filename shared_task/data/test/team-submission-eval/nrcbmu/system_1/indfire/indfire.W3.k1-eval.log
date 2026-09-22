@@ -1,0 +1,224 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-12T01:11:08.612995+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : indfire/indfire.W3.k1
+Crisis ID           : indfire
+Cell ID             : indfire.W3.k1
+System ID           : UW-sys16
+
+Gold                : sample_data\gold-output\indfire\indfire.W3.k1.report.json
+System              : sample_data\sysId-output\UW-sys16\indfire\indfire.W3.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.3343
+  ROUGE-2 F1  : 0.2667
+  ROUGE-L F1  : 0.3286
+
+BERTScore (Subsection)
+  Precision   : 0.6473
+  Recall      : 0.4843
+  F1          : 0.5541
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=136 system_only_units=1 system_only_tokens=8 total_tokens=144
+  Recall denominator: matched_gold_tokens=163 gold_only_units=5 gold_only_tokens=52 total_tokens=215
+
+BLEURT (Subsection)
+  Score       : 0.4784
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2679
+Soft Recall         : 0.2115
+Soft F1             : 0.2364
+
+Matched pairs       : 8
+Unmatched gold      : 11
+Unmatched system    : 7
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys16          0.3343      0.2667      0.3286        0.5541   0.4784            0.2364
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=7 system=6 matched=6 unmatched_gold=1 unmatched_system=0
+subsections: gold=14 system=10 matched=9 unmatched_gold=5 unmatched_system=1
+bullets: gold=19 system=15 matched=8 unmatched_gold=11 unmatched_system=7
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=14 system_units=10 matched_units=9 scored_units=9 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=216 system_ngrams=137 overlapping_ngrams=59
+  rouge2: gold_ngrams=202 system_ngrams=128 overlapping_ngrams=44
+  rougeL: gold_tokens=216 system_tokens=137 total_lcs_length=58
+
+============================================================
+Alignment Details
+============================================================
+Group 11/header=social support
+  gold=1 system=1 matched=1 soft_f1=0.7400
+  matched_pairs:
+  - gold=11a.1 system=11a.1
+    text_metric=rougeL text_similarity=0.8000 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.7400
+    gold_text=Community support was organized in Brayle during community recovery.
+    system_text=Community support was organized in Brayle
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 3/header=fatalities
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3a.1 text="No deaths were reported in connection with Kellet Point fire."
+  unmatched_system: none
+
+Group 3/header=injuries
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3b.1 text="Injuries were reported during the Kellet Point fire."
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=1 system=1 matched=1 soft_f1=0.2667
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2667
+    gold_text=Damage was reported in Brayle during the Kellet Point fire.
+    system_text=Kellet Road has been closed in Kellet Point industrial estate and Merrin Canal due to the Kellet Point industrial fire.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4b.2 text="Reports stated that the Fallon Coatings warehouse was not involved in the reported damage."
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=3 system=1 matched=1 soft_f1=0.3593
+  matched_pairs:
+  - gold=4c.3 system=4b.1
+    text_metric=rougeL text_similarity=0.8148 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.7185
+    gold_text=Service was disrupted in Kellet Point industrial estate and Merrin Canal during the Kellet Point fire.
+    system_text=Service was disrupted in Kellet Point industrial estate and Merrin Canal.
+  unmatched_gold:
+  - id=4c.1 text="Kellet Road was closed in Kellet Point industrial estate and Merrin Canal."
+  - id=4c.2 text="Services were closed in Brayle during the Kellet Point fire."
+  unmatched_system: none
+
+Group 5/header=access constraints
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=5c.1 text="Sunder Flats was never subject to an evacuation."
+
+Group 5/header=displacement
+  gold=1 system=2 matched=1 soft_f1=0.3930
+  matched_pairs:
+  - gold=5b.1 system=5b.2
+    text_metric=rougeL text_similarity=0.7368 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5895
+    gold_text=About 300 people were displaced from Osmery during evacuation and displacement operations.
+    system_text=About 300 people were displaced from Osmery.
+  unmatched_gold: none
+  unmatched_system:
+  - id=5b.1 text="People moved away from Osmery due to the fire."
+
+Group 5/header=evacuations
+  gold=3 system=1 matched=1 soft_f1=0.3385
+  matched_pairs:
+  - gold=5a.2 system=5a.1
+    text_metric=rougeL text_similarity=0.8462 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.6769
+    gold_text=48 residents were evacuated from Brayle, and people were evacuated from Osmery.
+    system_text=About 2,300 residents were evacuated from Brayle, and people were evacuated from Osmery.
+  unmatched_gold:
+  - id=5a.1 text="A mandatory evacuation moved about 2,300 residents from Brayle during evacuation and displacement operations."
+  - id=5a.3 text="Sunder Flats was never subject to an evacuation during evacuation and displacement operations."
+  unmatched_system: none
+
+Group 6/header=hazard assessment
+  gold=1 system=1 matched=1 soft_f1=0.2286
+  matched_pairs:
+  - gold=6a.4 system=6a.1
+    text_metric=rougeL text_similarity=0.2857 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2286
+    gold_text=No contamination was recorded in Merrin Canal during the Kellet Point fire.
+    system_text=Fallon Coatings warehouse was not involved in the incident.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=aid receipt
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7c.1 text="Assistance was received in Brayle as response operations continued."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=4 matched=1 soft_f1=0.1658
+  matched_pairs:
+  - gold=7a.3 system=7a.2
+    text_metric=rougeL text_similarity=0.4348 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4145
+    gold_text=Provincial Environmental Protection Agency deployed as response operations continued.
+    system_text=Provincial Environmental Protection Agency and the operator were deployed to assist with the situation.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="Fallon Coatings has deployed to the Kellet Point industrial fire site."
+  - id=7a.3 text="Services were closed in Brayle"
+  - id=7a.4 text="A transfer was completed in Brayle"
+
+Group 8/header=information updates
+  gold=2 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=8b.1 text="It is possible that Provincial Environmental Protection Agency provided information during emergency communications."
+  - id=8b.3 text="Information was provided about Kellet Road during emergency communications."
+  unmatched_system:
+  - id=8b.1 text="Injuries were confirmed in Osmery."
+  - id=8b.2 text="No contamination was recorded in Merrin Canal."
+
+Group 8/header=requests for help
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=8c.1 text="Assistance was requested in Kellet Point industrial estate during emergency communications."
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.3840
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.4800 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3840
+    gold_text=A warning was issued for Brayle and Sunder Flats during emergency communications.
+    system_text=A warning was issued for Brayle due to the Kellet Point industrial fire.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

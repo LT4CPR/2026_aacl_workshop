@@ -1,0 +1,142 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-11T23:48:10.663159+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : collapse/collapse.W1.k1
+Crisis ID           : collapse
+Cell ID             : collapse.W1.k1
+System ID           : UW-sys3
+
+Gold                : sample_data\gold-output\collapse\collapse.W1.k1.report.json
+System              : sample_data\sysId-output\UW-sys3\collapse\collapse.W1.k1.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.5679
+  ROUGE-2 F1  : 0.2817
+  ROUGE-L F1  : 0.5185
+
+BERTScore (Subsection)
+  Precision   : 0.5356
+  Recall      : 0.7608
+  F1          : 0.6286
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=30 system_only_units=1 system_only_tokens=16 total_tokens=46
+  Recall denominator: matched_gold_tokens=51 gold_only_units=0 gold_only_tokens=0 total_tokens=51
+
+BLEURT (Subsection)
+  Score       : 0.5804
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.3237
+Soft Recall         : 0.4532
+Soft F1             : 0.3777
+
+Matched pairs       : 5
+Unmatched gold      : 0
+Unmatched system    : 2
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys3           0.5679      0.2817      0.5185        0.6286   0.5804            0.3777
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=4 system=4 matched=4 unmatched_gold=0 unmatched_system=0
+subsections: gold=5 system=6 matched=5 unmatched_gold=0 unmatched_system=1
+bullets: gold=5 system=7 matched=5 unmatched_gold=0 unmatched_system=2
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=5 system_units=6 matched_units=5 scored_units=5 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=51 system_ngrams=30 overlapping_ngrams=23
+  rouge2: gold_ngrams=46 system_ngrams=25 overlapping_ngrams=10
+  rougeL: gold_tokens=51 system_tokens=30 total_lcs_length=21
+
+============================================================
+Alignment Details
+============================================================
+Group 3/header=injuries
+  gold=1 system=1 matched=1 soft_f1=0.4933
+  matched_pairs:
+  - gold=3b.1 system=3a.1
+    text_metric=rougeL text_similarity=0.5333 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4933
+    gold_text=Injuries were confirmed and documented in Nerridge during the collapse response.
+    system_text=Injuries documented in Nerridge.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=0 system=2 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.1 text="The east wing collapse destroyed Aldan House and the east wing."
+  - id=4a.2 text="The collapse destroyed the building."
+
+Group 4/header=destruction
+  gold=1 system=1 matched=1 soft_f1=0.5667
+  matched_pairs:
+  - gold=4b.1 system=4b.1
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.1667 text_weight=0.8000 final_edge_score=0.5667
+    gold_text=The collapse destroyed Aldan House and its east wing.
+    system_text=Aldan House and east wing destroyed
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 4/header=service disruptions
+  gold=1 system=1 matched=1 soft_f1=0.5323
+  matched_pairs:
+  - gold=4c.1 system=4c.1
+    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.5323
+    gold_text=Service at Aldan House was reported disrupted.
+    system_text=Service disruption at Aldan House confirmed.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=1 matched=1 soft_f1=0.1467
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.1333 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.1467
+    gold_text=Provincial Urban Search and Rescue deployed during the collapse response.
+    system_text=PUSAR has deployed #Nerridge #CobbettRow.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.5270
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.6087 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.5270
+    gold_text=A warning was issued for Cobbett Row during the initial response to the collapse.
+    system_text=Warning issued for Cobbett Row due to building collapse.
+  unmatched_gold: none
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; system_only_groups; partial_key_overlap
