@@ -2,7 +2,7 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-09-17T19:19:17.586498+00:00
+Generated at UTC : 2026-09-23T19:52:29.280315+00:00
 Config           : config\evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 Subsection align: header_only
@@ -10,10 +10,10 @@ Subsection align: header_only
 Instance ID         : landslide/landslide.W1.k3
 Crisis ID           : landslide
 Cell ID             : landslide.W1.k3
-System ID           : UW-sys1
+System ID           : UW-sys39
 
 Gold                : sample_data\gold-output\landslide\landslide.W1.k3.report.json
-System              : sample_data\sysId-output\UW-sys1\landslide\landslide.W1.k3.report.json
+System              : sample_data\sysId-output\UW-sys39\landslide\landslide.W1.k3.report.json
 
 ============================================================
 Evaluation Summary
@@ -21,80 +21,74 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.4516
-  ROUGE-2 F1  : 0.1379
-  ROUGE-L F1  : 0.3548
+  ROUGE-1 F1  : 0.2000
+  ROUGE-2 F1  : 0.0000
+  ROUGE-L F1  : 0.1333
 
 BERTScore (Subsection)
-  Precision   : 0.6110
-  Recall      : 0.6667
-  F1          : 0.6376
+  Precision   : 0.7855
+  Recall      : 0.2832
+  F1          : 0.4163
   Unmatched policy: side_specific_zero
-  Precision denominator: matched_system_tokens=37 system_only_units=0 system_only_tokens=0 total_tokens=37
-  Recall denominator: matched_gold_tokens=25 gold_only_units=0 gold_only_tokens=0 total_tokens=25
+  Precision denominator: matched_system_tokens=5 system_only_units=0 system_only_tokens=0 total_tokens=5
+  Recall denominator: matched_gold_tokens=12 gold_only_units=1 gold_only_tokens=13 total_tokens=25
 
 BLEURT (Subsection)
-  Score       : 0.4928
+  Score       : 0.3236
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.1250
-Soft Recall         : 0.3125
-Soft F1             : 0.1786
+Soft Precision      : 0.1882
+Soft Recall         : 0.0941
+Soft F1             : 0.1255
 
-Matched pairs       : 2
-Unmatched gold      : 0
-Unmatched system    : 3
+Matched pairs       : 1
+Unmatched gold      : 1
+Unmatched system    : 0
 
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys1           0.4516      0.1379      0.3548        0.6376   0.4928            0.1786
+UW-sys39          0.2000      0.0000      0.1333        0.4163   0.3236            0.1255
 
 ============================================================
 Structure Summary
 ============================================================
-sections: gold=2 system=2 matched=2 unmatched_gold=0 unmatched_system=0
-subsections: gold=2 system=2 matched=2 unmatched_gold=0 unmatched_system=0
-bullets: gold=2 system=5 matched=2 unmatched_gold=0 unmatched_system=3
+sections: gold=2 system=1 matched=1 unmatched_gold=1 unmatched_system=0
+subsections: gold=2 system=1 matched=1 unmatched_gold=1 unmatched_system=0
+bullets: gold=2 system=1 matched=1 unmatched_gold=1 unmatched_system=0
 
 ============================================================
 ROUGE Diagnostics
 ============================================================
-subsection: gold_units=2 system_units=2 matched_units=2 scored_units=2 skipped_both_empty=0
+subsection: gold_units=2 system_units=1 matched_units=1 scored_units=1 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=25 system_ngrams=37 overlapping_ngrams=14
-  rouge2: gold_ngrams=23 system_ngrams=35 overlapping_ngrams=4
-  rougeL: gold_tokens=25 system_tokens=37 total_lcs_length=11
+  rouge1: gold_ngrams=25 system_ngrams=5 overlapping_ngrams=3
+  rouge2: gold_ngrams=23 system_ngrams=4 overlapping_ngrams=0
+  rougeL: gold_tokens=25 system_tokens=5 total_lcs_length=2
 
 ============================================================
 Alignment Details
 ============================================================
 Group 5/header=evacuations
-  gold=1 system=3 matched=1 soft_f1=0.1684
-  matched_pairs:
-  - gold=5a.1 system=5a.3
-    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3368
-    gold_text=About 60 households were evacuated from Withel terraces during evacuation and displacement operations.
-    system_text=People were evacuated from the terraces.
-  unmatched_gold: none
-  unmatched_system:
-  - id=5a.1 text="180 people were evacuated: About 60 households, About 60 households, and About 60 households."
-  - id=5a.2 text="People were evacuated."
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5a.1 text="About 60 households were evacuated from Withel terraces during evacuation and displacement operations."
+  unmatched_system: none
 
 Group 8/header=warnings and alerts
-  gold=1 system=2 matched=1 soft_f1=0.1922
+  gold=1 system=1 matched=1 soft_f1=0.1882
   matched_pairs:
   - gold=8a.1 system=8a.1
-    text_metric=rougeL text_similarity=0.2353 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.2882
+    text_metric=rougeL text_similarity=0.2353 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1882
     gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
     system_text=Authorities issued a public warning.
   unmatched_gold: none
-  unmatched_system:
-  - id=8a.2 text="Authorities issued a public warning about the terraces #Withel."
+  unmatched_system: none
 
 ============================================================
 Warnings
@@ -104,4 +98,4 @@ skipped_both_empty_units=0
 missing_tweet_ids: gold_units=0 system_units=0
 skipped_groups: none
 metric_failures: none
-warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; partial_key_overlap

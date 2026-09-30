@@ -2,7 +2,7 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-09-17T19:26:33.951098+00:00
+Generated at UTC : 2026-09-24T21:30:10.577483+00:00
 Config           : config\evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 Subsection align: header_only
@@ -10,10 +10,10 @@ Subsection align: header_only
 Instance ID         : damsafety/damsafety.W3.k2
 Crisis ID           : damsafety
 Cell ID             : damsafety.W3.k2
-System ID           : UW-sys18
+System ID           : UW-sys40
 
 Gold                : sample_data\gold-output\damsafety\damsafety.W3.k2.report.json
-System              : sample_data\sysId-output\UW-sys18\damsafety\damsafety.W3.k2.report.json
+System              : sample_data\sysId-output\UW-sys40\damsafety\damsafety.W3.k2.report.json
 
 ============================================================
 Evaluation Summary
@@ -21,94 +21,99 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.4762
-  ROUGE-2 F1  : 0.2931
-  ROUGE-L F1  : 0.3810
+  ROUGE-1 F1  : 0.3846
+  ROUGE-2 F1  : 0.2314
+  ROUGE-L F1  : 0.3077
 
 BERTScore (Subsection)
-  Precision   : 0.5800
-  Recall      : 0.5097
-  F1          : 0.5426
+  Precision   : 0.4906
+  Recall      : 0.4060
+  F1          : 0.4443
   Unmatched policy: side_specific_zero
-  Precision denominator: matched_system_tokens=42 system_only_units=2 system_only_tokens=11 total_tokens=53
-  Recall denominator: matched_gold_tokens=63 gold_only_units=2 gold_only_tokens=18 total_tokens=81
+  Precision denominator: matched_system_tokens=46 system_only_units=2 system_only_tokens=14 total_tokens=60
+  Recall denominator: matched_gold_tokens=53 gold_only_units=3 gold_only_tokens=28 total_tokens=81
 
 BLEURT (Subsection)
-  Score       : 0.5771
+  Score       : 0.5102
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.2143
-Soft Recall         : 0.3062
-Soft F1             : 0.2521
+Soft Precision      : 0.1241
+Soft Recall         : 0.2127
+Soft F1             : 0.1567
 
-Matched pairs       : 5
-Unmatched gold      : 2
-Unmatched system    : 5
+Matched pairs       : 4
+Unmatched gold      : 3
+Unmatched system    : 8
 
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys18          0.4762      0.2931      0.3810        0.5426   0.5771            0.2521
+UW-sys40          0.3846      0.2314      0.3077        0.4443   0.5102            0.1567
 
 ============================================================
 Structure Summary
 ============================================================
-sections: gold=4 system=5 matched=4 unmatched_gold=0 unmatched_system=1
-subsections: gold=6 system=6 matched=4 unmatched_gold=2 unmatched_system=2
-bullets: gold=7 system=10 matched=5 unmatched_gold=2 unmatched_system=5
+sections: gold=4 system=3 matched=3 unmatched_gold=1 unmatched_system=0
+subsections: gold=6 system=5 matched=3 unmatched_gold=3 unmatched_system=2
+bullets: gold=7 system=12 matched=4 unmatched_gold=3 unmatched_system=8
 
 ============================================================
 ROUGE Diagnostics
 ============================================================
-subsection: gold_units=6 system_units=6 matched_units=4 scored_units=4 skipped_both_empty=0
+subsection: gold_units=6 system_units=5 matched_units=3 scored_units=3 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=82 system_ngrams=44 overlapping_ngrams=30
-  rouge2: gold_ngrams=76 system_ngrams=40 overlapping_ngrams=17
-  rougeL: gold_tokens=82 system_tokens=44 total_lcs_length=24
+  rouge1: gold_ngrams=82 system_ngrams=48 overlapping_ngrams=25
+  rouge2: gold_ngrams=76 system_ngrams=45 overlapping_ngrams=14
+  rougeL: gold_tokens=82 system_tokens=48 total_lcs_length=20
 
 ============================================================
 Alignment Details
 ============================================================
 Group 4/header=damage
-  gold=1 system=2 matched=1 soft_f1=0.3726
+  gold=1 system=3 matched=1 soft_f1=0.2333
   matched_pairs:
   - gold=4a.1 system=4a.1
-    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.5590
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4667
     gold_text=Halvern Dam and the right abutment were damaged.
-    system_text=The right abutment was damaged.
+    system_text=Halvern Dam was damaged.
   unmatched_gold: none
   unmatched_system:
-  - id=4a.2 text="Halvern Dam was damaged."
+  - id=4a.2 text="Infrastructure was damaged."
+  - id=4a.3 text="The dam was damaged."
+
+Group 4/header=restoration progress
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.1 text="Vintage pump organ resumed operations at the valley museum."
 
 Group 5/header=displacement
-  gold=1 system=1 matched=1 soft_f1=0.4667
-  matched_pairs:
-  - gold=5b.1 system=5b.1
-    text_metric=rougeL text_similarity=0.5333 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.4667
-    gold_text=People were displaced from Quennard during evacuation and displacement operations.
-    system_text=Travellers were displaced from Quennard.
-  unmatched_gold: none
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5b.1 text="People were displaced from Quennard during evacuation and displacement operations."
   unmatched_system: none
 
 Group 5/header=evacuations
-  gold=2 system=4 matched=2 soft_f1=0.2963
+  gold=2 system=4 matched=2 soft_f1=0.2519
   matched_pairs:
   - gold=5a.1 system=5a.1
     text_metric=rougeL text_similarity=0.4444 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3556
     gold_text=A mandatory evacuation moved roughly 11,800 residents from Brindlemark, and people were evacuated from Ferris Hollow and the alert level was raised from Yellow to Orange.
     system_text=Roughly 11,800 residents were evacuated from the town.
-  - gold=5a.2 system=5a.3
-    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
+  - gold=5a.2 system=5a.4
+    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4000
     gold_text=People were evacuated from Brindlemark during evacuation and displacement operations.
-    system_text=People were evacuated from Brindlemark.
+    system_text=People were evacuated from Ferris Hollow.
   unmatched_gold: none
   unmatched_system:
   - id=5a.2 text="People were evacuated."
-  - id=5a.4 text="Roughly 11,800 residents were evacuated from Brindlemark."
+  - id=5a.3 text="Roughly 11,800 residents were evacuated from Brindlemark."
 
 Group 7/header=aid delivery
   gold=1 system=0 matched=0 soft_f1=0.0000
@@ -118,21 +123,23 @@ Group 7/header=aid delivery
   unmatched_system: none
 
 Group 7/header=operational response
-  gold=1 system=1 matched=1 soft_f1=0.2286
-  matched_pairs:
-  - gold=7a.4 system=7a.1
-    text_metric=rougeL text_similarity=0.2857 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2286
-    gold_text=Brindlemark Police deployed to Brindlemark as response operations continued.
-    system_text=The police responded at Brindlemark.
-  unmatched_gold: none
-  unmatched_system: none
-
-Group 8/header=information updates
   gold=1 system=0 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold:
-  - id=8b.3 text="Sorrel Basin Water Authority provided information during emergency communications."
+  - id=7a.4 text="Brindlemark Police deployed to Brindlemark as response operations continued."
   unmatched_system: none
+
+Group 8/header=information updates
+  gold=1 system=3 matched=1 soft_f1=0.1333
+  matched_pairs:
+  - gold=8b.3 system=8b.1
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2667
+    gold_text=Sorrel Basin Water Authority provided information during emergency communications.
+    system_text=Sources provided information.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.2 text="Sources reported #HalvernDam."
+  - id=8b.3 text="Sources reported Brindlemark farmers market."
 
 Group 8/header=warnings and alerts
   gold=0 system=1 matched=0 soft_f1=0.0000
@@ -140,13 +147,6 @@ Group 8/header=warnings and alerts
   unmatched_gold: none
   unmatched_system:
   - id=8a.1 text="Authorities issued a public warning."
-
-Group 9/header=aid delivery
-  gold=0 system=1 matched=0 soft_f1=0.0000
-  matched_pairs: none
-  unmatched_gold: none
-  unmatched_system:
-  - id=9a.1 text="Relief organisations provided assistance at Quennard."
 
 ============================================================
 Warnings

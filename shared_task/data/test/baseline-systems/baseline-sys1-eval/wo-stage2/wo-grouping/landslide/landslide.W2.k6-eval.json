@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-09-17T19:26:33.951098+00:00",
+  "generated_at_utc": "2026-09-24T21:30:10.577483+00:00",
   "config": "config\\evaluation.yaml",
   "gold_dir": "sample_data\\gold-output",
-  "system_dir": "sample_data\\sysId-output\\UW-sys18",
-  "system_id": "UW-sys18",
+  "system_dir": "sample_data\\sysId-output\\UW-sys40",
+  "system_id": "UW-sys40",
   "evaluation_scope": {
     "sections": [
       "3",
@@ -35,9 +35,9 @@
       "cell_id": "landslide.W2.k6",
       "window_id": "W2",
       "replicate_id": "k6",
-      "sys_id": "UW-sys18",
+      "sys_id": "UW-sys40",
       "gold_file": "sample_data\\gold-output\\landslide\\landslide.W2.k6.report.json",
-      "system_file": "sample_data\\sysId-output\\UW-sys18\\landslide\\landslide.W2.k6.report.json",
+      "system_file": "sample_data\\sysId-output\\UW-sys40\\landslide\\landslide.W2.k6.report.json",
       "status": "scored",
       "summary": {
         "rouge": {
@@ -70,40 +70,40 @@
           ],
           "subsection_alignment_method": "header_only",
           "aggregation": "micro",
-          "n_scored": 6,
+          "n_scored": 5,
           "n_skipped_both_empty": 0,
           "score_policy": null,
           "zero_score_reason": null,
           "rouge1": {
-            "precision": 0.5306,
-            "recall": 0.4333,
-            "fmeasure": 0.4771
+            "precision": 0.4286,
+            "recall": 0.375,
+            "fmeasure": 0.4
           },
           "rouge2": {
-            "precision": 0.3152,
-            "recall": 0.2589,
-            "fmeasure": 0.2843
+            "precision": 0.21,
+            "recall": 0.1875,
+            "fmeasure": 0.1981
           },
           "rougeL": {
-            "precision": 0.4388,
-            "recall": 0.3583,
-            "fmeasure": 0.3945
+            "precision": 0.3905,
+            "recall": 0.3417,
+            "fmeasure": 0.3644
           },
           "micro": {
             "rouge1": {
-              "precision": 0.5306,
-              "recall": 0.4333,
-              "fmeasure": 0.4771
+              "precision": 0.4286,
+              "recall": 0.375,
+              "fmeasure": 0.4
             },
             "rouge2": {
-              "precision": 0.3152,
-              "recall": 0.2589,
-              "fmeasure": 0.2843
+              "precision": 0.21,
+              "recall": 0.1875,
+              "fmeasure": 0.1981
             },
             "rougeL": {
-              "precision": 0.4388,
-              "recall": 0.3583,
-              "fmeasure": 0.3945
+              "precision": 0.3905,
+              "recall": 0.3417,
+              "fmeasure": 0.3644
             },
             "denominator_policy": "whole_gold"
           }
@@ -138,28 +138,28 @@
           ],
           "subsection_alignment_method": "header_only",
           "aggregation": "micro",
-          "n_scored": 6,
+          "n_scored": 5,
           "n_skipped_both_empty": 0,
           "score_policy": null,
           "zero_score_reason": null,
-          "precision": 0.466674,
-          "recall": 0.554468,
-          "f1": 0.506797,
+          "precision": 0.367194,
+          "recall": 0.450708,
+          "f1": 0.404687,
           "unmatched_penalty": {
             "policy": "side_specific_zero",
-            "matched_system_token_weight": 98,
-            "system_only_units": 4,
-            "system_only_token_weight": 46,
-            "precision_denominator_token_weight": 144,
-            "matched_gold_token_weight": 97,
-            "gold_only_units": 2,
-            "gold_only_token_weight": 23,
+            "matched_system_token_weight": 105,
+            "system_only_units": 5,
+            "system_only_token_weight": 64,
+            "precision_denominator_token_weight": 169,
+            "matched_gold_token_weight": 86,
+            "gold_only_units": 3,
+            "gold_only_token_weight": 34,
             "recall_denominator_token_weight": 120
           },
           "micro": {
-            "precision": 0.466674,
-            "recall": 0.554468,
-            "f1": 0.506797,
+            "precision": 0.367194,
+            "recall": 0.450708,
+            "f1": 0.404687,
             "model_type": "microsoft/deberta-xlarge-mnli",
             "unmatched_policy": "side_specific_zero",
             "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
@@ -195,13 +195,13 @@
           ],
           "subsection_alignment_method": "header_only",
           "aggregation": "micro",
-          "n_scored": 6,
+          "n_scored": 5,
           "n_skipped_both_empty": 0,
           "score_policy": null,
           "zero_score_reason": null,
-          "score": 0.502338,
+          "score": 0.486936,
           "micro": {
-            "score": 0.502338,
+            "score": 0.486936,
             "config_name": "BLEURT-20"
           }
         },
@@ -236,18 +236,20 @@
             {
               "code": "gold_only_groups",
               "message": "gold has groups with no matching system group key",
-              "count": 2,
+              "count": 3,
               "groups": [
                 "10/administrative and economic measures",
-                "10/meetings and decisions"
+                "10/meetings and decisions",
+                "5/displacement"
               ]
             },
             {
               "code": "system_only_groups",
               "message": "system has groups with no matching gold group key",
-              "count": 4,
+              "count": 5,
               "groups": [
-                "10/policy changes",
+                "10/meetings",
+                "10/transfers",
                 "11/public sentiment",
                 "6/hazard assessment",
                 "8/information updates"
@@ -256,30 +258,30 @@
             {
               "code": "partial_key_overlap",
               "message": "only some group keys overlap between gold and system",
-              "shared_groups": 6,
-              "gold_only_groups": 2,
-              "system_only_groups": 4
+              "shared_groups": 5,
+              "gold_only_groups": 3,
+              "system_only_groups": 5
             }
           ],
           "scope": "subsection",
           "metric": "rougeL",
           "subsection_alignment_method": "header_only",
           "threshold": 0.1,
-          "micro_soft_precision": 0.16577020574311596,
-          "micro_soft_recall": 0.3616804488940712,
-          "micro_soft_f1": 0.22734199644770192,
-          "structure_recall": 0.75,
-          "structure_precision": 0.6,
-          "matched_pairs": 9,
+          "micro_soft_precision": 0.11503794598442986,
+          "micro_soft_recall": 0.2928238625058215,
+          "micro_soft_f1": 0.1651826916699506,
+          "structure_recall": 0.625,
+          "structure_precision": 0.5,
+          "matched_pairs": 8,
           "gold_units": 11,
-          "system_units": 24,
+          "system_units": 28,
           "warning_count": 5
         }
       },
       "evaluation": {
-        "generated_at_utc": "2026-09-17T19:24:08.128401+00:00",
+        "generated_at_utc": "2026-09-24T21:27:39.951054+00:00",
         "gold": "sample_data\\gold-output\\landslide\\landslide.W2.k6.report.json",
-        "system": "sample_data\\sysId-output\\UW-sys18\\landslide\\landslide.W2.k6.report.json",
+        "system": "sample_data\\sysId-output\\UW-sys40\\landslide\\landslide.W2.k6.report.json",
         "config": "config\\evaluation.yaml",
         "view": "single",
         "evaluation_scope": {
@@ -325,7 +327,7 @@
               }
             ],
             "aggregation": "micro",
-            "n_scored": 6,
+            "n_scored": 5,
             "n_skipped_both_empty": 0,
             "items": [
               {
@@ -339,19 +341,19 @@
                 "reference_subsection_header": "Damage",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.6316,
+                    "precision": 0.5217,
                     "recall": 0.6667,
-                    "fmeasure": 0.6486
+                    "fmeasure": 0.5854
                   },
                   "rouge2": {
-                    "precision": 0.2222,
-                    "recall": 0.2353,
-                    "fmeasure": 0.2286
+                    "precision": 0.2273,
+                    "recall": 0.2941,
+                    "fmeasure": 0.2564
                   },
                   "rougeL": {
-                    "precision": 0.3684,
-                    "recall": 0.3889,
-                    "fmeasure": 0.3784
+                    "precision": 0.3913,
+                    "recall": 0.5,
+                    "fmeasure": 0.439
                   }
                 }
               },
@@ -366,19 +368,19 @@
                 "reference_subsection_header": "Restoration progress",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.3846,
-                    "recall": 0.5,
-                    "fmeasure": 0.4348
+                    "precision": 0.3333,
+                    "recall": 0.2,
+                    "fmeasure": 0.25
                   },
                   "rouge2": {
-                    "precision": 0.1667,
-                    "recall": 0.2222,
-                    "fmeasure": 0.1905
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "fmeasure": 0.0
                   },
                   "rougeL": {
-                    "precision": 0.3077,
-                    "recall": 0.4,
-                    "fmeasure": 0.3478
+                    "precision": 0.3333,
+                    "recall": 0.2,
+                    "fmeasure": 0.25
                   }
                 }
               },
@@ -393,48 +395,31 @@
                 "reference_subsection_header": "Service disruptions",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.4545,
-                    "recall": 0.7143,
-                    "fmeasure": 0.5556
+                    "precision": 0.8889,
+                    "recall": 0.381,
+                    "fmeasure": 0.5333
                   },
                   "rouge2": {
-                    "precision": 0.3438,
-                    "recall": 0.55,
-                    "fmeasure": 0.4231
+                    "precision": 0.25,
+                    "recall": 0.1,
+                    "fmeasure": 0.1429
                   },
                   "rougeL": {
-                    "precision": 0.3636,
-                    "recall": 0.5714,
-                    "fmeasure": 0.4444
+                    "precision": 0.7778,
+                    "recall": 0.3333,
+                    "fmeasure": 0.4667
                   }
                 }
               },
               {
                 "unit_id": "subsection:5/header=displacement",
-                "status": "matched",
+                "status": "reference_only",
                 "subsection_alignment_method": "header_only",
                 "subsection_alignment_key": "header=displacement",
-                "candidate_subsection_id": "5b",
+                "candidate_subsection_id": null,
                 "reference_subsection_id": "5b",
-                "candidate_subsection_header": "Displacement",
-                "reference_subsection_header": "Displacement",
-                "scores": {
-                  "rouge1": {
-                    "precision": 0.8,
-                    "recall": 0.3636,
-                    "fmeasure": 0.5
-                  },
-                  "rouge2": {
-                    "precision": 0.75,
-                    "recall": 0.3,
-                    "fmeasure": 0.4286
-                  },
-                  "rougeL": {
-                    "precision": 0.8,
-                    "recall": 0.3636,
-                    "fmeasure": 0.5
-                  }
-                }
+                "candidate_subsection_header": null,
+                "reference_subsection_header": "Displacement"
               },
               {
                 "unit_id": "subsection:5/header=evacuations",
@@ -447,19 +432,19 @@
                 "reference_subsection_header": "Evacuations",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.7333,
-                    "recall": 0.44,
-                    "fmeasure": 0.55
+                    "precision": 0.3913,
+                    "recall": 0.72,
+                    "fmeasure": 0.507
                   },
                   "rouge2": {
-                    "precision": 0.5714,
-                    "recall": 0.3333,
-                    "fmeasure": 0.4211
+                    "precision": 0.2889,
+                    "recall": 0.5417,
+                    "fmeasure": 0.3768
                   },
                   "rougeL": {
-                    "precision": 0.7333,
-                    "recall": 0.44,
-                    "fmeasure": 0.55
+                    "precision": 0.3913,
+                    "recall": 0.72,
+                    "fmeasure": 0.507
                   }
                 }
               },
@@ -494,19 +479,19 @@
                 "reference_subsection_header": "Warnings and alerts",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.3846,
+                    "precision": 0.2381,
                     "recall": 0.4167,
-                    "fmeasure": 0.4
+                    "fmeasure": 0.303
                   },
                   "rouge2": {
-                    "precision": 0.0833,
+                    "precision": 0.05,
                     "recall": 0.0909,
-                    "fmeasure": 0.087
+                    "fmeasure": 0.0645
                   },
                   "rougeL": {
-                    "precision": 0.3846,
+                    "precision": 0.2381,
                     "recall": 0.4167,
-                    "fmeasure": 0.4
+                    "fmeasure": 0.303
                   }
                 }
               },
@@ -521,6 +506,16 @@
                 "reference_subsection_header": "Administrative and economic measures"
               },
               {
+                "unit_id": "subsection:10/header=meetings",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=meetings",
+                "candidate_subsection_id": "10b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Meetings",
+                "reference_subsection_header": null
+              },
+              {
                 "unit_id": "subsection:10/header=meetings and decisions",
                 "status": "reference_only",
                 "subsection_alignment_method": "header_only",
@@ -531,13 +526,13 @@
                 "reference_subsection_header": "Meetings and decisions"
               },
               {
-                "unit_id": "subsection:10/header=policy changes",
+                "unit_id": "subsection:10/header=transfers",
                 "status": "candidate_only",
                 "subsection_alignment_method": "header_only",
-                "subsection_alignment_key": "header=policy changes",
+                "subsection_alignment_key": "header=transfers",
                 "candidate_subsection_id": "10a",
                 "reference_subsection_id": null,
-                "candidate_subsection_header": "Policy changes",
+                "candidate_subsection_header": "Transfers",
                 "reference_subsection_header": null
               },
               {
@@ -554,69 +549,69 @@
             "aggregates": {
               "micro": {
                 "rouge1": {
-                  "precision": 0.5306,
-                  "recall": 0.4333,
-                  "fmeasure": 0.4771
+                  "precision": 0.4286,
+                  "recall": 0.375,
+                  "fmeasure": 0.4
                 },
                 "rouge2": {
-                  "precision": 0.3152,
-                  "recall": 0.2589,
-                  "fmeasure": 0.2843
+                  "precision": 0.21,
+                  "recall": 0.1875,
+                  "fmeasure": 0.1981
                 },
                 "rougeL": {
-                  "precision": 0.4388,
-                  "recall": 0.3583,
-                  "fmeasure": 0.3945
+                  "precision": 0.3905,
+                  "recall": 0.3417,
+                  "fmeasure": 0.3644
                 },
                 "denominator_policy": "whole_gold"
               }
             },
             "overall": {
               "rouge1": {
-                "precision": 0.5306,
-                "recall": 0.4333,
-                "fmeasure": 0.4771
+                "precision": 0.4286,
+                "recall": 0.375,
+                "fmeasure": 0.4
               },
               "rouge2": {
-                "precision": 0.3152,
-                "recall": 0.2589,
-                "fmeasure": 0.2843
+                "precision": 0.21,
+                "recall": 0.1875,
+                "fmeasure": 0.1981
               },
               "rougeL": {
-                "precision": 0.4388,
-                "recall": 0.3583,
-                "fmeasure": 0.3945
+                "precision": 0.3905,
+                "recall": 0.3417,
+                "fmeasure": 0.3644
               },
               "denominator_policy": "whole_gold"
             },
             "diagnostics": {
               "gold_units": 8,
               "system_units": 10,
-              "matched_units": 6,
-              "scored_units": 6,
+              "matched_units": 5,
+              "scored_units": 5,
               "skipped_both_empty_units": 0,
               "denominator": "whole_gold",
               "denominator_policy": "whole_gold",
               "rouge1": {
                 "gold_ngrams": 120,
-                "matched_gold_ngrams": 97,
+                "matched_gold_ngrams": 86,
                 "whole_gold_ngrams": 120,
-                "system_ngrams": 98,
-                "overlapping_ngrams": 52
+                "system_ngrams": 105,
+                "overlapping_ngrams": 45
               },
               "rouge2": {
                 "gold_ngrams": 112,
-                "matched_gold_ngrams": 91,
+                "matched_gold_ngrams": 81,
                 "whole_gold_ngrams": 112,
-                "system_ngrams": 92,
-                "overlapping_ngrams": 29
+                "system_ngrams": 100,
+                "overlapping_ngrams": 21
               },
               "rougeL": {
                 "gold_tokens": 120,
-                "matched_gold_tokens": 97,
+                "matched_gold_tokens": 86,
                 "whole_gold_tokens": 120,
-                "system_tokens": 98,
-                "total_lcs_length": 43
+                "system_tokens": 105,
+                "total_lcs_length": 41
               }
             },
             "subsection_alignment_method": "header_only"
@@ -649,7 +644,7 @@
               }
             ],
             "aggregation": "micro",
-            "n_scored": 6,
+            "n_scored": 5,
             "n_skipped_both_empty": 0,
             "items": [
               {
@@ -662,9 +657,9 @@
                 "candidate_subsection_header": "Damage",
                 "reference_subsection_header": "Damage",
                 "scores": {
-                  "precision": 0.703804,
-                  "recall": 0.703146,
-                  "f1": 0.703475
+                  "precision": 0.589305,
+                  "recall": 0.611074,
+                  "f1": 0.599992
                 }
               },
               {
@@ -677,9 +672,9 @@
                 "candidate_subsection_header": "Restoration progress",
                 "reference_subsection_header": "Restoration progress",
                 "scores": {
-                  "precision": 0.631258,
-                  "recall": 0.706322,
-                  "f1": 0.666684
+                  "precision": 0.660155,
+                  "recall": 0.652995,
+                  "f1": 0.656556
                 }
               },
               {
@@ -692,25 +687,20 @@
                 "candidate_subsection_header": "Service disruptions",
                 "reference_subsection_header": "Service disruptions",
                 "scores": {
-                  "precision": 0.698281,
-                  "recall": 0.733666,
-                  "f1": 0.715536
+                  "precision": 0.76612,
+                  "recall": 0.646441,
+                  "f1": 0.701211
                 }
               },
               {
                 "unit_id": "subsection:5/header=displacement",
-                "status": "matched",
+                "status": "reference_only",
                 "subsection_alignment_method": "header_only",
                 "subsection_alignment_key": "header=displacement",
-                "candidate_subsection_id": "5b",
+                "candidate_subsection_id": null,
                 "reference_subsection_id": "5b",
-                "candidate_subsection_header": "Displacement",
-                "reference_subsection_header": "Displacement",
-                "scores": {
-                  "precision": 0.814594,
-                  "recall": 0.701598,
-                  "f1": 0.753885
-                }
+                "candidate_subsection_header": null,
+                "reference_subsection_header": "Displacement"
               },
               {
                 "unit_id": "subsection:5/header=evacuations",
@@ -722,9 +712,9 @@
                 "candidate_subsection_header": "Evacuations",
                 "reference_subsection_header": "Evacuations",
                 "scores": {
-                  "precision": 0.624853,
-                  "recall": 0.616008,
-                  "f1": 0.620399
+                  "precision": 0.561883,
+                  "recall": 0.629061,
+                  "f1": 0.593577
                 }
               },
               {
@@ -757,9 +747,9 @@
                 "candidate_subsection_header": "Warnings and alerts",
                 "reference_subsection_header": "Warnings and alerts",
                 "scores": {
-                  "precision": 0.702573,
-                  "recall": 0.690962,
-                  "f1": 0.696719
+                  "precision": 0.561867,
+                  "recall": 0.604486,
+                  "f1": 0.582398
                 }
               },
               {
@@ -773,6 +763,16 @@
                 "reference_subsection_header": "Administrative and economic measures"
               },
               {
+                "unit_id": "subsection:10/header=meetings",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=meetings",
+                "candidate_subsection_id": "10b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Meetings",
+                "reference_subsection_header": null
+              },
+              {
                 "unit_id": "subsection:10/header=meetings and decisions",
                 "status": "reference_only",
                 "subsection_alignment_method": "header_only",
@@ -783,13 +783,13 @@
                 "reference_subsection_header": "Meetings and decisions"
               },
               {
-                "unit_id": "subsection:10/header=policy changes",
+                "unit_id": "subsection:10/header=transfers",
                 "status": "candidate_only",
                 "subsection_alignment_method": "header_only",
-                "subsection_alignment_key": "header=policy changes",
+                "subsection_alignment_key": "header=transfers",
                 "candidate_subsection_id": "10a",
                 "reference_subsection_id": null,
-                "candidate_subsection_header": "Policy changes",
+                "candidate_subsection_header": "Transfers",
                 "reference_subsection_header": null
               },
               {
@@ -805,31 +805,31 @@
             ],
             "aggregates": {
               "micro": {
-                "precision": 0.466674,
-                "recall": 0.554468,
-                "f1": 0.506797,
+                "precision": 0.367194,
+                "recall": 0.450708,
+                "f1": 0.404687,
                 "model_type": "microsoft/deberta-xlarge-mnli",
                 "unmatched_policy": "side_specific_zero",
                 "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
               }
             },
             "overall": {
-              "precision": 0.466674,
-              "recall": 0.554468,
-              "f1": 0.506797,
+              "precision": 0.367194,
+              "recall": 0.450708,
+              "f1": 0.404687,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "unmatched_policy": "side_specific_zero",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
             },
             "unmatched_penalty": {
               "policy": "side_specific_zero",
-              "matched_system_token_weight": 98,
-              "system_only_units": 4,
-              "system_only_token_weight": 46,
-              "precision_denominator_token_weight": 144,
-              "matched_gold_token_weight": 97,
-              "gold_only_units": 2,
-              "gold_only_token_weight": 23,
+              "matched_system_token_weight": 105,
+              "system_only_units": 5,
+              "system_only_token_weight": 64,
+              "precision_denominator_token_weight": 169,
+              "matched_gold_token_weight": 86,
+              "gold_only_units": 3,
+              "gold_only_token_weight": 34,
               "recall_denominator_token_weight": 120
             },
             "subsection_alignment_method": "header_only"
@@ -862,7 +862,7 @@
               }
             ],
             "aggregation": "micro",
-            "n_scored": 6,
+            "n_scored": 5,
             "n_skipped_both_empty": 0,
             "items": [
               {
@@ -874,7 +874,7 @@
                 "reference_subsection_id": "4a",
                 "candidate_subsection_header": "Damage",
                 "reference_subsection_header": "Damage",
-                "score": 0.568775
+                "score": 0.523806
               },
               {
                 "unit_id": "subsection:4/header=restoration progress",
@@ -885,7 +885,7 @@
                 "reference_subsection_id": "4d",
                 "candidate_subsection_header": "Restoration progress",
                 "reference_subsection_header": "Restoration progress",
-                "score": 0.37794
+                "score": 0.308809
               },
               {
                 "unit_id": "subsection:4/header=service disruptions",
@@ -896,18 +896,17 @@
                 "reference_subsection_id": "4c",
                 "candidate_subsection_header": "Service disruptions",
                 "reference_subsection_header": "Service disruptions",
-                "score": 0.454365
+                "score": 0.40077
               },
               {
                 "unit_id": "subsection:5/header=displacement",
-                "status": "matched",
+                "status": "reference_only",
                 "subsection_alignment_method": "header_only",
                 "subsection_alignment_key": "header=displacement",
-                "candidate_subsection_id": "5b",
+                "candidate_subsection_id": null,
                 "reference_subsection_id": "5b",
-                "candidate_subsection_header": "Displacement",
-                "reference_subsection_header": "Displacement",
-                "score": 0.472409
+                "candidate_subsection_header": null,
+                "reference_subsection_header": "Displacement"
               },
               {
                 "unit_id": "subsection:5/header=evacuations",
@@ -918,7 +917,7 @@
                 "reference_subsection_id": "5a",
                 "candidate_subsection_header": "Evacuations",
                 "reference_subsection_header": "Evacuations",
-                "score": 0.531401
+                "score": 0.565805
               },
               {
                 "unit_id": "subsection:6/header=hazard assessment",
@@ -949,7 +948,7 @@
                 "reference_subsection_id": "8a",
                 "candidate_subsection_header": "Warnings and alerts",
                 "reference_subsection_header": "Warnings and alerts",
-                "score": 0.557189
+                "score": 0.566552
               },
               {
                 "unit_id": "subsection:10/header=administrative and economic measures",
@@ -962,6 +961,16 @@
                 "reference_subsection_header": "Administrative and economic measures"
               },
               {
+                "unit_id": "subsection:10/header=meetings",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=meetings",
+                "candidate_subsection_id": "10b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Meetings",
+                "reference_subsection_header": null
+              },
+              {
                 "unit_id": "subsection:10/header=meetings and decisions",
                 "status": "reference_only",
                 "subsection_alignment_method": "header_only",
@@ -972,13 +981,13 @@
                 "reference_subsection_header": "Meetings and decisions"
               },
               {
-                "unit_id": "subsection:10/header=policy changes",
+                "unit_id": "subsection:10/header=transfers",
                 "status": "candidate_only",
                 "subsection_alignment_method": "header_only",
-                "subsection_alignment_key": "header=policy changes",
+                "subsection_alignment_key": "header=transfers",
                 "candidate_subsection_id": "10a",
                 "reference_subsection_id": null,
-                "candidate_subsection_header": "Policy changes",
+                "candidate_subsection_header": "Transfers",
                 "reference_subsection_header": null
               },
               {
@@ -994,12 +1003,12 @@
             ],
             "aggregates": {
               "micro": {
-                "score": 0.502338,
+                "score": 0.486936,
                 "config_name": "BLEURT-20"
               }
             },
             "overall": {
-              "score": 0.502338,
+              "score": 0.486936,
               "config_name": "BLEURT-20"
             },
             "subsection_alignment_method": "header_only"
@@ -1007,7 +1016,7 @@
         },
         "weighted_alignment": {
           "gold": "sample_data\\gold-output\\landslide\\landslide.W2.k6.report.json",
-          "system": "sample_data\\sysId-output\\UW-sys18\\landslide\\landslide.W2.k6.report.json",
+          "system": "sample_data\\sysId-output\\UW-sys40\\landslide\\landslide.W2.k6.report.json",
           "metric": "rougeL",
           "threshold": 0.1,
           "configuration": {
@@ -1081,18 +1090,20 @@
             {
               "code": "gold_only_groups",
               "message": "gold has groups with no matching system group key",
-              "count": 2,
+              "count": 3,
               "groups": [
                 "10/administrative and economic measures",
-                "10/meetings and decisions"
+                "10/meetings and decisions",
+                "5/displacement"
               ]
             },
             {
               "code": "system_only_groups",
               "message": "system has groups with no matching gold group key",
-              "count": 4,
+              "count": 5,
               "groups": [
-                "10/policy changes",
+                "10/meetings",
+                "10/transfers",
                 "11/public sentiment",
                 "6/hazard assessment",
                 "8/information updates"
@@ -1101,34 +1112,34 @@
             {
               "code": "partial_key_overlap",
               "message": "only some group keys overlap between gold and system",
-              "shared_groups": 6,
-              "gold_only_groups": 2,
-              "system_only_groups": 4
+              "shared_groups": 5,
+              "gold_only_groups": 3,
+              "system_only_groups": 5
             }
           ],
           "summary": {
             "gold_units": 11,
-            "system_units": 24,
+            "system_units": 28,
             "gold_source_bullets": 11,
-            "system_source_bullets": 24,
-            "matched_pairs": 9,
-            "compared_groups": 6,
-            "groups_with_accepted_pairs": 6,
-            "unmatched_gold": 2,
-            "unmatched_system": 15,
-            "mean_positive_edge_weight": 0.4420538819816426,
-            "micro_soft_precision": 0.16577020574311596,
-            "micro_soft_recall": 0.3616804488940712,
-            "micro_soft_f1": 0.22734199644770192,
+            "system_source_bullets": 28,
+            "matched_pairs": 8,
+            "compared_groups": 5,
+            "groups_with_accepted_pairs": 5,
+            "unmatched_gold": 3,
+            "unmatched_system": 20,
+            "mean_positive_edge_weight": 0.4026328109455045,
+            "micro_soft_precision": 0.11503794598442986,
+            "micro_soft_recall": 0.2928238625058215,
+            "micro_soft_f1": 0.1651826916699506,
             "gold_groups": 8,
             "system_groups": 10,
-            "shared_groups": 6,
-            "structure_recall": 0.75,
-            "structure_precision": 0.6,
+            "shared_groups": 5,
+            "structure_recall": 0.625,
+            "structure_precision": 0.5,
             "warning_count": 5,
             "warning_codes": "gold_only_groups;partial_key_overlap;selected_sections_not_found;system_only_groups",
-            "gold_only_groups": 2,
-            "system_only_groups": 4
+            "gold_only_groups": 3,
+            "system_only_groups": 5
           },
           "groups": [
             {
@@ -1164,6 +1175,49 @@
             },
             {
               "scope": "subsection",
+              "group_id": "10/header=meetings",
+              "section_id": "10",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=meetings",
+              "gold_count": 0,
+              "system_count": 2,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
+                {
+                  "section_id": "10",
+                  "subsection_id": "10b",
+                  "subsection_title": "Meetings",
+                  "bullet_id": "10b.1",
+                  "text": "A meeting was held at the cafe.",
+                  "tweet_ids": [
+                    79,
+                    80
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "10",
+                  "subsection_id": "10b",
+                  "subsection_title": "Meetings",
+                  "bullet_id": "10b.2",
+                  "text": "A meeting was held at the church hall.",
+                  "tweet_ids": [
+                    28
+                  ],
+                  "confidence": "planned"
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
               "group_id": "10/header=meetings and decisions",
               "section_id": "10",
               "subsection_id": null,
@@ -1195,13 +1249,13 @@
             },
             {
               "scope": "subsection",
-              "group_id": "10/header=policy changes",
+              "group_id": "10/header=transfers",
               "section_id": "10",
               "subsection_id": null,
               "subsection_alignment_method": "header_only",
-              "subsection_alignment_key": "header=policy changes",
+              "subsection_alignment_key": "header=transfers",
               "gold_count": 0,
-              "system_count": 3,
+              "system_count": 1,
               "matched_count": 0,
               "mean_positive_edge_weight": 0.0,
               "soft_precision": 0.0,
@@ -1214,34 +1268,11 @@
                 {
                   "section_id": "10",
                   "subsection_id": "10a",
-                  "subsection_title": "Policy changes",
+                  "subsection_title": "Transfers",
                   "bullet_id": "10a.1",
-                  "text": "The operator announced a policy change.",
+                  "text": "The playgroup transferred resources.",
                   "tweet_ids": [
-                    121,
-                    120
-                  ],
-                  "confidence": "confirmed"
-                },
-                {
-                  "section_id": "10",
-                  "subsection_id": "10a",
-                  "subsection_title": "Policy changes",
-                  "bullet_id": "10a.2",
-                  "text": "Authorities announced a policy change, during Yelverton Minerals and the independent panel.",
-                  "tweet_ids": [
-                    118
-                  ],
-                  "confidence": "confirmed"
-                },
-                {
-                  "section_id": "10",
-                  "subsection_id": "10a",
-                  "subsection_title": "Policy changes",
-                  "bullet_id": "10a.3",
-                  "text": "The company announced a policy change.",
-                  "tweet_ids": [
-                    119
+                    129
                   ],
                   "confidence": "confirmed"
                 }
@@ -1272,8 +1303,8 @@
                   "bullet_id": "11a.1",
                   "text": "Public messages reacted to the incident.",
                   "tweet_ids": [
-                    33,
-                    32
+                    58,
+                    60
                   ],
                   "confidence": "confirmed"
                 }
@@ -1289,57 +1320,54 @@
               "gold_count": 2,
               "system_count": 3,
               "matched_count": 2,
-              "mean_positive_edge_weight": 0.40476190476190477,
-              "soft_precision": 0.2698412698412698,
-              "soft_recall": 0.40476190476190477,
-              "soft_f1": 0.32380952380952377,
-              "total_weight": 0.8095238095238095,
+              "mean_positive_edge_weight": 0.3781818181818182,
+              "soft_precision": 0.25212121212121213,
+              "soft_recall": 0.3781818181818182,
+              "soft_f1": 0.3025454545454545,
+              "total_weight": 0.7563636363636363,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.34285714285714286,
+                  "weight": 0.43636363636363634,
                   "gold_bullet_id": "4a.1",
                   "system_bullet_id": "4a.1",
                   "gold_subsection_id": "4a",
                   "system_subsection_id": "4a",
                   "gold_subsection_header": "Damage",
                   "system_subsection_header": "Damage",
-                  "text_similarity": 0.42857142857142855,
+                  "text_similarity": 0.5454545454545454,
                   "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "3"
                   ],
                   "system_tweet_ids": [
-                    "26",
-                    "27",
-                    "28",
                     "4",
                     "6"
                   ],
                   "gold_text": "Ashfell slide damaged the lower road.",
-                  "system_text": "The lower road was damaged, during The slide."
+                  "system_text": "The lower road was damaged."
                 },
                 {
                   "gold_index": 1,
-                  "system_index": 1,
-                  "weight": 0.4666666666666666,
+                  "system_index": 2,
+                  "weight": 0.32000000000000006,
                   "gold_bullet_id": "4a.2",
-                  "system_bullet_id": "4a.2",
+                  "system_bullet_id": "4a.3",
                   "gold_subsection_id": "4a",
                   "system_subsection_id": "4a",
                   "gold_subsection_header": "Damage",
                   "system_subsection_header": "Damage",
-                  "text_similarity": 0.3333333333333333,
-                  "tweet_id_similarity": 1.0,
+                  "text_similarity": 0.4,
+                  "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "70"
                   ],
                   "system_tweet_ids": [
-                    "70"
+                    "52"
                   ],
                   "gold_text": "Damage was reported in Dreth and the Pellan during the Ashfell slide.",
-                  "system_text": "Infrastructure was damaged at the Pellan."
+                  "system_text": "The lower road was damaged, during The slide."
                 }
               ],
               "unmatched_gold": [],
@@ -1348,10 +1376,10 @@
                   "section_id": "4",
                   "subsection_id": "4a",
                   "subsection_title": "Damage",
-                  "bullet_id": "4a.3",
-                  "text": "Infrastructure was damaged at Dreth.",
+                  "bullet_id": "4a.2",
+                  "text": "The lower road was damaged at #Withel, during Ashfell slide.",
                   "tweet_ids": [
-                    76
+                    22
                   ],
                   "confidence": "confirmed"
                 }
@@ -1365,52 +1393,38 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=restoration progress",
               "gold_count": 1,
-              "system_count": 2,
+              "system_count": 1,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.34901960784313724,
-              "soft_precision": 0.17450980392156862,
-              "soft_recall": 0.34901960784313724,
-              "soft_f1": 0.23267973856209154,
-              "total_weight": 0.34901960784313724,
+              "mean_positive_edge_weight": 0.2,
+              "soft_precision": 0.2,
+              "soft_recall": 0.2,
+              "soft_f1": 0.20000000000000004,
+              "total_weight": 0.2,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.34901960784313724,
+                  "weight": 0.2,
                   "gold_bullet_id": "4d.2",
                   "system_bullet_id": "4c.1",
                   "gold_subsection_id": "4d",
                   "system_subsection_id": "4c",
                   "gold_subsection_header": "Restoration progress",
                   "system_subsection_header": "Restoration progress",
-                  "text_similarity": 0.3529411764705882,
-                  "tweet_id_similarity": 0.3333333333333333,
+                  "text_similarity": 0.25,
+                  "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "130"
                   ],
                   "system_tweet_ids": [
-                    "127",
-                    "128",
-                    "130"
+                    "118"
                   ],
                   "gold_text": "The operator restored the lower road during the Ashfell slide.",
-                  "system_text": "The lower road resumed operations at #Cranmoor."
+                  "system_text": "The junior football pitch resumed operations."
                 }
               ],
               "unmatched_gold": [],
-              "unmatched_system": [
-                {
-                  "section_id": "4",
-                  "subsection_id": "4c",
-                  "subsection_title": "Restoration progress",
-                  "bullet_id": "4c.2",
-                  "text": "The junior football pitch resumed operations.",
-                  "tweet_ids": [
-                    77
-                  ],
-                  "confidence": "confirmed"
-                }
-              ]
+              "unmatched_system": []
             },
             {
               "scope": "subsection",
@@ -1420,109 +1434,60 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=service disruptions",
               "gold_count": 2,
-              "system_count": 6,
+              "system_count": 2,
               "matched_count": 2,
-              "mean_positive_edge_weight": 0.5922222222222222,
-              "soft_precision": 0.1974074074074074,
-              "soft_recall": 0.5922222222222222,
-              "soft_f1": 0.2961111111111111,
-              "total_weight": 1.1844444444444444,
+              "mean_positive_edge_weight": 0.3728506787330317,
+              "soft_precision": 0.3728506787330317,
+              "soft_recall": 0.3728506787330317,
+              "soft_f1": 0.3728506787330317,
+              "total_weight": 0.7457013574660634,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 1,
-                  "weight": 0.5444444444444445,
+                  "weight": 0.37647058823529417,
                   "gold_bullet_id": "4c.1",
                   "system_bullet_id": "4b.2",
                   "gold_subsection_id": "4c",
                   "system_subsection_id": "4b",
                   "gold_subsection_header": "Service disruptions",
                   "system_subsection_header": "Service disruptions",
-                  "text_similarity": 0.5555555555555556,
-                  "tweet_id_similarity": 0.5,
+                  "text_similarity": 0.4705882352941177,
+                  "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "125"
                   ],
                   "system_tweet_ids": [
-                    "125",
-                    "129"
+                    "114"
                   ],
                   "gold_text": "Service at the lower road was disrupted during the Ashfell slide.",
-                  "system_text": "The lower road was disrupted following #landslide."
+                  "system_text": "Service was disrupted at Ashfell bench."
                 },
                 {
                   "gold_index": 1,
                   "system_index": 0,
-                  "weight": 0.64,
+                  "weight": 0.36923076923076925,
                   "gold_bullet_id": "4c.2",
                   "system_bullet_id": "4b.1",
                   "gold_subsection_id": "4c",
                   "system_subsection_id": "4b",
                   "gold_subsection_header": "Service disruptions",
                   "system_subsection_header": "Service disruptions",
-                  "text_similarity": 0.7499999999999999,
-                  "tweet_id_similarity": 0.2,
+                  "text_similarity": 0.4615384615384615,
+                  "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "75"
                   ],
                   "system_tweet_ids": [
-                    "126",
-                    "75",
-                    "79",
-                    "80",
-                    "81"
+                    "103",
+                    "121"
                   ],
                   "gold_text": "Service at Corvane mine was disrupted during the Ashfell slide.",
-                  "system_text": "Service at Corvane mine was disrupted."
+                  "system_text": "Service was disrupted."
                 }
               ],
               "unmatched_gold": [],
-              "unmatched_system": [
-                {
-                  "section_id": "4",
-                  "subsection_id": "4b",
-                  "subsection_title": "Service disruptions",
-                  "bullet_id": "4b.3",
-                  "text": "Services at Ashfell bench was disrupted.",
-                  "tweet_ids": [
-                    58
-                  ],
-                  "confidence": "confirmed"
-                },
-                {
-                  "section_id": "4",
-                  "subsection_id": "4b",
-                  "subsection_title": "Service disruptions",
-                  "bullet_id": "4b.4",
-                  "text": "Services at the upper bench was disrupted.",
-                  "tweet_ids": [
-                    57
-                  ],
-                  "confidence": "confirmed"
-                },
-                {
-                  "section_id": "4",
-                  "subsection_id": "4b",
-                  "subsection_title": "Service disruptions",
-                  "bullet_id": "4b.5",
-                  "text": "Services were disrupted.",
-                  "tweet_ids": [
-                    65
-                  ],
-                  "confidence": "confirmed"
-                },
-                {
-                  "section_id": "4",
-                  "subsection_id": "4b",
-                  "subsection_title": "Service disruptions",
-                  "bullet_id": "4b.6",
-                  "text": "Drained properly was reported.",
-                  "tweet_ids": [
-                    52
-                  ],
-                  "confidence": "confirmed"
-                }
-              ]
+              "unmatched_system": []
             },
             {
               "scope": "subsection",
@@ -1532,40 +1497,27 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=displacement",
               "gold_count": 1,
-              "system_count": 1,
-              "matched_count": 1,
-              "mean_positive_edge_weight": 0.4500000000000001,
-              "soft_precision": 0.4500000000000001,
-              "soft_recall": 0.4500000000000001,
-              "soft_f1": 0.45000000000000007,
-              "total_weight": 0.4500000000000001,
-              "pairs": [
+              "system_count": 0,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [
                 {
-                  "gold_index": 0,
-                  "system_index": 0,
-                  "weight": 0.4500000000000001,
-                  "gold_bullet_id": "5b.1",
-                  "system_bullet_id": "5b.1",
-                  "gold_subsection_id": "5b",
-                  "system_subsection_id": "5b",
-                  "gold_subsection_header": "Displacement",
-                  "system_subsection_header": "Displacement",
-                  "text_similarity": 0.5000000000000001,
-                  "tweet_id_similarity": 0.25,
-                  "gold_tweet_ids": [
-                    "124"
+                  "section_id": "5",
+                  "subsection_id": "5b",
+                  "subsection_title": "Displacement",
+                  "bullet_id": "5b.1",
+                  "text": "60 households were displaced from Cranmoor during evacuation and displacement operations.",
+                  "tweet_ids": [
+                    124
                   ],
-                  "system_tweet_ids": [
-                    "112",
-                    "114",
-                    "116",
-                    "124"
-                  ],
-                  "gold_text": "60 households were displaced from Cranmoor during evacuation and displacement operations.",
-                  "system_text": "Travellers were displaced from Cranmoor."
+                  "confidence": "confirmed"
                 }
               ],
-              "unmatched_gold": [],
               "unmatched_system": []
             },
             {
@@ -1576,57 +1528,58 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=evacuations",
               "gold_count": 2,
-              "system_count": 3,
+              "system_count": 7,
               "matched_count": 2,
-              "mean_positive_edge_weight": 0.4327485380116959,
-              "soft_precision": 0.2884990253411306,
-              "soft_recall": 0.4327485380116959,
-              "soft_f1": 0.3461988304093567,
-              "total_weight": 0.8654970760233918,
+              "mean_positive_edge_weight": 0.599498746867168,
+              "soft_precision": 0.17128535624776228,
+              "soft_recall": 0.599498746867168,
+              "soft_f1": 0.2664438874965191,
+              "total_weight": 1.198997493734336,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.42105263157894735,
+                  "weight": 0.6095238095238096,
                   "gold_bullet_id": "5a.1",
                   "system_bullet_id": "5a.1",
                   "gold_subsection_id": "5a",
                   "system_subsection_id": "5a",
                   "gold_subsection_header": "Evacuations",
                   "system_subsection_header": "Evacuations",
-                  "text_similarity": 0.5263157894736842,
+                  "text_similarity": 0.761904761904762,
                   "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "11"
                   ],
                   "system_tweet_ids": [
-                    "103",
-                    "21",
-                    "91"
+                    "15",
+                    "19",
+                    "26"
                   ],
                   "gold_text": "About 60 households were evacuated from Withel terraces during evacuation and displacement operations.",
-                  "system_text": "People were evacuated from Withel terraces."
+                  "system_text": "About 60 households were evacuated from Withel terraces."
                 },
                 {
                   "gold_index": 1,
                   "system_index": 2,
-                  "weight": 0.4444444444444445,
+                  "weight": 0.5894736842105263,
                   "gold_bullet_id": "5a.2",
                   "system_bullet_id": "5a.3",
                   "gold_subsection_id": "5a",
                   "system_subsection_id": "5a",
                   "gold_subsection_header": "Evacuations",
                   "system_subsection_header": "Evacuations",
-                  "text_similarity": 0.5555555555555556,
+                  "text_similarity": 0.7368421052631579,
                   "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "68"
                   ],
                   "system_tweet_ids": [
-                    "19"
+                    "116",
+                    "126"
                   ],
                   "gold_text": "People were evacuated from the upper bench during evacuation and displacement operations.",
-                  "system_text": "People were evacuated from the terraces."
+                  "system_text": "People were evacuated from the upper bench."
                 }
               ],
               "unmatched_gold": [],
@@ -1638,10 +1591,52 @@
                   "bullet_id": "5a.2",
                   "text": "People were evacuated.",
                   "tweet_ids": [
-                    10,
-                    15,
-                    16,
-                    17
+                    20,
+                    27
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "5",
+                  "subsection_id": "5a",
+                  "subsection_title": "Evacuations",
+                  "bullet_id": "5a.4",
+                  "text": "People were evacuated from Withel terraces and Cranmoor.",
+                  "tweet_ids": [
+                    130
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "5",
+                  "subsection_id": "5a",
+                  "subsection_title": "Evacuations",
+                  "bullet_id": "5a.5",
+                  "text": "About 60 households were evacuated from the terraces.",
+                  "tweet_ids": [
+                    16
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "5",
+                  "subsection_id": "5a",
+                  "subsection_title": "Evacuations",
+                  "bullet_id": "5a.6",
+                  "text": "People were evacuated from the terraces.",
+                  "tweet_ids": [
+                    21
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "5",
+                  "subsection_id": "5a",
+                  "subsection_title": "Evacuations",
+                  "bullet_id": "5a.7",
+                  "text": "People were evacuated from Withel terraces.",
+                  "tweet_ids": [
+                    124
                   ],
                   "confidence": "confirmed"
                 }
@@ -1655,7 +1650,7 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=hazard assessment",
               "gold_count": 0,
-              "system_count": 2,
+              "system_count": 3,
               "matched_count": 0,
               "mean_positive_edge_weight": 0.0,
               "soft_precision": 0.0,
@@ -1670,10 +1665,10 @@
                   "subsection_id": "6a",
                   "subsection_title": "Hazard assessment",
                   "bullet_id": "6a.1",
-                  "text": "Full was reported.",
+                  "text": "Situation was reported at along the churchyard wall.",
                   "tweet_ids": [
-                    108,
-                    43
+                    54,
+                    55
                   ],
                   "confidence": "confirmed"
                 },
@@ -1682,9 +1677,21 @@
                   "subsection_id": "6a",
                   "subsection_title": "Hazard assessment",
                   "bullet_id": "6a.2",
-                  "text": "Out was reported at along the churchyard wall.",
+                  "text": "Water was reported.",
                   "tweet_ids": [
-                    54
+                    76,
+                    108
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "6",
+                  "subsection_id": "6a",
+                  "subsection_title": "Hazard assessment",
+                  "bullet_id": "6a.3",
+                  "text": "Allotment water was reported.",
+                  "tweet_ids": [
+                    77
                   ],
                   "confidence": "confirmed"
                 }
@@ -1698,7 +1705,7 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=information updates",
               "gold_count": 0,
-              "system_count": 1,
+              "system_count": 5,
               "matched_count": 0,
               "mean_positive_edge_weight": 0.0,
               "soft_precision": 0.0,
@@ -1713,10 +1720,55 @@
                   "subsection_id": "8b",
                   "subsection_title": "Information updates",
                   "bullet_id": "8b.1",
-                  "text": "Sources reported the tailings dam.",
+                  "text": "Sources reported the air ambulance.",
                   "tweet_ids": [
-                    87,
-                    74
+                    65,
+                    127
+                  ],
+                  "confidence": "planned"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.2",
+                  "text": "Sources reported the tailings pond.",
+                  "tweet_ids": [
+                    120,
+                    125
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.3",
+                  "text": "Sources reported route markers.",
+                  "tweet_ids": [
+                    33
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.4",
+                  "text": "Sources reported The brass band.",
+                  "tweet_ids": [
+                    112
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.5",
+                  "text": "Sources reported Corvane tailings dam.",
+                  "tweet_ids": [
+                    119
                   ],
                   "confidence": "confirmed"
                 }
@@ -1730,20 +1782,20 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=warnings and alerts",
               "gold_count": 1,
-              "system_count": 2,
+              "system_count": 3,
               "matched_count": 1,
               "mean_positive_edge_weight": 0.32000000000000006,
-              "soft_precision": 0.16000000000000003,
+              "soft_precision": 0.10666666666666669,
               "soft_recall": 0.32000000000000006,
-              "soft_f1": 0.2133333333333334,
+              "soft_f1": 0.16000000000000003,
               "total_weight": 0.32000000000000006,
               "pairs": [
                 {
                   "gold_index": 0,
-                  "system_index": 1,
+                  "system_index": 2,
                   "weight": 0.32000000000000006,
                   "gold_bullet_id": "8a.1",
-                  "system_bullet_id": "8a.2",
+                  "system_bullet_id": "8a.3",
                   "gold_subsection_id": "8a",
                   "system_subsection_id": "8a",
                   "gold_subsection_header": "Warnings and alerts",
@@ -1754,7 +1806,7 @@
                     "13"
                   ],
                   "system_tweet_ids": [
-                    "8"
+                    "10"
                   ],
                   "gold_text": "A warning was issued for Withel terraces and Cranmoor during emergency communications.",
                   "system_text": "Authorities issued a public warning at Withel terraces."
@@ -1769,8 +1821,20 @@
                   "bullet_id": "8a.1",
                   "text": "Authorities issued a public warning.",
                   "tweet_ids": [
-                    9,
-                    13
+                    8,
+                    13,
+                    17
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8a",
+                  "subsection_title": "Warnings and alerts",
+                  "bullet_id": "8a.2",
+                  "text": "Authorities issued a public warning at the terraces.",
+                  "tweet_ids": [
+                    9
                   ],
                   "confidence": "confirmed"
                 }
@@ -1809,40 +1873,40 @@
             ],
             "subsection_alignment_method": "header_only",
             "aggregation": "micro",
-            "n_scored": 6,
+            "n_scored": 5,
             "n_skipped_both_empty": 0,
             "score_policy": null,
             "zero_score_reason": null,
             "rouge1": {
-              "precision": 0.5306,
-              "recall": 0.4333,
-              "fmeasure": 0.4771
+              "precision": 0.4286,
+              "recall": 0.375,
+              "fmeasure": 0.4
             },
             "rouge2": {
-              "precision": 0.3152,
-              "recall": 0.2589,
-              "fmeasure": 0.2843
+              "precision": 0.21,
+              "recall": 0.1875,
+              "fmeasure": 0.1981
             },
             "rougeL": {
-              "precision": 0.4388,
-              "recall": 0.3583,
-              "fmeasure": 0.3945
+              "precision": 0.3905,
+              "recall": 0.3417,
+              "fmeasure": 0.3644
             },
             "micro": {
               "rouge1": {
-                "precision": 0.5306,
-                "recall": 0.4333,
-                "fmeasure": 0.4771
+                "precision": 0.4286,
+                "recall": 0.375,
+                "fmeasure": 0.4
               },
               "rouge2": {
-                "precision": 0.3152,
-                "recall": 0.2589,
-                "fmeasure": 0.2843
+                "precision": 0.21,
+                "recall": 0.1875,
+                "fmeasure": 0.1981
               },
               "rougeL": {
-                "precision": 0.4388,
-                "recall": 0.3583,
-                "fmeasure": 0.3945
+                "precision": 0.3905,
+                "recall": 0.3417,
+                "fmeasure": 0.3644
               },
               "denominator_policy": "whole_gold"
             }
@@ -1877,28 +1941,28 @@
             ],
             "subsection_alignment_method": "header_only",
             "aggregation": "micro",
-            "n_scored": 6,
+            "n_scored": 5,
             "n_skipped_both_empty": 0,
             "score_policy": null,
             "zero_score_reason": null,
-            "precision": 0.466674,
-            "recall": 0.554468,
-            "f1": 0.506797,
+            "precision": 0.367194,
+            "recall": 0.450708,
+            "f1": 0.404687,
             "unmatched_penalty": {
               "policy": "side_specific_zero",
-              "matched_system_token_weight": 98,
-              "system_only_units": 4,
-              "system_only_token_weight": 46,
-              "precision_denominator_token_weight": 144,
-              "matched_gold_token_weight": 97,
-              "gold_only_units": 2,
-              "gold_only_token_weight": 23,
+              "matched_system_token_weight": 105,
+              "system_only_units": 5,
+              "system_only_token_weight": 64,
+              "precision_denominator_token_weight": 169,
+              "matched_gold_token_weight": 86,
+              "gold_only_units": 3,
+              "gold_only_token_weight": 34,
               "recall_denominator_token_weight": 120
             },
             "micro": {
-              "precision": 0.466674,
-              "recall": 0.554468,
-              "f1": 0.506797,
+              "precision": 0.367194,
+              "recall": 0.450708,
+              "f1": 0.404687,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "unmatched_policy": "side_specific_zero",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
@@ -1934,13 +1998,13 @@
             ],
             "subsection_alignment_method": "header_only",
             "aggregation": "micro",
-            "n_scored": 6,
+            "n_scored": 5,
             "n_skipped_both_empty": 0,
             "score_policy": null,
             "zero_score_reason": null,
-            "score": 0.502338,
+            "score": 0.486936,
             "micro": {
-              "score": 0.502338,
+              "score": 0.486936,
               "config_name": "BLEURT-20"
             }
           },
@@ -1975,18 +2039,20 @@
               {
                 "code": "gold_only_groups",
                 "message": "gold has groups with no matching system group key",
-                "count": 2,
+                "count": 3,
                 "groups": [
                   "10/administrative and economic measures",
-                  "10/meetings and decisions"
+                  "10/meetings and decisions",
+                  "5/displacement"
                 ]
               },
               {
                 "code": "system_only_groups",
                 "message": "system has groups with no matching gold group key",
-                "count": 4,
+                "count": 5,
                 "groups": [
-                  "10/policy changes",
+                  "10/meetings",
+                  "10/transfers",
                   "11/public sentiment",
                   "6/hazard assessment",
                   "8/information updates"
@@ -1995,23 +2061,23 @@
               {
                 "code": "partial_key_overlap",
                 "message": "only some group keys overlap between gold and system",
-                "shared_groups": 6,
-                "gold_only_groups": 2,
-                "system_only_groups": 4
+                "shared_groups": 5,
+                "gold_only_groups": 3,
+                "system_only_groups": 5
               }
             ],
             "scope": "subsection",
             "metric": "rougeL",
             "subsection_alignment_method": "header_only",
             "threshold": 0.1,
-            "micro_soft_precision": 0.16577020574311596,
-            "micro_soft_recall": 0.3616804488940712,
-            "micro_soft_f1": 0.22734199644770192,
-            "structure_recall": 0.75,
-            "structure_precision": 0.6,
-            "matched_pairs": 9,
+            "micro_soft_precision": 0.11503794598442986,
+            "micro_soft_recall": 0.2928238625058215,
+            "micro_soft_f1": 0.1651826916699506,
+            "structure_recall": 0.625,
+            "structure_precision": 0.5,
+            "matched_pairs": 8,
             "gold_units": 11,
-            "system_units": 24,
+            "system_units": 28,
             "warning_count": 5
           }
         }
@@ -2027,16 +2093,16 @@
         "subsections": {
           "gold": 8,
           "system": 10,
-          "matched": 6,
-          "unmatched_gold": 2,
-          "unmatched_system": 4
+          "matched": 5,
+          "unmatched_gold": 3,
+          "unmatched_system": 5
         },
         "bullets": {
           "gold": 11,
-          "system": 24,
-          "matched": 9,
-          "unmatched_gold": 2,
-          "unmatched_system": 15
+          "system": 28,
+          "matched": 8,
+          "unmatched_gold": 3,
+          "unmatched_system": 20
         }
       },
       "diagnostics": {
@@ -2051,16 +2117,16 @@
           "subsections": {
             "gold": 8,
             "system": 10,
-            "matched": 6,
-            "unmatched_gold": 2,
-            "unmatched_system": 4
+            "matched": 5,
+            "unmatched_gold": 3,
+            "unmatched_system": 5
           },
           "bullets": {
             "gold": 11,
-            "system": 24,
-            "matched": 9,
-            "unmatched_gold": 2,
-            "unmatched_system": 15
+            "system": 28,
+            "matched": 8,
+            "unmatched_gold": 3,
+            "unmatched_system": 20
           }
         }
       }

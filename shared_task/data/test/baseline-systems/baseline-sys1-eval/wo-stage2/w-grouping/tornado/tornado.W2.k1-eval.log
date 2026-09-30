@@ -2,7 +2,7 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-09-17T19:19:17.586498+00:00
+Generated at UTC : 2026-09-23T19:52:29.280315+00:00
 Config           : config\evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 Subsection align: header_only
@@ -10,10 +10,10 @@ Subsection align: header_only
 Instance ID         : tornado/tornado.W2.k1
 Crisis ID           : tornado
 Cell ID             : tornado.W2.k1
-System ID           : UW-sys1
+System ID           : UW-sys39
 
 Gold                : sample_data\gold-output\tornado\tornado.W2.k1.report.json
-System              : sample_data\sysId-output\UW-sys1\tornado\tornado.W2.k1.report.json
+System              : sample_data\sysId-output\UW-sys39\tornado\tornado.W2.k1.report.json
 
 ============================================================
 Evaluation Summary
@@ -21,54 +21,54 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.4359
-  ROUGE-2 F1  : 0.2361
-  ROUGE-L F1  : 0.3974
+  ROUGE-1 F1  : 0.1031
+  ROUGE-2 F1  : 0.0000
+  ROUGE-L F1  : 0.0619
 
 BERTScore (Subsection)
-  Precision   : 0.7111
-  Recall      : 0.5583
-  F1          : 0.6255
+  Precision   : 0.7720
+  Recall      : 0.1786
+  F1          : 0.2901
   Unmatched policy: side_specific_zero
-  Precision denominator: matched_system_tokens=70 system_only_units=0 system_only_tokens=0 total_tokens=70
-  Recall denominator: matched_gold_tokens=66 gold_only_units=2 gold_only_tokens=20 total_tokens=86
+  Precision denominator: matched_system_tokens=11 system_only_units=0 system_only_tokens=0 total_tokens=11
+  Recall denominator: matched_gold_tokens=26 gold_only_units=5 gold_only_tokens=60 total_tokens=86
 
 BLEURT (Subsection)
-  Score       : 0.5782
+  Score       : 0.3560
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.2354
-Soft Recall         : 0.3363
-Soft F1             : 0.2769
+Soft Precision      : 0.1042
+Soft Recall         : 0.0298
+Soft F1             : 0.0463
 
-Matched pairs       : 5
-Unmatched gold      : 2
-Unmatched system    : 5
+Matched pairs       : 1
+Unmatched gold      : 6
+Unmatched system    : 1
 
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys1           0.4359      0.2361      0.3974        0.6255   0.5782            0.2769
+UW-sys39          0.1031      0.0000      0.0619        0.2901   0.3560            0.0463
 
 ============================================================
 Structure Summary
 ============================================================
-sections: gold=5 system=4 matched=4 unmatched_gold=1 unmatched_system=0
-subsections: gold=7 system=5 matched=5 unmatched_gold=2 unmatched_system=0
-bullets: gold=7 system=10 matched=5 unmatched_gold=2 unmatched_system=5
+sections: gold=5 system=2 matched=2 unmatched_gold=3 unmatched_system=0
+subsections: gold=7 system=2 matched=2 unmatched_gold=5 unmatched_system=0
+bullets: gold=7 system=2 matched=1 unmatched_gold=6 unmatched_system=1
 
 ============================================================
 ROUGE Diagnostics
 ============================================================
-subsection: gold_units=7 system_units=5 matched_units=5 scored_units=5 skipped_both_empty=0
+subsection: gold_units=7 system_units=2 matched_units=2 scored_units=2 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=86 system_ngrams=70 overlapping_ngrams=34
-  rouge2: gold_ngrams=79 system_ngrams=65 overlapping_ngrams=17
-  rougeL: gold_tokens=86 system_tokens=70 total_lcs_length=31
+  rouge1: gold_ngrams=86 system_ngrams=11 overlapping_ngrams=5
+  rouge2: gold_ngrams=79 system_ngrams=9 overlapping_ngrams=0
+  rougeL: gold_tokens=86 system_tokens=11 total_lcs_length=3
 
 ============================================================
 Alignment Details
@@ -81,47 +81,33 @@ Group 3/header=fatalities
   unmatched_system: none
 
 Group 4/header=damage
-  gold=1 system=1 matched=1 soft_f1=0.4368
-  matched_pairs:
-  - gold=4a.2 system=4a.1
-    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.4368
-    gold_text=Damage was reported in the farm belt during the Estenwick tornado outbreak.
-    system_text=Infrastructure was damaged at the farm belt.
-  unmatched_gold: none
-  unmatched_system: none
+  gold=1 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4a.2 text="Damage was reported in the farm belt during the Estenwick tornado outbreak."
+  unmatched_system:
+  - id=4a.1 text="Infrastructure was damaged at Millrow district."
 
 Group 4/header=destruction
-  gold=1 system=2 matched=1 soft_f1=0.3680
-  matched_pairs:
-  - gold=4b.1 system=4b.1
-    text_metric=rougeL text_similarity=0.6400 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.5520
-    gold_text=Route 12 and grain elevator were destroyed in Dray Corners during the Estenwick tornado outbreak.
-    system_text=Route 12 and grain elevator was destroyed at Dray Corners.
-  unmatched_gold: none
-  unmatched_system:
-  - id=4b.2 text="Route 12 was destroyed."
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=4b.1 text="Route 12 and grain elevator were destroyed in Dray Corners during the Estenwick tornado outbreak."
+  unmatched_system: none
 
 Group 5/header=evacuations
-  gold=1 system=2 matched=1 soft_f1=0.4508
-  matched_pairs:
-  - gold=5a.1 system=5a.2
-    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6762
-    gold_text=People were evacuated from Estenwick and Dray Corners during evacuation and displacement operations.
-    system_text=People were evacuated from Estenwick and Dray Corners.
-  unmatched_gold: none
-  unmatched_system:
-  - id=5a.1 text="People were evacuated from the town."
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5a.1 text="People were evacuated from Estenwick and Dray Corners during evacuation and displacement operations."
+  unmatched_system: none
 
 Group 7/header=operational response
-  gold=1 system=2 matched=1 soft_f1=0.2370
-  matched_pairs:
-  - gold=7a.1 system=7a.2
-    text_metric=rougeL text_similarity=0.4444 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3556
-    gold_text=Estenwick Police deployed to Estenwick and Millrow district as response operations continued.
-    system_text=Estenwick Police responded at Millrow district.
-  unmatched_gold: none
-  unmatched_system:
-  - id=7a.1 text="Estenwick Police responded at the town."
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7a.1 text="Estenwick Police deployed to Estenwick and Millrow district as response operations continued."
+  unmatched_system: none
 
 Group 8/header=information updates
   gold=1 system=0 matched=0 soft_f1=0.0000
@@ -131,16 +117,14 @@ Group 8/header=information updates
   unmatched_system: none
 
 Group 8/header=warnings and alerts
-  gold=1 system=3 matched=1 soft_f1=0.1667
+  gold=1 system=1 matched=1 soft_f1=0.2084
   matched_pairs:
-  - gold=8a.1 system=8a.2
-    text_metric=rougeL text_similarity=0.4167 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3333
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.2105 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.2084
     gold_text=A warning was issued for Estenwick, Dray Corners, and Ostley County during emergency communications.
-    system_text=Authorities issued a public warning at Estenwick and Dray Corners.
+    system_text=Authorities issued a public warning.
   unmatched_gold: none
-  unmatched_system:
-  - id=8a.1 text="Authorities issued a public warning."
-  - id=8a.3 text="Authorities issued a public warning at the town."
+  unmatched_system: none
 
 ============================================================
 Warnings

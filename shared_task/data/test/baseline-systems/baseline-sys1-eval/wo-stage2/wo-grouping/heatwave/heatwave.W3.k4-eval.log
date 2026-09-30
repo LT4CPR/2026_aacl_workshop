@@ -2,7 +2,7 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-09-17T19:26:33.951098+00:00
+Generated at UTC : 2026-09-24T21:30:10.577483+00:00
 Config           : config\evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 Subsection align: header_only
@@ -10,10 +10,10 @@ Subsection align: header_only
 Instance ID         : heatwave/heatwave.W3.k4
 Crisis ID           : heatwave
 Cell ID             : heatwave.W3.k4
-System ID           : UW-sys18
+System ID           : UW-sys40
 
 Gold                : sample_data\gold-output\heatwave\heatwave.W3.k4.report.json
-System              : sample_data\sysId-output\UW-sys18\heatwave\heatwave.W3.k4.report.json
+System              : sample_data\sysId-output\UW-sys40\heatwave\heatwave.W3.k4.report.json
 
 ============================================================
 Evaluation Summary
@@ -21,54 +21,54 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.2717
-  ROUGE-2 F1  : 0.1796
-  ROUGE-L F1  : 0.2566
+  ROUGE-1 F1  : 0.2459
+  ROUGE-2 F1  : 0.1244
+  ROUGE-L F1  : 0.2213
 
 BERTScore (Subsection)
-  Precision   : 0.4793
-  Recall      : 0.4122
-  F1          : 0.4432
+  Precision   : 0.4588
+  Recall      : 0.3347
+  F1          : 0.3870
   Unmatched policy: side_specific_zero
-  Precision denominator: matched_system_tokens=130 system_only_units=2 system_only_tokens=14 total_tokens=144
-  Recall denominator: matched_gold_tokens=89 gold_only_units=4 gold_only_tokens=46 total_tokens=135
+  Precision denominator: matched_system_tokens=109 system_only_units=1 system_only_tokens=21 total_tokens=130
+  Recall denominator: matched_gold_tokens=73 gold_only_units=5 gold_only_tokens=62 total_tokens=135
 
 BLEURT (Subsection)
-  Score       : 0.4752
+  Score       : 0.4910
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.1428
-Soft Recall         : 0.2753
-Soft F1             : 0.1880
+Soft Precision      : 0.1165
+Soft Recall         : 0.2080
+Soft F1             : 0.1493
 
 Matched pairs       : 8
 Unmatched gold      : 6
-Unmatched system    : 19
+Unmatched system    : 17
 
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys18          0.2717      0.1796      0.2566        0.4432   0.4752            0.1880
+UW-sys40          0.2459      0.1244      0.2213        0.3870   0.4910            0.1493
 
 ============================================================
 Structure Summary
 ============================================================
-sections: gold=7 system=6 matched=6 unmatched_gold=1 unmatched_system=0
-subsections: gold=12 system=10 matched=8 unmatched_gold=4 unmatched_system=2
-bullets: gold=14 system=27 matched=8 unmatched_gold=6 unmatched_system=19
+sections: gold=7 system=5 matched=5 unmatched_gold=2 unmatched_system=0
+subsections: gold=12 system=8 matched=7 unmatched_gold=5 unmatched_system=1
+bullets: gold=14 system=25 matched=8 unmatched_gold=6 unmatched_system=17
 
 ============================================================
 ROUGE Diagnostics
 ============================================================
-subsection: gold_units=12 system_units=10 matched_units=8 scored_units=8 skipped_both_empty=0
+subsection: gold_units=12 system_units=8 matched_units=7 scored_units=7 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=135 system_ngrams=130 overlapping_ngrams=36
-  rouge2: gold_ngrams=123 system_ngrams=122 overlapping_ngrams=22
-  rougeL: gold_tokens=135 system_tokens=130 total_lcs_length=34
+  rouge1: gold_ngrams=135 system_ngrams=109 overlapping_ngrams=30
+  rouge2: gold_ngrams=123 system_ngrams=102 overlapping_ngrams=14
+  rougeL: gold_tokens=135 system_tokens=109 total_lcs_length=27
 
 ============================================================
 Alignment Details
@@ -88,13 +88,6 @@ Group 10/header=meetings and decisions
   - id=10a.2 text="Provincial Public Health Institute met during the later response."
   unmatched_system: none
 
-Group 10/header=policy changes
-  gold=0 system=1 matched=0 soft_f1=0.0000
-  matched_pairs: none
-  unmatched_gold: none
-  unmatched_system:
-  - id=10a.1 text="Grennet Power announced a policy change."
-
 Group 3/header=fatalities
   gold=1 system=0 matched=0 soft_f1=0.0000
   matched_pairs: none
@@ -103,116 +96,115 @@ Group 3/header=fatalities
   unmatched_system: none
 
 Group 3/header=injuries
+  gold=1 system=2 matched=1 soft_f1=0.2000
+  matched_pairs:
+  - gold=3b.1 system=3a.2
+    text_metric=rougeL text_similarity=0.3750 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3000
+    gold_text=Injuries were documented in Verlow during the Verlow heatwave.
+    system_text=People were injured at the town #Verlow.
+  unmatched_gold: none
+  unmatched_system:
+  - id=3a.1 text="People were injured at the town."
+
+Group 4/header=damage
   gold=1 system=0 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold:
-  - id=3b.1 text="Injuries were documented in Verlow during the Verlow heatwave."
-  unmatched_system: none
-
-Group 4/header=damage
-  gold=1 system=1 matched=1 soft_f1=0.1543
-  matched_pairs:
-  - gold=4a.1 system=4a.1
-    text_metric=rougeL text_similarity=0.1429 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.1543
-    gold_text=Damage associated with Verlow Tramways was reported during the Verlow heatwave.
-    system_text=Infrastructure was damaged.
-  unmatched_gold: none
+  - id=4a.1 text="Damage associated with Verlow Tramways was reported during the Verlow heatwave."
   unmatched_system: none
 
 Group 4/header=destruction
-  gold=1 system=1 matched=1 soft_f1=0.5833
+  gold=1 system=3 matched=1 soft_f1=0.2667
   matched_pairs:
-  - gold=4b.2 system=4b.1
-    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.5833
+  - gold=4b.2 system=4a.3
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
     gold_text=Marnest substation was destroyed during the Verlow heatwave.
     system_text=Marnest substation was destroyed.
   unmatched_gold: none
-  unmatched_system: none
-
-Group 4/header=restoration progress
-  gold=0 system=1 matched=0 soft_f1=0.0000
-  matched_pairs: none
-  unmatched_gold: none
   unmatched_system:
-  - id=4d.1 text="Strawberry stall resumed operations at the farm gate."
+  - id=4a.1 text="The substation was destroyed."
+  - id=4a.2 text="The substation was destroyed at #Verlow."
 
 Group 4/header=service disruptions
-  gold=1 system=2 matched=1 soft_f1=0.4148
+  gold=1 system=1 matched=1 soft_f1=0.3200
   matched_pairs:
-  - gold=4c.1 system=4c.2
-    text_metric=rougeL text_similarity=0.7778 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.6222
+  - gold=4c.1 system=4b.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3200
     gold_text=Service at Verlow General Hospital was disrupted during the Verlow heatwave.
-    system_text=Service at Verlow General Hospital was disrupted.
+    system_text=The hospital was disrupted.
   unmatched_gold: none
-  unmatched_system:
-  - id=4c.1 text="The hospital was disrupted."
+  unmatched_system: none
 
 Group 5/header=displacement
-  gold=1 system=1 matched=1 soft_f1=0.6000
+  gold=1 system=1 matched=1 soft_f1=0.5333
   matched_pairs:
   - gold=5b.1 system=5a.1
-    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6000
+    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5333
     gold_text=People were displaced from Verlow during evacuation and displacement operations.
-    system_text=People were displaced from the town.
+    system_text=People were displaced from Verlow.
   unmatched_gold: none
   unmatched_system: none
 
 Group 6/header=hazard assessment
-  gold=1 system=5 matched=1 soft_f1=0.0926
-  matched_pairs:
-  - gold=6a.3 system=6a.4
-    text_metric=rougeL text_similarity=0.2222 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.2778
-    gold_text=Dangerous conditions were present at Hetton Rise and Camber Green during the Verlow heatwave.
-    system_text=Dangerous conditions was reported.
-  unmatched_gold: none
-  unmatched_system:
-  - id=6a.1 text="Gone was reported."
-  - id=6a.2 text="Outside was reported."
-  - id=6a.3 text="Finished was reported."
-  - id=6a.5 text="Developed was reported."
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=6a.3 text="Dangerous conditions were present at Hetton Rise and Camber Green during the Verlow heatwave."
+  unmatched_system: none
 
 Group 7/header=operational response
-  gold=2 system=4 matched=1 soft_f1=0.1556
+  gold=2 system=5 matched=2 soft_f1=0.2141
   matched_pairs:
-  - gold=7a.2 system=7a.2
-    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4667
+  - gold=7a.1 system=7a.2
+    text_metric=rougeL text_similarity=0.2222 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1778
+    gold_text=Grennet Power deployed as response operations continued.
+    system_text=PPHI deployed.
+  - gold=7a.2 system=7a.1
+    text_metric=rougeL text_similarity=0.7143 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5714
     gold_text=Provincial Public Health Institute deployed as response operations continued.
-    system_text=Provincial Public Health Institute responded at #Verlow.
-  unmatched_gold:
-  - id=7a.1 text="Grennet Power deployed as response operations continued."
+    system_text=Provincial Public Health Institute deployed.
+  unmatched_gold: none
   unmatched_system:
-  - id=7a.1 text="The institute responded."
-  - id=7a.3 text="PPHI responded at #Verlow."
-  - id=7a.4 text="PPHI responded."
+  - id=7a.3 text="The institute deployed."
+  - id=7a.4 text="PPHI deployed at #Verlow."
+  - id=7a.5 text="The network operator deployed."
+
+Group 8/header=information updates
+  gold=0 system=5 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Sources provided information."
+  - id=8b.2 text="Sources provided information."
+  - id=8b.3 text="Sources reported Library."
+  - id=8b.4 text="Sources reported The ice cream van."
+  - id=8b.5 text="Sources reported The Verlow summer fete."
 
 Group 8/header=requests for help
-  gold=1 system=5 matched=1 soft_f1=0.2235
+  gold=1 system=4 matched=1 soft_f1=0.0427
   matched_pairs:
-  - gold=8c.1 system=8b.1
-    text_metric=rougeL text_similarity=0.5882 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6706
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.1333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1067
     gold_text=Provincial Public Health Institute asked for assistance concerning during emergency communications.
-    system_text=Provincial Public Health Institute requested assistance.
+    system_text=Affected communities requested assistance.
   unmatched_gold: none
   unmatched_system:
-  - id=8b.2 text="The institute requested assistance."
-  - id=8b.3 text="PPHI requested assistance."
-  - id=8b.4 text="The institute requested assistance at the town."
-  - id=8b.5 text="Affected communities requested assistance."
+  - id=8c.2 text="Affected communities requested assistance at the town."
+  - id=8c.3 text="Affected communities requested assistance at the park."
+  - id=8c.4 text="Affected communities requested assistance at #Verlow."
 
 Group 8/header=warnings and alerts
-  gold=1 system=6 matched=1 soft_f1=0.1371
+  gold=1 system=4 matched=1 soft_f1=0.1477
   matched_pairs:
   - gold=8a.2 system=8a.1
-    text_metric=rougeL text_similarity=0.6000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4800
+    text_metric=rougeL text_similarity=0.4615 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3692
     gold_text=Grennet Power issued a warning during emergency communications.
-    system_text=Grennet Power issued a public warning about heatwave at #Verlow, during #heatwave.
+    system_text=PPHI issued a public warning.
   unmatched_gold: none
   unmatched_system:
-  - id=8a.2 text="The institute issued a public warning at the town."
-  - id=8a.3 text="Provincial Public Health Institute issued a public warning at Verlow."
-  - id=8a.4 text="PPHI issued a public warning."
-  - id=8a.5 text="Provincial Public Health Institute issued a public warning."
-  - id=8a.6 text="The institute issued a public warning."
+  - id=8a.2 text="Provincial Public Health Institute issued a public warning at Verlow."
+  - id=8a.3 text="PPHI issued a public warning at Verlow."
+  - id=8a.4 text="The institute issued a public warning at the town."
 
 ============================================================
 Warnings

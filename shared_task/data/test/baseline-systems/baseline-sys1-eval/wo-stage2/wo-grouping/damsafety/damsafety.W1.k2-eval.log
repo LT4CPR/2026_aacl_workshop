@@ -2,7 +2,7 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-09-17T19:26:33.951098+00:00
+Generated at UTC : 2026-09-24T21:30:10.577483+00:00
 Config           : config\evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 Subsection align: header_only
@@ -10,10 +10,10 @@ Subsection align: header_only
 Instance ID         : damsafety/damsafety.W1.k2
 Crisis ID           : damsafety
 Cell ID             : damsafety.W1.k2
-System ID           : UW-sys18
+System ID           : UW-sys40
 
 Gold                : sample_data\gold-output\damsafety\damsafety.W1.k2.report.json
-System              : sample_data\sysId-output\UW-sys18\damsafety\damsafety.W1.k2.report.json
+System              : sample_data\sysId-output\UW-sys40\damsafety\damsafety.W1.k2.report.json
 
 ============================================================
 Evaluation Summary
@@ -21,74 +21,76 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.3636
-  ROUGE-2 F1  : 0.2105
-  ROUGE-L F1  : 0.3636
+  ROUGE-1 F1  : 0.1379
+  ROUGE-2 F1  : 0.0769
+  ROUGE-L F1  : 0.1379
 
 BERTScore (Subsection)
-  Precision   : 0.8875
-  Recall      : 0.3937
-  F1          : 0.5455
+  Precision   : 0.6205
+  Recall      : 0.3459
+  F1          : 0.4442
   Unmatched policy: side_specific_zero
-  Precision denominator: matched_system_tokens=5 system_only_units=0 system_only_tokens=0 total_tokens=5
-  Recall denominator: matched_gold_tokens=8 gold_only_units=1 gold_only_tokens=9 total_tokens=17
+  Precision denominator: matched_system_tokens=12 system_only_units=0 system_only_tokens=0 total_tokens=12
+  Recall denominator: matched_gold_tokens=9 gold_only_units=1 gold_only_tokens=8 total_tokens=17
 
 BLEURT (Subsection)
-  Score       : 0.6543
+  Score       : 0.2226
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.5923
-Soft Recall         : 0.2962
-Soft F1             : 0.3949
+Soft Precision      : 0.0889
+Soft Recall         : 0.1333
+Soft F1             : 0.1067
 
 Matched pairs       : 1
 Unmatched gold      : 1
-Unmatched system    : 0
+Unmatched system    : 2
 
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys18          0.3636      0.2105      0.3636        0.5455   0.6543            0.3949
+UW-sys40          0.1379      0.0769      0.1379        0.4442   0.2226            0.1067
 
 ============================================================
 Structure Summary
 ============================================================
 sections: gold=2 system=1 matched=1 unmatched_gold=1 unmatched_system=0
 subsections: gold=2 system=1 matched=1 unmatched_gold=1 unmatched_system=0
-bullets: gold=2 system=1 matched=1 unmatched_gold=1 unmatched_system=0
+bullets: gold=2 system=3 matched=1 unmatched_gold=1 unmatched_system=2
 
 ============================================================
 ROUGE Diagnostics
 ============================================================
 subsection: gold_units=2 system_units=1 matched_units=1 scored_units=1 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=17 system_ngrams=5 overlapping_ngrams=4
-  rouge2: gold_ngrams=15 system_ngrams=4 overlapping_ngrams=2
-  rougeL: gold_tokens=17 system_tokens=5 total_lcs_length=4
+  rouge1: gold_ngrams=17 system_ngrams=12 overlapping_ngrams=2
+  rouge2: gold_ngrams=15 system_ngrams=11 overlapping_ngrams=1
+  rougeL: gold_tokens=17 system_tokens=12 total_lcs_length=2
 
 ============================================================
 Alignment Details
 ============================================================
 Group 4/header=damage
-  gold=1 system=1 matched=1 soft_f1=0.5923
-  matched_pairs:
-  - gold=4a.1 system=4a.1
-    text_metric=rougeL text_similarity=0.6154 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.5923
-    gold_text=Halvern Dam and the right abutment were damaged.
-    system_text=The right abutment was damaged.
-  unmatched_gold: none
-  unmatched_system: none
-
-Group 8/header=information updates
   gold=1 system=0 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold:
-  - id=8b.3 text="Sorrel Basin Water Authority provided information during emergency communications."
+  - id=4a.1 text="Halvern Dam and the right abutment were damaged."
   unmatched_system: none
+
+Group 8/header=information updates
+  gold=1 system=3 matched=1 soft_f1=0.1333
+  matched_pairs:
+  - gold=8b.3 system=8a.3
+    text_metric=rougeL text_similarity=0.3333 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.2667
+    gold_text=Sorrel Basin Water Authority provided information during emergency communications.
+    system_text=Sources provided information.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Sources reported Brindlemark farmers market."
+  - id=8a.2 text="Sources reported climbing gym."
 
 ============================================================
 Warnings

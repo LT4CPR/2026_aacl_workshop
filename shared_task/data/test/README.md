@@ -46,8 +46,12 @@ test/
 │   └── <crisis>/*.report.json
 ├── baseline-systems/
 │   ├── baseline-sys1/
+│   │   ├── w-stage2/<grouping>/<crisis>/*.report.json
+│   │   └── wo-stage2/<grouping>/<crisis>/*.report.json
 │   ├── baseline-sys2/<model>/<level>/
 │   ├── baseline-sys1-eval/
+│   │   ├── w-stage2/<grouping>/
+│   │   └── wo-stage2/<grouping>/
 │   └── baseline-sys2-eval/<model>/<level>/
 ├── team-submissions/
 │   └── <team-id>/<system-id>/<crisis>/*.report.json
@@ -60,9 +64,16 @@ output directory contains one report for every test instance. Evaluation
 directories contain the per-instance evaluation artifacts and the combined
 system-level result.
 
-The `baseline-sys1/w-stage2/` output and evaluation directories are retained as
-reserved release locations. No corresponding system row or result artifact was
-available in the final results table at the time of this release.
+Baseline System 1 outputs are organized by whether Stage 2 is enabled
+(`w-stage2/`) or disabled (`wo-stage2/`), then by grouping configuration
+(`w-grouping/` or `wo-grouping/`). The corresponding evaluation directories
+under `baseline-sys1-eval/` follow the same organization.
+
+The `w-stage2/w-grouping/` and `w-stage2/wo-grouping/` directories contain the
+outputs for `UW-sys1` and `UW-sys18`, respectively. Each contains 117 report
+files. Their matching evaluation directories contain 117 per-instance
+evaluation JSON files and logs, together with `combined-eval.json` and
+`combined-eval.log`.
 
 The current release contains **117 public test instances**:
 

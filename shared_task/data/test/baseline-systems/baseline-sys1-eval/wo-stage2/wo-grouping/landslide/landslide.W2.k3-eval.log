@@ -2,7 +2,7 @@
 LT4CPR Evaluation Log
 ============================================================
 
-Generated at UTC : 2026-09-17T19:26:33.951098+00:00
+Generated at UTC : 2026-09-24T21:30:10.577483+00:00
 Config           : config\evaluation.yaml
 Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
 Subsection align: header_only
@@ -10,10 +10,10 @@ Subsection align: header_only
 Instance ID         : landslide/landslide.W2.k3
 Crisis ID           : landslide
 Cell ID             : landslide.W2.k3
-System ID           : UW-sys18
+System ID           : UW-sys40
 
 Gold                : sample_data\gold-output\landslide\landslide.W2.k3.report.json
-System              : sample_data\sysId-output\UW-sys18\landslide\landslide.W2.k3.report.json
+System              : sample_data\sysId-output\UW-sys40\landslide\landslide.W2.k3.report.json
 
 ============================================================
 Evaluation Summary
@@ -21,54 +21,54 @@ Evaluation Summary
 Text-level Evaluation
 
 ROUGE (Subsection)
-  ROUGE-1 F1  : 0.4348
-  ROUGE-2 F1  : 0.2315
-  ROUGE-L F1  : 0.3652
+  ROUGE-1 F1  : 0.3120
+  ROUGE-2 F1  : 0.1681
+  ROUGE-L F1  : 0.2960
 
 BERTScore (Subsection)
-  Precision   : 0.5300
-  Recall      : 0.5529
-  F1          : 0.5412
+  Precision   : 0.3920
+  Recall      : 0.3647
+  F1          : 0.3779
   Unmatched policy: side_specific_zero
-  Precision denominator: matched_system_tokens=115 system_only_units=3 system_only_tokens=27 total_tokens=142
-  Recall denominator: matched_gold_tokens=96 gold_only_units=2 gold_only_tokens=19 total_tokens=115
+  Precision denominator: matched_system_tokens=135 system_only_units=4 system_only_tokens=46 total_tokens=181
+  Recall denominator: matched_gold_tokens=75 gold_only_units=4 gold_only_tokens=40 total_tokens=115
 
 BLEURT (Subsection)
-  Score       : 0.5102
+  Score       : 0.5478
 
 ------------------------------------------------------------
 
 Bullet-level Hungarian Alignment (Subsection)
 
 Similarity metric   : rougeL + Tweet-ID overlap
-Soft Precision      : 0.1455
-Soft Recall         : 0.3174
-Soft F1             : 0.1995
+Soft Precision      : 0.0940
+Soft Recall         : 0.2563
+Soft F1             : 0.1376
 
-Matched pairs       : 8
-Unmatched gold      : 3
-Unmatched system    : 16
+Matched pairs       : 6
+Unmatched gold      : 5
+Unmatched system    : 24
 
 Within-document Micro (Primary)
 System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
 -------------------------------------------------------------------------------------------
-UW-sys18          0.4348      0.2315      0.3652        0.5412   0.5102            0.1995
+UW-sys40          0.3120      0.1681      0.2960        0.3779   0.5478            0.1376
 
 ============================================================
 Structure Summary
 ============================================================
-sections: gold=4 system=5 matched=4 unmatched_gold=0 unmatched_system=1
-subsections: gold=8 system=9 matched=6 unmatched_gold=2 unmatched_system=3
-bullets: gold=11 system=24 matched=8 unmatched_gold=3 unmatched_system=16
+sections: gold=4 system=6 matched=4 unmatched_gold=0 unmatched_system=2
+subsections: gold=8 system=8 matched=4 unmatched_gold=4 unmatched_system=4
+bullets: gold=11 system=30 matched=6 unmatched_gold=5 unmatched_system=24
 
 ============================================================
 ROUGE Diagnostics
 ============================================================
-subsection: gold_units=8 system_units=9 matched_units=6 scored_units=6 skipped_both_empty=0
+subsection: gold_units=8 system_units=8 matched_units=4 scored_units=4 skipped_both_empty=0
   denominator_policy=whole_gold
-  rouge1: gold_ngrams=115 system_ngrams=115 overlapping_ngrams=50
-  rouge2: gold_ngrams=107 system_ngrams=109 overlapping_ngrams=25
-  rougeL: gold_tokens=115 system_tokens=115 total_lcs_length=42
+  rouge1: gold_ngrams=115 system_ngrams=135 overlapping_ngrams=39
+  rouge2: gold_ngrams=107 system_ngrams=131 overlapping_ngrams=20
+  rougeL: gold_tokens=115 system_tokens=135 total_lcs_length=37
 
 ============================================================
 Alignment Details
@@ -80,6 +80,13 @@ Group 10/header=administrative and economic measures
   - id=10b.1 text="The operator revised its policy during the later response."
   unmatched_system: none
 
+Group 10/header=meetings
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=10a.1 text="A meeting was held at the cafe."
+
 Group 10/header=meetings and decisions
   gold=1 system=0 matched=0 soft_f1=0.0000
   matched_pairs: none
@@ -87,108 +94,109 @@ Group 10/header=meetings and decisions
   - id=10a.2 text="Yelverton Minerals and mines inspectorate met during the later response."
   unmatched_system: none
 
-Group 10/header=policy changes
-  gold=0 system=2 matched=0 soft_f1=0.0000
-  matched_pairs: none
-  unmatched_gold: none
-  unmatched_system:
-  - id=10a.1 text="The company announced a policy change."
-  - id=10a.2 text="The operator announced a policy change."
-
-Group 10/header=transfers
+Group 11/header=public sentiment
   gold=0 system=1 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=10b.1 text="The playgroup transferred resources."
+  - id=11a.1 text="Public messages reacted to the incident."
 
 Group 4/header=damage
-  gold=2 system=4 matched=2 soft_f1=0.2165
+  gold=2 system=8 matched=2 soft_f1=0.1513
   matched_pairs:
-  - gold=4a.1 system=4a.1
-    text_metric=rougeL text_similarity=0.4286 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3429
+  - gold=4a.1 system=4a.2
+    text_metric=rougeL text_similarity=0.5455 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4364
     gold_text=Ashfell slide damaged the lower road.
-    system_text=The lower road was damaged, during The slide.
-  - gold=4a.2 system=4a.2
-    text_metric=rougeL text_similarity=0.1333 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.3067
+    system_text=The lower road was damaged.
+  - gold=4a.2 system=4a.1
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3200
     gold_text=Damage was reported in Dreth and the Pellan during the Ashfell slide.
-    system_text=Infrastructure was damaged.
+    system_text=The lower road was damaged, during The slide.
   unmatched_gold: none
   unmatched_system:
-  - id=4a.3 text="Infrastructure was damaged at the town."
-  - id=4a.4 text="Infrastructure was damaged at Dreth."
+  - id=4a.3 text="The lower road was damaged, during Ashfell slide."
+  - id=4a.4 text="Infrastructure was damaged."
+  - id=4a.5 text="Infrastructure was damaged at Dreth."
+  - id=4a.6 text="Infrastructure was damaged at Dreth, during #landslide."
+  - id=4a.7 text="The lower road was damaged at #Withel, during Ashfell slide."
+  - id=4a.8 text="Infrastructure was damaged at the town."
 
 Group 4/header=restoration progress
-  gold=1 system=2 matched=0 soft_f1=0.0000
+  gold=1 system=0 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold:
   - id=4d.2 text="Yelverton Minerals restored the lower road during the Ashfell slide."
-  unmatched_system:
-  - id=4c.1 text="Services at #Cranmoor resumed operations."
-  - id=4c.2 text="The junior football pitch resumed operations."
+  unmatched_system: none
 
 Group 4/header=service disruptions
-  gold=2 system=5 matched=2 soft_f1=0.2527
+  gold=2 system=1 matched=1 soft_f1=0.2462
   matched_pairs:
-  - gold=4c.1 system=4b.1
-    text_metric=rougeL text_similarity=0.5556 tweet_id_jaccard=0.2000 text_weight=0.8000 final_edge_score=0.4844
-    gold_text=Service at the lower road was disrupted during the Ashfell slide.
-    system_text=Service was disrupted at the lower road.
-  - gold=4c.2 system=4b.3
-    text_metric=rougeL text_similarity=0.5000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4000
+  - gold=4c.2 system=4b.1
+    text_metric=rougeL text_similarity=0.4615 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.3692
     gold_text=Service at Corvane mine was disrupted during the Ashfell slide.
-    system_text=Services at Ashfell bench was disrupted.
-  unmatched_gold: none
-  unmatched_system:
-  - id=4b.2 text="The lower road was disrupted following #landslide."
-  - id=4b.4 text="Services at the upper bench was disrupted."
-  - id=4b.5 text="Services were disrupted."
+    system_text=Service was disrupted.
+  unmatched_gold:
+  - id=4c.1 text="Service at the lower road was disrupted during the Ashfell slide."
+  unmatched_system: none
 
 Group 5/header=displacement
-  gold=1 system=1 matched=1 soft_f1=0.5833
-  matched_pairs:
-  - gold=5b.1 system=5b.1
-    text_metric=rougeL text_similarity=0.6667 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.5833
-    gold_text=60 households were displaced from Cranmoor during evacuation and displacement operations.
-    system_text=About 60 households were displaced from Cranmoor.
-  unmatched_gold: none
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=5b.1 text="60 households were displaced from Cranmoor during evacuation and displacement operations."
   unmatched_system: none
 
 Group 5/header=evacuations
-  gold=2 system=5 matched=2 soft_f1=0.3102
+  gold=2 system=8 matched=2 soft_f1=0.2348
   matched_pairs:
-  - gold=5a.1 system=5a.2
-    text_metric=rougeL text_similarity=0.5263 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4211
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.6095
     gold_text=About 60 households were evacuated from Withel terraces during evacuation and displacement operations.
-    system_text=People were evacuated from Withel terraces.
-  - gold=5a.2 system=5a.3
-    text_metric=rougeL text_similarity=0.7059 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.6647
+    system_text=About 60 households were evacuated from Withel terraces.
+  - gold=5a.2 system=5a.4
+    text_metric=rougeL text_similarity=0.7059 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5647
     gold_text=People were evacuated from Ashfell bench during evacuation and displacement operations.
     system_text=People were evacuated from Ashfell bench.
   unmatched_gold: none
   unmatched_system:
-  - id=5a.1 text="People were evacuated from the upper bench."
-  - id=5a.4 text="People were evacuated."
-  - id=5a.5 text="People were evacuated from the terraces."
+  - id=5a.2 text="People were evacuated."
+  - id=5a.3 text="People were evacuated from the terraces."
+  - id=5a.5 text="People were evacuated from Withel terraces and Cranmoor."
+  - id=5a.6 text="People were evacuated from Cranmoor."
+  - id=5a.7 text="About 60 households were evacuated from the terraces."
+  - id=5a.8 text="People were evacuated from Withel terraces."
 
 Group 6/header=hazard assessment
   gold=0 system=2 matched=0 soft_f1=0.0000
   matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=6a.1 text="Full was reported."
-  - id=6a.2 text="Out was reported at along the churchyard wall."
+  - id=6a.1 text="Water was reported."
+  - id=6a.2 text="Situation was reported at along the churchyard wall."
 
-Group 8/header=warnings and alerts
-  gold=1 system=2 matched=1 soft_f1=0.1922
-  matched_pairs:
-  - gold=8a.1 system=8a.2
-    text_metric=rougeL text_similarity=0.2353 tweet_id_jaccard=0.5000 text_weight=0.8000 final_edge_score=0.2882
-    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
-    system_text=Authorities issued a public warning.
+Group 8/header=information updates
+  gold=0 system=5 matched=0 soft_f1=0.0000
+  matched_pairs: none
   unmatched_gold: none
   unmatched_system:
-  - id=8a.1 text="Authorities issued a public warning about the terraces #Withel at the terraces."
+  - id=8b.1 text="Sources reported the air ambulance."
+  - id=8b.2 text="Sources reported Corvane tailings dam."
+  - id=8b.3 text="Sources reported The library."
+  - id=8b.4 text="Sources provided information."
+  - id=8b.5 text="Sources reported the tailings dam."
+
+Group 8/header=warnings and alerts
+  gold=1 system=4 matched=1 soft_f1=0.2080
+  matched_pairs:
+  - gold=8a.1 system=8a.4
+    text_metric=rougeL text_similarity=0.4000 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.5200
+    gold_text=A warning was issued for Withel terraces and Cranmoor during emergency communications.
+    system_text=Authorities issued a public warning at Withel terraces.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.1 text="Authorities issued a public warning."
+  - id=8a.2 text="Authorities issued a public warning at the terraces."
+  - id=8a.3 text="Authorities issued a public warning at the terraces #Withel."
 
 ============================================================
 Warnings

@@ -1,0 +1,172 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-17T19:26:33.951098+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : tornado/tornado.W2.k3
+Crisis ID           : tornado
+Cell ID             : tornado.W2.k3
+System ID           : UW-sys18
+
+Gold                : sample_data\gold-output\tornado\tornado.W2.k3.report.json
+System              : sample_data\sysId-output\UW-sys18\tornado\tornado.W2.k3.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.3867
+  ROUGE-2 F1  : 0.2249
+  ROUGE-L F1  : 0.3646
+
+BERTScore (Subsection)
+  Precision   : 0.5586
+  Recall      : 0.5530
+  F1          : 0.5558
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=84 system_only_units=2 system_only_tokens=15 total_tokens=99
+  Recall denominator: matched_gold_tokens=77 gold_only_units=2 gold_only_tokens=20 total_tokens=97
+
+BLEURT (Subsection)
+  Score       : 0.6271
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.2226
+Soft Recall         : 0.3895
+Soft F1             : 0.2833
+
+Matched pairs       : 6
+Unmatched gold      : 2
+Unmatched system    : 8
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys18          0.3867      0.2249      0.3646        0.5558   0.6271            0.2833
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=5 system=5 matched=4 unmatched_gold=1 unmatched_system=1
+subsections: gold=7 system=7 matched=5 unmatched_gold=2 unmatched_system=2
+bullets: gold=8 system=14 matched=6 unmatched_gold=2 unmatched_system=8
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=7 system_units=7 matched_units=5 scored_units=5 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=97 system_ngrams=84 overlapping_ngrams=35
+  rouge2: gold_ngrams=90 system_ngrams=79 overlapping_ngrams=19
+  rougeL: gold_tokens=97 system_tokens=84 total_lcs_length=33
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=transfers
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=10a.1 text="Relief providers transferred a grocery bag of rhubarb at my porch."
+
+Group 3/header=fatalities
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3a.1 text="There were 3 fatalities in Millrow district during the Estenwick tornado outbreak."
+  unmatched_system: none
+
+Group 4/header=damage
+  gold=2 system=3 matched=2 soft_f1=0.4077
+  matched_pairs:
+  - gold=4a.1 system=4a.1
+    text_metric=rougeL text_similarity=0.3529 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4824
+    gold_text=Damage was reported in Millrow district during the Estenwick tornado outbreak.
+    system_text=Infrastructure was damaged at Millrow district.
+  - gold=4a.2 system=4a.3
+    text_metric=rougeL text_similarity=0.4211 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.5368
+    gold_text=Damage was reported in the farm belt during the Estenwick tornado outbreak.
+    system_text=Infrastructure was damaged at the farm belt.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.2 text="Infrastructure was damaged at Palfrey."
+
+Group 4/header=destruction
+  gold=1 system=3 matched=1 soft_f1=0.2560
+  matched_pairs:
+  - gold=4b.1 system=4b.3
+    text_metric=rougeL text_similarity=0.6400 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5120
+    gold_text=Route 12 and grain elevator were destroyed in Dray Corners during the Estenwick tornado outbreak.
+    system_text=Route 12 and grain elevator was destroyed at Dray Corners.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.1 text="Route 12 was destroyed at Dray Corners."
+  - id=4b.2 text="Route 12 and grain elevator was destroyed."
+
+Group 5/header=evacuations
+  gold=1 system=1 matched=1 soft_f1=0.6762
+  matched_pairs:
+  - gold=5a.1 system=5a.1
+    text_metric=rougeL text_similarity=0.7619 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.6762
+    gold_text=People were evacuated from Estenwick and Dray Corners during evacuation and displacement operations.
+    system_text=People were evacuated from Estenwick and Dray Corners.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=1 system=2 matched=1 soft_f1=0.3200
+  matched_pairs:
+  - gold=7a.1 system=7a.1
+    text_metric=rougeL text_similarity=0.6000 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.4800
+    gold_text=Estenwick Police deployed to Estenwick and Millrow district as response operations continued.
+    system_text=Estenwick Police responded at Estenwick and Millrow district.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.2 text="Estenwick Police responded at the town."
+
+Group 8/header=information updates
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=8b.1 text="The county coroner provided information during emergency communications."
+  unmatched_system: none
+
+Group 8/header=requests for help
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.1 text="Affected communities requested assistance."
+
+Group 8/header=warnings and alerts
+  gold=1 system=3 matched=1 soft_f1=0.2143
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.2857 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4286
+    gold_text=A warning was issued for Estenwick, Dray Corners, and Ostley County during emergency communications.
+    system_text=Authorities issued a public warning about Estenwick.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8a.2 text="Authorities issued a public warning."
+  - id=8a.3 text="Authorities issued a public warning at the town."
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

@@ -1,0 +1,246 @@
+============================================================
+LT4CPR Evaluation Log
+============================================================
+
+Generated at UTC : 2026-09-17T19:26:33.951098+00:00
+Config           : config\evaluation.yaml
+Sections         : 3, 4, 5, 6, 7, 8, 9, 10, 11
+Subsection align: header_only
+
+Instance ID         : collapse/collapse.W3.k3
+Crisis ID           : collapse
+Cell ID             : collapse.W3.k3
+System ID           : UW-sys18
+
+Gold                : sample_data\gold-output\collapse\collapse.W3.k3.report.json
+System              : sample_data\sysId-output\UW-sys18\collapse\collapse.W3.k3.report.json
+
+============================================================
+Evaluation Summary
+============================================================
+Text-level Evaluation
+
+ROUGE (Subsection)
+  ROUGE-1 F1  : 0.2957
+  ROUGE-2 F1  : 0.1200
+  ROUGE-L F1  : 0.2312
+
+BERTScore (Subsection)
+  Precision   : 0.5151
+  Recall      : 0.4784
+  F1          : 0.4961
+  Unmatched policy: side_specific_zero
+  Precision denominator: matched_system_tokens=156 system_only_units=2 system_only_tokens=14 total_tokens=170
+  Recall denominator: matched_gold_tokens=173 gold_only_units=4 gold_only_tokens=43 total_tokens=216
+
+BLEURT (Subsection)
+  Score       : 0.4657
+
+------------------------------------------------------------
+
+Bullet-level Hungarian Alignment (Subsection)
+
+Similarity metric   : rougeL + Tweet-ID overlap
+Soft Precision      : 0.1551
+Soft Recall         : 0.2412
+Soft F1             : 0.1888
+
+Matched pairs       : 13
+Unmatched gold      : 5
+Unmatched system    : 15
+
+Within-document Micro (Primary)
+System ID     ROUGE-1 F1  ROUGE-2 F1  ROUGE-L F1  BERTScore F1   BLEURT Weighted Align F1
+-------------------------------------------------------------------------------------------
+UW-sys18          0.2957      0.1200      0.2312        0.4961   0.4657            0.1888
+
+============================================================
+Structure Summary
+============================================================
+sections: gold=6 system=7 matched=6 unmatched_gold=0 unmatched_system=1
+subsections: gold=13 system=11 matched=9 unmatched_gold=4 unmatched_system=2
+bullets: gold=18 system=28 matched=13 unmatched_gold=5 unmatched_system=15
+
+============================================================
+ROUGE Diagnostics
+============================================================
+subsection: gold_units=13 system_units=11 matched_units=9 scored_units=9 skipped_both_empty=0
+  denominator_policy=whole_gold
+  rouge1: gold_ngrams=216 system_ngrams=156 overlapping_ngrams=55
+  rouge2: gold_ngrams=203 system_ngrams=147 overlapping_ngrams=21
+  rougeL: gold_tokens=216 system_tokens=156 total_lcs_length=43
+
+============================================================
+Alignment Details
+============================================================
+Group 10/header=transfers
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=10a.1 text="Relief providers transferred resources at Cobbett Row."
+
+Group 3/header=fatalities
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3a.1 text="Deaths were reported in connection with the Aldan House collapse by November 8."
+  unmatched_system: none
+
+Group 3/header=injuries
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=3b.1 text="Injuries were confirmed and documented in Nerridge during the collapse response."
+  unmatched_system: none
+
+Group 3/header=rescued persons
+  gold=2 system=1 matched=1 soft_f1=0.2216
+  matched_pairs:
+  - gold=3e.2 system=3a.1
+    text_metric=rougeL text_similarity=0.3529 tweet_id_jaccard=0.2500 text_weight=0.8000 final_edge_score=0.3324
+    gold_text=PUSAR reported rescuing people on November 4 and again on November 6.
+    system_text=PUSAR rescued people at #Nerridge.
+  unmatched_gold:
+  - id=3e.1 text="Nerridge fire service reported rescuing people during the initial response to the Aldan House collapse."
+  unmatched_system: none
+
+Group 4/header=destruction
+  gold=3 system=6 matched=3 soft_f1=0.2040
+  matched_pairs:
+  - gold=4b.1 system=4a.4
+    text_metric=rougeL text_similarity=0.5556 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.6444
+    gold_text=The collapse destroyed Aldan House and its east wing.
+    system_text=Aldan House and east wing was destroyed at CobbettRow.
+  - gold=4b.2 system=4a.3
+    text_metric=rougeL text_similarity=0.1818 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1455
+    gold_text=Later safety updates stated that the west wing had not collapsed.
+    system_text=Aldan House and east wing was destroyed, during Aldan House collapse.
+  - gold=4b.4 system=4a.1
+    text_metric=rougeL text_similarity=0.1600 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1280
+    gold_text=The tower crane at the site was reported not to have fallen.
+    system_text=Aldan House was destroyed at #Nerridge, which contributed to reported fatalities involving deaths.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4a.2 text="Aldan House and east wing was destroyed."
+  - id=4a.5 text="East wing was destroyed."
+  - id=4a.6 text="Aldan House was destroyed."
+
+Group 4/header=restoration progress
+  gold=1 system=2 matched=1 soft_f1=0.2857
+  matched_pairs:
+  - gold=4d.1 system=4c.1
+    text_metric=rougeL text_similarity=0.2857 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4286
+    gold_text=Later updates reported restoration of Aldan House.
+    system_text=Aldan House and tower crane resumed operations.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4c.2 text="Aldan House resumed operations."
+
+Group 4/header=service disruptions
+  gold=1 system=2 matched=1 soft_f1=0.1956
+  matched_pairs:
+  - gold=4c.1 system=4b.1
+    text_metric=rougeL text_similarity=0.2000 tweet_id_jaccard=0.6667 text_weight=0.8000 final_edge_score=0.2933
+    gold_text=Service at Aldan House was disrupted; later, services were reported closed along Imber Street and Cobbett Row.
+    system_text=Services were disrupted.
+  unmatched_gold: none
+  unmatched_system:
+  - id=4b.2 text="Service was disrupted at Aldan House."
+
+Group 6/header=hazard assessment
+  gold=1 system=3 matched=1 soft_f1=0.2526
+  matched_pairs:
+  - gold=6a.1 system=6a.3
+    text_metric=rougeL text_similarity=0.6316 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.5053
+    gold_text=Dangerous conditions were reported at Cobbett Row while local services remained closed.
+    system_text=Dangerous conditions was reported at Cobbett Row.
+  unmatched_gold: none
+  unmatched_system:
+  - id=6a.1 text="Sold out was reported."
+  - id=6a.2 text="Conditions was reported at Cobbett Row."
+
+Group 7/header=aid delivery
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=7b.1 text="Assistance was provided in Cobbett Row during the later response."
+  unmatched_system: none
+
+Group 7/header=operational response
+  gold=2 system=5 matched=2 soft_f1=0.1737
+  matched_pairs:
+  - gold=7a.1 system=7a.3
+    text_metric=rougeL text_similarity=0.4545 tweet_id_jaccard=0.3333 text_weight=0.8000 final_edge_score=0.4303
+    gold_text=Provincial Urban Search and Rescue deployed during the response and later reported rescuing people.
+    system_text=Provincial Urban Search and Rescue responded at #AldanHouse.
+  - gold=7a.2 system=7a.5
+    text_metric=rougeL text_similarity=0.2222 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1778
+    gold_text=Nerridge Police deployed in the city during the later phase of the response.
+    system_text=Nerridge Police responded at #AldanHouse.
+  unmatched_gold: none
+  unmatched_system:
+  - id=7a.1 text="PUSAR rescued people at #Nerridge."
+  - id=7a.2 text="The police responded at Nerridge."
+  - id=7a.4 text="PUSAR responded at #Nerridge."
+
+Group 8/header=information updates
+  gold=2 system=3 matched=2 soft_f1=0.1464
+  matched_pairs:
+  - gold=8b.1 system=8b.3
+    text_metric=rougeL text_similarity=0.2353 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1882
+    gold_text=Nerridge Emergency Management provided information about the east wing during the response.
+    system_text=Sources reported the collapsed wing.
+  - gold=8b.2 system=8b.1
+    text_metric=rougeL text_similarity=0.2222 tweet_id_jaccard=0.0000 text_weight=0.8000 final_edge_score=0.1778
+    gold_text=Nerridge Police reported that no looting had been reported during the later response.
+    system_text=Sources reported The tram museum.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8b.2 text="Sources reported bike lane."
+
+Group 8/header=requests for help
+  gold=1 system=3 matched=1 soft_f1=0.2000
+  matched_pairs:
+  - gold=8c.1 system=8c.1
+    text_metric=rougeL text_similarity=0.2500 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4000
+    gold_text=Requests for assistance were reported during the early phase of the emergency.
+    system_text=Affected communities requested assistance.
+  unmatched_gold: none
+  unmatched_system:
+  - id=8c.2 text="Affected communities requested assistance at the street."
+  - id=8c.3 text="Affected communities requested assistance at #Nerridge."
+
+Group 8/header=warnings and alerts
+  gold=1 system=1 matched=1 soft_f1=0.4909
+  matched_pairs:
+  - gold=8a.1 system=8a.1
+    text_metric=rougeL text_similarity=0.3636 tweet_id_jaccard=1.0000 text_weight=0.8000 final_edge_score=0.4909
+    gold_text=A warning was issued for Cobbett Row during the initial response to the collapse.
+    system_text=Authorities issued a public warning at Cobbett Row.
+  unmatched_gold: none
+  unmatched_system: none
+
+Group 9/header=aid delivery
+  gold=0 system=1 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold: none
+  unmatched_system:
+  - id=9a.1 text="Relief organisations provided assistance at Cobbett Row."
+
+Group 9/header=aid provided and distributed
+  gold=1 system=0 matched=0 soft_f1=0.0000
+  matched_pairs: none
+  unmatched_gold:
+  - id=9a.1 text="Assistance was provided in Cobbett Row during the response."
+  unmatched_system: none
+
+============================================================
+Warnings
+============================================================
+missing_structure: none
+skipped_both_empty_units=0
+missing_tweet_ids: gold_units=0 system_units=0
+skipped_groups: none
+metric_failures: none
+warnings: selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; selected_sections_not_found; gold_only_groups; system_only_groups; partial_key_overlap

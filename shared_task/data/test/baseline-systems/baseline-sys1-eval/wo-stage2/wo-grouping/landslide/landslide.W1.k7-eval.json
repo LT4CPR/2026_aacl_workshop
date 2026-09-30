@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-09-17T19:26:33.951098+00:00",
+  "generated_at_utc": "2026-09-24T21:30:10.577483+00:00",
   "config": "config\\evaluation.yaml",
   "gold_dir": "sample_data\\gold-output",
-  "system_dir": "sample_data\\sysId-output\\UW-sys18",
-  "system_id": "UW-sys18",
+  "system_dir": "sample_data\\sysId-output\\UW-sys40",
+  "system_id": "UW-sys40",
   "evaluation_scope": {
     "sections": [
       "3",
@@ -35,9 +35,9 @@
       "cell_id": "landslide.W1.k7",
       "window_id": "W1",
       "replicate_id": "k7",
-      "sys_id": "UW-sys18",
+      "sys_id": "UW-sys40",
       "gold_file": "sample_data\\gold-output\\landslide\\landslide.W1.k7.report.json",
-      "system_file": "sample_data\\sysId-output\\UW-sys18\\landslide\\landslide.W1.k7.report.json",
+      "system_file": "sample_data\\sysId-output\\UW-sys40\\landslide\\landslide.W1.k7.report.json",
       "status": "scored",
       "summary": {
         "rouge": {
@@ -79,35 +79,35 @@
           "score_policy": null,
           "zero_score_reason": null,
           "rouge1": {
-            "precision": 0.5625,
+            "precision": 0.375,
             "recall": 0.5806,
-            "fmeasure": 0.5714
+            "fmeasure": 0.4557
           },
           "rouge2": {
-            "precision": 0.3448,
+            "precision": 0.2222,
             "recall": 0.3571,
-            "fmeasure": 0.3509
+            "fmeasure": 0.274
           },
           "rougeL": {
-            "precision": 0.4375,
-            "recall": 0.4516,
-            "fmeasure": 0.4444
+            "precision": 0.3542,
+            "recall": 0.5484,
+            "fmeasure": 0.4304
           },
           "micro": {
             "rouge1": {
-              "precision": 0.5625,
+              "precision": 0.375,
               "recall": 0.5806,
-              "fmeasure": 0.5714
+              "fmeasure": 0.4557
             },
             "rouge2": {
-              "precision": 0.3448,
+              "precision": 0.2222,
               "recall": 0.3571,
-              "fmeasure": 0.3509
+              "fmeasure": 0.274
             },
             "rougeL": {
-              "precision": 0.4375,
-              "recall": 0.4516,
-              "fmeasure": 0.4444
+              "precision": 0.3542,
+              "recall": 0.5484,
+              "fmeasure": 0.4304
             },
             "denominator_policy": "whole_gold"
           }
@@ -150,24 +150,24 @@
           "n_skipped_both_empty": 0,
           "score_policy": null,
           "zero_score_reason": null,
-          "precision": 0.681296,
-          "recall": 0.697864,
-          "f1": 0.689481,
+          "precision": 0.527797,
+          "recall": 0.673174,
+          "f1": 0.591687,
           "unmatched_penalty": {
             "policy": "side_specific_zero",
-            "matched_system_token_weight": 32,
-            "system_only_units": 0,
-            "system_only_token_weight": 0,
-            "precision_denominator_token_weight": 32,
+            "matched_system_token_weight": 48,
+            "system_only_units": 1,
+            "system_only_token_weight": 5,
+            "precision_denominator_token_weight": 53,
             "matched_gold_token_weight": 31,
             "gold_only_units": 0,
             "gold_only_token_weight": 0,
             "recall_denominator_token_weight": 31
           },
           "micro": {
-            "precision": 0.681296,
-            "recall": 0.697864,
-            "f1": 0.689481,
+            "precision": 0.527797,
+            "recall": 0.673174,
+            "f1": 0.591687,
             "model_type": "microsoft/deberta-xlarge-mnli",
             "unmatched_policy": "side_specific_zero",
             "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
@@ -211,9 +211,9 @@
           "n_skipped_both_empty": 0,
           "score_policy": null,
           "zero_score_reason": null,
-          "score": 0.538745,
+          "score": 0.575178,
           "micro": {
-            "score": 0.538745,
+            "score": 0.575178,
             "config_name": "BLEURT-20"
           }
         },
@@ -248,27 +248,42 @@
                 "10",
                 "11"
               ]
+            },
+            {
+              "code": "system_only_groups",
+              "message": "system has groups with no matching gold group key",
+              "count": 1,
+              "groups": [
+                "8/information updates"
+              ]
+            },
+            {
+              "code": "partial_key_overlap",
+              "message": "only some group keys overlap between gold and system",
+              "shared_groups": 3,
+              "gold_only_groups": 0,
+              "system_only_groups": 1
             }
           ],
           "scope": "subsection",
           "metric": "rougeL",
           "subsection_alignment_method": "header_only",
           "threshold": 0.1,
-          "micro_soft_precision": 0.2814565826330532,
-          "micro_soft_recall": 0.469094304388422,
-          "micro_soft_f1": 0.3518207282913165,
+          "micro_soft_precision": 0.2042653425006366,
+          "micro_soft_recall": 0.5447075800016976,
+          "micro_soft_f1": 0.2971132254554714,
           "structure_recall": 1.0,
-          "structure_precision": 1.0,
+          "structure_precision": 0.75,
           "matched_pairs": 3,
           "gold_units": 3,
-          "system_units": 5,
-          "warning_count": 2
+          "system_units": 8,
+          "warning_count": 4
         }
       },
       "evaluation": {
-        "generated_at_utc": "2026-09-17T19:23:39.916863+00:00",
+        "generated_at_utc": "2026-09-24T21:27:20.007183+00:00",
         "gold": "sample_data\\gold-output\\landslide\\landslide.W1.k7.report.json",
-        "system": "sample_data\\sysId-output\\UW-sys18\\landslide\\landslide.W1.k7.report.json",
+        "system": "sample_data\\sysId-output\\UW-sys40\\landslide\\landslide.W1.k7.report.json",
         "config": "config\\evaluation.yaml",
         "view": "single",
         "evaluation_scope": {
@@ -332,19 +347,19 @@
                 "reference_subsection_header": "Damage",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.75,
-                    "recall": 1.0,
-                    "fmeasure": 0.8571
+                    "precision": 0.8,
+                    "recall": 0.6667,
+                    "fmeasure": 0.7273
                   },
                   "rouge2": {
-                    "precision": 0.4286,
-                    "recall": 0.6,
-                    "fmeasure": 0.5
+                    "precision": 0.5,
+                    "recall": 0.4,
+                    "fmeasure": 0.4444
                   },
                   "rougeL": {
-                    "precision": 0.375,
+                    "precision": 0.6,
                     "recall": 0.5,
-                    "fmeasure": 0.4286
+                    "fmeasure": 0.5455
                   }
                 }
               },
@@ -359,21 +374,31 @@
                 "reference_subsection_header": "Evacuations",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.4737,
+                    "precision": 0.6923,
                     "recall": 0.6923,
-                    "fmeasure": 0.5625
+                    "fmeasure": 0.6923
                   },
                   "rouge2": {
-                    "precision": 0.3889,
+                    "precision": 0.5833,
                     "recall": 0.5833,
-                    "fmeasure": 0.4667
+                    "fmeasure": 0.5833
                   },
                   "rougeL": {
-                    "precision": 0.4737,
+                    "precision": 0.6923,
                     "recall": 0.6923,
-                    "fmeasure": 0.5625
+                    "fmeasure": 0.6923
                   }
                 }
+              },
+              {
+                "unit_id": "subsection:8/header=information updates",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=information updates",
+                "candidate_subsection_id": "8b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Information updates",
+                "reference_subsection_header": null
               },
               {
                 "unit_id": "subsection:8/header=warnings and alerts",
@@ -386,19 +411,19 @@
                 "reference_subsection_header": "Warnings and alerts",
                 "scores": {
                   "rouge1": {
-                    "precision": 0.6,
-                    "recall": 0.25,
-                    "fmeasure": 0.3529
+                    "precision": 0.1667,
+                    "recall": 0.4167,
+                    "fmeasure": 0.2381
                   },
                   "rouge2": {
-                    "precision": 0.0,
-                    "recall": 0.0,
-                    "fmeasure": 0.0
+                    "precision": 0.0345,
+                    "recall": 0.0909,
+                    "fmeasure": 0.05
                   },
                   "rougeL": {
-                    "precision": 0.4,
-                    "recall": 0.1667,
-                    "fmeasure": 0.2353
+                    "precision": 0.1667,
+                    "recall": 0.4167,
+                    "fmeasure": 0.2381
                   }
                 }
               }
@@ -406,44 +431,44 @@
             "aggregates": {
               "micro": {
                 "rouge1": {
-                  "precision": 0.5625,
+                  "precision": 0.375,
                   "recall": 0.5806,
-                  "fmeasure": 0.5714
+                  "fmeasure": 0.4557
                 },
                 "rouge2": {
-                  "precision": 0.3448,
+                  "precision": 0.2222,
                   "recall": 0.3571,
-                  "fmeasure": 0.3509
+                  "fmeasure": 0.274
                 },
                 "rougeL": {
-                  "precision": 0.4375,
-                  "recall": 0.4516,
-                  "fmeasure": 0.4444
+                  "precision": 0.3542,
+                  "recall": 0.5484,
+                  "fmeasure": 0.4304
                 },
                 "denominator_policy": "whole_gold"
               }
             },
             "overall": {
               "rouge1": {
-                "precision": 0.5625,
+                "precision": 0.375,
                 "recall": 0.5806,
-                "fmeasure": 0.5714
+                "fmeasure": 0.4557
               },
               "rouge2": {
-                "precision": 0.3448,
+                "precision": 0.2222,
                 "recall": 0.3571,
-                "fmeasure": 0.3509
+                "fmeasure": 0.274
               },
               "rougeL": {
-                "precision": 0.4375,
-                "recall": 0.4516,
-                "fmeasure": 0.4444
+                "precision": 0.3542,
+                "recall": 0.5484,
+                "fmeasure": 0.4304
               },
               "denominator_policy": "whole_gold"
             },
             "diagnostics": {
               "gold_units": 3,
-              "system_units": 3,
+              "system_units": 4,
               "matched_units": 3,
               "scored_units": 3,
               "skipped_both_empty_units": 0,
@@ -453,22 +478,22 @@
                 "gold_ngrams": 31,
                 "matched_gold_ngrams": 31,
                 "whole_gold_ngrams": 31,
-                "system_ngrams": 32,
+                "system_ngrams": 48,
                 "overlapping_ngrams": 18
               },
               "rouge2": {
                 "gold_ngrams": 28,
                 "matched_gold_ngrams": 28,
                 "whole_gold_ngrams": 28,
-                "system_ngrams": 29,
+                "system_ngrams": 45,
                 "overlapping_ngrams": 10
               },
               "rougeL": {
                 "gold_tokens": 31,
                 "matched_gold_tokens": 31,
                 "whole_gold_tokens": 31,
-                "system_tokens": 32,
-                "total_lcs_length": 14
+                "system_tokens": 48,
+                "total_lcs_length": 17
               }
             },
             "subsection_alignment_method": "header_only"
@@ -518,9 +543,9 @@
                 "candidate_subsection_header": "Damage",
                 "reference_subsection_header": "Damage",
                 "scores": {
-                  "precision": 0.772839,
-                  "recall": 0.868411,
-                  "f1": 0.817843
+                  "precision": 0.812855,
+                  "recall": 0.721028,
+                  "f1": 0.764193
                 }
               },
               {
@@ -533,10 +558,20 @@
                 "candidate_subsection_header": "Evacuations",
                 "reference_subsection_header": "Evacuations",
                 "scores": {
-                  "precision": 0.615342,
-                  "recall": 0.718689,
-                  "f1": 0.663012
+                  "precision": 0.753725,
+                  "recall": 0.772349,
+                  "f1": 0.762923
                 }
+              },
+              {
+                "unit_id": "subsection:8/header=information updates",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=information updates",
+                "candidate_subsection_id": "8b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Information updates",
+                "reference_subsection_header": null
               },
               {
                 "unit_id": "subsection:8/header=warnings and alerts",
@@ -548,36 +583,36 @@
                 "candidate_subsection_header": "Warnings and alerts",
                 "reference_subsection_header": "Warnings and alerts",
                 "scores": {
-                  "precision": 0.785454,
-                  "recall": 0.59003,
-                  "f1": 0.673859
+                  "precision": 0.470352,
+                  "recall": 0.541808,
+                  "f1": 0.503558
                 }
               }
             ],
             "aggregates": {
               "micro": {
-                "precision": 0.681296,
-                "recall": 0.697864,
-                "f1": 0.689481,
+                "precision": 0.527797,
+                "recall": 0.673174,
+                "f1": 0.591687,
                 "model_type": "microsoft/deberta-xlarge-mnli",
                 "unmatched_policy": "side_specific_zero",
                 "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
               }
             },
             "overall": {
-              "precision": 0.681296,
-              "recall": 0.697864,
-              "f1": 0.689481,
+              "precision": 0.527797,
+              "recall": 0.673174,
+              "f1": 0.591687,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "unmatched_policy": "side_specific_zero",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
             },
             "unmatched_penalty": {
               "policy": "side_specific_zero",
-              "matched_system_token_weight": 32,
-              "system_only_units": 0,
-              "system_only_token_weight": 0,
-              "precision_denominator_token_weight": 32,
+              "matched_system_token_weight": 48,
+              "system_only_units": 1,
+              "system_only_token_weight": 5,
+              "precision_denominator_token_weight": 53,
               "matched_gold_token_weight": 31,
               "gold_only_units": 0,
               "gold_only_token_weight": 0,
@@ -629,7 +664,7 @@
                 "reference_subsection_id": "4a",
                 "candidate_subsection_header": "Damage",
                 "reference_subsection_header": "Damage",
-                "score": 0.771159
+                "score": 0.545483
               },
               {
                 "unit_id": "subsection:5/header=evacuations",
@@ -640,7 +675,17 @@
                 "reference_subsection_id": "5a",
                 "candidate_subsection_header": "Evacuations",
                 "reference_subsection_header": "Evacuations",
-                "score": 0.6301
+                "score": 0.582218
+              },
+              {
+                "unit_id": "subsection:8/header=information updates",
+                "status": "candidate_only",
+                "subsection_alignment_method": "header_only",
+                "subsection_alignment_key": "header=information updates",
+                "candidate_subsection_id": "8b",
+                "reference_subsection_id": null,
+                "candidate_subsection_header": "Information updates",
+                "reference_subsection_header": null
               },
               {
                 "unit_id": "subsection:8/header=warnings and alerts",
@@ -651,17 +696,17 @@
                 "reference_subsection_id": "8a",
                 "candidate_subsection_header": "Warnings and alerts",
                 "reference_subsection_header": "Warnings and alerts",
-                "score": 0.323569
+                "score": 0.5824
               }
             ],
             "aggregates": {
               "micro": {
-                "score": 0.538745,
+                "score": 0.575178,
                 "config_name": "BLEURT-20"
               }
             },
             "overall": {
-              "score": 0.538745,
+              "score": 0.575178,
               "config_name": "BLEURT-20"
             },
             "subsection_alignment_method": "header_only"
@@ -669,7 +714,7 @@
         },
         "weighted_alignment": {
           "gold": "sample_data\\gold-output\\landslide\\landslide.W1.k7.report.json",
-          "system": "sample_data\\sysId-output\\UW-sys18\\landslide\\landslide.W1.k7.report.json",
+          "system": "sample_data\\sysId-output\\UW-sys40\\landslide\\landslide.W1.k7.report.json",
           "metric": "rougeL",
           "threshold": 0.1,
           "configuration": {
@@ -743,31 +788,46 @@
                 "10",
                 "11"
               ]
+            },
+            {
+              "code": "system_only_groups",
+              "message": "system has groups with no matching gold group key",
+              "count": 1,
+              "groups": [
+                "8/information updates"
+              ]
+            },
+            {
+              "code": "partial_key_overlap",
+              "message": "only some group keys overlap between gold and system",
+              "shared_groups": 3,
+              "gold_only_groups": 0,
+              "system_only_groups": 1
             }
           ],
           "summary": {
             "gold_units": 3,
-            "system_units": 5,
+            "system_units": 8,
             "gold_source_bullets": 3,
-            "system_source_bullets": 5,
+            "system_source_bullets": 8,
             "matched_pairs": 3,
             "compared_groups": 3,
             "groups_with_accepted_pairs": 3,
             "unmatched_gold": 0,
-            "unmatched_system": 2,
-            "mean_positive_edge_weight": 0.469094304388422,
-            "micro_soft_precision": 0.2814565826330532,
-            "micro_soft_recall": 0.469094304388422,
-            "micro_soft_f1": 0.3518207282913165,
+            "unmatched_system": 5,
+            "mean_positive_edge_weight": 0.5447075800016976,
+            "micro_soft_precision": 0.2042653425006366,
+            "micro_soft_recall": 0.5447075800016976,
+            "micro_soft_f1": 0.2971132254554714,
             "gold_groups": 3,
-            "system_groups": 3,
+            "system_groups": 4,
             "shared_groups": 3,
             "structure_recall": 1.0,
-            "structure_precision": 1.0,
-            "warning_count": 2,
-            "warning_codes": "selected_sections_not_found",
+            "structure_precision": 0.75,
+            "warning_count": 4,
+            "warning_codes": "partial_key_overlap;selected_sections_not_found;system_only_groups",
             "gold_only_groups": 0,
-            "system_only_groups": 0
+            "system_only_groups": 1
           },
           "groups": [
             {
@@ -780,33 +840,33 @@
               "gold_count": 1,
               "system_count": 1,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.44285714285714284,
-              "soft_precision": 0.44285714285714284,
-              "soft_recall": 0.44285714285714284,
-              "soft_f1": 0.44285714285714284,
-              "total_weight": 0.44285714285714284,
+              "mean_positive_edge_weight": 0.43636363636363634,
+              "soft_precision": 0.43636363636363634,
+              "soft_recall": 0.43636363636363634,
+              "soft_f1": 0.43636363636363634,
+              "total_weight": 0.43636363636363634,
               "pairs": [
                 {
                   "gold_index": 0,
                   "system_index": 0,
-                  "weight": 0.44285714285714284,
+                  "weight": 0.43636363636363634,
                   "gold_bullet_id": "4a.1",
                   "system_bullet_id": "4a.1",
                   "gold_subsection_id": "4a",
                   "system_subsection_id": "4a",
                   "gold_subsection_header": "Damage",
                   "system_subsection_header": "Damage",
-                  "text_similarity": 0.42857142857142855,
-                  "tweet_id_similarity": 0.5,
+                  "text_similarity": 0.5454545454545454,
+                  "tweet_id_similarity": 0.0,
                   "gold_tweet_ids": [
                     "2"
                   ],
                   "system_tweet_ids": [
-                    "2",
-                    "4"
+                    "4",
+                    "6"
                   ],
                   "gold_text": "Ashfell slide damaged the lower road.",
-                  "system_text": "The lower road was damaged, during Ashfell slide."
+                  "system_text": "The lower road was damaged."
                 }
               ],
               "unmatched_gold": [],
@@ -820,32 +880,30 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=evacuations",
               "gold_count": 1,
-              "system_count": 3,
+              "system_count": 2,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.6761904761904762,
-              "soft_precision": 0.2253968253968254,
-              "soft_recall": 0.6761904761904762,
-              "soft_f1": 0.3380952380952381,
-              "total_weight": 0.6761904761904762,
+              "mean_positive_edge_weight": 0.8095238095238095,
+              "soft_precision": 0.40476190476190477,
+              "soft_recall": 0.8095238095238095,
+              "soft_f1": 0.5396825396825397,
+              "total_weight": 0.8095238095238095,
               "pairs": [
                 {
                   "gold_index": 0,
-                  "system_index": 1,
-                  "weight": 0.6761904761904762,
+                  "system_index": 0,
+                  "weight": 0.8095238095238095,
                   "gold_bullet_id": "5a.1",
-                  "system_bullet_id": "5a.2",
+                  "system_bullet_id": "5a.1",
                   "gold_subsection_id": "5a",
                   "system_subsection_id": "5a",
                   "gold_subsection_header": "Evacuations",
                   "system_subsection_header": "Evacuations",
                   "text_similarity": 0.761904761904762,
-                  "tweet_id_similarity": 0.3333333333333333,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
                     "14"
                   ],
                   "system_tweet_ids": [
-                    "10",
-                    "12",
                     "14"
                   ],
                   "gold_text": "About 60 households were evacuated from Withel terraces during evacuation and displacement operations.",
@@ -858,24 +916,43 @@
                   "section_id": "5",
                   "subsection_id": "5a",
                   "subsection_title": "Evacuations",
-                  "bullet_id": "5a.1",
-                  "text": "People were evacuated.",
+                  "bullet_id": "5a.2",
+                  "text": "People were evacuated from Cranmoor.",
                   "tweet_ids": [
-                    6,
-                    11
+                    14
                   ],
                   "confidence": "confirmed"
-                },
+                }
+              ]
+            },
+            {
+              "scope": "subsection",
+              "group_id": "8/header=information updates",
+              "section_id": "8",
+              "subsection_id": null,
+              "subsection_alignment_method": "header_only",
+              "subsection_alignment_key": "header=information updates",
+              "gold_count": 0,
+              "system_count": 1,
+              "matched_count": 0,
+              "mean_positive_edge_weight": 0.0,
+              "soft_precision": 0.0,
+              "soft_recall": 0.0,
+              "soft_f1": 0.0,
+              "total_weight": 0.0,
+              "pairs": [],
+              "unmatched_gold": [],
+              "unmatched_system": [
                 {
-                  "section_id": "5",
-                  "subsection_id": "5a",
-                  "subsection_title": "Evacuations",
-                  "bullet_id": "5a.3",
-                  "text": "About 60 households were evacuated from the terraces.",
+                  "section_id": "8",
+                  "subsection_id": "8b",
+                  "subsection_title": "Information updates",
+                  "bullet_id": "8b.1",
+                  "text": "Sources reported the air ambulance.",
                   "tweet_ids": [
-                    9
+                    2
                   ],
-                  "confidence": "confirmed"
+                  "confidence": "planned"
                 }
               ]
             },
@@ -887,31 +964,30 @@
               "subsection_alignment_method": "header_only",
               "subsection_alignment_key": "header=warnings and alerts",
               "gold_count": 1,
-              "system_count": 1,
+              "system_count": 4,
               "matched_count": 1,
-              "mean_positive_edge_weight": 0.28823529411764703,
-              "soft_precision": 0.28823529411764703,
-              "soft_recall": 0.28823529411764703,
-              "soft_f1": 0.28823529411764703,
-              "total_weight": 0.28823529411764703,
+              "mean_positive_edge_weight": 0.388235294117647,
+              "soft_precision": 0.09705882352941175,
+              "soft_recall": 0.388235294117647,
+              "soft_f1": 0.1552941176470588,
+              "total_weight": 0.388235294117647,
               "pairs": [
                 {
                   "gold_index": 0,
-                  "system_index": 0,
-                  "weight": 0.28823529411764703,
+                  "system_index": 1,
+                  "weight": 0.388235294117647,
                   "gold_bullet_id": "8a.1",
-                  "system_bullet_id": "8a.1",
+                  "system_bullet_id": "8a.2",
                   "gold_subsection_id": "8a",
                   "system_subsection_id": "8a",
                   "gold_subsection_header": "Warnings and alerts",
                   "system_subsection_header": "Warnings and alerts",
                   "text_similarity": 0.23529411764705882,
-                  "tweet_id_similarity": 0.5,
+                  "tweet_id_similarity": 1.0,
                   "gold_tweet_ids": [
                     "8"
                   ],
                   "system_tweet_ids": [
-                    "5",
                     "8"
                   ],
                   "gold_text": "A warning was issued for Withel terraces and Cranmoor during emergency communications.",
@@ -919,7 +995,42 @@
                 }
               ],
               "unmatched_gold": [],
-              "unmatched_system": []
+              "unmatched_system": [
+                {
+                  "section_id": "8",
+                  "subsection_id": "8a",
+                  "subsection_title": "Warnings and alerts",
+                  "bullet_id": "8a.1",
+                  "text": "Authorities issued a public warning at the terraces.",
+                  "tweet_ids": [
+                    9,
+                    11
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8a",
+                  "subsection_title": "Warnings and alerts",
+                  "bullet_id": "8a.3",
+                  "text": "Authorities issued a public warning at Withel terraces.",
+                  "tweet_ids": [
+                    10
+                  ],
+                  "confidence": "confirmed"
+                },
+                {
+                  "section_id": "8",
+                  "subsection_id": "8a",
+                  "subsection_title": "Warnings and alerts",
+                  "bullet_id": "8a.4",
+                  "text": "Authorities issued a public warning at the terraces #Withel.",
+                  "tweet_ids": [
+                    12
+                  ],
+                  "confidence": "confirmed"
+                }
+              ]
             }
           ]
         },
@@ -963,35 +1074,35 @@
             "score_policy": null,
             "zero_score_reason": null,
             "rouge1": {
-              "precision": 0.5625,
+              "precision": 0.375,
               "recall": 0.5806,
-              "fmeasure": 0.5714
+              "fmeasure": 0.4557
             },
             "rouge2": {
-              "precision": 0.3448,
+              "precision": 0.2222,
               "recall": 0.3571,
-              "fmeasure": 0.3509
+              "fmeasure": 0.274
             },
             "rougeL": {
-              "precision": 0.4375,
-              "recall": 0.4516,
-              "fmeasure": 0.4444
+              "precision": 0.3542,
+              "recall": 0.5484,
+              "fmeasure": 0.4304
             },
             "micro": {
               "rouge1": {
-                "precision": 0.5625,
+                "precision": 0.375,
                 "recall": 0.5806,
-                "fmeasure": 0.5714
+                "fmeasure": 0.4557
               },
               "rouge2": {
-                "precision": 0.3448,
+                "precision": 0.2222,
                 "recall": 0.3571,
-                "fmeasure": 0.3509
+                "fmeasure": 0.274
               },
               "rougeL": {
-                "precision": 0.4375,
-                "recall": 0.4516,
-                "fmeasure": 0.4444
+                "precision": 0.3542,
+                "recall": 0.5484,
+                "fmeasure": 0.4304
               },
               "denominator_policy": "whole_gold"
             }
@@ -1034,24 +1145,24 @@
             "n_skipped_both_empty": 0,
             "score_policy": null,
             "zero_score_reason": null,
-            "precision": 0.681296,
-            "recall": 0.697864,
-            "f1": 0.689481,
+            "precision": 0.527797,
+            "recall": 0.673174,
+            "f1": 0.591687,
             "unmatched_penalty": {
               "policy": "side_specific_zero",
-              "matched_system_token_weight": 32,
-              "system_only_units": 0,
-              "system_only_token_weight": 0,
-              "precision_denominator_token_weight": 32,
+              "matched_system_token_weight": 48,
+              "system_only_units": 1,
+              "system_only_token_weight": 5,
+              "precision_denominator_token_weight": 53,
               "matched_gold_token_weight": 31,
               "gold_only_units": 0,
               "gold_only_token_weight": 0,
               "recall_denominator_token_weight": 31
             },
             "micro": {
-              "precision": 0.681296,
-              "recall": 0.697864,
-              "f1": 0.689481,
+              "precision": 0.527797,
+              "recall": 0.673174,
+              "f1": 0.591687,
               "model_type": "microsoft/deberta-xlarge-mnli",
               "unmatched_policy": "side_specific_zero",
               "hashcode": "microsoft/deberta-xlarge-mnli_L40_no-idf_version=0.3.12(hug_trans=4.57.6)"
@@ -1095,9 +1206,9 @@
             "n_skipped_both_empty": 0,
             "score_policy": null,
             "zero_score_reason": null,
-            "score": 0.538745,
+            "score": 0.575178,
             "micro": {
-              "score": 0.538745,
+              "score": 0.575178,
               "config_name": "BLEURT-20"
             }
           },
@@ -1132,21 +1243,36 @@
                   "10",
                   "11"
                 ]
+              },
+              {
+                "code": "system_only_groups",
+                "message": "system has groups with no matching gold group key",
+                "count": 1,
+                "groups": [
+                  "8/information updates"
+                ]
+              },
+              {
+                "code": "partial_key_overlap",
+                "message": "only some group keys overlap between gold and system",
+                "shared_groups": 3,
+                "gold_only_groups": 0,
+                "system_only_groups": 1
               }
             ],
             "scope": "subsection",
             "metric": "rougeL",
             "subsection_alignment_method": "header_only",
             "threshold": 0.1,
-            "micro_soft_precision": 0.2814565826330532,
-            "micro_soft_recall": 0.469094304388422,
-            "micro_soft_f1": 0.3518207282913165,
+            "micro_soft_precision": 0.2042653425006366,
+            "micro_soft_recall": 0.5447075800016976,
+            "micro_soft_f1": 0.2971132254554714,
             "structure_recall": 1.0,
-            "structure_precision": 1.0,
+            "structure_precision": 0.75,
             "matched_pairs": 3,
             "gold_units": 3,
-            "system_units": 5,
-            "warning_count": 2
+            "system_units": 8,
+            "warning_count": 4
           }
         }
       },
@@ -1160,17 +1286,17 @@
         },
         "subsections": {
           "gold": 3,
-          "system": 3,
+          "system": 4,
           "matched": 3,
           "unmatched_gold": 0,
-          "unmatched_system": 0
+          "unmatched_system": 1
         },
         "bullets": {
           "gold": 3,
-          "system": 5,
+          "system": 8,
           "matched": 3,
           "unmatched_gold": 0,
-          "unmatched_system": 2
+          "unmatched_system": 5
         }
       },
       "diagnostics": {
@@ -1184,17 +1310,17 @@
           },
           "subsections": {
             "gold": 3,
-            "system": 3,
+            "system": 4,
             "matched": 3,
             "unmatched_gold": 0,
-            "unmatched_system": 0
+            "unmatched_system": 1
           },
           "bullets": {
             "gold": 3,
-            "system": 5,
+            "system": 8,
             "matched": 3,
             "unmatched_gold": 0,
-            "unmatched_system": 2
+            "unmatched_system": 5
           }
         }
       }
